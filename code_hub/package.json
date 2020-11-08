@@ -1,0 +1,13 @@
+{
+  "name": "gao",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bwip-js": "^2.0.11",
+    "express": "^4.17.1",
+    "pug": "^3.0.0",
+    "qr-image": "^3.2.0"
+  }
+}
