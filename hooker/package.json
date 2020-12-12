@@ -1,0 +1,38 @@
+{
+  "name": "electron-iohook-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zerotung/electron-iohook-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zerotung/electron-iohook-demo/issues"
+  },
+  "homepage": "https://github.com/zerotung/electron-iohook-demo#readme",
+  "dependencies": {
+    "electron": "^2.0.4",
+    "iohook": "^0.3.0"
+  },
+  "iohook": {
+    "targets": [
+      "node-64",
+      "electron-57"
+    ],
+    "platforms": [
+      "win32",
+      "darwin"
+    ],
+    "arches": [
+      "x64",
+      "ia32"
+    ]
+  }
+}

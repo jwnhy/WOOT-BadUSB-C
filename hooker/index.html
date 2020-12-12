@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <style>
+    .iohook {
+      width: 100px; height: 100px; background-color: #ccc;
+    }
+    .iohook:hover {
+      background-color: #c00;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="iohook"></div>
+  </div>
+  <script>
+    var $iohook = document.getElementsByClassName('iohook')[0];
+    $iohook.addEventListener('mouseenter', function() { console.log('mouseenter'); });
+    $iohook.addEventListener('mouseout', function() { console.log('mouseout'); });
+    $iohook.addEventListener('mouseover', function() { console.log('mouseover'); });
+    $iohook.addEventListener('mouseleave', function() { console.log('mouseleave'); });
+  </script>
+</body>
+
+</html>
