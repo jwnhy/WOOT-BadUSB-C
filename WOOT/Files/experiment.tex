@@ -1,2 +1,71 @@
 \section{Experiment}
 \label{section:experiment}
+
+Overview, the experiment equipment consists of
+a USB Type-C hub with HDMI and USB port,
+a raspberry pi 4B with a Wi-Fi chip onboard,
+a video capture card adapting HDMI signal to USB camera,
+and a normal powerbank with dual outputs.
+
+The normal powerbank is used to supply a piece of raspberry pi 4B and
+charge victim's device.
+The USB-C hub adapts USB Type-C to HDMI port and USB port.
+ The whole equipment exposed only one type-c cable (from USB-C hub),
+and the equipment will charge his or her device through this cable,
+which has no difference from ordinary powerbanks.
+
+
+\subsection{Real-time monitoring}
+
+When connected to network,
+the raspberry pi can use ``ffmpeg'' to encode video stream from victim device,
+and then use ``netcat'' to send encoded video stream to a intermediate transit server.
+By this means, the attacker is able to monitor the victim devices in real-time.
+
+\begin{lstlisting}[caption={Precondition Checking for the Selfdestruct Call},label=lst1:mxm]
+    nc -nlkvp 1234 | nc -nlkvp 4321
+
+\end{lstlisting}
+
+
+\subsection{Private information extraction}
+
+Real-time monitoring is ideal for the attacker to grab all information shown on victim devices,
+ but it requires high power consumption to encode video streams and stable network connections.
+In some situations, high power consumption will increase the posibilities of alerting the victim,
+and it is hard to guarantee stable network connections.
+
+Considering that, extracting only high-value information for attacker (or highly sensitive information for victim) is more efficient.
+The raspberry pi can use ``opencv'' to identify information from video stream.
+For example, extracting the victim's name, photo, address, and ID number when victim is viewing his or her photos including a photo of his or her ID card,
+extracting the victim's payment information or payment code when victim is showing his or her payment information.
+Here is an example of extracting payment code with opencv library in listing~\ref{lst2:qr},
+
+\begin{lstlisting}[caption={python script for extracting payment code of victim},label=lst2:qr]
+    import cv2
+    import pyzbar.pyzbar as pyzbar
+    import qrcode
+    import requests
+    def decodeDisplay(video):
+        global current
+        gray = cv2.cvtColor(video, cv2.COLOR_BGR2GRAY)
+        barcodes = pyzbar.decode(gray)
+        for barcode in barcodes:
+            barcodeData = barcode.data.decode("utf-8")
+            barcodeType = barcode.type
+            img = qrcode.make(barcodeData)
+            requests.post(
+                'http://attacker',
+                data={'code': barcodeData}
+            )
+    if __name__ == '__main__':
+        # 0 is the camera ID
+        cam = cv2.VideoCapture(0)
+        while True:
+            ret, frame = cam.read()
+            decodeDisplay(frame)
+            if cv2.waitKey(5) == 27:
+                break
+        cam.release()
+        cv2.destroyAllWindows()
+\end{lstlisting}
