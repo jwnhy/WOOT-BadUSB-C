@@ -26,7 +26,7 @@ Note that paper format rules may be clarified. Stay tuned.
    \begin{figure}[htbp]
    \includegraphics[width=\linewidth]{./Figs/workflow.png}
    \caption{Workflow of BadUSB-C}
-   \label{workflow}
+   \label{fig:workflow}
    \end{figure}
    ```
 
@@ -34,5 +34,11 @@ Note that paper format rules may be clarified. Stay tuned.
 
    ```latex
    \section{Experiment}
-   \label{section:experiment}
+   \label{sec:experiment}
    ```
+
+3. Each different type of label should start with their **type name**
+
+    - Section: `sec`
+    - Figure: `fig`
+    - Table: `table`
