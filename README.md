@@ -17,3 +17,22 @@ Submissions must be in PDF format. Papers should be succinct but thorough in pre
 The submission should be formatted in 2-columns, using 10-point Times Roman type on 12-point leading, in a text block of 6.5” x 9”. Please number the pages. Authors must use the IEEE templates.
 
 Note that paper format rules may be clarified. Stay tuned.
+
+## $\LaTeX$ Convention
+
+1. All figures are stored in `./Figs/`, the filename is lower cased and inside $\LaTeX$ they should be labelled with the filename. For example
+
+   ```latex
+   \begin{figure}[htbp]
+   \includegraphics[width=\linewidth]{./Figs/workflow.png}
+   \caption{Workflow of BadUSB-C}
+   \label{workflow}
+   \end{figure}
+   ```
+
+2. Each section should be labeled with their lower cased section name.
+
+   ```latex
+   \section{Experiment}
+   \label{section:experiment}
+   ```
