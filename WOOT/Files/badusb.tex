@@ -1,6 +1,15 @@
 \section{BadUSB-C}
 
 \subsection{Motivation}
+As we introduced in the Section~\ref{section:related_work}, there are plenty of existing work \shuqing{Add citation} focusing on BadUSB attack. 
+Many of these take use of the \textit{default trust} given by computers to HIDs, pretend normal USB devices as HIDs and uitilize USB protocol to perform attacks. 
+However, these attacks suffer from various drawbacks:
+\ding{182} attackers can only simulate limited types of HIDs like keyboards, mice, and disks, which makes the attacks less effective;
+\ding{183} accurate attacks couldn't be performed due to lacking of user interface (UI).
+Whatever HID the attackers simulate their USB devices to be, they couldn't obtain the UI to check the current situation, which makes it nearly impossible to locate their attacks precisely or confirm the effects after attacks.
+
+In this work, we utilized the new features of USB-C to address the problems above.
+Benefiting from USB-C, we simulated vedio card and thus obtained the video stream of UI to perform accurate attacks.
 
 \subsection{Implementation}
 The implementation of BadUSB-C extends several existing offensive BadUSB device including Rubber Ducky (where we implement the co-operation of HID emulation and screen streaming) and Raspberry Pi (on which we implement the capture of video stream and its processing). We implemented the QR-Code extraction agent from scratch. The complete workflow of BadUSB-C, demonstrating the interaction of all the components is presented at Fig.~\ref{workflow}.

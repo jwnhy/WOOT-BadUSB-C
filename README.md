@@ -18,9 +18,9 @@ The submission should be formatted in 2-columns, using 10-point Times Roman type
 
 Note that paper format rules may be clarified. Stay tuned.
 
-## $\LaTeX$ Convention
+## **LaTeX** Convention
 
-1. All figures are stored in `./Figs/`, the filename is lower cased and inside $\LaTeX$ they should be labelled with the filename. For example
+1. All figures are stored in `./Figs/`, the filename is lower cased and inside **LaTeX** they should be labelled with the filename. For example
 
    ```latex
    \begin{figure}[htbp]
