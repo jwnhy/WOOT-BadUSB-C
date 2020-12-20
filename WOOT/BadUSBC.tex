@@ -35,6 +35,19 @@
 
 \newcommand{\shuqing}[1]{\mytodopurple{[shuqing: #1]}}
 \newcommand{\mytodopurple}[1]{\textcolor{purple}{\ding{46}~{\sf}~#1}}
+\usepackage{listings}
+\lstset{
+  frame=single,
+  language=C,
+  basicstyle=\small,
+}
+
+\makeatletter
+\def\lst@makecaption{%
+  \def\@captype{table}%
+  \@makecaption
+}
+\makeatother
 
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
