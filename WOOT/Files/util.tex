@@ -1,4 +1,4 @@
-\newcommand{\tool}{BadUSB-C}
+\def\tool{BadUSB-C}
 
 \newcommand{\hongyi}[1]{\mytodopink{[hongyi: #1]}}
 \newcommand{\mytodopink}[1]{\textcolor{pink}{\ding{46}~{\sf}~#1}}
@@ -50,6 +50,7 @@
 \usepackage{listings}
 \lstset{
 	frame=single,
-	language=C,
+	breaklines,
+	language=python,
 	basicstyle=\small,
 }
