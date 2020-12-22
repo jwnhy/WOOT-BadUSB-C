@@ -1,6 +1,12 @@
 \section{\tool}
-
+\label{sec:badusb}
 \subsection{Motivation}
+\noindent\outline{Limitation of Rubber Ducky}\\
+\outline{Our functionality different mode listing?}\\
+\hongyi{The following mode is to be further decided}
+\outline{Automatic Scripting Mode}\\
+\outline{Remote Control Mode}\\
+\outline{OCR/QR Recognition Mode}\\
 As we introduced in the Section~\ref{sec:related_work}, there are plenty of existing work \shuqing{Add citation} focusing on BadUSB attack. 
 Many of these take use of the \textit{default trust} given by computers to HIDs, pretend normal USB devices as HIDs and uitilize USB protocol to perform attacks. 
 However, these attacks suffer from various drawbacks:
@@ -12,6 +18,11 @@ In this work, we utilized the new features of USB-C to address the problems abov
 Benefiting from USB-C, we simulated vedio card and thus obtained the video stream of UI to perform accurate attacks.
 
 \subsection{Implementation}
+\noindent\hongyi{The following mode is to be further decided}\\
+\outline{DETAIL of each mode}\\
+\outline{Automatic Scripting Mode}\\
+\outline{Remote Control Mode}\\
+\outline{OCR/QR Recognition Mode}\\
 The implementation of \tool\ extends several existing offensive BadUSB device including Rubber Ducky\hongyi{Add Citation} (where we implement the co-operation of HID emulation and screen streaming) and Raspberry Pi (on which we implement the capture of video stream and its processing). We implemented the QR-Code extraction agent from scratch. The complete workflow of \tool, demonstrating the interaction of all the components is presented at Fig.~\ref{fig:workflow}.
 
 \begin{figure}[htbp]
