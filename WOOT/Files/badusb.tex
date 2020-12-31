@@ -23,14 +23,16 @@ Benefiting from latest protocol, we simulated video card and thus obtained the v
 \outline{Automatic Scripting Mode}\\
 \outline{Remote Control Mode}\\
 \outline{OCR/QR Recognition Mode}\\
-The implementation of \tool\ extends several existing offensive BadUSB device including Rubber Ducky\hongyi{Add Citation} (where we implement the co-operation of HID emulation and screen streaming) and Raspberry Pi (on which we implement the capture of video stream and its processing). We implemented the QR-Code extraction agent from scratch. The complete workflow of \tool, demonstrating the interaction of all the components is presented at Fig.~\ref{fig:workflow}.
+Though Rubber Ducky\cite{rubber} emulates as a HID device enabling various arbitrary execution attacks, fetching feedback from the victim is more limited. Based on this restriction several defense mechanisms were proposed  like USBCheckIn\cite{usbcheckin}\hongyi{We need more example}. These defense mechanism implemented a CAPTCHA-like\cite{captcha} procedure, which requires user to complete certain challenges when a unknown HID device is plugged in. As the Rubber Ducky is only able to emulate HID device, by no means the Rubber Ducky can obtain the content of challenge and bypass it. Our \tool, on the other hand, is capable of bypassing this type of defense. Taking advantage of USB 3.x\cite{usb31}\cite{usb32}, \tool can fetch the video stream of the victim and complete the challenge automatically or manually.
 
-\begin{figure}[htbp]
-\includegraphics[width=\linewidth]{./Figs/workflow.png}
-\caption{Workflow of \tool}
-\label{fig:workflow}
-\end{figure}
+As there were various Rubber Ducky implementation available, we only focus on its core functionality and our extension. Based on this pattern, we summaries our implementation of \tool into the following modes:
 
-When the victim plugs in \tool device, the USB-C hub handles all the communication between each components and the victim's device. Due to the trust-by-default feature of USB protocol, the victim's video stream will be captured. Later, the stream is either processed directly by Raspberry Pi or transmitted to the attacker through GSM/WiFi components.
+\begin{itemize}
+\item\textit{Scripting mode} functions like the original Rubber Ducky featuring the bypass of defense mechanism like USBCheckIn\cite{usbcheckin}
+\item \textit{Remote control mode} allows attacker to take complete control of victim's device manually to perform delicate operation.
+\item \textit{Privacy extraction mode} captures and identify private data from the victim and send to the attacker.
+\end{itemize}
 
-With video stream the capability of original Rubbery Ducky attack is considerably expanded. For example, the attacker can directly control the victim's device and view the private data in the stream. More details is presented in the Section~\ref{sec:experiment}
+\subsubsection{Scripting Mode}
+\subsubsection{Remote Control Mode}
+\subsubsection{Privacy Extraction Mode}
