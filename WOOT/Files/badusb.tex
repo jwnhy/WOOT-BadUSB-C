@@ -23,16 +23,34 @@ Benefiting from latest protocol, we simulated video card and thus obtained the v
 \outline{Automatic Scripting Mode}\\
 \outline{Remote Control Mode}\\
 \outline{OCR/QR Recognition Mode}\\
-Though Rubber Ducky\cite{rubber} emulates as a HID device enabling various arbitrary execution attacks, fetching feedback from the victim is more limited. Based on this restriction several defense mechanisms were proposed  like USBCheckIn\cite{usbcheckin}\hongyi{We need more example}. These defense mechanism implemented a CAPTCHA-like\cite{captcha} procedure, which requires user to complete certain challenges when a unknown HID device is plugged in. As the Rubber Ducky is only able to emulate HID device, by no means the Rubber Ducky can obtain the content of challenge and bypass it. Our \tool, on the other hand, is capable of bypassing this type of defense. Taking advantage of USB 3.x\cite{usb31}\cite{usb32}, \tool can fetch the video stream of the victim and complete the challenge automatically or manually.
+Though Rubber Ducky\cite{rubber} emulates as a HID device enabling various arbitrary execution attacks, fetching feedback from the victim is much more limited. Based on this restriction several defense mechanisms were proposed  like USBCheckIn\cite{usbcheckin}\hongyi{We need more example}. These defense mechanism implemented a CAPTCHA-like\cite{captcha} procedure, which requires user to complete certain challenges when a unknown HID device is plugged in. As the Rubber Ducky is only able to emulate HID device, by no means the Rubber Ducky can bypass it. Our \tool, on the other hand, is capable of bypassing this type of defense. Taking advantage of USB 3.x\cite{usb31}\cite{usb32}, \tool can fetch the video stream of the victim and complete the challenge automatically or manually. Moreover, with video capability, our \tool achieved multiple new threat model and are tested under various scenarios.
 
-As there were various Rubber Ducky implementation available, we only focus on its core functionality and our extension. Based on this pattern, we summaries our implementation of \tool into the following modes:
+As there were various Rubber Ducky implementation available, we only focus on its core functionality and our extension. Based on this pattern, we summaries our implementation of \tool into the following parts:
 
 \begin{itemize}
-\item\textit{Scripting mode} functions like the original Rubber Ducky featuring the bypass of defense mechanism like USBCheckIn\cite{usbcheckin}
-\item \textit{Remote control mode} allows attacker to take complete control of victim's device manually to perform delicate operation.
-\item \textit{Privacy extraction mode} captures and identify private data from the victim and send to the attacker.
+	\item\textit{Hardware specification} the  hardware we uses to build \tool
+	\item\textit{Scripting mode} functions like the original Rubber Ducky featuring the bypass of defense mechanism like USBCheckIn\cite{usbcheckin}
+	\item \textit{Remote control mode} allows attacker to take complete control of victim's device manually to perform delicate operation.
+	\item \textit{Privacy extraction mode} captures and identify private data from the victim and send to the attacker.
 \end{itemize}
-
+\subsubsection{Hardware Specification}
+The hardware we use is as follows and the relation between them is illustrated at Fig.~\ref{fig:hardware_specification}
+\begin{itemize}
+	\item\textit{USB 3.x Hub} exports the USB 3.x connector into various ports, like DisplayPort, USB 2.0 port etc.
+	\item\textit{Video Capture Card} convert DisplayPort signal into UVC-compatible\hongyi{citation needed} data, which is later processed by Raspberry Pi.
+	\item\textit{Raspberry Pi} processes video stream from the victim where private data is extracted and transmitted through GSM/WiFi.
+	\item\textit{Rubber Ducky} emulates HID device which can be controlled from either the embedded Raspberry Pi or the attacker.
+\end{itemize}
+\begin{figure}[hbtp]
+	\includegraphics[width=\linewidth]{./Figs/hardware_specification.png}
+	\caption{Hardware Specification}
+	\label{fig:hardware_specification}
+\end{figure}
 \subsubsection{Scripting Mode}
+\tool under this mode works almost the same like the original Rubber Ducky with various improvement.
+
+First \tool supports defense mechanism bypass. As the original Rubber Ducky cannot get feedback from the victim, defense mechanism like USBCheckIn \cite{usbcheckin} is sufficient to prevent these BadUSB attack. But such defense mechanism relies on visual notification to request authentication for unknown USB device. This means that when the defense request authentication from the user, our \tool is able to capture the content of authentication challenge and complete it automatically or manually. After the defense is bypassed, \tool continues the emulation and script execution, resulting a successful attack.
+
+As the mouse relies on the visual feedback to work properly, its emulation were not supported by the original version of Rubber Ducky. Yet with the video output support from USB 3.x, our \tool implements full-functional mouse emulation. This function enables attacks toward pure GUI programs and showed great potential in mobile attack scenario. Details can be obtained in Section~\ref{sec:experiment}.
 \subsubsection{Remote Control Mode}
 \subsubsection{Privacy Extraction Mode}
