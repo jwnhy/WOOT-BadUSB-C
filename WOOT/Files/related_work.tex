@@ -1,5 +1,10 @@
 \section{Related Work}
 \label{sec:related_work}
+\hongyi{Move the stuff about USB protocol to Background}\\
+\outline{Attack based on USB 1.0, briefly}\\
+\outline{Attack based on USB 2.0, focus on works about application and transport layer}\\
+\outline{Attack survey table}\\
+\outline{Attack or current works about USB Type-C}\\
 
 In this part, we survey related works on USB attack security in Section III-A, and USB defence security in Section III-B, respectively.
 
@@ -10,7 +15,11 @@ In a similar way, \cite{duqu} used a user-mode rootkit to hide malicious files o
 
 Another kind of attacks for USB to exfiltrate data\cite{smartphone}\cite{poweremi} and \cite{usbdriver} is to eavesdrop signal to recovered the sensitive data at the physical layer. Even though the data, including the video data, could be recovered in this way, the attack for executing malicious code is difficult to work, and the invisibility is a problem cannot be ignored due to the spacial locality of radio frequency. 
 
+Since USB 3.1 was introduced with USB Type-C in 2013, display port and HDMI connectors have been provided by USB Type-C, transformation for video streaming data is guaranteed with the other attacks, e.g., protocol masquerading,  protocol corruption and code injection. To our best knowledge, we are the first to combine the host interaction with attack based on USB. Based on USB Type-C, we design Armory, a multi-mode BadUSB device\chaozu{add armory description} 
 
+
+\chaozu{attack table}\\
+\chaozu{enum diagram}
 
 \subsection{USB Defence Security}
 
