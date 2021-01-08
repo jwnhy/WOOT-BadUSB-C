@@ -1,92 +1,85 @@
 \section{Experiment}
 \label{sec:experiment}
-\noindent\outline{Case Study: Sharing Power Bank}\\
 
-\subsection{Case study: Power Bank Sharing}
+For the purpose evaluating effectiveness of Armory, we conduct experiments in three modes on devices with USB Type-C interface. 
 
-Power bank sharing provides users with short term rental of power banks. A provider deploys power bank sites in the city. Then, users can rent a power bank from any of the power bank site, charge their device on the trip, return the rented power bank to another site, and pay rent online.
-
-\yechang{site or repository? }
-
-As an example, Brick is such a power bank sharing service provider from Sweden. 
-
-\yechang{add hyperlink or reference to Brick or Brick App on App Store/Google Play.}
-
-\yechang{Add more example to show that it is widely used?}
-It provides convenience for users, but it also brings security risks. We notice that the power bank site does not check the integrity of power banks during the rental process of the power bank, and users are hardly cautious when connecting their devices to the power bank. In some situations, a malicious user is able to modify his/her rented power bank, return it to a power bank site as normal, and its next user will unknowingly connect to this malicious power bank, which endangers the privacy of user.
-
-
-\outline{Overview}\\
-
-\subsection{Overview}
-
-\outline{Attack Procedure(how to  get picture, etc.)}\\
-\outline{Security Issues against APPLE/Android...etc.}\\
-Overview, the experiment equipment consists of
-a USB Type-C hub with HDMI and USB port,
-a raspberry pi 4B with a Wi-Fi chip onboard,
+Overview, Armory in experiments consist of a USB Type-C hub with HDMI and USB port,
+a Raspberry Pi 4B with a Wi-Fi chip onboard,
 a video capture card adapting HDMI signal to USB camera,
 and a normal powerbank with dual outputs.
+The powerbank is used to supply a piece of Raspberry Pi 4B and charge victim's device.
+The USB Type-C hub adapts USB Type-C to a HDMI port and USB ports.
 
-The normal powerbank is used to supply a piece of raspberry pi 4B and
-charge victim's device.
-The USB-C hub adapts USB Type-C to HDMI port and USB port.
- The whole equipment exposed only one type-c cable (from USB-C hub),
-and the equipment will charge his or her device through this cable,
-which has no difference from ordinary powerbanks.
+\outline{Attack Modes}
 
+\subsection{Scripting mode}
 
-\subsection{Real-time monitoring}
+In the scripting mode experiment, ``Lenovo Xiaoxin Pro 13 2020'', a PC in Windows 10 with two USB Type-C interfaces, is chosen as the target device. First, we connect Armory to the target device. Then Armory disguises itself as a normal keyboard. Like Rubber Ducky, Armory injects keystrokes at high speeds to perform using the hotkey to pull up a terminal (cmd.exe) and executing the malicious script in the terminal. 
 
-When connected to network,
-the raspberry pi can use ``ffmpeg'' to encode video stream from victim device,
-and then use ``netcat'' to send encoded video stream to a intermediate transit server.
-By this means, the attacker is able to monitor the victim devices in real-time.
+Through executing scripts, scripting mode can implant viruses, worms, backdoors, etc., which poses a significant risk to the victim's devices. 
+However, it can only be used on devices whose terminal is available, which limits its capability to PC. 
 
-\begin{lstlisting}[caption={Precondition Checking for the Selfdestruct Call},label=lst1:mxm]
-    nc -nlkvp 1234 | nc -nlkvp 4321
+\subsection{Remote control mode}
 
-\end{lstlisting}
+In the remote control mode experiment, ``iPad Pro (3rd generation)'', a tablet in iOS 14.3 with a USB Type-C interface, is chosen as the target device. First, we connect Armory to the target device. 
+Except performing as normal HID devices as Rubber Ducky, Armory can stream the real-time video output from the target device to the attacker through WiFi or GSM. 
+Armory capture video from USB Type-C Hub's HDMI output via a video capture card, stream video with ``FFmpeg'', and upload video stream to the attacker's device.    
+With a real-time video stream as an indicator, the attacker can precisely control the position of mouse movements and clicks. The attacker can control the iPad to open applications, peek at the victim's photos, etc.
 
+Remote control mode is ideal for the attacker to control the victim's devices and grab all information shown on the victim's devices. However, if the attacker wants to control with video stream indicated, it requires high power consumption to encode video streams and stable network connections. In the real world, high power consumption will increase the posibilities of being noticed by the victim, and stable network connections is hardly guaranteed.
 
-\subsection{Private information extraction}
+\yechang{Unlock status is needed or not?}
 
-Real-time monitoring is ideal for the attacker to grab all information shown on victim devices,
- but it requires high power consumption to encode video streams and stable network connections.
-In some situations, high power consumption will increase the posibilities of alerting the victim,
-and it is hard to guarantee stable network connections.
+\subsection{Privacy extraction mode}
 
-Considering that, extracting only high-value information for attacker (or highly sensitive information for victim) is more efficient.
-The raspberry pi can use ``opencv'' to identify information from video stream.
-For example, extracting the victim's name, photo, address, and ID number when victim is viewing his or her photos including a photo of his or her ID card,
-extracting the victim's payment information or payment code when victim is showing his or her payment information.
+In the privacy extraction mode experiment, ``HUAWEI P30'', a smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, is chosen as the target device. First, we connect Armory to the target device. As remote control mode, Armory capture video from the victim's device and use ``opencv'' to identify ``valuable'' information from video stream. When the victim views text or photoes with text, Armory can use optical character recognition (OCR) to extract text from corresponding video frames. \yechang{hyperlink to OCR?} 
+For example, extracting the victim's name, photo, address, and ID number when victim is viewing his or her photos of his or her ID card or passport documents,
+extracting the victim's payment information when victim is using bank apps or payment apps. Besides, Armory can use ``opencv'' to detect and decode QR codes or barcodes shown on the victim's device, which is expected to extract payment code information in payment apps. 
 Here is an example of extracting payment code with opencv library in listing~\ref{lst2:qr},
 
+Privacy extraction mode only extracts high-value information for attacker (or highly sensitive information for victim), which is more efficient to  than remote control mode.
+
 \begin{lstlisting}[caption={python script for extracting payment code of victim},label=lst2:qr]
-    import cv2
-    import pyzbar.pyzbar as pyzbar
-    import qrcode
-    import requests
-    def decodeDisplay(video):
-        global current
-        gray = cv2.cvtColor(video, cv2.COLOR_BGR2GRAY)
-        barcodes = pyzbar.decode(gray)
-        for barcode in barcodes:
-            barcodeData = barcode.data.decode("utf-8")
-            barcodeType = barcode.type
-            img = qrcode.make(barcodeData)
-            requests.post(
-                'http://attacker',
-                data={'code': barcodeData}
-            )
-    if __name__ == '__main__':
-        # 0 is the camera ID
-        cam = cv2.VideoCapture(0)
-        while True:
-            ret, frame = cam.read()
-            decodeDisplay(frame)
-            if cv2.waitKey(5) == 27:
-                break
-        cam.release()
-        cv2.destroyAllWindows()
+import cv2, qrcode,requests
+import pyzbar.pyzbar as pyzbar
+def decodeDisplay(video):
+    gray = cv2.cvtColor(video, cv2.COLOR_BGR2GRAY)
+    barcodes = pyzbar.decode(gray)
+    for barcode in barcodes:
+        barData = barcode.data.decode()
+        barType = barcode.type
+        requests.post('<server of attacker>',
+            data={
+                'data': barData, 
+                'type': barType
+            }
+        )
+if __name__ == '__main__':
+    cam = cv2.VideoCapture(0)
+    while True:
+        ret, frame = cam.read()
+        decodeDisplay(frame)
+        if cv2.waitKey(5) == 27:
+            break
+    cam.release()
+    cv2.destroyAllWindows()
 \end{lstlisting}
+
+
+
+\subsection{Attack scenario}
+
+It is worth noting that Armory exposed only a type-c cable (from USB Type-C hub),
+and Armory will charge his or her device through this cable, which has no difference from ordinary powerbanks. Noticed the similarity between Armory and normal power bank, we conduct a case study on power bank sharing in order to find out the possibility of Armory being mixed into the circulation of shared power banks.
+ 
+\subsubsection{Case study of Power Bank Sharing}
+
+Power bank sharing provides users with short term rental of power banks. A provider deploys power bank stations in the city. Then, users can rent a power bank from any of the power bank station, charge their device on the trip, return the rented power bank to another station, and pay rent online.
+
+As an example, Brick is such a power bank sharing service provider from Sweden. As Brick's website states, ``Brick prevents your electronics from running out of battery with powerbanks (Bricks) that you can easily rent \& return at our many stations in Stockholm, Gothenburg, Malmö and the rest of Sweden and even Europe.''. \yechang{citation needed}
+
+\yechang{add hyperlink or reference to Brick's website or Brick App on App Store/Google Play.}
+
+\yechang{Add more examples of power bank sharing to show that it is widely used?}
+
+Whiling providing convenience for users, it brings security issues. We notice that the power bank station does not check the integrity of power banks during the rental process, and users are hardly cautious when connecting their devices to the power bank. A malicious user is able to modify his/her rented power bank, return it to a power bank station as normal, and its next user will unknowingly connect to this malicious power bank, which endangers the privacy of user.
