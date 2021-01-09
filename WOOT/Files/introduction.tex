@@ -1,2 +1,66 @@
 \section{Introduction}
 \label{sec:introduction}
+
+The Universal Serial Bus (USB) protocol has become popular around the world since its appearance, as it provides a unified and easy-to-use approach for a large range of devices to communicate with each other.
+From version 1.0 till now, USB specification has evolved rapidly and offered more and more functionalities.
+Nowadays, devices with USB support are ubiquitous.
+
+On the other side of the coin, the security of USB has caused serious problems.
+The designers of USB protocol didn't care much about security issues as they wanted to make a trusted protocol.
+There are more than four hundred vulnerabilities referencing USB on CVE list~\cite{website:CVE-list}.
+As a result, lots of attackers make use of these vulnerabilities and the \textit{trust-by-default} characteristics of USB to conduct attacks, which puts the privacy and financial security of USB users in danger~\cite{sok}.
+
+BadUSB is a well-known class of firmware attacks~\cite{badusb}.
+These attacks are conducted through modification of the device firmware, which will disguise normal USB devices as other types of devices that are \textit{trust-by-default} by the hosts.
+Typical simulated devices include human interface devices (short for HID, including keyboards, mice, etc.) and disks.
+Utilizing BadUSB, attackers can pretend themselves as normal users, such as typing malicious code to victim computers, downloading and executing malicious scripts, and copying out private data from disks.
+Such attacks can easily escape from traditional anti-virus software, since it is very hard to distinguish them with normal usage.
+
+Despite the advantageous features of BadUSB, there exist several limitations as follows.
+(1) Attackers can't conduct attacks precisely, which decreases the capabilities of BadUSB attacks.
+While performing attacks on another host, the attackers can neither know the current user interface (UI) status nor obtain the consequences of their attacking actions to take subsequent moves.
+For example, it is hard for attackers to locate specific functional UI patterns like buttons and links on victim computers by disguising USB devices as mice.
+That explains why typical BadUSB attacks often only stay in command line, using commands to download malicious scripts for execution.
+However, these attacks may be intercepted by anti-virus software or firewall due to the usage of network.
+(2) To our best knowledge, existing BadUSB attacks only utilize the features of USB 2.0.
+The releasing of USB 3.0 makes USB more powerful, with a higher transmission rate for data and the support towards a larger range of devices including DisplayPort, HDMI, PowerDelivery, etc.
+BadUSB attacks can become more effective with the help of USB 3.0.
+(3) There have emerged multiple efficacious countermeasures after the appearance of BadUSB.
+For example, GoodUSB offers a defence method by limiting the functions of USB devices to users' expectations~\cite{tian2015defending}.
+It provides a graphical interface for user to describe the functionalities or roles of the USB device and reject any usage beyond the description.
+\shuqing{Can't bypass USBCheckIn.}
+
+In this work, we proposed our approach to address the limitations mentioned above and implemented a multi-mode attack model of USB, named \tool.
+\tool extends BadUSB to support the features of USB Type-C.
+Since USB Type-C is capable to transfer video steaming data, \tool could obtain the information of victim's graphical interface during attacks.
+Combining it with simulation of traditional HIDs like keyboards and mice, attackers can perform precise attacks.
+We did experiments to verify that \tool could also bypass most of the countermeasures for BadUSB since they often rely on interaction with the graphical interface.
+Moreover, we implemented multiple attacking modes of USB attacks based on our approach to verify its effectiveness, including scripting, remote control and privacy extraction.
+To improve the efficiency and performance of \tool, we designed a filtering algorithm to preprocess the video data before network transmission.
+After implementation, we conducted a series of experiments for each attack mode.
+\shuqing{Case study, evaluation, notable results.}
+
+We summarize our key contributions as follows:
+\begin{itemize}
+	\item To our best knowledge, this is the first work to utilize new features of USB Type-C.
+	The combination of new support with conventional BadUSB makes attacks more precise and effective.
+	\item Our approach can bypass most of the previous countermeasures of BadUSB.
+	\item \shuqing{Experiment, evaluation, notable results.}
+\end{itemize}
+
+The rest of this paper is structured as follows:
+\shuqing{Fill in after the structure is finalized.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

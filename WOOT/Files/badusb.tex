@@ -10,7 +10,7 @@
 As we introduced in the Section~\ref{sec:related_work}, there are plenty of existing work \shuqing{Add citation} focusing on BadUSB attack. 
 Many of these take advantage of the \textit{trust-by-default} policy of PC, pretend normal HID devices and utilize USB protocol to perform attacks. 
 However, these attacks suffer from various drawbacks:
-\ding{182} attackers can only simulate limited types of HIDs like keyboards, mice, and disks\hongyi{disk is not HID}, which makes the attacks less effective;
+\ding{182} attackers can only simulate limited types of devices such as HIDs (like keyboards and mice) and disks, which makes the attacks less effective;
 \ding{183} accurate attacks couldn't be performed due to lack of user interface (UI).
 Whatever HID the attackers simulate their USB devices to be, they couldn't obtain the UI to check the current situation, which makes it nearly impossible to locate their attacks precisely or confirm the effects after attacks.
 
@@ -46,6 +46,7 @@ As there were various Rubber Ducky implementation available, we only focus on it
 \begin{itemize}
 	\item\textit{Hardware specification} the  hardware we uses to build \tool
 	\item\textit{Scripting mode} functions like the original Rubber Ducky featuring the bypass of defense mechanism like USBCheckIn\cite{usbcheckin}
+	\shuqing{Cannot bypass USBCheckIn.}
 	\item \textit{Remote control mode} allows attacker to take complete control of victim's device manually to perform delicate operation.
 	\item \textit{Privacy extraction mode} captures and identify private data from the victim and send to the attacker.
 \end{itemize}
