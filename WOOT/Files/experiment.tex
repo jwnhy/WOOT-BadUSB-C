@@ -23,12 +23,13 @@ However, it can only be used on devices whose terminal is available, which limit
 
 In the remote control mode experiment, ``iPad Pro (3rd generation)'', a tablet in iOS 14.3 with a USB Type-C interface, is chosen as the target device. First, we connect Armory to the target device. 
 Except performing as normal HID devices as Rubber Ducky, Armory can stream the real-time video output from the target device to the attacker through WiFi or GSM. 
-Armory capture video from USB Type-C Hub's HDMI output via a video capture card, stream video with ``FFmpeg'', and upload video stream to the attacker's device.    
+Armory capture video from USB Type-C Hub's HDMI output via a video capture card, stream video with ``FFmpeg'', a video processing utility and upload video stream to the attacker's device.    
 With a real-time video stream as an indicator, the attacker can precisely control the position of mouse movements and clicks. The attacker can control the iPad to open applications, peek at the victim's photos, etc.
 
 Remote control mode is ideal for the attacker to control the victim's devices and grab all information shown on the victim's devices. However, if the attacker wants to control with video stream indicated, it requires high power consumption to encode video streams and stable network connections. In the real world, high power consumption will increase the posibilities of being noticed by the victim, and stable network connections is hardly guaranteed.
 
 \yechang{Unlock status is needed or not?}
+\hongyi{Needed}
 
 \subsection{Privacy extraction mode}
 
