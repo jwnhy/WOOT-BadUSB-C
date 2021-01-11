@@ -2,10 +2,9 @@
 \label{sec:experiment}
 
 \shuqing{Experiment for devices and case study needed.}
+For the purpose evaluating effectiveness of \tool, we conduct experiments in three modes on devices with USB Type-C interface.
 
-For the purpose evaluating effectiveness of Armory, we conduct experiments in three modes on devices with USB Type-C interface. 
-
-Overview, Armory in experiments consist of a USB Type-C hub with HDMI and USB port,
+Overview, \tool in experiments consist of a USB Type-C hub with HDMI and USB port,
 a Raspberry Pi 4B with a Wi-Fi chip onboard,
 a video capture card adapting HDMI signal to USB camera,
 and a normal powerbank with dual outputs.
@@ -16,16 +15,16 @@ The USB Type-C hub adapts USB Type-C to a HDMI port and USB ports.
 
 \subsection{Scripting mode}
 
-In the scripting mode experiment, ``Lenovo Xiaoxin Pro 13 2020'', a PC in Windows 10 with two USB Type-C interfaces, is chosen as the target device. First, we connect Armory to the target device. Then Armory disguises itself as a normal keyboard. Like Rubber Ducky, Armory injects keystrokes at high speeds to perform using the hotkey to pull up a terminal (cmd.exe) and executing the malicious script in the terminal. 
+In the scripting mode experiment, ``Lenovo Xiaoxin Pro 13 2020'', a PC in Windows 10 with two USB Type-C interfaces, is chosen as the target device. First, we connect \tool to the target device. Then \tool disguises itself as a normal keyboard. Like Rubber Ducky, \tool injects keystrokes at high speeds to perform using the hotkey to pull up a terminal (cmd.exe) and executing the malicious script in the terminal.
 
-Through executing scripts, scripting mode can implant viruses, worms, backdoors, etc., which poses a significant risk to the victim's devices. 
-However, it can only be used on devices whose terminal is available, which limits its capability to PC. 
+Through executing scripts, scripting mode can implant viruses, worms, backdoors, etc., which poses a significant risk to the victim's devices.
+However, it can only be used on devices whose terminal is available, which limits its capability to PC.
 
 \subsection{Remote control mode}
 
-In the remote control mode experiment, ``iPad Pro (3rd generation)'', a tablet in iOS 14.3 with a USB Type-C interface, is chosen as the target device. First, we connect Armory to the target device. 
-Except performing as normal HID devices as Rubber Ducky, Armory can stream the real-time video output from the target device to the attacker through WiFi or GSM. 
-Armory capture video from USB Type-C Hub's HDMI output via a video capture card, stream video with ``FFmpeg'', a video processing utility and upload video stream to the attacker's device.    
+In the remote control mode experiment, ``iPad Pro (3rd generation)'', a tablet in iOS 14.3 with a USB Type-C interface, is chosen as the target device. First, we connect \tool to the target device.
+Except performing as normal HID devices as Rubber Ducky, \tool can stream the real-time video output from the target device to the attacker through WiFi or GSM.
+\tool capture video from USB Type-C Hub's HDMI output via a video capture card, stream video with ``FFmpeg'', a video processing utility and upload video stream to the attacker's device.
 With a real-time video stream as an indicator, the attacker can precisely control the position of mouse movements and clicks. The attacker can control the iPad to open applications, peek at the victim's photos, etc.
 
 Remote control mode is ideal for the attacker to control the victim's devices and grab all information shown on the victim's devices. However, if the attacker wants to control with video stream indicated, it requires high power consumption to encode video streams and stable network connections. In the real world, high power consumption will increase the posibilities of being noticed by the victim, and stable network connections is hardly guaranteed.
@@ -35,9 +34,9 @@ Remote control mode is ideal for the attacker to control the victim's devices an
 
 \subsection{Privacy extraction mode}
 
-In the privacy extraction mode experiment, ``HUAWEI P30'', a smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, is chosen as the target device. First, we connect Armory to the target device. As remote control mode, Armory capture video from the victim's device and use ``opencv'' to identify ``valuable'' information from video stream. When the victim views text or photoes with text, Armory can use optical character recognition (OCR) to extract text from corresponding video frames. \yechang{hyperlink to OCR?} 
+In the privacy extraction mode experiment, ``HUAWEI P30'', a smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, is chosen as the target device. First, we connect \tool to the target device. As remote control mode, \tool capture video from the victim's device and use ``opencv'' to identify ``valuable'' information from video stream. When the victim views text or photoes with text, \tool can use optical character recognition (OCR) to extract text from corresponding video frames. \yechang{hyperlink to OCR?}
 For example, extracting the victim's name, photo, address, and ID number when victim is viewing his or her photos of his or her ID card or passport documents,
-extracting the victim's payment information when victim is using bank apps or payment apps. Besides, Armory can use ``opencv'' to detect and decode QR codes or barcodes shown on the victim's device, which is expected to extract payment code information in payment apps. 
+extracting the victim's payment information when victim is using bank apps or payment apps. Besides, \tool can use ``opencv'' to detect and decode QR codes or barcodes shown on the victim's device, which is expected to extract payment code information in payment apps.
 Here is an example of extracting payment code with opencv library in listing~\ref{lst2:qr},
 
 Privacy extraction mode only extracts high-value information for attacker (or highly sensitive information for victim), which is more efficient to  than remote control mode.
@@ -53,7 +52,7 @@ def decodeDisplay(video):
         barType = barcode.type
         requests.post('<server of attacker>',
             data={
-                'data': barData, 
+                'data': barData,
                 'type': barType
             }
         )
@@ -72,9 +71,9 @@ if __name__ == '__main__':
 
 \subsection{Attack scenario}
 
-It is worth noting that Armory exposed only a type-c cable (from USB Type-C hub),
-and Armory will charge his or her device through this cable, which has no difference from ordinary powerbanks. Noticed the similarity between Armory and normal power bank, we conduct a case study on power bank sharing in order to find out the possibility of Armory being mixed into the circulation of shared power banks.
- 
+It is worth noting that \tool exposed only a type-c cable (from USB Type-C hub),
+and \tool will charge his or her device through this cable, which has no difference from ordinary powerbanks. Noticed the similarity between \tool and normal power bank, we conduct a case study on power bank sharing in order to find out the possibility of \tool being mixed into the circulation of shared power banks.
+
 \subsubsection{Case study of Power Bank Sharing}
 
 Power bank sharing provides users with short term rental of power banks. A provider deploys power bank stations in the city. Then, users can rent a power bank from any of the power bank station, charge their device on the trip, return the rented power bank to another station, and pay rent online.
