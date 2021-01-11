@@ -25,7 +25,7 @@ Benefiting from latest protocol, we simulated video card and thus obtained the v
 \outline{OCR/QR Recognition Mode}\\
 Though Rubber Ducky\cite{rubber} emulates as a HID device enabling various arbitrary execution attacks, fetching feedback from the victim is much more limited. Based on this restriction several defense mechanisms were proposed  like GoodUSB\cite{tian2015defending}\hongyi{We need more example}. These defense mechanism implemented a CAPTCHA-like\cite{captcha} procedure, which requires user to complete certain challenges when a unknown HID device is plugged in. As the Rubber Ducky is only able to emulate HID device, by no means the Rubber Ducky can bypass it. Our \tool, on the other hand, is capable of bypassing this type of defense. Taking advantage of USB 3.x\cite{usb31}\cite{usb32}, \tool can fetch the video stream of the victim and complete the challenge automatically or manually. Moreover, with video capability, our \tool achieved multiple new threat model and are tested under various scenarios.
 
-As there were various Rubber Ducky implementation available, we only focus on its core functionality and our extension. Based on this pattern, we summaries our implementation of \tool into the following parts and their comparison can be found in Table~\ref{table:mode_comparison}:
+As there were various Rubber Ducky implementation available, we only focus on its core functionality and our extension. In this section, we first introduce the hardware components we used to build \tool, then we focus on the three different attack modes we implement  for various scenario. The comparison of these modes is available at Table~\ref{table:mode_comparison}
 \begin{table*}
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}
@@ -43,13 +43,6 @@ As there were various Rubber Ducky implementation available, we only focus on it
 	\caption{Comparison of Different Mode}
 	\label{table:mode_comparison}
 \end{table*}
-\begin{itemize}
-	\item\textit{Hardware specification} the  hardware we uses to build \tool
-	\item\textit{Scripting mode} functions like the original Rubber Ducky featuring the bypass of defense mechanism like GoodUSB\cite{tian2015defending}
-	\shuqing{Cannot bypass USBCheckIn.}
-	\item \textit{Remote control mode} allows attacker to take complete control of victim's device manually to perform delicate operation.
-	\item \textit{Privacy extraction mode} captures and identify private data from the victim and send to the attacker.
-\end{itemize}
 
 \subsubsection{Hardware Specification}
 The hardware we use is as follows and the relation between them is illustrated at Fig.~\ref{fig:hardware_specification}
@@ -64,22 +57,30 @@ The hardware we use is as follows and the relation between them is illustrated a
 	\caption{Hardware Specification}
 	\label{fig:hardware_specification}
 \end{figure}
-\subsubsection{Scripting Mode}
+\textbf{Scripting Mode}
 \tool under this mode works almost the same like the original Rubber Ducky with various improvement.
 
-First \tool supports defense mechanism bypass. As the original Rubber Ducky cannot get feedback from the victim, defense mechanism like GoodUSB \cite{tian2015defending} is sufficient to prevent these BadUSB attack. But such defense mechanism relies on visual notification to request authentication for unknown USB device. This means that when the defense request authentication from the user, our \tool is able to capture the content of authentication challenge and complete it automatically or manually. After the defense is bypassed, \tool continues the emulation and script execution, resulting a successful attack.
+First \tool supports defense mechanism bypass. As the original Rubber Ducky cannot get feedback from the victim, defense mechanism like GoodUSB \cite{tian2015defending} is sufficient to prevent these BadUSB attack. But such defense mechanism needs visual notification to request authentication for unknown USB device. This means that when the defense request authentication from the user, our \tool is able to capture the content of authentication challenge and complete it automatically or manually. After the defense is bypassed, \tool continues the emulation and script execution, resulting a successful attack.
 
 As the mouse relies on the visual feedback to work properly, its emulation and automation were not supported by the original version of Rubber Ducky. Yet with the video output support from USB 3.x, our \tool implements full-functional mouse emulation. This function enables attacks toward pure GUI programs and showed great potential in mobile attack scenario. Details can be obtained in Section~\ref{sec:experiment}.
-\subsubsection{Remote Control Mode}
+
+The advantage of this mode is that it archives defense bypass and attack feedback with low overhead. As mentioned above, we only require video stream at the begin(defense bypass) and the end(feedback) of the attack. Moreover, with mouse supported, \tool extends the original BadUSB attack surface and perform well in mobile device.
+
+\textbf{Remote Control Mode}
 In \tool, we implement all components required to operate a computer/mobile remotely, including a video stream, keyboard/mouse emulation.
 
 \tool under this mode follows a simple logic. \tool will receive video stream from the victim's device and redirect it to the attacker via GSM/WiFi. In the meanwhile, \tool also receives commands from the attacker through GSM/WiFi and replay them to the victim by USB emulation.
 
 This mode enable attacker to perform delicate operation that is beyond automation. Moreover, this mode provides a backdoor that does not require host network and thus is undetectable by firewall running on the host machine.
 \hongyi{I think this is a quite good selling point?}
-\subsubsection{Privacy Extraction Mode}
+
+The advantage of this mode is that it can completely hijack the victim device. But this complete control also comes with the price of high power consumption and risk of being detected by the user.
+
+\textbf{Privacy Extraction Mode}
 \tool under this mode does not emulate other USB device and solely rely on the video stream function of USB 3.x.
 
 When running in this mode, \tool passively process the victim's video stream and detect for ``valuable'' private data.  Here, a data is ``valuable'' or not is decided by a customized detector, we implement a simple one of payment code for demonstration purpose. Though this detector is simple to implement, we successfully transfer money from the victim. More detail can be obtained in Section~\ref{sec:experiment}.
 
 It is worth mentioning that \tool under this mode is completely passive, making it hard to be detected and defended. With different detector implemented, \tool under this mode is capable of serving more purpose.
+
+Though \tool under this mode is least detectable, \tool is also unable to fetch any information actively. All the video stream has to be analyzed and filtered to become usable private information.
