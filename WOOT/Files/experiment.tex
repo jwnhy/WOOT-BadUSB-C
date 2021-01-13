@@ -68,7 +68,23 @@ if __name__ == '__main__':
 \end{lstlisting}
 
 
-\subsubsection{Case study of QR code payment}
+\subsection{Case study}
+
+We conduct a case study with Power bank sharing and QR code payment as technical background.
+
+\subsubsection{Power bank sharing}
+
+Power bank sharing provides users with short term rental of power banks. A provider deploys power bank stations in the city. Then, users can rent a power bank from any of the power bank station, charge their device on the trip, return the rented power bank to another station, and pay rent online.
+
+As an example, Brick is such a power bank sharing service provider from Sweden. As Brick's website states, ``Brick prevents your electronics from running out of battery with powerbanks (Bricks) that you can easily rent \& return at our many stations in Stockholm, Gothenburg, Malmö and the rest of Sweden and even Europe.''. \yechang{citation needed}
+
+\yechang{add hyperlink or reference to Brick's website or Brick App on App Store/Google Play.}
+
+\yechang{Add more examples of power bank sharing to show that it is widely used?}
+
+Whiling providing convenience for users, it brings security issues. We notice that the power bank station does not check the integrity of power banks during the rental process, and users are hardly cautious when connecting their devices to the power bank. A malicious user is able to modify his/her rented power bank, return it to a power bank station as normal, and its next user will unknowingly connect to this malicious power bank, which endangers the privacy of user.
+
+\subsubsection{QR code payment}
 
 QR code payment is a payment method where payment is typically performed as the following steps:
 \ding{182} The payer opens the payment application on his/her mobile device, and present his/her payment QR code to the payee. This QR code is encoded with a globally unique ID to identify the payer's account. 
@@ -80,22 +96,13 @@ In the real-world, some payment service providers provide special rules for micr
 
 The payment QR code is associated with the payer's account. If a victim's payment code is leaked to an attacker, an attacker can use the victim's payment code to proceed with payments. Furthermore, the attacker can use several micropayments to steal money from the victim's account while leaving the victim unconscious. In summary, the payment QR code is highly sensitive on users' devices.
 
-\subsection{Attack scenario}
+\subsubsection{Attack scenario}
 
 It is worth noting that \tool exposed only a type-c cable (from USB Type-C hub),
-and \tool will charge his or her device through this cable, which has no difference from ordinary powerbanks. Noticed the similarity between \tool and normal power bank, we conduct a case study on power bank sharing in order to find out the possibility of \tool being mixed into the circulation of shared power banks.
-
-\subsubsection{Case study of Power Bank Sharing}
-
-Power bank sharing provides users with short term rental of power banks. A provider deploys power bank stations in the city. Then, users can rent a power bank from any of the power bank station, charge their device on the trip, return the rented power bank to another station, and pay rent online.
-
-As an example, Brick is such a power bank sharing service provider from Sweden. As Brick's website states, ``Brick prevents your electronics from running out of battery with powerbanks (Bricks) that you can easily rent \& return at our many stations in Stockholm, Gothenburg, Malmö and the rest of Sweden and even Europe.''. \yechang{citation needed}
-
-\yechang{add hyperlink or reference to Brick's website or Brick App on App Store/Google Play.}
-
-\yechang{Add more examples of power bank sharing to show that it is widely used?}
-
-Whiling providing convenience for users, it brings security issues. We notice that the power bank station does not check the integrity of power banks during the rental process, and users are hardly cautious when connecting their devices to the power bank. A malicious user is able to modify his/her rented power bank, return it to a power bank station as normal, and its next user will unknowingly connect to this malicious power bank, which endangers the privacy of user.
+and \tool will charge his or her device through this cable, which has no difference from ordinary powerbanks. Noticed the low users' vigilance and high similarity between \tool and normal power bank, the attacker can return his/her modified power bank (as \tool) to a power bank station, mixing \tool into the circulation of shared power banks. The next user unconsciously connect his/her device to \tool. 
+He/She can find his/her devices being charged as normal.
+Like many outdoor mobile phone usage scenarios, the victim may complete payment with showing payment code. In this process, the attacker can preemptively extract and use the victim's payment code to make another payment.
+\yechang{tired, go to bed}
 
 \subsection{evaluation}
 
