@@ -2,7 +2,7 @@
 \label{sec:background}
 \shuqing{Maybe we could introduce HID devices somewhere.}
 \noindent\outline{USB Standard}\\
-We first introduce the development of USB specification and emphasize the key points adopted in our work.
+We first introduce the development of USB specification and emphasize the key points adopted in our work. We also organized a brief timeline introducing key points of each protocol in Table~\ref{table:usb_timeline}.
 
 \noindent\outline{USB1.x}\\
 Proposed in 1996, USB 1.0\cite{usb10} was developed to provide an unified interface and thus reducing the cost of re-configuring the software. It is worth mentioning that as a polled-bus interface, all data transfers are initiated by the host.
@@ -17,3 +17,23 @@ USB 3.0\cite{usb30} was announced in 2008, with a Super Speed (5 Gbit/s) data tr
 
 \noindent\outline{Security Problem}\\
 During the development of USB specification, security was rarely considered.  As the USB-IF believes it is the duty of original equipment manufacturers (OEMs) to decide whether security features should be implemented.\hongyi{Citation needed}. But the divergent implementations give a chance for attack like Rubber Ducky\cite{rubber} and our \tool.
+\begin{table*}
+\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	Year & Protocol Version & Supported Peripherals & Transfer Speed & Attacks \\
+	\hline
+	1996 & USB 1.x & Keyboard, Mouse... & 1.5 Mbit/s or 12 Mbit/s & HID Emulating(BadUSB) \\
+	\hline
+	2000 & USB 2.0 & Flash Drive, High-Definition Link, CD Driver... & 480 Mbit/s & Autorun Attack, Juice Filming Attack \\
+	\hline
+	2008 & USB 3.0 & / & 5 Gbit/s & / \\
+	\hline
+	2013 & USB 3.1 & HDMI, DisplayPort, ThunderBolt... & 10 Gbit/s & Armory \\
+	\hline
+	2017 & USB 3.2 & / & 20 Gbit/s & / \\
+	\hline
+\end{tabular}
+	\linebreak
+\caption{USB Protocol Timeline}
+\label{table:usb_timeline}
+\end{table*}

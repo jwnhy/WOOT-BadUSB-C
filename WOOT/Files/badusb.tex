@@ -1,5 +1,9 @@
 \section{\tool}
 \label{sec:badusb}
+\subsection{Threat Model}
+We build our threat model on the basic assumptions that common users without technical background would not treat normal-looking USB device as highly dangerous and be cautious about them. These assumptions are approved in a relevant work about charging attack\cite{JFCImpact}. Moreover, we neglect the effect of notification about common USB device, as normal users usually are not equipped with the necessary knowledge to fully understand such notices. In fact, during our experiment, no device had security notifications raised about suspicious USB devices and only mobile devices had raised charging notification about our \tool, which is not a sufficient warning towards users.
+
+We also assume the victim's device is equipped with fully functional USB 3.x protocol and USB Type C connector. As the USB 3.x standard is more and more common around the world, this assumption can be easily fulfilled especially in recent devices.
 \subsection{Motivation}
 \noindent\outline{Limitation of Rubber Ducky}\\
 \outline{Our functionality different mode listing?}\\
@@ -44,18 +48,18 @@ As there were various Rubber Ducky implementation available, we only focus on it
 	\label{table:mode_comparison}
 \end{table*}
 
-\subsubsection{Hardware Specification}
-The hardware we use is as follows and the relation between them is illustrated at Fig.~\ref{fig:hardware_specification}
+\subsubsection{Attack Model}
+The components in our attack model are as follows and the relation between them is illustrated at Fig.~\ref{fig:attack_model}
 \begin{itemize}
 	\item\textit{USB 3.x Hub} exports the USB 3.x connector into various ports, like DisplayPort, USB 2.0 port etc.
 	\item\textit{Video Capture Card} convert DisplayPort signal into UVC-compatible\hongyi{citation needed} data, which is later processed by Raspberry Pi.
-	\item\textit{Raspberry Pi} processes video stream from the victim where private data is extracted and transmitted through GSM/WiFi.
-	\item\textit{Rubber Ducky} emulates HID device which can be controlled from either the embedded Raspberry Pi or the attacker.
+	\item\textit{Single Board Computer} processes video stream from the victim where private data is extracted and transmitted through GSM/WiFi.
+	\item\textit{HID Emulator} emulates HID device which can be controlled from either the embedded Raspberry Pi or the attacker.
 \end{itemize}
 \begin{figure}[hbtp]
-	\includegraphics[width=\linewidth]{./Figs/hardware_specification.png}
-	\caption{Hardware Specification}
-	\label{fig:hardware_specification}
+	\includegraphics[width=\linewidth]{./Figs/attack_model.png}
+	\caption{Attack Model}
+	\label{fig:attack_model}
 \end{figure}
 \textbf{Scripting Mode}
 \tool under this mode works almost the same like the original Rubber Ducky with various improvement.
