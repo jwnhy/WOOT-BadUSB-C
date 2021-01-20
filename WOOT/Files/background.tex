@@ -19,13 +19,15 @@ In 2000, USB 2.0\cite{usb20} specification was released. With High Speed (480 Mb
 USB 3.0\cite{usb30} was announced in 2008, with a Super Speed (5 Gbit/s) data transfer rate. Like its predecessor, more classes of peripherals were supported in this revision. In 2013, USB Type-C connector standard was introduced as a part of USB 3.1\cite{usb31}, providing a unified connector type for PowerDelivery (PD), Thunderbolt, DisplayPort and HDMI.  Yet no improvement of security was introduced in 3.x revisions, meaning any device claiming themselves as a monitor can capture the video stream from the host. Exposing such multi-propose connector unprotected is dangerous and allows attacks like our work \tool. In 2017, USB 3.2\cite{usb32} was released, doubling the data transfer rate. (20 Gbit/s)
 
 \noindent\outline{Connector Standard}
-\begin{figure}[hbtp]
-	\includegraphics[width=\linewidth]{./Figs/usb_conn.png}
+\begin{figure}[t]
+    \centering
+	\includegraphics[width=0.7\linewidth]{./Figs/usb_conn.png}
 	\caption{USB 1.x \& 2.x Connector}
 	\label{fig:usb_conn}
 \end{figure}
 As illustrated in Figure~\ref{fig:usb_conn}, the original USB 1.x \& 2.x connector only has two pins for data transferring (D+ \& D-), which has significantly limited data transfer rate (5 Gbits/s Max) and support for peripheral like DisplayPort (10.8 Gbit/s Min). Apart from that, support for other peripheral also requires dedicated transferring lane as their standards are not compatible with USB in most cases.
-\begin{figure}[hbtp]
+\begin{figure}[t]
+	\centering
 	\includegraphics[width=\linewidth]{./Figs/usb_c_conn.png}
 	\caption{USB Type C Connector}
 	\label{fig:usb_c_conn}
