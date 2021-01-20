@@ -9,7 +9,7 @@ One possible countermeasure is to introduce external hardware completing the aut
 
 \textbf{Isolated UI Rendering}
 During our experiment, we noticed that \tool is actually unable to redirect out the locking screen keyboard from the iPad OS. Instead, the keyboard is only available on the internal display. However, this defense is only enabled on the locking screen keyboard, other virtual keyboard is still vulnerable to our \tool. This mechanism has inspired us to propose a new defense against our \tool. If the OS provider like Apple/Google can implement a more generalized \emph{isolated UI rendering} that allows developer to decide whether a content is ``sensitive'' and where it should be rendered. To better illustrate this countermeasure idea, we drew the Figure~\ref{fig:isolated_ui}. In that figure, the password keyboard is set to be ``sensitive'' component while the other parts of the UI is not. Thus the renderer will only render the password keyboard on the trusted internal display and prevent untrusted external display like \tool to obtain sensitive data. We believe this is a promising way to defend users from attack like juice filming and our \tool.
-\begin{figure}[htbp]
+\begin{figure}
 	\includegraphics[width=\linewidth]{./Figs/isolated_ui.png}
 	\caption{Isolated UI Rendering}
 	\label{fig:isolated_ui}
