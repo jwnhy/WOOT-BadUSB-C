@@ -75,25 +75,30 @@ Privacy extraction mode only extracts valuable information for attackers (or hig
 
 We conducted a case study with sharing power bank and QR code payment as technical background.
 
-\textbf{\textit{Power Bank Sharing}}. 
-Power bank sharing provides users with short term rental of power banks. A provider deploys power bank stations in the city. Then, users can rent a power bank from any of the power bank station, charge their device on the trip, return the rented power bank to another station, and pay rent online.
+\textit{Sharing Power Bank}. 
+Sharing power bank provides users with short-term rental of power banks. 
+The provider deploys power bank stations in the city, while the users can rent a power bank from any of the power bank station, charge their device on the trip, return the rented power bank to another station, and pay the rent online.
 
-As an example, Brick is such a power bank sharing service provider from Sweden. As Brick's website states, ``Brick prevents your electronics from running out of battery with power banks (Bricks) that you can easily rent \& return at our many stations in Stockholm, Gothenburg, Malmö and the rest of Sweden and even Europe.''. \yechang{citation needed}
-
+As an example, Brick is such a power bank sharing service provider from Sweden. 
+As Brick's website states, \textit{Brick prevents your electronics from running out of battery with power banks (Bricks) that you can easily rent \& return at our many stations in Stockholm, Gothenburg, Malmö and the rest of Sweden and even Europe.}. \yechang{citation needed}
+\shuqing{I think we should paraphrase instead of using the descriptions on the website directly. Just to explain \textbf{what we need}.}
 
 \begin{figure}[hbtp]
 	\centering
 	\includegraphics[width=.4 \linewidth]{./Figs/Brick_station.png}
 	\includegraphics[width=.4 \linewidth]{./Figs/jiedian.jpg}
-	\caption{Two power banks station products}\shuqing{Our attacking power banks.}
+	\caption{Two power banks station products}\shuqing{Photos.}
 	\label{fig:PBS_products}
 \end{figure}
 
 \yechang{add hyperlink or reference to Brick's website or Brick App on App Store/Google Play.}
 
 \yechang{Add more examples of power bank sharing to show that it is widely used?}
+\shuqing{May use statistics (instead of concrete examples) to explain it.}
 
-Whiling providing convenience for users, it brings security issues. We notice that the power bank station does not check the integrity of power banks during the rental process, and users are hardly cautious when connecting their devices to the power bank. A malicious user is able to modify his/her rented power bank, return it to a power bank station as normal, and its next user will unknowingly connect to this malicious power bank, which endangers the privacy of user.
+Whiling providing convenience to users, it brings security issues. 
+We notice that the power bank station does not check the integrity of power banks during the rental process, and users are hardly cautious when connecting their devices to the power bank. 
+A malicious user is able to modify his/her rented power bank, return it to a power bank station as normal, and its next user will unknowingly connect to this malicious power bank, which endangers the privacy of user.
 
 
 \textbf{\textit{QR Code Payment}}. 
