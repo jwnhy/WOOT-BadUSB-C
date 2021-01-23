@@ -17,16 +17,3 @@ During our experiment, we noticed that \tool is actually unable to redirect out 
 	\label{fig:isolated_ui}
 \end{figure}
 
-\begin{algorithm}
-	\SetAlgoLined
-	\KwData{Application UI Content}
-	\For{component C in content}{
-		\eIf{C.tag is sensitive}{
-			Send $C$ to secure driver
-		}{
-			Send $C$ to both drivers
-		}
-	}
-	\caption{Isolated UI Render}
-\end{algorithm}
-

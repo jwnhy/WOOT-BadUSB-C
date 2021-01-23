@@ -11,7 +11,7 @@ In this part, we survey related works on USB attack in Section~\ref{subsec:usb_a
 \subsection{USB Attack}
 \label{subsec:usb_attack}
 \chaozu{DoS(Fuzzing), Code injection, HID emulation, JFC, our work}
-During the development of USB protocol, there are many USB-based attacks were proposed, ranging from DoS (denial of service) to protocol masquerading. Here we will introduce them following an order of their category.
+During the development of USB protocol, there are many USB-based attacks were proposed, ranging from DoS (denial of service) to protocol masquerading. Here we will introduce them following an order of their category.\hongyi{What?}
 
 From the kernel perspective, its USB software stack generally expects devices to follow the USB standard and may not consider corner cases of malformed USB packets. Based on this, Facedancer\cite{facedancer} and Syzkaller\cite{syzkaller} uses fuzzing technique to uncover the bugs lying in the kernel drivers. These bugs can cause kernel crash and lead to a DoS situation. Though this poses a great challenge to the availability of a system, this attack still requires physical access to the host and is unable to cause more damage other than DoS.
 
@@ -21,7 +21,7 @@ Besides attacking from the protocol perspective, there are works trying to use U
 
 As a data transmission protocol, USB inevitably leaks electromagnetic signals to the environment which may contains sensitive information. Leveraging this physical phenomenon, there are works like \cite{smartphone, poweremi,revealing,su2017usb, usbgpslocator, bates2014leveraging, badusbhub, usbfinger, side, usbdriver} eavesdropping leaked signals and recovering the sensitive data. In a similar fashion, \cite{usbkiller, cable, usbee, turnip} use the RF transmitter to inject signal to cause physical damage to the host machine. Even though the data, including the video data, could be recovered in this way, these attacks for executing malicious code is too difficult to work, and the invisibility is a problem cannot be ignored due to the spacial locality of radio frequency. 
 
-Since USB 3.1 was introduced with USB Type-C in 2013, display port and HDMI connectors have been provided by USB Type-C, transformation for video streaming data is guaranteed with the other attacks, e.g., protocol masquerading,  protocol corruption and code injection. This allows attacker to control users' devices with screen monitoring, attacks for interaction work here.
+Since USB 3.1 was introduced with USB Type-C in 2013, display port and HDMI connectors have been provided by USB Type-C, transferring of video data can be combined with the other attacks, like protocol masquerading,  protocol corruption and code injection. This has paved the path for our \tool.
 
 
 
