@@ -1,43 +1,46 @@
 \section{Experiment}
 \label{sec:experiment}
+\shuqing{Many parts in this section are much more likely to lie in implementation, introducing how \tool works. Doesn't look like experiment.}
 
 %\shuqing{Experiment for devices and case study needed.}
 To evaluate the effectiveness of \tool, we conducted experiments in the three modes introduced in the Section~\ref{sec:badusb} on devices with USB Type-C capabilities.
 
-\textit{Setup.} Our implementation contains a USB Type-C hub with HDMI and USB port, a Raspberry Pi 4B with a Wi-Fi chip onboard, a video capture card adapting HDMI signal to USB camera, and a normal powerbank with dual outputs.
-\shuqing{Figures of our powerbank.}
-The powerbank is used to supply the Raspberry Pi 4B and charge the victim's devices.
+\textit{Setup.} Our implementation contains a USB Type-C hub with HDMI and USB port, a Raspberry Pi 4B with a Wi-Fi chip onboard, a video capture card adapting HDMI signal to USB camera, and a normal power bank with dual outputs.
+\shuqing{Figures of our power bank.}
+The power bank is used to supply the Raspberry Pi 4B and charge the victim's devices.
 The USB Type-C hub adapts USB Type-C to a HDMI port and USB ports, which is used to connect HID devices and transmit video stream from victim's devices to HDMI port. 
 The video stream will be captured by the Raspberry Pi 4B through the video capture card.
+Note that in the following experiments, we chose different types of devices, i.e., smartphones, PCs and iPads, to conduct experiments in different modes to validate the usability and effectiveness of \tool.
 
 \subsection{Scripting mode}
 
 We used \textit{Lenovo Xiaoxin Pro 13 2020}, a PC in Windows 10 with two USB Type-C interfaces as target device while conducting the experiment in scripting mode. 
-After we connected \tool to the target device, \tool disguised itself as a normal keyboard.
+In this experiment, \tool disguised itself as a normal keyboard.
 Similar as BadUSB~\cite{badusb}, \tool injected keystrokes at a high speed to start a terminal (cmd.exe) by hotkey, and executed the malicious scripts in it.
 Through executing scripts, \tool could implant viruses, worms, backdoors, etc. into hosts, which would make the victim's devices under significant risk.
 However, scripting mode can only be used on devices which terminal is available, limiting its capabilities to PC.
 
 \subsection{Remote control mode}
+We chose \textit{iPad Pro (3rd generation)}, a tablet in iOS 14.3 with a USB Type-C interface, as the target device in this experiment.
+Besides performing as normal HID devices as conventional BadUSB~\cite{badusb}, \tool could transmit real-time video streaming of screen from the target device to the attacker through WiFi or GSM.
+\tool captured video from USB Type-C Hub's HDMI output via a video capture card, streamed video with \textit{FFmpeg}, a video processing utility and uploaded video stream to the attacker's device.
+With a real-time video stream as an indicator, attackers can precisely control the position of mouse movements and clicks, controlling the iPad to open applications, peek at the victim's photos, etc.
 
-In the remote control mode experiment, ``iPad Pro (3rd generation)'', a tablet in iOS 14.3 with a USB Type-C interface, is chosen as the target device. First, we connect \tool to the target device.
-Except performing as normal HID devices as Rubber Ducky, \tool can stream the real-time video output from the target device to the attacker through WiFi or GSM.
-\tool capture video from USB Type-C Hub's HDMI output via a video capture card, stream video with ``FFmpeg'', a video processing utility and upload video stream to the attacker's device.
-With a real-time video stream as an indicator, the attacker can precisely control the position of mouse movements and clicks. The attacker can control the iPad to open applications, peek at the victim's photos, etc.
-
-Remote control mode is ideal for the attacker to control the victim's devices and grab all information shown on the victim's devices. However, it needs user consent for the first time and requires high power consumption to encode video streams and stable network connections.
-In the real world, high power consumption will increase the posibilities of being noticed by the victim, and stable network connections is hardly guaranteed.
+Remote control mode is ideal for the attackers to control the victim's devices and grab all information shown on the victim's devices. 
+However, it needs user consent for the first time and requires high power consumption to encode video streams and stable network connections.
+In the real world, high power consumption will increase the possibilities of being noticed by the victim, and stable network connections is hardly guaranteed.
 
 
 \subsection{Privacy extraction mode}
+We chose \textit{HUAWEI P30}, a smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, as the target device in this experiment.
+As remote control mode, \tool captured video from the victim's device and use \textit{opencv} to identify valuable information from video stream. 
+When the victim viewed text or photos with text, \tool used the techniques of optical character recognition (OCR) to extract text from corresponding video frames. \yechang{hyperlink to OCR?}\shuqing{I think we don't need to explain OCR nor put a reference link.}
+For example, we extracted the victim's name, photo, address, and ID number when victim is viewing his/her photos of his/her ID card or passport documents,
+We also extracted the victim's payment information when victim is using bank apps or payment apps.
+Besides, \tool used \textit{opencv} to detect and decode QR codes or barcodes shown on the victim's device, which is expected to extract payment code information in the payment apps.
+Here is an example of extracting payment code with opencv library in listing. \shuqing{Need to be modified.}\shuqing{Do we plan to add this?}
 
-In the privacy extraction mode experiment, ``HUAWEI P30'', a smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, is chosen as the target device. 
-First, we connect \tool to the target device. As remote control mode, \tool capture video from the victim's device and use ``opencv'' to identify ``valuable'' information from video stream. When the victim views text or photoes with text, \tool can use optical character recognition (OCR) to extract text from corresponding video frames. \yechang{hyperlink to OCR?}
-For example, extracting the victim's name, photo, address, and ID number when victim is viewing his or her photos of his or her ID card or passport documents,
-extracting the victim's payment information when victim is using bank apps or payment apps. Besides, \tool can use ``opencv'' to detect and decode QR codes or barcodes shown on the victim's device, which is expected to extract payment code information in payment apps.
-Here is an example of extracting payment code with opencv library in listing. \shuqing{Need to be modified.}
-
-Privacy extraction mode only extracts high-value information for attacker (or highly sensitive information for victim), which is more efficient to  than remote control mode.
+Privacy extraction mode only extracts valuable information for attackers (or highly sensitive information for victims), which is more efficient  than remote control mode.
 
 %\begin{lstlisting}[caption={python script for extracting payment code of victim},label=lst2:qr]
 %import cv2, qrcode,requests
@@ -70,12 +73,12 @@ Privacy extraction mode only extracts high-value information for attacker (or hi
 
 \subsubsection{Background}
 
-We conduct a case study with Power bank sharing and QR code payment as technical background.
+We conducted a case study with sharing power bank and QR code payment as technical background.
 
 \textbf{\textit{Power Bank Sharing}}. 
 Power bank sharing provides users with short term rental of power banks. A provider deploys power bank stations in the city. Then, users can rent a power bank from any of the power bank station, charge their device on the trip, return the rented power bank to another station, and pay rent online.
 
-As an example, Brick is such a power bank sharing service provider from Sweden. As Brick's website states, ``Brick prevents your electronics from running out of battery with powerbanks (Bricks) that you can easily rent \& return at our many stations in Stockholm, Gothenburg, Malmö and the rest of Sweden and even Europe.''. \yechang{citation needed}
+As an example, Brick is such a power bank sharing service provider from Sweden. As Brick's website states, ``Brick prevents your electronics from running out of battery with power banks (Bricks) that you can easily rent \& return at our many stations in Stockholm, Gothenburg, Malmö and the rest of Sweden and even Europe.''. \yechang{citation needed}
 
 
 \begin{figure}[hbtp]
