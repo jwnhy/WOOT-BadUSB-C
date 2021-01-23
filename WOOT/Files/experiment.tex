@@ -1,22 +1,22 @@
 \section{Experiment}
 \label{sec:experiment}
 
-\shuqing{Experiment for devices and case study needed.}
-For the purpose evaluating effectiveness of \tool, we conduct experiments in three modes on devices with USB Type-C interface.
+%\shuqing{Experiment for devices and case study needed.}
+To evaluate the effectiveness of \tool, we conducted experiments in the three modes introduced in the Section~\ref{sec:badusb} on devices with USB Type-C capabilities.
 
-Overview, \tool in experiments consist of a USB Type-C hub with HDMI and USB port,
-a Raspberry Pi 4B with a Wi-Fi chip onboard,
-a video capture card adapting HDMI signal to USB camera,
-and a normal powerbank with dual outputs.
-The powerbank is used to supply a piece of Raspberry Pi 4B and charge victim's device.
-The USB Type-C hub adapts USB Type-C to a HDMI port and USB ports. The USB Type-C hub is used to connect HID devices and transmit video stream from victim's device to HDMI port. The video stream then will be capture by the Raspberry Pi 4B through the video capture card.
+\textit{Setup.} Our implementation contains a USB Type-C hub with HDMI and USB port, a Raspberry Pi 4B with a Wi-Fi chip onboard, a video capture card adapting HDMI signal to USB camera, and a normal powerbank with dual outputs.
+\shuqing{Figures of our powerbank.}
+The powerbank is used to supply the Raspberry Pi 4B and charge the victim's devices.
+The USB Type-C hub adapts USB Type-C to a HDMI port and USB ports, which is used to connect HID devices and transmit video stream from victim's devices to HDMI port. 
+The video stream will be captured by the Raspberry Pi 4B through the video capture card.
 
 \subsection{Scripting mode}
 
-In the scripting mode experiment, ``Lenovo Xiaoxin Pro 13 2020'', a PC in Windows 10 with two USB Type-C interfaces, is chosen as the target device. First, we connect \tool to the target device. Then \tool disguises itself as a normal keyboard. Like Rubber Ducky, \tool injects keystrokes at high speeds to perform using the hotkey to pull up a terminal (cmd.exe) and executing the malicious script in the terminal.
-
-Through executing scripts, scripting mode can implant viruses, worms, backdoors, etc., which poses a significant risk to the victim's devices.
-However, it can only be used on devices whose terminal is available, which limits its capability to PC.
+We used \textit{Lenovo Xiaoxin Pro 13 2020}, a PC in Windows 10 with two USB Type-C interfaces as target device while conducting the experiment in scripting mode. 
+After we connected \tool to the target device, \tool disguised itself as a normal keyboard.
+Similar as BadUSB~\cite{badusb}, \tool injected keystrokes at a high speed to start a terminal (cmd.exe) by hotkey, and executed the malicious scripts in it.
+Through executing scripts, \tool could implant viruses, worms, backdoors, etc. into hosts, which would make the victim's devices under significant risk.
+However, scripting mode can only be used on devices which terminal is available, limiting its capabilities to PC.
 
 \subsection{Remote control mode}
 
