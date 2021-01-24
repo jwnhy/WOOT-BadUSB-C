@@ -4,14 +4,22 @@
 We build our threat model on the basic assumptions that common users without technical background would not treat normal-looking USB device as highly dangerous and be cautious about them. These assumptions are approved in a relevant work about charging attack\cite{JFCImpact}. Moreover, we neglect the effect of notification about common USB device, as normal users usually are not equipped with the necessary knowledge to fully understand such notices. In fact, during our experiment, no device had security notifications raised about suspicious USB devices and only mobile devices had raised charging notification about our \tool, which is not a sufficient warning towards users.
 
 We also assume the victim's device is equipped with fully functional USB 3.x protocol and USB Type C connector. As the USB 3.x standard is more and more common nowadays, this assumption can be easily fulfilled especially in recent devices.
-\subsection{Motivation}
-\noindent\outline{Limitation of Rubber Ducky}\\
-\outline{Our functionality different mode listing?}\\
-\hongyi{The following mode is to be further decided}
-\outline{Automatic Scripting Mode}\\
-\outline{Remote Control Mode}\\
-\outline{OCR/QR Recognition Mode}\\
-As we introduced in the Section~\ref{sec:related_work}, there are plenty of existing work \shuqing{Add citation} focusing on BadUSB attack. 
+
+%\subsection{Motivation}
+%\noindent\outline{Limitation of Rubber Ducky}\\
+%\outline{Our functionality different mode listing?}\\
+%\hongyi{The following mode is to be further decided}
+%\outline{Automatic Scripting Mode}\\
+%\outline{Remote Control Mode}\\
+%\outline{OCR/QR Recognition Mode}\\
+
+\subsection{Implementation}
+%\noindent\hongyi{The following mode is to be further decided}\\
+%\outline{DETAIL of each mode}\\
+%\outline{Automatic Scripting Mode}\\
+%\outline{Remote Control Mode}\\
+%\outline{OCR/QR Recognition Mode}\\
+As we introduced in Section~\ref{sec:related_work}, there are plenty of existing work~\cite{rubber,badusb, rubberducky2020, usbbypassing, iseeyou, usbdriver} focusing on BadUSB attack. 
 Many of these take advantage of the \textit{trust-by-default} policy of PC, pretend to be normal HID devices and utilize USB protocol to perform attacks. 
 However, these attacks suffer from various drawbacks:
 \ding{182} attackers can only simulate limited types of devices such as HIDs (like keyboards and mice) and disks, which makes the attacks less effective;
@@ -21,13 +29,8 @@ Whatever HID the attackers simulate their USB devices to be, they couldn't obtai
 In this work, we utilized the new features of USB 3.x \cite{usb31} \cite{usb32} to address the problems above.
 Benefiting from latest protocol, we simulated external display and thus obtained the video stream to perform accurate attacks.
 
-\subsection{Implementation}
-\noindent\hongyi{The following mode is to be further decided}\\
-\outline{DETAIL of each mode}\\
-\outline{Automatic Scripting Mode}\\
-\outline{Remote Control Mode}\\
-\outline{OCR/QR Recognition Mode}\\
-Though BadUSB devices\cite{badusb} like Rubber Ducky\cite{rubber, rubberducky2020} emulates as a HID device enabling various arbitrary execution attacks, fetching feedback from the victim is much more limited. Based on this restriction, several defense mechanisms were proposed  like GoodUSB\cite{tian2015defending}. These defense mechanism implemented a CAPTCHA-like\cite{captcha} procedure, which requires user to complete certain challenges when a unknown HID device is plugged in. As the BadUSB is only able to emulate a limited kind of devices like HID or disks, by no means the BadUSB can bypass it. Our \tool, on the other hand, is capable of bypassing this type of defense. Taking advantage of USB 3.x\cite{usb31}\cite{usb32}, \tool can fetch the video stream of the victim and complete the challenge manually by the attacker. Moreover, with video capability combined with traditional BadUSB, our \tool achieved multiple new attack paradigm and are tested under various real-life scenarios.
+%Though BadUSB devices\cite{badusb} like Rubber Ducky\cite{rubber, rubberducky2020} emulates as a HID device enabling various arbitrary execution attacks, fetching feedback from the victim is much more limited. 
+Based on the drawbacks introduced above, several defense mechanisms were proposed, like GoodUSB\cite{tian2015defending}. These defense mechanism implemented a CAPTCHA-like\cite{captcha} procedure, which requires user to complete certain challenges when a unknown HID device is plugged in. As the BadUSB is only able to emulate a limited kind of devices like HID or disks, by no means the BadUSB can bypass it. Our \tool, on the other hand, is capable of bypassing this type of defense. Taking advantage of USB 3.x\cite{usb31}\cite{usb32}, \tool can fetch the video stream of the victim and complete the challenge manually by the attacker. Moreover, with video capability combined with traditional BadUSB, our \tool achieved multiple new attack paradigm and are tested under various real-life scenarios.
 
 As there were various BadUSB implementations available, we only focus on its core functionality and our extension. In this section, we first introduce the components we used in \tool, then we focus on the three different attack modes we implement  for different scenarios.
 
@@ -42,7 +45,7 @@ The components in our attack model are as follows and the relation between them 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.56\linewidth]{./Figs/attack_model.png}
-	\caption{Attack Model}\shuqing{Need to be more compact.}
+	\caption{Attack Model}%\shuqing{Need to be more compact.}
 	\label{fig:attack_model}
 \end{figure}
 \textbf{Scripting Mode} This mode majorly relies on the ``HID Emulator'' to send constructed HID packet to the victim. These constructed HID packet will be interpreted by the victim as valid keystrokes and mouse moves. Thus the attacker can executes arbitrary scripts on the victim's device. This is the function of the original BadUSB. Based on this, we made the following improvement.
@@ -66,7 +69,7 @@ In \tool, we have implemented all components required to control a computer/mobi
 \tool under this mode follows a simple logic. \tool will receive video stream from the victim's device and redirect it to the attacker via GSM/WiFi. In the meanwhile, \tool also receives keystrokes and mouse movement from the attacker through GSM/WiFi and replay them to the victim by USB emulation.
 
 This mode enable attacker to perform delicate operation that is beyond automation. Moreover, this mode provides a backdoor that does not require host network and thus is undetectable by the firewall running on the host machine.
-\hongyi{I think this is a quite good selling point?}\shuqing{Agree with Hongyi.}
+%\hongyi{I think this is a quite good selling point?}\shuqing{Agree with Hongyi.}
 
 The advantage of this mode is that it can completely hijack the victim device and provide a backdoor beyond detection of firewalls. But this complete control also comes with the price of high power consumption and risk of being detected by the user.
 
