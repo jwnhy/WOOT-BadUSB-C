@@ -3,24 +3,20 @@
 \shuqing{Many parts in this section are much more likely to lie in implementation, introducing how \tool works. Doesn't look like experiment.}
 
 %\shuqing{Experiment for devices and case study needed.}
-To evaluate the effectiveness of \tool, we conducted experiments in the three modes introduced in the Section~\ref{sec:badusb} on devices with USB Type-C capabilities.
+To evaluate the effectiveness of \tool in different modes, we conducted three experiments on \tool using devices with USB Type-C capabilities from different OEMs, including a mobile phone, a tablet and a laptop.
 
-\textit{Setup.} Our implementation contains a USB Type-C hub with HDMI and USB port, a Raspberry Pi 4B with a Wi-Fi chip onboard, a video capture card adapting HDMI signal to USB camera, and a normal power bank with dual outputs.
+\textit{Setup.} As mentioned in Section~\ref{sec:badusb}, our \tool only requires common components that are easily accessible online or in any electronic store. Here we choose the following parts to build a prototype. To begin with, we choose the Raspberry Pi 4B as the embedded computer inside \tool, which is powerful enough to process video data and has onboard WiFi chip. As for the HID emulator, we decide to use a ATMEGA32U4 board with USB protocol support. This Atmel chip is able to emulate most HID devices with our modified firmware. About the USB 3.x hub, we uses one from the Yamazawa, which supports HDMI, USB 2.0, and many other exported peripheral. Apart from these essential parts, we also uses an auxiliary power-bank to provide power for the Raspberry Pi and the mobile devices used by the victim. The image of our prototype \tool can be found in Figure~\ref{fig:armory}.
 \shuqing{Figures of our power bank.}
-The power bank is used to supply the Raspberry Pi 4B and charge the victim's devices.
-The USB Type-C hub adapts USB Type-C to a HDMI port and USB ports, which is used to connect HID devices and transmit video stream from victim's devices to HDMI port. 
-The video stream will be captured by the Raspberry Pi 4B through the video capture card.
-Note that in the following experiments, we chose different types of devices, i.e., smartphones, PCs and iPads, to conduct experiments in different modes to validate the usability and effectiveness of \tool.
 
 \subsection{Scripting mode}
 
-We used \textit{Lenovo Xiaoxin Pro 13 2020}, a PC in Windows 10 with two USB Type-C interfaces as target device while conducting the experiment in scripting mode. 
-In this experiment, \tool disguised itself as a normal keyboard.
-Similar as BadUSB~\cite{badusb}, \tool injected keystrokes at a high speed to start a terminal (cmd.exe) by hotkey, and executed the malicious scripts in it.
-Through executing scripts, \tool could implant viruses, worms, backdoors, etc. into hosts, which would make the victim's devices under significant risk.
-However, scripting mode can only be used on devices which terminal is available, limiting its capabilities to PC.
+In the experiment of scripting mode, we used \textit{Lenovo Xiaoxin Pro 13 2020}, a PC in Windows 10 with two USB Type-C interfaces as target device. 
+In this experiment, \tool disguised itself as a normal keyboard and a home-brewed version of GoodUSB\cite{tian2015defending} is deployed to test the defense bypassing.
+At the beginning, our home-brewed version of GoodUSB asked victim to manually complete a CAPTCHA to  authorize the new USB device, a.k.a our \tool. But at this time, by the design of GoodUSB, our \tool can already perform limited keystroke to complete the CAPTCHA and will be rejected only after the failure of authorization. With the video feedback from \tool, the attacker successfully completes the CAPTCHA.
+Up to this point, the bypass of defense like GoodUSB is completed as our \tool already gain full function from the GoodUSB and become a trusted device. Then, our \tool works similar to the original BadUSB, inserting keystroke to perform arbitrary execution on the laptop. We tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulting in success.
 
 \subsection{Remote control mode}
+
 We chose \textit{iPad Pro (3rd generation)}, a tablet in iOS 14.3 with a USB Type-C interface, as the target device in this experiment.
 Besides performing as normal HID devices as conventional BadUSB~\cite{badusb}, \tool could transmit real-time video streaming of screen from the target device to the attacker through WiFi or GSM.
 \tool captured video from USB Type-C Hub's HDMI output via a video capture card, streamed video with \textit{FFmpeg}, a video processing utility and uploaded video stream to the attacker's device.
