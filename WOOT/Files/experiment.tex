@@ -10,8 +10,8 @@ To evaluate the effectiveness of \tool in different modes, we conducted three ex
 
 \subsection{Scripting mode}
 
-In the experiment of scripting mode, we used \textit{Lenovo Xiaoxin Pro 13 2020}, a PC in Windows 10 with two USB Type-C interfaces as target device. 
-In this experiment, \tool disguised itself as a normal keyboard and a home-brewed version of GoodUSB\cite{tian2015defending} is deployed to test the defense bypassing.
+In the experiment of scripting mode, we used \textit{Lenovo Xiaoxin Pro 13 2020}, a PC in Windows 10/Ubuntu OS with two USB Type-C interfaces as target device. 
+In this experiment, \tool disguised itself as a normal keyboard and a home-brewed version of GoodUSB\cite{tian2015defending} is deployed to test the defense bypassing. We have tried to deploy the original GoodUSB on the target device, but as the GoodUSB is proposed in 2015 and the code is too outdated to run at modern OS. We have to home-brew a similar defense mechanism according to its paper.
 At the beginning, our home-brewed version of GoodUSB asked victim to manually complete a CAPTCHA to  authorize the new USB device, a.k.a our \tool. But at this time, by the design of GoodUSB, our \tool can already perform limited keystroke to complete the CAPTCHA and will be rejected only after the failure of authorization. With the video feedback from \tool, the attacker successfully completes the CAPTCHA.
 Up to this point, the bypass of defense like GoodUSB is completed as our \tool already gain full function from the GoodUSB and become a trusted device. Then, our \tool works similar to the original BadUSB, inserting keystroke to perform arbitrary execution on the laptop. We tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulting in success.
 
