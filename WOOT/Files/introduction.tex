@@ -28,7 +28,7 @@ BadUSB attacks can become more effective with the help of USB 3.0.
 (3) There have emerged multiple efficacious countermeasures after the appearance of BadUSB.
 For example, GoodUSB offers a defence method by limiting the functions of USB devices to users' expectations~\cite{tian2015defending}.
 It provides a graphical interface for user to describe the functionalities or roles of the USB device and reject any usage beyond the description.
-\shuqing{Can't bypass USBCheckIn.}
+%\shuqing{Can't bypass USBCheckIn.}
 
 In this work, we proposed our approach to address the limitations mentioned above and implemented a multi-mode attack model of USB, named \tool.
 \tool extends BadUSB to support the features of USB Type-C.
@@ -37,15 +37,17 @@ Combining it with simulation of traditional HIDs like keyboards and mice, attack
 We did experiments to verify that \tool could also bypass most of the countermeasures for BadUSB since they often rely on interaction with the graphical interface.
 Moreover, we implemented multiple attacking modes of USB attacks based on our approach to verify its effectiveness, including scripting, remote control and privacy extraction.
 To improve the efficiency and performance of \tool, we designed a filtering algorithm to preprocess the video data before network transmission.
-After implementation, we conducted a series of experiments for each attack mode.
-\shuqing{Case study, evaluation, notable results.}
+Moreover, we conducted a series of experiments for each attack mode as well as for different types of devices, including smartphones, personal computers and tablet computers, in order to validate the usability of \tool.
+At last, we conducted a user study for attacks in sharing power banks, one of the application scenarios of \tool.
+During the user study, we obtained plenty of privacy data through \tool, since users are usually unconscious of the necessity to check the USB devices they plugged in for security purposes.
+%\shuqing{Case study, evaluation, notable results.}
 
 We summarize our key contributions as follows:
 \begin{itemize}
 	\item To our best knowledge, this is the first work to utilize new features of USB Type-C.
 	The combination of new support with conventional BadUSB makes attacks more precise and effective.
 	\item Our approach can bypass most of the previous countermeasures of BadUSB.
-	\item \shuqing{Experiment, evaluation, notable results.}
+	\item We conducted multiple experiments and a user study to validate the usability and effectiveness of \tool. \shuqing{Notable results.}
 \end{itemize}
 
 The rest of this paper is structured as follows:
