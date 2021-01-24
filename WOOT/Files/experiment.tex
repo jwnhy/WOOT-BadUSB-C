@@ -131,15 +131,25 @@ Furthermore, the attackers can use several micropayments to steal money from the
 \shuqing{Introduce something about QR code refreshing (fast).}
 In summary, the payment QR code is highly sensitive on users' devices.
 
-\subsubsection{Attack scenario}
+\subsubsection{Attack Scenario}
 
-Note that \tool exposed only a type-c cable (from USB Type-C hub),
-and \tool will charge his or her device through this cable, which has no difference from ordinary power banks. Noticed the low users' vigilance and high similarity between \tool and normal power bank, the attacker can return his/her modified power bank (as \tool) to a power bank station, mixing \tool into the circulation of shared power banks. The next user who unconsciously connect his/her device to \tool can find his/her devices being charged as normal.
-Like many outdoor mobile phone usage scenarios, the victim may complete payment with showing payment code. In this process, the attacker can preemptively extract and use the victim's payment code to make another payment unknown to the victim, which threatens victim's property.
+Note that \tool only exposes a type-c cable (from USB Type-C hub).
+It charges the attacker's device through this cable, which has no difference from ordinary power banks. 
+Considering users' vigilance and high similarity between \tool and normal power banks, the attackers can put the modified power banks (e.g., \tool) in a power bank station.
+Subsequent users may unconsciously connect their devices to \tool.
+Like many outdoor mobile phone usage scenarios\shuqing{Any reference? How frequent the payment code is used?}, the victim may complete payment with showing payment code. 
+Then the attackers can extract and use the victim's payment code to make another payment unknown to the victim.
+\shuqing{This paragraph is duplicate with some previous paragraphs. We can make the previous introduction abut attack scenario really brief, and mainly introduce it here.}
 
-
-In order to check what can be obtained by \tool, we conduct a user study in order to check the performance of \tool in Privacy extraction mode. We invited 6 volunteers to our lab room. Volunteers take turns to operate their phones for half an hour while \tool is connected. Before the study, we did not reveal the function of \tool and asked the volunteers to connect their phones to \tool as a normal power bank (ignoring its larger size). 
-After the study, we told them our attack, checked recorded videos together, and confirmed the consent to study the information in recorded videos, Subject to efficiency reasons, we ask them to use phones like when they use the shared power bank outside.
+\shuqing{Background is longer than real user study.}
+In order to validate the usability of \tool, we conducted a user study in privacy extraction mode. 
+\shuqing{10 volunteers.}
+We invited 6 volunteers to take part in, who are unconscious of the experiment details.
+Volunteers took turns to operate their phones for half an hour while \tool is connected, which they considered as a normal power bank.
+After the study, we introduced to them about our attack, checked the screen recordings together, and get the permission to study the information in recorded videos.
+\shuqing{Do we need to mention that agreement the conference required here?}
+Subject to efficiency reasons, we asked them to use phones just like when they use the shared power bank outside.
+\shuqing{What does it mean?}
 
 
 \subsubsection{Result}
