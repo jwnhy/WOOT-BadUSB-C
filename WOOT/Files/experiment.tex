@@ -154,11 +154,18 @@ Subject to efficiency reasons, we asked them to use phones just like when they u
 
 \subsubsection{Result}
 
-After collecting the videos, we used both automatic and manual methods to analyze the video. In the automatic analysis, we use a script to simply perform OCR recognition to each frame in the recorded video and store all OCR results into a database in a format of ``frame number - text by OCR''. At last, there are 38329 pieces of data collected among 6 volunteers. In the manual analysis, we replay the recorded video and extract sensitive information manually.
+After collecting the videos, we analyzed the videos both automatically and manually. 
+During the automatic analysis, we used scripts to perform OCR recognition for each frame in the recorded video and stored all of the OCR results in a database.
+At last, there are 38329 pieces of data collected among 6 volunteers.
+\shuqing{The data may need to be updated.} 
+With these results, we could learn what content the victim was browsing.
+Additionally, some keywords such as \textit{account, username and password} often appear with users' input data because they are often used as labels of input boxes.
+Such keywords are more likely to lead us to discover user-specific data.
+For example, when we searched with \textit{account} as keyword, victim's accounts can be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example}.
+\shuqing{Statistics.}
+The frame number is the position of this frame in the recorded video, which indicates a target for manual analysis for further data extraction.
 
-In terms of automatic analysis, OCR results of all frames are already stored in the database and can be used at hand. With these results, we can learn what issues the victim is browsing. Additionally, some keywords often appear with users' input data because they are often used as labels of input boxes, such as ``account'', ``username''. Such keywords are more likely to lead us to discover user-specific data. For example, in Table~\ref{tab:ocr_keyword_example}, searching with ``account'' as the keyword, victim's accounts can be detected as shown in Fig. The frame number is the position of this frame in the recorded video, which indicates a target for manual analysis for further data extraction.
-
-\begin{table*}[hbtp]
+\begin{table*}[t]
 	\centering
 	\begin{tabular}{|l|l|l|l|}
 		\hline
@@ -174,13 +181,17 @@ In terms of automatic analysis, OCR results of all frames are already stored in 
 \end{table*}
 
 
-In terms of manual analysis, data collected are listed in table ~\ref{table:information_extracted}. Accounts of internet applications such as Apple ID, iCloud, Facebook, Twitter, WeChat, QQ, Alipay can be obtained. Additionally, all typing inputs are on the virtual keyboard (including the system keyboard and the built-in security keyboard of the financial app), which can be clearly recorded. Noticed that, we can obtain the plain text of password typed such as the WiFi password and the Alipay password. Furthermore, the received SMS verification code (usually is used to confirm real-name authentication) can be obtained when it appears in the top notification bar. 
+In the manual analysis, we replayed the recorded video and extracted sensitive information.
+The data we collected are listed in the Table~\ref{table:information_extracted}. 
+Accounts of internet applications such as Apple, iCloud, Facebook, Twitter, etc. can be obtained. 
+Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboard of the financial applications, can be clearly recorded.
+We can obtain the plain text of password such as WiFi password.
+Furthermore, the received SMS verification code (usually used to confirm real-name authentication) can be obtained when it appears in the top notification bar. 
 
+In summary, though we can't directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract private information including but not limited to social accounts, bank accounts, personal financial situation, etc., if the user unconsciously unlocks the screen.
+It is worth mentioning that, those \textit{secure keyboards} built in some financial apps just disrupt keyboard sequences, they can't prevent attacks similar as \tool.
 
-In summary, we can no longer directly peek at the user’s password on the lock screen. But if the user unconsciously unlocks the screen, we can still check all information presented on the screen, extract private information including but not limited to social accounts, bank accounts, personal financial situation, etc. It is worth noting that the so-called secure keyboards built into some financial apps just simply disrupt the keyboard sequence and cannot prevent attacks similar to \tool.
-
-
-\begin{table*}[hbtp]
+\begin{table*}[t]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
