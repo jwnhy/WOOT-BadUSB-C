@@ -46,7 +46,7 @@ To solve this flaw, GoodUSB\cite{tian2015defending} will report the functionalit
 After the USB enumeration and driver loading, there are also works trying to archive `defense in depth' against BadUSB attack.
 Neuner et al.\cite{neuner2018usblock} prevents BadUSB attacks from malicious flash drive by analyzing the temporal characteristics of BadUSB-like attacks. This defense mechanism is effective because the attacker cannot obtain the screen of the host using just BadUSB. In this case, the malicious device can only inject key stoke in a very short time to reduce the risk of being discovered. This defect causes the typing characteristics of BadUSB to be detectable.  Pham et al. \cite{pham2010optimizing} optimizing windows security features. It can block the execution of unsigned files, the installation of unsigned driver carried on portable media. What's more, in GoodUSB, a VM is deployed in host to as a honeypot to detect and stop malicious behavior of USB devices.
 
-In addition to injection attacks, data theft attack is also one of the focuses of academic community. As mentioned in Section~\ref{subsec:usb_attack}, there exist an attack called JFC (juicy film charging)\cite{JFC} which abuses the MHL standard to steal video stream from the victim. In order to mitigate this issue, Meng et al.\cite{JFC} proposed a statistical model using status like GPU/CPU usage to detect JFC attack.
+In addition to injection attacks, data theft attack is also one of the focuses of academic community. As mentioned in Section~\ref{subsec:usb_attack}, there exist an attack called JFC (juicy film charging)\cite{JFC} which abuses the MHL standard to steal video stream from the victim. In order to mitigate this issue, Meng et al.\cite{meng2018252} proposed a statistical model using status like GPU/CPU usage to detect JFC attack.
 
 To summarize, there exists a clear trade-off between the effectiveness and the plug-and-play property. Though hardware disabling solution like USB Condom archives the almost absolute security, the functionality of USB is scarified. Other solutions like GoodUSB or whitelist are either bypassable or insufficient under certain cases.
 Some vendors may sacrifice defensive capabilities to improve usability, which allows attackers to take advantage of.
@@ -78,7 +78,7 @@ We summarize the former effort in USB attack and defense in Table~\ref{table:att
 		\hline
 		\makecell{Pham et al. \cite{pham2010optimizing}} & \makecell*[c]{\circleempty} & \circleempty & \circleempty &\circlefull& \circleempty& \circleempty &\circleempty\\
 		\hline
-		\makecell{JFCGuard\cite{JFC}} & \makecell*[c]{\circleempty} & \circleempty & \circlefull &\circleempty&  \circleempty  & \circleempty& \circlefull \\
+		\makecell{JFCGuard\cite{meng2018252}} & \makecell*[c]{\circleempty} & \circleempty & \circlefull &\circleempty&  \circleempty  & \circleempty& \circlefull \\
 			\hline
 	\end{tabular}
 	\linebreak
