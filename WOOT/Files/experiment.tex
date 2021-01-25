@@ -58,8 +58,7 @@ For an example, Brick is such a power bank sharing service provider from Sweden.
 
 Not only does sharing power bank provides convenience to users, but it also brings security issues. 
 We noticed that most of the power bank stations do not check the integrity of power banks during the rental process, and users are hardly cautious to check the power banks when connecting their devices. 
-An attacker are able to modify his/her rented power banks and return it to a power bank station.
-Then the next user will unknowingly connect to such a malicious power bank, which endangers his/her financial and data security.
+An attacker are able to modify his/her rented power banks and return it to a power bank station causing potential threat to subsequent users.
 
 
 \textbf{QR Code Payment}. 
@@ -93,6 +92,14 @@ In order to prevent such cases, both Alipay and WeChat Pay has designed a refres
 In summary, the payment QR code is highly sensitive on users' devices and our following case study is about how to obtain this code using modified power bank, our \tool.
 
 \subsubsection{Attack Scenario}
+In this part, we will introduce a real life attack scenario to prove that our \tool is a practical offensive tool.
+This scenario can be decomposed into the following steps.
+\begin{enumerate}[I. ]
+	\item The attacker rents a power bank from any power bank stations and replace the internal components with our \tool.
+	\item The attacker returns modified power bank to another power bank station in a crowded area like airport or railway station.
+	\item Other users borrows the modified power bank and connects it to their own devices, becoming the victim of \tool.
+	\item The attacker now has complete control over victim's device.
+\end{enumerate}
 
 Note that \tool only exposes a USB Type C cable (from USB Type-C hub), which looks just like a normal power bank. With the internal battery, \tool can provide sufficient power for both itself and the victim's device.
 Considering normal users' vigilance and the high similarity between \tool and power banks, the attackers can easily put the modified power banks (e.g., \tool) in a power bank station.
