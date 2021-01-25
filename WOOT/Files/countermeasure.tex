@@ -12,7 +12,7 @@ Most security issues of USB protocol is due to its \textit{trust-by-default} pol
 During our experiment, we noticed that \tool is actually unable to redirect out the locking screen keyboard from the iPad OS. Instead, the keyboard is only available on the internal display. However, this defense is only enabled on the locking screen keyboard, other virtual keyboard is still vulnerable to our \tool. This mechanism has inspired us to propose a new defense against our \tool called \emph{Isolated UI Rendering}. As illustrated in Figure~\ref{fig:isolated_ui}, we designed two separated UI render driver, one is secure the other is insecure. When an application require to render, it can pass the content along with a tag identifying whether the content is ``sensitive'' or not. If the content is tagged with ``sensitive'', then the OS will only pass it to the secure driver, which only trusts the internal display. On the other hand, if the content is tagged with ``insensitive'', then it will be passed to both secure and insecure driver, rendered on both internal and external display.
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.6\linewidth]{./Figs/isolated_ui.png}
+	\includegraphics[width=\linewidth]{./Figs/isolated_ui.png}
 	\caption{Isolated UI Rendering}%\shuqing{Maybe we can increase the font?}
 	\label{fig:isolated_ui}
 \end{figure}
