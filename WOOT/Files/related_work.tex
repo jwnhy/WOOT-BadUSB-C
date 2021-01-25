@@ -46,38 +46,43 @@ To solve this flaw, GoodUSB\cite{tian2015defending} will report the functionalit
 After the USB enumeration and driver loading, there are also works trying to archive `defense in depth' against BadUSB attack.
 Neuner et al.\cite{neuner2018usblock} prevents BadUSB attacks from malicious flash drive by analyzing the temporal characteristics of BadUSB-like attacks. This defense mechanism is effective because the attacker cannot obtain the screen of the host using just BadUSB. In this case, the malicious device can only inject key stoke in a very short time to reduce the risk of being discovered. This defect causes the typing characteristics of BadUSB to be detectable.  Pham et al. \cite{pham2010optimizing} optimizing windows security features. It can block the execution of unsigned files, the installation of unsigned driver carried on portable media. What's more, in GoodUSB, a VM is deployed in host to as a honeypot to detect and stop malicious behavior of USB devices. 
 
-In addition to injection attacks, data theft attack is also one of the focuses of academic community. As mentioned in Section~\ref{subsec:usb_attack}, there exist an attack called JFC (juicy film charging)\cite{JFC} which abuses the MHL standard to steal video stream from the victim. In order to mitigate this issue, Meng et al proposed a statistical model using status like GPU/CPU usage to detect JFC attack\cite{meng2018252}.
+In addition to injection attacks, data theft attack is also one of the focuses of academic community. As mentioned in Section~\ref{subsec:usb_attack}, there exist an attack called JFC (juicy film charging)\cite{JFC} which abuses the MHL standard to steal video stream from the victim. In order to mitigate this issue, Meng et al.\cite{JFC} proposed a statistical model using status like GPU/CPU usage to detect JFC attack.
 
 To summarize, there exists a clear trade-off between the effectiveness and the plug-and-play property. Though hardware disabling solution like USB Condom archives the almost absolute security, the functionality of USB is scarified. Other solutions like GoodUSB or whitelist are either bypassable or insufficient under certain cases. 
 Some vendors may sacrifice defensive capabilities to improve usability, which allows attackers to take advantage of.
 
 We summarize the former effort in USB attack and defense in Table~\ref{table:attack_vs_defense}, which illustrates the effectiveness of each defense against various attacks including our \tool.
+\newcommand{\circlefull}{\includegraphics[scale=0.025]{Figs/circle_full.png}}
+\newcommand{\circlehalf}{\includegraphics[scale=0.025]{Figs/circle_half.png}}
+\newcommand{\circleempty}{\includegraphics[scale=0.025]{Figs/circle_empty.png}}
 \begin{table*}
 	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 		
+		\hline
+		\diagbox[width=1.46in] {Defence}{Attack} & Facedancer\cite{facedancer}, Syzkaller\cite{syzkaller} & \cite{rubber,badusb, rubberducky2020, usbbypassing, iseeyou, usbdriver} & JFC\cite{JFC}&Duqu\cite{duqu}& \cite{brain, stuxnet, conficker,flame}&\cite{smartphone, poweremi,revealing,su2017usb, usbgpslocator, bates2014leveraging, badusbhub, usbfinger, side, usbdriver} &\cite{usbkiller, cable, usbee, turnip}&Armory\\
+		\hline 
+		USB condom \cite{Condom}& \circlefull & \circlefull & \circlefull & \circlefull &\circlefull& \circlefull& \circlefull &\circlefull\\
+		\hline 
+		Windows Defender ATP\cite{windenfenderwhite}, Mohammadmoradi et al\cite{mohammadmoradi2018making}, TMSUI\cite{yang2015tmsui}& \circleempty & \circlehalf & \circlehalf & \circlehalf &\circlehalf& \circleempty& ???????? &\circlehalf\\
+		\hline 
+		GoodUSB\cite{tian2015defending}& \circlefull & \circlefull & \circlefull & \circlefull &\circlefull& \circleempty& \circlefull &\circleempty\\
+		\hline 
 		
+		Neuner et al.\cite{neuner2018usblock}& \circleempty & \circlefull & \circleempty & \circleempty &\circleempty& \circleempty& \circleempty &\circleempty\\
+		\hline 
+		Pham et al. \cite{pham2010optimizing}& \circleempty & \circleempty & \circleempty & \circlefull &\circlefull& \circleempty& \circleempty &\circleempty\\
 		\hline
-		\diagbox[width=1.46in] {Defence}{Attack} & Rubbery Ducky\cite{rubber}, \cite{rubberducky2020},USBderivery\cite{usbdriver} & Duqu\cite{duqu} & JFC\cite{JFCImpact}&\cite{smartphone}\cite{poweremi} and \cite{usbdriver}& Armory\\
-		
-		\hline 
-		USB condom \cite{Condom}& Yes & Yes & Yes & Yes & Yes\\
-		\hline 
-		Pham et al. \cite{pham2010optimizing}, odix\cite{OLEA}& No & ? & No & No & No\\
-		\hline 
-		TMSUI\cite{yang2015tmsui}& No & Yes? & No & No & No\\
-		\hline 
-		Windows Defender ATP\cite{windenfenderwhite}& No & Yes? & No & No & No\\
-		\hline 
-		GoodUSB\cite{tian2015defending}& Yes & Yes & Yes? & No & No \\
-
-		\hline
-		Neuner et al.\cite{neuner2018usblock}& Yes & No & No & No & depends? \\
-		\hline
-		Meng et al\cite{meng2018252}& No & No & Yes & No & ?\\
-		\hline
+		JFCGuard\cite{JFC}& \circleempty & \circleempty & \circlefull & \circleempty &\circleempty& \circleempty& \circleempty & ??? \\
+			\hline
 	\end{tabular}
 	\linebreak
+    \begin{tablenotes}
+	\footnotesize
+	\item[1] \circlefull means that the defense is effective
+	\item[2] \circlehalf means that the defense is partial effective
+	\item[3] \circleempty means that the defense is uneffective
+	\end{tablenotes}
 	\caption{Effectiveness of defense against different attacks}
 	\label{table:attack_vs_defense}
 \end{table*}
