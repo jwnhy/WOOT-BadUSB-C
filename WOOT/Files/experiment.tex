@@ -1,106 +1,81 @@
 \section{Experiment}
 \label{sec:experiment}
+\shuqing{Many parts in this section are much more likely to lie in implementation, introducing how \tool works. Doesn't look like experiment.}
 
 %\shuqing{Experiment for devices and case study needed.}
-To evaluate the effectiveness of \tool, we conducted experiments in the three modes introduced in the Section~\ref{sec:badusb} on devices with USB Type-C capabilities.
+To evaluate the effectiveness of \tool in different modes, we conducted three experiments on \tool using devices with USB Type-C capabilities from different OEMs, including a mobile phone, a tablet and a laptop.
 
-\textit{Setup.} Our implementation contains a USB Type-C hub with HDMI and USB port, a Raspberry Pi 4B with a Wi-Fi chip onboard, a video capture card adapting HDMI signal to USB camera, and a normal powerbank with dual outputs.
-\shuqing{Figures of our powerbank.}
-The powerbank is used to supply the Raspberry Pi 4B and charge the victim's devices.
-The USB Type-C hub adapts USB Type-C to a HDMI port and USB ports, which is used to connect HID devices and transmit video stream from victim's devices to HDMI port. 
-The video stream will be captured by the Raspberry Pi 4B through the video capture card.
+\textit{Setup.} As mentioned in Section~\ref{sec:badusb}, our \tool only requires common components that are easily accessible online or in any electronic store. Here we choose the following parts to build a prototype. To begin with, we choose the Raspberry Pi 4B as the embedded computer inside \tool, which is powerful enough to process video data and has onboard WiFi chip. As for the HID emulator, we decide to use a ATMEGA32U4 board with USB protocol support. This Atmel chip is able to emulate most HID devices with our modified firmware. About the USB 3.x hub, we uses one from the Yamazawa, which supports HDMI, USB 2.0, and many other exported peripheral. Apart from these essential parts, we also uses an auxiliary power-bank to provide power for the Raspberry Pi and the mobile devices used by the victim. The image of our prototype \tool can be found in Figure~\ref{fig:armory}.
+\shuqing{Figures of our power bank.}
 
 \subsection{Scripting mode}
+In the experiment of scripting mode, we used \textit{Lenovo Xiaoxin Pro 13 2020}, a PC in Windows 10/Ubuntu OS with two USB Type-C interfaces as target device. 
+During this experiment, \tool disguised itself as a normal keyboard and a home-brewed version of GoodUSB\cite{tian2015defending} is deployed to test the defense bypassing. We have tried to deploy the original GoodUSB on the target device, but as the GoodUSB is proposed in 2015 and the code is too outdated to run at modern OS. We have to home-brew a similar defense mechanism according to its paper.
+At the beginning, our home-brewed version of GoodUSB asked victim to manually complete a CAPTCHA to  authorize the new USB device, a.k.a our \tool. But at this time, by the design of GoodUSB, our \tool can already perform limited keystroke to complete the CAPTCHA and will be rejected only after the failure of authorization. With the video feedback from \tool, the attacker successfully completes the CAPTCHA.
+Up to this point, the bypass of defense like GoodUSB is completed as our \tool already gain full function from the GoodUSB and become a trusted device. Then, our \tool works similar to the original BadUSB, inserting keystroke to perform arbitrary execution on the laptop. We tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulting in success.
 
-We used \textit{Lenovo Xiaoxin Pro 13 2020}, a PC in Windows 10 with two USB Type-C interfaces as target device while conducting the experiment in scripting mode. 
-After we connected \tool to the target device, \tool disguised itself as a normal keyboard.
-Similar as BadUSB~\cite{badusb}, \tool injected keystrokes at a high speed to start a terminal (cmd.exe) by hotkey, and executed the malicious scripts in it.
-Through executing scripts, \tool could implant viruses, worms, backdoors, etc. into hosts, which would make the victim's devices under significant risk.
-However, scripting mode can only be used on devices which terminal is available, limiting its capabilities to PC.
+With this experiment, we have proven the defense bypassing is possible using \tool. This also warned us that we need more thorough defense against such BadUSB attack.
 
 \subsection{Remote control mode}
+To test the capability of remote control mode, we chose \textit{iPad Pro (3rd generation)}, a tablet in iOS 14.3 with a USB Type-C interface, as the target device in this experiment.
+Besides disguising as normal HID devices like a conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video stream from the target device to the attacker via WiFi.
+After the connection establishment, attacker performed a series actions to test the capability of \tool. At the beginning, attacker accessed album application on the iPad and obtained all the photos inside. After that, attacker tried to send messages via victim's account. At last, attacker performed a small amount of transaction using the financial application. All of these tests resulted in success and proved that \tool is a powerful attack tool.
 
-In the remote control mode experiment, ``iPad Pro (3rd generation)'', a tablet in iOS 14.3 with a USB Type-C interface, is chosen as the target device. First, we connect \tool to the target device.
-Except performing as normal HID devices as Rubber Ducky, \tool can stream the real-time video output from the target device to the attacker through WiFi or GSM.
-\tool capture video from USB Type-C Hub's HDMI output via a video capture card, stream video with ``FFmpeg'', a video processing utility and upload video stream to the attacker's device.
-With a real-time video stream as an indicator, the attacker can precisely control the position of mouse movements and clicks. The attacker can control the iPad to open applications, peek at the victim's photos, etc.
-
-Remote control mode is ideal for the attacker to control the victim's devices and grab all information shown on the victim's devices. However, it needs user consent for the first time and requires high power consumption to encode video streams and stable network connections.
-In the real world, high power consumption will increase the posibilities of being noticed by the victim, and stable network connections is hardly guaranteed.
-
+Through this experiment, we have found that with video transmission and mouse emulation, \tool extensively expanded the attack surface of BadUSB attack, especially in mobile devices. We have archived complete hijack of victim's device in this experiment.
 
 \subsection{Privacy extraction mode}
+During the experiment of privacy extraction, we chose \textit{HUAWEI P30}, a smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, as the target device.
+In privacy extraction mode, \tool passively captured video from the victim's device and used \textit{OpenCV} to identify valuable information from video stream. 
+When the victim viewed text or photos with text, \tool used the techniques of optical character recognition (OCR) to extract text from corresponding video frames.
+In this experiment, attacker had successfully extracted text like name, address, ID number and other valuable personal information. We also tested the payment code extractor, which enables attacker to identify payment code in the video stream and perform transaction without password. As this is also a part of our case study, more details about the data extracted can be found in Section~\ref{subsec:case_study} and Table~\ref{table:information_extracted}.
 
-In the privacy extraction mode experiment, ``HUAWEI P30'', a smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, is chosen as the target device. 
-First, we connect \tool to the target device. As remote control mode, \tool capture video from the victim's device and use ``opencv'' to identify ``valuable'' information from video stream. When the victim views text or photoes with text, \tool can use optical character recognition (OCR) to extract text from corresponding video frames. \yechang{hyperlink to OCR?}
-For example, extracting the victim's name, photo, address, and ID number when victim is viewing his or her photos of his or her ID card or passport documents,
-extracting the victim's payment information when victim is using bank apps or payment apps. Besides, \tool can use ``opencv'' to detect and decode QR codes or barcodes shown on the victim's device, which is expected to extract payment code information in payment apps.
-Here is an example of extracting payment code with opencv library in listing. \shuqing{Need to be modified.}
-
-Privacy extraction mode only extracts high-value information for attacker (or highly sensitive information for victim), which is more efficient to  than remote control mode.
-
-%\begin{lstlisting}[caption={python script for extracting payment code of victim},label=lst2:qr]
-%import cv2, qrcode,requests
-%import pyzbar.pyzbar as pyzbar
-%def decodeDisplay(video):
-%    gray = cv2.cvtColor(video, cv2.COLOR_BGR2GRAY)
-%    barcodes = pyzbar.decode(gray)
-%    for barcode in barcodes:
-%        barData = barcode.data.decode()
-%        barType = barcode.type
-%        requests.post('<server of attacker>',
-%            data={
-%                'data': barData,
-%                'type': barType
-%            }
-%        )
-%if __name__ == '__main__':
-%    cam = cv2.VideoCapture(0)
-%    while True:
-%        ret, frame = cam.read()
-%        decodeDisplay(frame)
-%        if cv2.waitKey(5) == 27:
-%            break
-%    cam.release()
-%    cv2.destroyAllWindows()
-%\end{lstlisting}
-
+After the experiment, we have found that as privacy extraction mode only passively process victim's video stream, this is a more power-efficient mode than remote control mode.
 
 \subsection{Case study}
-
+\label{subsec:case_study}
 \subsubsection{Background}
+We first introduce the technical background of our case study, sharing power bank service and QR code payment.
 
-We conduct a case study with Power bank sharing and QR code payment as technical background.
+\textbf{Sharing Power Bank}. 
+Sharing power bank provides users with short-term rental of power banks. 
+The company deploys power bank stations in the city and users can rent a power bank from any of the power bank station, charge their device on the trip, return the rented power bank to the near station and pay the rent fee.
 
-\textbf{\textit{Power Bank Sharing}}. 
-Power bank sharing provides users with short term rental of power banks. A provider deploys power bank stations in the city. Then, users can rent a power bank from any of the power bank station, charge their device on the trip, return the rented power bank to another station, and pay rent online.
+For an example, Brick is such a power bank sharing service provider from Sweden. It provides power bank rental service all over the Sweden and is planning on expanding their service around Europe. What's more, this service is even more popular in China, there are these stations being deployed in almost every market, store and even newsstand. This suggests that this service is becoming more and more common around the global, especially in China and Europe.
+\shuqing{I think we should paraphrase instead of using the descriptions on the website directly. Just to explain \textbf{what we need}.}
 
-As an example, Brick is such a power bank sharing service provider from Sweden. As Brick's website states, ``Brick prevents your electronics from running out of battery with powerbanks (Bricks) that you can easily rent \& return at our many stations in Stockholm, Gothenburg, Malmö and the rest of Sweden and even Europe.''. \yechang{citation needed}
-
-
-\begin{figure}[hbtp]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=.4 \linewidth]{./Figs/Brick_station.png}
 	\includegraphics[width=.4 \linewidth]{./Figs/jiedian.jpg}
-	\caption{Two power banks station products}\shuqing{Our attacking power banks.}
+	\caption{Two power banks station products}\shuqing{Photos that we took.}
 	\label{fig:PBS_products}
 \end{figure}
 
 \yechang{add hyperlink or reference to Brick's website or Brick App on App Store/Google Play.}
 
 \yechang{Add more examples of power bank sharing to show that it is widely used?}
+\shuqing{May use statistics (instead of concrete examples) to explain it.}
 
-Whiling providing convenience for users, it brings security issues. We notice that the power bank station does not check the integrity of power banks during the rental process, and users are hardly cautious when connecting their devices to the power bank. A malicious user is able to modify his/her rented power bank, return it to a power bank station as normal, and its next user will unknowingly connect to this malicious power bank, which endangers the privacy of user.
+Not only does sharing power bank provides convenience to users, but it also brings security issues. 
+We noticed that most of the power bank stations do not check the integrity of power banks during the rental process, and users are hardly cautious to check the power banks when connecting their devices. 
+An attacker are able to modify his/her rented power banks and return it to a power bank station.
+Then the next user will unknowingly connect to such a malicious power bank, which endangers his/her financial and data security.
 
 
-\textbf{\textit{QR Code Payment}}. 
-QR code payment is a payment method where payment is typically performed as the following steps:
-\ding{182} The payer opens the payment application on his/her mobile device, and present his/her payment QR code to the payee. This QR code is encoded with a globally unique ID to identify the payer's account. 
-\ding{183} The payee scan the payment QR code presented by the payer. By presenting this QR code, the payer authorizes proceeding with the payment.
-\ding{184} An order generated by this scan is sent to the payment service provider. Then the payment service provider requests the payer to confirm the transaction.
-\ding{185} After confirmation, the payment service provider proceed with this transaction and return the payment result to both the payee and the payer.
+\textbf{QR Code Payment}. 
+QR code payment is a new type of payment method that are popular in China. Its most well known cases are WeChat Pay and Alipay. QR code payment provides merchant and client a convenient way of offline payment while ensuring equivalent security as the credit card. This explains why it becoming widely used in China.
+QR code payment is typically performed in the following steps:
+\ding{182} The client presents payment QR code on mobile device to the merchant. 
+The QR code is encoded with a globally unique ID to identify the client's account. 
+\ding{183} The merchant scans the payment QR code and charges corresponding amount of money. 
+By presenting this QR code, the client authorizes proceeding charge.
+\ding{184} An transaction generated by this scan is sent to the payment service provider. 
+Then the payment service provider requests the client to confirm the transaction.
+\ding{185} After confirmation, the payment service provider proceed with this transaction and return the payment result to both the merchant and the client.
+\shuqing{I think this paragraph can be shorter. No need to explain so many details.}
+\hongyi{Dont know how to be more concise.}
 
-\begin{figure}[hbtp]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{./Figs/qr_code_payment.png}
 	\caption{Bar/QR code payment procedure}
@@ -108,28 +83,49 @@ QR code payment is a payment method where payment is typically performed as the 
 \end{figure}
 
 
-In the real-world, some payment service providers provide special rules for micropayments purchases. A micropayment is pre-determined by the payment service provider with thresholds in the user agreement. For example, WeChat Pay regards payments less than CNY \textyen 1000 as micropayments. Differing from a typical payment procedure, when micropayments are made, confirmations can be applied automatically without requiring the payer to take further action, which is often encouraged by the payment service provider.
+In the real-world scenario, some payment service providers provide special rules for micropayment purchases. 
+A micropayment is pre-determined by the payment service provider with thresholds in the user agreement. 
+For example, WeChat Pay~\cite{Wechat-pay} regards transaction under USD \textdollar 154 as micropayments. 
+Different from a typical payment procedure, when micropayments are made, confirmations can be applied automatically without clients' permission which aims to provide convenience to both merchant and client.
+If a victim's payment code is leaked to the attackers, they can use the that code to authorize multiple micropayments without permission. 
+In order to prevent such cases, both Alipay and WeChat Pay has designed a refreshing mechanism for the payment code, which is to refresh the QR code every minute. This is sufficient to stop attack like sneak shots, but unable to stop real-time attack like our \tool.
+\shuqing{Introduce something about QR code refreshing (fast).}
+In summary, the payment QR code is highly sensitive on users' devices and our following case study is about how to obtain this code using modified power bank, our \tool.
 
-The payment QR code is associated with the payer's account. If a victim's payment code is leaked to an attacker, an attacker can use the victim's payment code to proceed with payments. Furthermore, the attacker can use several micropayments to steal money from the victim's account while leaving the victim unconscious. In summary, the payment QR code is highly sensitive on users' devices.
+\subsubsection{Attack Scenario}
 
-\subsubsection{Attack scenario}
+Note that \tool only exposes a USB Type C cable (from USB Type-C hub), which looks just like a normal power bank. With the internal battery, \tool can provide sufficient power for both itself and the victim's device.
+Considering normal users' vigilance and the high similarity between \tool and power banks, the attackers can easily put the modified power banks (e.g., \tool) in a power bank station.
+Other users may unconsciously connect their devices to \tool.
+As the QR code payment is fairly common\shuqing{Any reference? How frequent the payment code is used?}, the victim may complete payment by showing their payment code. 
+Then the attackers can extract and use the victim's payment code to make another payment unknown to the victim.
+\shuqing{This paragraph is duplicate with some previous paragraphs. We can make the previous introduction abut attack scenario really brief, and mainly introduce it here.}
 
-It is worth noting that \tool exposed only a type-c cable (from USB Type-C hub),
-and \tool will charge his or her device through this cable, which has no difference from ordinary power banks. Noticed the low users' vigilance and high similarity between \tool and normal power bank, the attacker can return his/her modified power bank (as \tool) to a power bank station, mixing \tool into the circulation of shared power banks. The next user who unconsciously connect his/her device to \tool can find his/her devices being charged as normal.
-Like many outdoor mobile phone usage scenarios, the victim may complete payment with showing payment code. In this process, the attacker can preemptively extract and use the victim's payment code to make another payment unknown to the victim, which threatens victim's property.
-
-
-In order to check what can be obtained by \tool, we conduct a user study in order to check the performance of \tool in Privacy extraction mode. We invited 6 volunteers to our lab room. Volunteers take turns to operate their phones for half an hour while \tool is connected. Before the study, we did not reveal the function of \tool and asked the volunteers to connect their phones to \tool as a normal power bank (ignoring its larger size). 
-After the study, we told them our attack, checked recorded videos together, and confirmed the consent to study the information in recorded videos, Subject to efficiency reasons, we ask them to use phones like when they use the shared power bank outside.
+\shuqing{Background is longer than real user study.}
+In order to validate the usability of \tool, we conducted a user study in privacy extraction mode. 
+\shuqing{10 volunteers.}
+We invited 6 volunteers to take part in, who are unconscious of the experiment details.
+Volunteers took turns to operate their phones for half an hour while \tool is connected, which they considered as a normal power bank.
+After the study, we introduced to them about our attack, checked the screen recordings together, and get the permission to study the information in recorded videos.
+\shuqing{Do we need to mention that agreement the conference required here?}
+Subject to efficiency reasons, we asked them to use phones just like when they use the shared power bank outside.
+\shuqing{What does it mean?}
 
 
 \subsubsection{Result}
 
-After collecting the videos, we used both automatic and manual methods to analyze the video. In the automatic analysis, we use a script to simply perform OCR recognition to each frame in the recorded video and store all OCR results into a database in a format of ``frame number - text by OCR''. At last, there are 38329 pieces of data collected among 6 volunteers. In the manual analysis, we replay the recorded video and extract sensitive information manually.
+After collecting the videos, we analyzed the videos both automatically and manually. 
+During the automatic analysis, we used scripts to perform OCR recognition for each frame in the recorded video and stored all of the OCR results in a database.
+At last, there are 38329 pieces of data collected among 6 volunteers.
+\shuqing{The data may need to be updated.} 
+With these results, we could learn what content the victim was browsing.
+Additionally, some keywords such as \textit{account, username and password} often appear with users' input data because they are often used as labels of input boxes.
+Such keywords are more likely to lead us to discover user-specific data.
+For example, when we searched with \textit{account} as keyword, victim's accounts can be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example}.
+\shuqing{Statistics.}
+The frame number is the position of this frame in the recorded video, which indicates a target for manual analysis for further data extraction.
 
-In terms of automatic analysis, OCR results of all frames are already stored in the database and can be used at hand. With these results, we can learn what issues the victim is browsing. Additionally, some keywords often appear with users' input data because they are often used as labels of input boxes, such as ``account'', ``username''. Such keywords are more likely to lead us to discover user-specific data. For example, in Table~\ref{tab:ocr_keyword_example}, searching with ``account'' as the keyword, victim's accounts can be detected as shown in Fig. The frame number is the position of this frame in the recorded video, which indicates a target for manual analysis for further data extraction.
-
-\begin{table*}[hbtp]
+\begin{table*}[t]
 	\centering
 	\begin{tabular}{|l|l|l|l|}
 		\hline
@@ -145,13 +141,17 @@ In terms of automatic analysis, OCR results of all frames are already stored in 
 \end{table*}
 
 
-In terms of manual analysis, data collected are listed in table ~\ref{table:information_extracted}. Accounts of internet applications such as Apple ID, iCloud, Facebook, Twitter, WeChat, QQ, Alipay can be obtained. Additionally, all typing inputs are on the virtual keyboard (including the system keyboard and the built-in security keyboard of the financial app), which can be clearly recorded. Noticed that, we can obtain the plain text of password typed such as the WiFi password and the Alipay password. Furthermore, the received SMS verification code (usually is used to confirm real-name authentication) can be obtained when it appears in the top notification bar. 
+In the manual analysis, we replayed the recorded video and extracted sensitive information.
+The data we collected are listed in the Table~\ref{table:information_extracted}. 
+Accounts of internet applications such as Apple, iCloud, Facebook, Twitter, etc. can be obtained. 
+Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboard of the financial applications, can be clearly recorded.
+We can obtain the plain text of password such as WiFi password.
+Furthermore, the received SMS verification code (usually used to confirm real-name authentication) can be obtained when it appears in the top notification bar. 
 
+In summary, though we can't directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract private information including but not limited to social accounts, bank accounts, personal financial situation, etc., if the user unconsciously unlocks the screen.
+It is worth mentioning that, those \textit{secure keyboards} built in some financial apps just disrupt keyboard sequences, they can't prevent attacks similar as \tool.
 
-In summary, we can no longer directly peek at the user’s password on the lock screen. But if the user unconsciously unlocks the screen, we can still check all information presented on the screen, extract private information including but not limited to social accounts, bank accounts, personal financial situation, etc. It is worth noting that the so-called secure keyboards built into some financial apps just simply disrupt the keyboard sequence and cannot prevent attacks similar to \tool.
-
-
-\begin{table*}[hbtp]
+\begin{table*}[t]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline

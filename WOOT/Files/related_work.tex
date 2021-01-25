@@ -1,10 +1,10 @@
 \section{Related Work}
 \label{sec:related_work}
-\hongyi{Move the stuff about USB protocol to Background}\\
-\outline{Attack based on USB 1.0, briefly}\\
-\outline{Attack based on USB 2.0, focus on works about application and transport layer}\\
-\outline{Attack survey table}\\
-\outline{Attack or current works about USB Type-C}\\
+%\hongyi{Move the stuff about USB protocol to Background}\\
+%\outline{Attack based on USB 1.0, briefly}\\
+%\outline{Attack based on USB 2.0, focus on works about application and transport layer}\\
+%\outline{Attack survey table}\\
+%\outline{Attack or current works about USB Type-C}\\
 
 In this part, we survey related works on USB attack in Section~\ref{subsec:usb_attack}, and USB defence security in Section \ref{subsec:usb_defence}, respectively.
 
@@ -17,9 +17,9 @@ From the kernel perspective, its USB software stack generally expects devices to
 
 In the field of USB security, protocol masquerading is also a widely used attack scheme. Due to the lack of authentication in USB protocol, malicious devices can hide their real functionality with re-written firmware\cite{rubber,badusb, rubberducky2020, usbbypassing, iseeyou, usbdriver}. These works rewrite the firmware of a normal-looking flash drive, which allows it to pretend as other devices. When these modified drives are connected to the host, they will be recognized as keyboard or mouse. Then the attacker can execute malicious payloads as they were using the victim's devices. But due to the limitation of USB 2.0\cite{usb20} protocol, these BadUSB attacks are unable to obtain video feedback from the victim as video were not supported until USB 3.0 \cite{usb30}. Though USB 2.0 does not support video transmission, there exists a protocol called MHL(Mobile High-Definition Link) which extends the USB standard and allow video signal to be transmitted through USB interface. JFC\cite{JFC}, short for juicy filming charging is such a work which abuses this standard and exfiltrate video data from victim without permission. But in JFC, this data exfiltration is not combined with BadUSB attacks and MHL is an outdated standard, which limits its capability.
 
-Besides attacking from the protocol perspective, there are works trying to use USB device as a payload delivery means. Duqu\cite{duqu} uses a user-mode rootkit to hide malicious files on the USB storage device and uses a zero-day exploit\cite{zero-day} to execute the malware automatically. There are also works like \cite{brain, stuxnet, conficker,flame} following the same paradigm and performing code-injection attacks. These attacks are much more damaging and flexible comparing to those previous ones, but they requires certain existing flaw like \cite{zero-day} and USB are merely a payload delivery method.
+Besides attacking from the protocol perspective, there are works trying to use USB device as a payload delivery means. Duqu\cite{duqu} uses a user-mode rootkit to hide malicious files on the USB storage device, \cite{flame} uses a zero-day exploit and malicious \textit{autorun.inf} to execute the malware automatically. There are also works like \cite{brain, stuxnet, conficker} following the same paradigm and performing code-injection attacks. These attacks are much more damaging and flexible comparing to those previous ones, but they requires certain existing flaw like \cite{zero-day} and USB are merely a payload delivery method.
 
-As a data transmission protocol, USB inevitably leaks electromagnetic signals to the environment which may contains sensitive information. Leveraging this physical phenomenon, there are works like \cite{smartphone, poweremi,revealing,su2017usb, usbgpslocator, bates2014leveraging, badusbhub, usbfinger, side, usbdriver} eavesdropping leaked signals and recovering the sensitive data. In a similar fashion, \cite{usbkiller, cable, usbee, turnip} use the RF transmitter to inject signal to cause physical damage to the host machine. Even though the data, including the video data, could be recovered in this way, these attacks for executing malicious code is too difficult to work, and the invisibility is a problem cannot be ignored due to the spacial locality of radio frequency. 
+As a data transmission protocol, USB inevitably leaks electromagnetic signals to the environment which may contains sensitive information. Leveraging this physical phenomenon, there are works like \cite{smartphone, poweremi,revealing,su2017usb, usbgpslocator, bates2014leveraging, badusbhub, usbfinger, side, usbdriver} eavesdropping leaked signals and recovering the sensitive data. In a similar fashion, \cite{usbee, turnip} emit electromagnetic emissions by data injection on the bus with the connected USB devices as a RF transmitter and \cite{usbkiller, cable} inject analog power to cause physical damage to the host machine. Even though the data, including the video data, could be recovered in this way, these attacks for executing malicious code is too difficult to work, and the invisibility is a problem cannot be ignored due to the spacial locality of radio frequency. 
 
 Since USB 3.1 was introduced with USB Type-C in 2013, display port and HDMI connectors have been provided by USB Type-C, transferring of video data can be combined with the other attacks, like protocol masquerading,  protocol corruption and code injection. This has paved the path for our \tool.
 
