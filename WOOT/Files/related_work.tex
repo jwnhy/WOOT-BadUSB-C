@@ -39,7 +39,7 @@ Without these pins, data can't be transferred via USB cable. Based on this fact,
 However, this method poses a great challenge to plug-and-play property of USB, as once it is deployed, it will stop all USB functions other than charging.
 
 Under the premise of ensuring the full functionality of USB devices, there have been some works trying to improve the security during connection establishment.
-Windows Defender ATP\cite{windenfenderwhite} maintains a whitelist of USB devices, only devices on the whitelist are allowed to communicate with the host. This prevents all potential attacks from untrusted devices. But this requires users to have a certain safety awareness and technical background to maintain a valid whitelist. For example, a naive user may add the USB device from unknown sources to his/her whitelist without precaution. There are designs can overcome this drawback. For instance, Mohammadmoradi et al\cite{mohammadmoradi2018making} proposes a strategy to generate such a whitelist automatically. This strategy first generates a unique fingerprint for each device based on its functionality. Then these fingerprints are used to maintain a safe and valid whitelist of USB devices. There is another work mediating USB connectivity for Industrial Control. TMSUI\cite{yang2015tmsui} relies on rich experience of administrators to build a whitelist. However, some modified USB devices may hide their real functionality from the user.
+Windows Defender ATP\cite{windenfenderwhite} maintains a whitelist of USB devices, only devices on the whitelist are allowed to communicate with the host. This prevents all potential attacks from untrusted devices. But this requires users to have a certain safety awareness and technical background to maintain a valid whitelist. For example, a naive user may add the USB device from unknown sources to his/her whitelist without precaution. There are designs can overcome this drawback. For instance, Mohammadmoradi et al.\cite{mohammadmoradi2018making} proposes a strategy to generate such a whitelist automatically. This strategy first generates a unique fingerprint for each device based on its functionality. Then these fingerprints are used to maintain a safe and valid whitelist of USB devices. There is another work mediating USB connectivity for Industrial Control. TMSUI\cite{yang2015tmsui} relies on rich experience of administrators to build a whitelist. However, some modified USB devices may hide their real functionality from the user.
 
 To solve this flaw, GoodUSB\cite{tian2015defending} will report the functionality claimed by the device to user and let user decides whether to authorize. When a device is plugged in, GoodUSB will load its driver but limit its functionality until a series of authorizations is completed. These authorizations are designed to be performed manually. As BadUSB is normally unable to obtain the video stream of the host, it is impossible for an attacker to complete these authorization with automatic script. Thus this defense is sufficient for normal BadUSB attack. But if the attacker has the access to victim's screen, GoodUSB will be bypassed easily as the attacker can just complete these authorization manually and perform subsequent attacks.
 
@@ -57,36 +57,36 @@ We summarize the former effort in USB attack and defense in Table~\ref{table:att
 \newcommand{\circleempty}{\includegraphics[scale=0.025]{Figs/circle_empty.png}}
 \begin{table*}
 	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
 
 		\hline
-		\diagbox[width=1.46in] {Defence}{Attack} & \makecell{Facedancer\cite{facedancer},\\ Syzkaller\cite{syzkaller}} & \cite{rubber, badusb, rubberducky2020, usbbypassing, iseeyou, usbdriver} & JFC\cite{JFC}&Duqu\cite{duqu}& \cite{brain, stuxnet, conficker,flame}&\cite{smartphone, poweremi,revealing,su2017usb, usbgpslocator, bates2014leveraging, badusbhub, usbfinger, side, usbdriver} &\cite{usbkiller, cable, usbee, turnip}& \tool \\
+		\diagbox[width=1.52in] {Defence}{Attack} & \makecell*[c]{Facedancer\cite{facedancer},\\ Syzkaller\cite{syzkaller}} & \cite{rubber, badusb, rubberducky2020, usbbypassing, iseeyou, usbdriver} & JFC\cite{JFC}&Duqu\cite{duqu},\cite{brain, stuxnet, conficker,flame}&\cite{smartphone, poweremi,revealing,su2017usb, usbgpslocator, bates2014leveraging, badusbhub, usbfinger, side, usbdriver, usbee, turnip}&\cite{usbkiller, cable}& \tool \\
 		\hline
-		\makecell{USB condom \cite{Condom}} & \circlefull & \circlefull & \circlefull & \circlefull &\circlefull& \circlefull& \circlefull &\circlefull\\
+		\makecell{USB condom \cite{Condom}} & \makecell*[c]{\circlefull} & \circlefull & \circlefull &\circlefull& \circlefull&  \circleempty&\circlefull\\
 		\hline
 		\makecell{
 			Windows Defender ATP\cite{windenfenderwhite}, \\
-			Mohammadmoradi et al\cite{mohammadmoradi2018making}, \\
+			Mohammadmoradi et al.\cite{mohammadmoradi2018making}, \\
 			TMSUI\cite{yang2015tmsui}
-		}& \circleempty & \circlehalf & \circlehalf & \circlehalf &\circlehalf& \circleempty& ???????? &\circlehalf\\
+		}& \circleempty & \circlehalf & \circlehalf &\circlehalf& \circleempty&  \circleempty &\circlehalf\\
 
 		\hline
-		\makecell{GoodUSB\cite{tian2015defending}} & \circlefull & \circlefull & \circlefull & \circlefull &\circlefull& \circleempty& \circlefull &\circleempty\\
+		\makecell{GoodUSB\cite{tian2015defending}} & \makecell*[c]{\circlehalf} & \circlefull & \circlefull &\circlefull& \circleempty&  \circleempty &\circleempty\\
 		\hline
 
-		\makecell{Neuner et al.\cite{neuner2018usblock}} & \circleempty & \circlefull & \circleempty & \circleempty &\circleempty& \circleempty& \circleempty &\circleempty\\
+		\makecell{Neuner et al.\cite{neuner2018usblock}} & \makecell*[c]{\circleempty} & \circlefull & \circleempty &\circleempty& \circleempty& \circleempty &\circleempty\\
 		\hline
-		\makecell{Pham et al. \cite{pham2010optimizing}} & \circleempty & \circleempty & \circleempty & \circlefull &\circlefull& \circleempty& \circleempty &\circleempty\\
+		\makecell{Pham et al. \cite{pham2010optimizing}} & \makecell*[c]{\circleempty} & \circleempty & \circleempty &\circlefull& \circleempty& \circleempty &\circleempty\\
 		\hline
-		\makecell{JFCGuard\cite{JFC}} & \circleempty & \circleempty & \circlefull & \circleempty &\circleempty& \circleempty& \circleempty & ??? \\
+		\makecell{JFCGuard\cite{JFC}} & \makecell*[c]{\circleempty} & \circleempty & \circlefull &\circleempty&  \circleempty  & \circleempty& \circlefull \\
 			\hline
 	\end{tabular}
 	\linebreak
     \begin{tablenotes}
 	\footnotesize
-	\item[1] \circlefull means that the defense is effective
-	\item[2] \circlehalf means that the defense is partial effective
-	\item[3] \circleempty means that the defense is uneffective
+	\item[1] \circlefull  \@ means that the defense is effective
+	\item[2] \circlehalf \@ means that the defense is partial effective
+	\item[3] \circleempty \@  means that the defense is uneffective
 	\end{tablenotes}
 	\caption{Effectiveness of defense against different attacks}
 	\label{table:attack_vs_defense}
