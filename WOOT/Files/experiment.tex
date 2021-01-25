@@ -61,16 +61,9 @@ For an example, Brick is such a power bank sharing service provider from Sweden.
 \yechang{Add more examples of power bank sharing to show that it is widely used?}
 \shuqing{May use statistics (instead of concrete examples) to explain it.}
 
-<<<<<<< HEAD
 Not only does sharing power bank provides convenience to users, but it also brings security issues. 
 We noticed that most of the power bank stations do not check the integrity of power banks during the rental process, and users are hardly cautious to check the power banks when connecting their devices. 
 An attacker are able to modify his/her rented power banks and return it to a power bank station causing potential threat to subsequent users.
-=======
-Not only does sharing power bank provides convenience to users, but it also brings security issues.
-We noticed that most of the power bank stations do not check the integrity of power banks during the rental process, and users are hardly cautious to check the power banks when connecting their devices.
-An attacker are able to modify his/her rented power banks and return it to a power bank station.
-Then the next user will unknowingly connect to such a malicious power bank, which endangers his/her financial and data security.
->>>>>>> 81216c6fcf8e2307fdaa872d05da9434b7071357
 
 
 \textbf{QR Code Payment}.
@@ -100,46 +93,41 @@ For example, WeChat Pay~\cite{Wechat-pay} regards transaction under USD \textdol
 Different from a typical payment procedure, when micropayments are made, confirmations can be applied automatically without clients' permission which aims to provide convenience to both merchant and client.
 If a victim's payment code is leaked to the attackers, they can use the that code to authorize multiple micropayments without permission.
 In order to prevent such cases, both Alipay and WeChat Pay has designed a refreshing mechanism for the payment code, which is to refresh the QR code every minute. This is sufficient to stop attack like sneak shots, but unable to stop real-time attack like our \tool.
-\shuqing{Introduce something about QR code refreshing (fast).}
 In summary, the payment QR code is highly sensitive on users' devices and our following case study is about how to obtain this code using modified power bank, our \tool.
 
 \subsubsection{Attack Scenario}
 In this part, we will introduce a real life attack scenario to prove that our \tool is a practical offensive tool.
 This scenario can be decomposed into the following steps.
 \begin{enumerate}[I. ]
-	\item The attacker rents a power bank from any power bank stations and replace the internal components with our \tool.
-	\item The attacker returns modified power bank to another power bank station in a crowded area like airport or railway station.
+	\item The attacker rents a power bank from one of power bank stations and replace the internal components with our \tool.
+	\item After the modification, \tool is returned to another power bank station in a crowded area like airport or railway station, which increases the probability of success.
 	\item Other users borrows the modified power bank and connects it to their own devices, becoming the victim of \tool.
-	\item The attacker now has complete control over victim's device.
+	\item The attacker now has complete control over victim and can perform various attack using different modes.
 \end{enumerate}
-
-Note that \tool only exposes a USB Type C cable (from USB Type-C hub), which looks just like a normal power bank. With the internal battery, \tool can provide sufficient power for both itself and the victim's device.
-Considering normal users' vigilance and the high similarity between \tool and power banks, the attackers can easily put the modified power banks (e.g., \tool) in a power bank station.
-Other users may unconsciously connect their devices to \tool.
-As the QR code payment is fairly common\shuqing{Any reference? How frequent the payment code is used?}, the victim may complete payment by showing their payment code.
-Then the attackers can extract and use the victim's payment code to make another payment unknown to the victim.
-\shuqing{This paragraph is duplicate with some previous paragraphs. We can make the previous introduction abut attack scenario really brief, and mainly introduce it here.}
+Here we summarizes the possible threats toward user under different modes. \hongyi{Better way to express this?}
+First, under scripting mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using privacy extraction mode, once the victims access their private data like QR payment  code or album, their private data will be immediately transmitted via \tool to the attacker. Lastly, with remote control mode, the attacker has complete control over the victims' device and can do anything they want.
 
 \shuqing{Background is longer than real user study.}
-In order to validate the usability of \tool, we conducted a user study in privacy extraction mode.
+As the functionality and effectiveness of scripting mode and remote control mode is rather clear, the former works similar to original BadUSB, the latter hijacks the victim's device completely.\hongyi{I dont know if it's a good enough reason}
+Here we only validate the usability of privacy extraction mode and conducted a user study.
 \shuqing{10 volunteers.}
-We invited 6 volunteers to take part in, who are unconscious of the experiment details.
-Volunteers took turns to operate their phones for half an hour while \tool is connected, which they considered as a normal power bank.
-After the study, we introduced to them about our attack, checked the screen recordings together, and get the permission to study the information in recorded videos.
+We invited 6 volunteers to participate, who are unconscious of \tool details.
+Before the experiment, we disclose to the volunteers about how their data might be used and request permission from both the volunteers and the institutional ethics review boards.
+During the experiment, volunteers took turns to use their phones for half an hour with \tool connected, which are considered as a normal power bank.
+In order to obtain data close to real life, they are requested to use phones just like when they use the shared power bank outside.
+After the experiment, we introduced to them about our attack, analyze the screen recordings together to make sure their personal data is not at risk.
 \shuqing{Do we need to mention that agreement the conference required here?}
-Subject to efficiency reasons, we asked them to use phones just like when they use the shared power bank outside.
-\shuqing{What does it mean?}
+\hongyi{I'm also quite concern about this.}
 
 
 \subsubsection{Result}
-
-After collecting the videos, we analyzed the videos both automatically and manually.
+After collecting the videos, we analyzed the video both automatically and manually.
 During the automatic analysis, we used scripts to perform OCR recognition for each frame in the recorded video and stored all of the OCR results in a database.
 At last, there are 38329 pieces of data collected among 6 volunteers.
 \shuqing{The data may need to be updated.}
 With these results, we could learn what content the victim was browsing.
 Additionally, some keywords such as \textit{account, username and password} often appear with users' input data because they are often used as labels of input boxes.
-Such keywords are more likely to lead us to discover user-specific data.
+Such keywords are more likely to lead us to user-specific data.
 For example, when we searched with \textit{account} as keyword, victim's accounts can be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example}.
 \shuqing{Statistics.}
 The frame number is the position of this frame in the recorded video, which indicates a target for manual analysis for further data extraction.
@@ -150,7 +138,7 @@ The frame number is the position of this frame in the recorded video, which indi
 		\hline
 		Keyword  & Text                                                                                                                          & Name                           & Frame Number \\ \hline
 		username & X 8B cas.******.edu.cn Username: 117***18 Password:                                                                           & \textless{}user1\textgreater{} & 385          \\ \hline
-		username & Login Weibo Login with SMS and verification code ...... +86 151****4587 Get verification code Login with username \& password & \textless{}user5\textgreater{} & 1947         \\ \hline
+		username & Login Weibo Login with SMS and verification code ...... +86 151****4587 & \textless{}user5\textgreater{} & 1947         \\ \hline
 		username & QQ 14*****50| Login with phone number New user registration 2345678 9 0                                                       & \textless{}user3\textgreater{} & 4308         \\ \hline
 		username & connect to *** username h*****l Save account information Open VPN.....                                                        & \textless{}user6\textgreater{} & 7925         \\ \hline
 		+86      & Login with phone number ...... +86 186****2483 |                                                                              & \textless{}user1\textgreater{} & 313          \\ \hline
