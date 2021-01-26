@@ -38,8 +38,11 @@ We did experiments to verify that \tool could also bypass most of the countermea
 Moreover, we implemented multiple attacking modes of USB attacks based on our approach to verify its effectiveness, including scripting, remote control, and privacy extraction.
 To improve the efficiency and performance of \tool, we designed a filtering algorithm to preprocess the video data before network transmission.
 Moreover, we conducted a series of experiments for each attack mode as well as for different types of devices, including smart phones, personal computers, and tablet computers, to validate the usability of \tool.
-At last, we conducted a user study for attacks in sharing power banks, one of the application scenarios of \tool.
+We also conducted a user study for attacks in sharing power banks, one of the application scenarios of \tool.
 During the user study, we obtained plenty of sensitive data through \tool, since users are usually unconscious of the necessity to check the USB devices they plugged in for security purposes.
+After the validation of our attack model, we proposed several defence methods as countermeasures, including external hardware authorization, distrust-by-default, etc.
+It is worth noting that we designed a method, called isolated UI rendering, to separate the user interface into sensitive and insensitive layers.
+Only content on the insensitive layer will be passed to the insecure driver and thus rendered on external display, which protects content on the sensitive layer.
 %\shuqing{Case study, evaluation, notable results.}
 
 We summarize our key contributions as follows:
@@ -47,7 +50,8 @@ We summarize our key contributions as follows:
 	\item To our best knowledge, this is the first work to utilize new features of USB Type-C.
 	The combination of new support with conventional BadUSB makes attacks more precise and effective.
 	\item Our approach can bypass most of the previous countermeasures of BadUSB.
-	\item We conducted multiple experiments and a user study to validate the usability and effectiveness of \tool. \shuqing{Notable results.} \fengwei{Add countermeasures, in particular the isolation design.}
+	\item We conducted multiple experiments and a user study to validate the usability and effectiveness of \tool.
+	We also proposed several countermeasures for our attack model, which are reasonable and insightful. \fengwei{Add countermeasures, in particular the isolation design.}\shuqing{Isolated UI rendering is added in the last paragraph.}
 \end{itemize}
 
 The rest of this paper is structured as follows.
