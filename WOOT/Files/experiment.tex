@@ -5,13 +5,13 @@
 %\shuqing{Experiment for devices and case study needed.}
 To evaluate the effectiveness of \tool in different modes, we conducted three experiments on \tool using devices with USB Type-C capabilities from different OEMs, including a mobile phone, a tablet and a laptop.
 
-\textit{Setup.} As mentioned in Section~\ref{sec:badusb}, our \tool only requires common components that are easily accessible online or in any electronic store. Here we choose the following parts to build a prototype. To begin with, we choose the Raspberry Pi 4B as the embedded computer inside \tool, which is powerful enough to process video data and has onboard WiFi chip. As for the HID emulator, we decide to use a ATMEGA32U4 board with USB protocol support. This Atmel chip is able to emulate most HID devices with our modified firmware. About the USB 3.x hub, we uses one from the Yamazawa, which supports HDMI, USB 2.0, and many other exported peripheral. Apart from these essential parts, we also uses an auxiliary power-bank to provide power for the Raspberry Pi and the mobile devices used by the victim. The image of our prototype \tool can be found in Figure~\ref{fig:armory}.
+\textit{Setup.} As mentioned in Section~\ref{sec:badusb}, our \tool only requires common components that are easily accessible online or in any electronic store. Here we choose the following parts to build a prototype. To begin with, we choose the Raspberry Pi 4B as the embedded computer inside \tool, which is powerful enough to process video data and has onboard WiFi chip. As for the HID emulator, we decide to use a ATMEGA32U4 board with USB protocol support. This Atmel chip is able to emulate most HID devices with our modified firmware. About the USB 3.x hub, we uses one from the Yamazawa, which supports HDMI, USB 2.0, and many other exported peripheral. Apart from these essential parts, we also uses an auxiliary power-bank to provide power for the Raspberry Pi and the mobile devices used by the victim. The image of our prototype \tool can be found in Fig.~\ref{fig:armory}.
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=.98\linewidth]{./Figs/armory_all.png}
 	\caption{\tool}
-	\label{fig:PBS_products}
+	\label{fig:armory}
 \end{figure}
 \subsection{Scripting mode}
 In the experiment of scripting mode, we used \textit{Lenovo Xiaoxin Pro 13 2020}, a PC in Windows 10/Ubuntu OS with two USB Type-C interfaces as target device.
@@ -61,8 +61,8 @@ For an example, Brick is such a power bank sharing service provider from Sweden.
 \yechang{Add more examples of power bank sharing to show that it is widely used?}
 \shuqing{May use statistics (instead of concrete examples) to explain it.}
 
-Not only does sharing power bank provides convenience to users, but it also brings security issues. 
-We noticed that most of the power bank stations do not check the integrity of power banks during the rental process, and users are hardly cautious to check the power banks when connecting their devices. 
+Not only does sharing power bank provides convenience to users, but it also brings security issues.
+We noticed that most of the power bank stations do not check the integrity of power banks during the rental process, and users are hardly cautious to check the power banks when connecting their devices.
 An attacker are able to modify his/her rented power banks and return it to a power bank station causing potential threat to subsequent users.
 
 
