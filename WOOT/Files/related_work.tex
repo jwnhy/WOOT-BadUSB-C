@@ -89,9 +89,9 @@ corruption and code injection. This has paved the path for our \tool.
 Many defenses have been proposed to defend against BadUSB attacks~\cite{sok}.
 
 From the hardware perspective, BadUSB attack requires `D-' and `D+' pins which
-are defined by protocol to transmitting data.  Without these pins, data can't
-\fengwei{use "cannot" instead of "can't"} be transferred via USB cable. Based
-on this fact, USB Condom \cite{Condom} is a hardware solution to block data
+are defined by protocol to transmitting data.  Without these pins, data cannot
+be transferred via USB cable. Based
+on this fact, USB Condom~\cite{Condom} is a hardware solution to block data
 channel by adding blocker in the connector. This blocker can cut off the `D-'
 and `D+' connection while leave power pins intact.  However, this method poses
 a great challenge to plug-and-play property of USB, as once it is deployed, it
@@ -106,7 +106,7 @@ certain safety awareness and technical background to maintain a valid
 whitelist. For example, a naive user may add the USB device from unknown
 sources to his/her whitelist without precaution. There are designs can overcome
 this drawback. For instance, Mohammadmoradi et
-al.\cite{mohammadmoradi2018making} propose a strategy to generate such a
+al.~\cite{mohammadmoradi2018making} propose a strategy to generate such a
 whitelist automatically. This strategy first generates a unique fingerprint for
 each device based on its functionality. Then these fingerprints are used to
 maintain a safe and valid whitelist of USB devices. There is another work
@@ -114,8 +114,7 @@ mediating USB connectivity for Industrial Control. TMSUI~\cite{yang2015tmsui}
 relies on rich experience of administrators to build a whitelist. However, some
 modified USB devices may hide their real functionality from the user.
 
-To solve this flaw, GoodUSB~\cite{tian2015defending} will\fengwei{Don't use
-future tense. We can just use present tense.} report the functionality claimed
+To solve this flaw, GoodUSB~\cite{tian2015defending} reports the functionality claimed
 by the device to user and let user decides whether to authorize. When a device
 is plugged in, GoodUSB will load its driver but limit its functionality until a
 series of authorizations is completed. These authorizations are designed to be
@@ -143,9 +142,9 @@ a honeypot to detect and stop malicious behavior of USB devices.
 
 In addition to injection attacks, data theft attack is also one of the focuses
 of academic community. As mentioned in Section~\ref{subsec:usb_attack}, there
-exist an attack called JFC (juicy film charging)\cite{JFC} which abuses the MHL
+exist an attack called JFC (juicy film charging)~\cite{JFC} which abuses the MHL
 standard to steal video stream from the victim. In order to mitigate this
-issue, Meng et al.\cite{meng2018252} proposed a statistical model using status
+issue, Meng et al.~\cite{meng2018252} proposed a statistical model using status
 like GPU/CPU usage to detect JFC attack.
 
 To summarize, there exists a clear trade-off between the effectiveness and the
@@ -159,7 +158,6 @@ We summarize the former effort in USB attack and defense in
 Table~\ref{table:attack_vs_defense}, which illustrates the effectiveness of
 each defense against various attacks including our \tool.
 
-\fengwei{The table exceeds the max size.}
 \newcommand{\circlefull}{\includegraphics[scale=0.025]{Figs/circle_full.png}}
 \newcommand{\circlehalf}{\includegraphics[scale=0.025]{Figs/circle_half.png}}
 \newcommand{\circleempty}{\includegraphics[scale=0.025]{Figs/circle_empty.png}}
@@ -168,25 +166,27 @@ each defense against various attacks including our \tool.
 	\begin{tabular}{|c|c|c|c|c|c|c|c|}
 
 		\hline
-		\diagbox[width=1.52in] {Defence}{Attack} & \makecell*[c]{Facedancer\cite{facedancer},\\ Syzkaller\cite{syzkaller}} & \cite{rubber, badusb, rubberducky2020, usbbypassing, iseeyou, usbdriver} & JFC\cite{JFC}&Duqu\cite{duqu},\cite{brain, stuxnet, conficker,flame}&\cite{smartphone, poweremi,revealing,su2017usb, usbgpslocator, bates2014leveraging, badusbhub, usbfinger, side, usbdriver, usbee, turnip}&\cite{usbkiller, cable}& \tool \\
+		\diagbox[width=1.52in,height=0.4in] {Defence}{Attack} & \makecell*[c]{Facedancer~\cite{facedancer},\\ Syzkaller~\cite{syzkaller}} &\cite{rubber, badusb, rubberducky2020, usbbypassing, iseeyou, usbdriver} & JFC~\cite{JFC}&		\makecell{
+			Duqu~\cite{duqu}, \\
+			\cite{brain, stuxnet, conficker,flame}} &\cite{smartphone, poweremi,revealing,su2017usb, usbgpslocator, bates2014leveraging, badusbhub, usbfinger, side, usbdriver, usbee, turnip}&\cite{usbkiller, cable}& \tool \\
 		\hline
-		\makecell{USB condom \cite{Condom}} & \makecell*[c]{\circlefull} & \circlefull & \circlefull &\circlefull& \circlefull&  \circleempty&\circlefull\\
+		\makecell{USB condom~\cite{Condom}} & \makecell*[c]{\circlefull} & \circlefull & \circlefull &\circlefull& \circlefull&  \circleempty&\circlefull\\
 		\hline
 		\makecell{
-			Windows Defender ATP\cite{windenfenderwhite}, \\
-			Mohammadmoradi et al.\cite{mohammadmoradi2018making}, \\
-			TMSUI\cite{yang2015tmsui}
+			Windows Defender ATP~\cite{windenfenderwhite}, \\
+			Mohammadmoradi et al.~\cite{mohammadmoradi2018making}, \\
+			TMSUI~\cite{yang2015tmsui}
 		}& \circleempty & \circlehalf & \circlehalf &\circlehalf& \circleempty&  \circleempty &\circlehalf\\
 
 		\hline
-		\makecell{GoodUSB\cite{tian2015defending}} & \makecell*[c]{\circlehalf} & \circlefull & \circlefull &\circlefull& \circleempty&  \circleempty &\circleempty\\
+		\makecell{GoodUSB~\cite{tian2015defending}} & \makecell*[c]{\circlehalf} & \circlefull & \circlefull &\circlefull& \circleempty&  \circleempty &\circleempty\\
 		\hline
 
-		\makecell{Neuner et al.\cite{neuner2018usblock}} & \makecell*[c]{\circleempty} & \circlefull & \circleempty &\circleempty& \circleempty& \circleempty &\circleempty\\
+		\makecell{Neuner et al.~\cite{neuner2018usblock}} & \makecell*[c]{\circleempty} & \circlefull & \circleempty &\circleempty& \circleempty& \circleempty &\circleempty\\
 		\hline
-		\makecell{Pham et al. \cite{pham2010optimizing}} & \makecell*[c]{\circleempty} & \circleempty & \circleempty &\circlefull& \circleempty& \circleempty &\circleempty\\
+		\makecell{Pham et al.~\cite{pham2010optimizing}} & \makecell*[c]{\circleempty} & \circleempty & \circleempty &\circlefull& \circleempty& \circleempty &\circleempty\\
 		\hline
-		\makecell{JFCGuard\cite{meng2018252}} & \makecell*[c]{\circleempty} & \circleempty & \circlefull &\circleempty&  \circleempty  & \circleempty& \circlefull \\
+		\makecell{JFCGuard~\cite{meng2018252}} & \makecell*[c]{\circleempty} & \circleempty & \circlefull &\circleempty&  \circleempty  & \circleempty& \circlefull \\
 			\hline
 	\end{tabular}
 	\linebreak
