@@ -63,15 +63,21 @@
 
 
 \begin{abstract}
-\outline{Brief intro of USB protocol}\\
-\outline{Brief intro of Rubber Ducky}\\
-\outline{What have we done, our contribution}\\
-\outline{Our experiment/case study, Attack of shops}\\
+The security of USB protocol has been paid closed attention to, despite its wide usage.
+Due to the \textit{trust-by-default} characteristics, USB security has caused serious problems.
+For example, a well-known firmware attack, BadUSB, performs malicious operations on the victim hosts through disguising normal USB devices as human interface devices like keyboards and mice.
+However, BadUSB suffers from several limitations.
+Attackers cannot obtain the status of user interface to conduct precise attacks, and they may be detected by multiple effective countermeasures.
+In this work, we extended BadUSB to support the new features of USB Type-C and proposed a multi-mode attack model, \tool.
+It can obtain UI status to make attacks more precise and effective, and also bypass many existing defence methods for BadUSB.
+To our best knowledge, \tool is the first attack model utilizing USB Type-C.
+To validate the usability and effectiveness, we conducted multiple experiments and a user study, in which we got valuable results.
+We also proposed reasonable countermeasures for our attack model, which may be inspiring for future research on defence methods.
 \end{abstract}
 
 
 \begin{IEEEkeywords}
-USB;BadUSB
+USB;BadUSB;
 \end{IEEEkeywords}
 
 
