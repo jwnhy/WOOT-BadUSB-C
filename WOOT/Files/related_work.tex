@@ -37,7 +37,7 @@ it to pretend like other devices. When these modified drives are connected to th
 host, they could be recognized as a keyboard or mouse. Then the attacker can
 execute malicious payloads as they were using the victim's devices. Due to the
 limitation of USB 2.0~\cite{usb20} protocol, these BadUSB
-attacks\cite{badusb} are unable to obtain video feedback from the victim
+attacks~\cite{badusb} are unable to obtain video feedback from the victim
 as video was not supported until USB 3.0~\cite{usb30}. Though USB 2.0 does not
 support video transmission, there exists a protocol called MHL (Mobile
 High-Definition Link) which extends the USB standard and allows the video signal to
@@ -125,8 +125,8 @@ if the attacker has the access to victim's screen, GoodUSB will be bypassed
 easily as the attacker can just complete this authorization manually and
 perform subsequent attacks.
 
-After the USB enumeration and driver loading, there are
-also works trying to archive `defense in depth'
+After the USB enumeration and driver loading, some related works
+trying to archive `defense in depth'
 against BadUSB attack.  Neuner et 
 al.~\cite{neuner2018usblock}
 prevents BadUSB attacks from the malicious flash drive by analyzing
