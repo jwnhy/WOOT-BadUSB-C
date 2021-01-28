@@ -114,16 +114,16 @@ programs and shows great potential in the mobile attack scenario. Details can
 be obtained in Section~\ref{sec:experiment}.
 
 The advantage of this mode is that it archives defense bypass and attack
-feedback with low overhead.  \fengwei{I don't understand the sentence below.}
-As mentioned above, we only require video stream at the beginning (defense
-bypass) and the end (result feedback) of the attack. Moreover, with mouse
+feedback with video streaming.  \fengwei{I don't understand the sentence below.}\hongyi{Fixed, I think it's redundant and less important}
+%As mentioned above, we only require video stream at the beginning (defense
+%bypass) and the end (result feedback) of the attack. 
+Moreover, with mouse
 supported, \tool extends the original BadUSB attack surface and perform well in
 mobile device.
 
 \textbf{Privacy Extraction Mode.} \tool under this mode does not emulate other
 USB device and solely relies on the video stream function of USB 3.x; it uses
-``Video Capture'' component to transmit the stream to the embedded
-computer\fengwei{What is embedded computer? Do we define this in the previous
+``Video Capture'' component to transmit the stream to embedded ``Single Board Computer''\fengwei{What is embedded computer? Do we define this in the previous\hongyi{Fixed by using the term mentioned in Figure}
 text?}. The victim's device would mistakenly treat \tool as an external monitor
 and output its video stream. This stream is latter processed by the embedded
 computer to extract private data.

@@ -34,7 +34,7 @@ In this work, we proposed our approach to address the limitations mentioned abov
 \tool extends BadUSB to support the features of USB Type-C.
 Since USB Type-C is capable to transfer video stream data, \tool could obtain the information of victim's graphical interface during attacks.
 Combining it with simulation of traditional HIDs like keyboards and mice, attackers can perform precise attacks.
-We did experiments to verify that \tool could also bypass most of the countermeasures for BadUSB since they often rely on interaction with the graphical interface.
+We did experiments to verify that \tool could also bypass many countermeasures for BadUSB since they often rely on interaction with the graphical interface.
 Moreover, we implemented multiple attacking modes of USB attacks based on our approach to verify its effectiveness, including scripting, remote control, and privacy extraction.
 To improve the efficiency and performance of \tool, we designed a filtering algorithm to preprocess the video data before network transmission.
 Moreover, we conducted a series of experiments for each attack mode as well as for different types of devices, including smart phones, personal computers, and tablet computers, to validate the usability of \tool.
@@ -49,9 +49,11 @@ We summarize our key contributions as follows:
 \begin{itemize}
 	\item To our best knowledge, this is the first work to utilize new features of USB Type-C.
 	The combination of new support with conventional BadUSB makes attacks more precise and effective.
-	\item Our approach can bypass most of the previous countermeasures of BadUSB.
+	\item Our approach can bypass many previous countermeasures of BadUSB.
 	\item We conducted multiple experiments and a user study to validate the usability and effectiveness of \tool.
-	We also proposed several countermeasures for our attack model, which are reasonable and insightful. \fengwei{Add countermeasures, in particular the isolation design.}\shuqing{Isolated UI rendering is added in the last paragraph.}
+	We also proposed several countermeasures for our attack model, which are reasonable and insightful. 
+	%\fengwei{Add countermeasures, in particular the isolation design.}
+	%\shuqing{Isolated UI rendering is added in the last paragraph.}
 \end{itemize}
 
 The rest of this paper is structured as follows.
