@@ -11,12 +11,12 @@ OEMs, including a mobile phone, a tablet, and a laptop.
 Pi, ATMEGA32U4 board, Yamazawa, etc.} As mentioned in Section~\ref{sec:badusb},
 our \tool only requires common components that are easily accessible online or
 in any electronic store. Here we choose the following parts to build a
-prototype. To begin with, we choose the Raspberry Pi 4B as the embedded
+prototype. To begin with, we choose the Raspberry Pi 4B~\cite{pi4b} as the embedded
 computer inside \tool, which is powerful enough to process video data and has
-onboard WiFi chip. As for the HID emulator, we decide to use a ATMEGA32U4 board
+onboard WiFi chip. As for the HID emulator, we decide to use a ATMEGA32U4 board~\cite{atmel}
 with USB protocol support. This Atmel chip is able to emulate most HID devices
 with our modified firmware. About the USB 3.x hub, we uses one from the
-Yamazawa, which supports HDMI, USB 2.0, and many other exported peripheral.
+UGREEN, which supports HDMI, USB 2.0, and many other exported peripheral.
 Apart from these essential parts, we also uses an auxiliary power-bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our prototype \tool can be found in Figure~\ref{fig:armory}.
