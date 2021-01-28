@@ -1,15 +1,52 @@
 \section{Countermeasures}
 \label{sec:countermeasures}
-Authorization mechanism like GoodUSB\cite{tian2015defending} has been proposed as a countermeasure against BadUSB attack. But as mentioned in Section~\ref{sec:badusb} and Section~\ref{sec:experiment}, GoodUSB relies on internal display to request for authorization, which can be hijacked by our \tool. Hence, GoodUSB is indeed a great defense against traditional BadUSB attack but no defense at all for our \tool. Here we discuss some effective countermeasures against \tool.
 
-\textbf{Isolated UI Rendering}
-During our experiment, we noticed that \tool is actually unable to redirect out the locking screen keyboard from the iPad OS. Instead, the keyboard is only available on the internal display. However, this defense is only enabled on the locking screen keyboard, other virtual keyboard is still vulnerable to our \tool. This mechanism has inspired us to propose a new defense against our \tool called \emph{Isolated UI Rendering}. As illustrated in Figure~\ref{fig:isolated_ui}, we designed two separated UI render driver, one is secure the other is insecure. When an application require to render, it can pass the content along with a tag identifying whether the content is ``sensitive'' or not. If the content is tagged with ``sensitive'', then the OS will only pass it to the secure driver, which only trusts the internal display. On the other hand, if the content is tagged with ``insensitive'', then it will be passed to both secure and insecure driver, rendered on both internal and external display.
+Authorization mechanisms like GoodUSB~\cite{tian2015defending} have been
+proposed as countermeasures against the BadUSB attack. As mentioned in
+Section~\ref{sec:badusb} and Section~\ref{sec:experiment}, GoodUSB relies on
+internal display for authorization, which can be bypassed via our \tool. 
+%Hence, GoodUSB is indeed a great defense against traditional BadUSB attack but
+%no defense at all for our \tool. 
+Next, we discuss some effective countermeasures against \tool.
 
-\textbf{External Hardware Authorization.}
-One possible countermeasure is to introduce external hardware completing the authorization process. Contrary to the GoodUSB, USBCheckIn\cite{usbcheckin} adopts a dedicated hardware between the host and device. When a device is plugged in, the authorization will be complete on the dedicated hardware instead of internal display, preventing the host from being hijacked. Though USBCheckIn is a adequate defense against \tool, the external hardware brings additional cost and inconvenience, especially for mobile device.
+\textbf{External Hardware Authorization.} One possible countermeasure is to
+introduce external hardware completing the authorization process. Contrary to
+the GoodUSB, USBCheckIn~\cite{usbcheckin} adopts a dedicated hardware between
+the host and device. When a device is plugged-in, the authorization will be
+conducted on the dedicated hardware instead of the internal display, preventing
+the host from being hijacked. Though USBCheckIn is an adequate defense against
+\tool, the external hardware brings additional cost and inconvenience,
+especially for mobile devices.
 
-\textbf{Distrust-by-Default.}
-Most security issues of USB protocol is due to its \textit{trust-by-default} policy. \tool also relies on this feature to work. Hence if we reject all \textit{unauthorized} device, \tool and other many USB attacks will fail. It is worth mentioning here that \textit{distrust-by-default} policy is not the same as GoodUSB\cite{tian2015defending}. GoodUSB relies on the \textit{unauthorized} device to complete its own authorization, while in this strict policy, users have to use an \textit{authorized} device. Though \textit{distrust-by-default} policy effectively prevents these attack, this also causes considerable inconvenience for users. For example, when there is no other \textit{authorized} device plugged, it is impossible for user to complete the authorization in the first place. Thus this strict policy is far from optimal in most use cases.
+\textbf{Distrust-by-Default.} Most security issues of USB protocol are due to
+its {trust-by-default} assumption; \tool also relies on this feature to work.
+To defend against \tool and other USB-based attacks, we can simply reject all
+{unauthorized} device -- applying the \textit{distrust-by-default} policy.  It
+is worth mentioning that \textit{distrust-by-default} policy is not the same as
+GoodUSB~\cite{tian2015defending}.  \fengwei{the following sentence needs to be
+written. I am confused.} GoodUSB relies on the {unauthorized} device to
+complete its own authorization, while in this strict policy, users have to use
+an {authorized} device. Though \textit{distrust-by-default} policy effectively
+prevents these attacks, it also causes considerable inconvenience for users.
+For example, when there is no other {authorized} device plugged, it is
+impossible for users to complete the authorization in the first place. Thus
+this strict policy is far from optimal in most use cases.
+
+\textbf{Isolated UI Rendering.} During our experiments, we noticed that \tool
+is actually unable to redirect out the locking screen keyboard from the iPad
+OS. Instead, the keyboard is only available on the internal display. However,
+this defense is only enabled on the locking screen keyboard, other keyboards
+(e.g., the virtual ones used by the apps) are still vulnerable to our \tool.
+This mechanism has inspired us to propose a new defense against our \tool
+called \emph{Isolated UI Rendering}. As illustrated in
+Figure~\ref{fig:isolated_ui}, we designed two separated UI render driver, one
+is secure the other is insecure. When an application require to render, it can
+pass the content along with a tag identifying whether the content is
+``sensitive'' or not. If the content is tagged with ``sensitive'', then the OS
+will only pass it to the secure driver, which only shows the sensitive content
+(e.g., a keyboard) on the internal display. For the rest of the rendering, it
+would render on both internal and external display (e.g., insensitive
+contents). \fengwei{we need more text to describe the figure}.
 
 \begin{figure}[t]
 	\centering
@@ -17,4 +54,4 @@ Most security issues of USB protocol is due to its \textit{trust-by-default} pol
 	\caption{Isolated UI Rendering}%\shuqing{Maybe we can increase the font?}
 	\label{fig:isolated_ui}
 \end{figure}
-
+\fengwei{what are untrusted and trusted screens? are they internal and external displays?}
