@@ -23,6 +23,14 @@
 
 \newcommand{\fengwei}[1]{\textcolor{cyan}{fengwei: #1}}
 
+\newcommand{\mycircled}[1]{%
+	\begin{tikzpicture}[baseline={(char.base)}]
+		\node (char) {\small{#1}};
+		\node[draw,circle,minimum size=10,inner sep=0pt,overlay] (char.center){};
+	\end{tikzpicture}
+}
+\usepackage{textcomp}
+\usepackage{tikz}
 
 \usepackage{xspace}
 \usepackage{cite}
