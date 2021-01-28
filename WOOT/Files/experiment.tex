@@ -21,7 +21,7 @@ Apart from these essential parts, we also uses an auxiliary power-bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our prototype \tool can be found in Figure~\ref{fig:armory}.
 \fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
-2, 3, 4, and 5?}
+2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
 
 
 \begin{figure}[t]
@@ -64,24 +64,7 @@ using \tool.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
 
-\subsection{Remote control mode}
-\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
-To test the capability of remote control mode, we chose \textit{iPad Pro (3rd
-generation)}, a tablet in iOS 14.3 with a USB Type-C interface, as the target
-device in this experiment.  Besides disguising as normal HID devices like a
-conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
-stream from the target device to the attacker via WiFi.  After the connection
-establishment, attacker performed a series actions to test the capability of
-\tool. At the beginning, attacker accessed album application on the iPad and
-obtained all the photos inside. After that, attacker sent messages via victim's
-account. At last, attacker performed a small amount of transaction using the
-financial application. All of these tests resulted in success.
-
-Through this experiment, we have found that with video transmission and mouse
-emulation, \tool extensively expanded the attack capability of BadUSB,
-especially in mobile devices. We have archived complete hijack of victim's
-device in this experiment.
 
 \subsection{Privacy extraction mode}
 
@@ -100,10 +83,30 @@ the data extracted can be found in Section~\ref{subsec:case_study} and
 Table~\ref{table:information_extracted}.
 
 \fengwei{I don't understand the following sentence. Both modes need to capture
-the video stream. Don't understand why it is more power-efficient.} After the
-experiment, we have found that as privacy extraction mode only passively
-process victim's video stream, this is a more power-efficient mode than remote
-control mode.
+the video stream. Don't understand why it is more power-efficient.}
+\hongyi{Reasonable, changed to other advantage} 
+After the
+experiment, we have found that as privacy extraction mode only needs to
+process victim's video stream locally, it does not need to transmit the real-time video back to the attacker. This mode is useful when there is no stable network connection between \tool and attacker.
+
+\subsection{Remote control mode}
+\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
+
+To test the capability of remote control mode, we chose \textit{iPad Pro (3rd
+	generation)}, a tablet in iOS 14.3 with a USB Type-C interface, as the target
+device in this experiment.  Besides disguising as normal HID devices like a
+conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
+stream from the target device to the attacker via WiFi.  After the connection
+establishment, attacker performed a series actions to test the capability of
+\tool. At the beginning, attacker accessed album application on the iPad and
+obtained all the photos inside. After that, attacker sent messages via victim's
+account. At last, attacker performed a small amount of transaction using the
+financial application. All of these tests resulted in success.
+
+Through this experiment, we have found that with video transmission and mouse
+emulation, \tool extensively expanded the attack capability of BadUSB,
+especially in mobile devices. We have archived complete hijack of victim's
+device in this experiment.
 
 \subsection{Case study}
 \label{subsec:case_study}
