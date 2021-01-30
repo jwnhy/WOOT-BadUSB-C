@@ -2,7 +2,7 @@
 function qwq() {
 	for file in `ls $1`
 	do
-		if [ -f "$1/$file.txt" ]; then 
+		if [ -f "$1/$file.txt" ]; then
 			continue
 		fi
 		extension="${file##*.}"
