@@ -259,19 +259,19 @@ The frame number is the position of this frame in the recorded video, which indi
 
 In the manual analysis, we replayed the videos and extracted sensitive information.
 The data we collected are listed in Table~\ref{table:information_extracted}.
-Accounts of internet applications such as Apple, iCloud, Facebook, Twitter, etc. can be obtained.
-Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboard of the financial applications, can be clearly recorded.
+Accounts of internet applications such as Apple, iCloud, Facebook, Twitter can be obtained.
+Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboards of the financial applications, can be clearly recorded.
 We can obtain the plain text of passwords such as WiFi passwords.
 Furthermore, the received SMS verification code (usually used to confirm real-name authentication) can be obtained when it appears in the top notification bar.
 
-In summary, though we can't directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract private information including but not limited to social accounts, bank accounts, personal financial situation, etc., if the user unconsciously unlocks the screen.
-It is worth mentioning that, those \textit{secure keyboards} built in some financial apps just disrupt keyboard sequences, they can't prevent attacks similar as \tool.
+In summary, though we cannot directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract sensitive information including but not limited to social accounts, bank accounts, personal financial situation, etc., if the user unconsciously unlocks the screen.
+It is worth mentioning that {secure keyboards} built in financial apps show their keyboard typing sequences, which can be easily captured by \tool.
 
 \begin{table*}[t]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Application Column  & Application & Private information leaked                       \\
+		\textbf{Application Column}  & \textbf{Application} & \textbf{Sensitive information leaked}                      \\
 		\hline
 		Finance App         & Alipay      & Alipay account, personal assets(blance)          \\
 		\hline
@@ -293,6 +293,6 @@ It is worth mentioning that, those \textit{secure keyboards} built in some finan
 		\hline
 	\end{tabular}
 	\linebreak
-	\caption{Information Extraction.}\shuqing{Compress.}
+	\caption{Information Extraction via Manual Analysis.}\shuqing{Compress.}
 	\label{table:information_extracted}
 \end{table*}
