@@ -63,24 +63,36 @@
 
 
 \begin{abstract}
-The security of USB protocol has been paid extensive attention to, despite its wide usage.
-Due to the \textit{trust-by-default} characteristics, USB security has caused serious problems.
-For example, a well-known firmware attack, BadUSB, performs malicious operations on the victim hosts through disguising normal USB devices as human interface devices like keyboards and mice.
-However, BadUSB suffers from several limitations.
-Attackers cannot obtain the status of user interface to conduct precise attacks, and they may be detected by multiple effective countermeasures.
-In this work, we extended BadUSB to support the new features of USB Type-C and proposed a multi-mode attack model, \tool.
-It can obtain UI status to make attacks more precise and effective, and also bypass existing defense methods for BadUSB.
-To our best knowledge, \tool is the first attack model utilizing USB Type-C.
-To validate the usability and effectiveness, we conducted extensive experiments and a user study on a real-life attack scenario.
-10 volunteers are involved in, and 4,796 of 94,058 records obtained by \tool in the user study are related to privacy information.
-\fengwei{What results?}
-%\fengwei{what countermeasures do we propose? including isolated UI rendering.}
-We also proposed reasonable countermeasures for our attack model, including isolated UI rendering, external hardware authorization and distrust-by-default, which may be inspiring for future research on defense methods.
+
+The security of USB protocol has been paid extensive attention to, despite its
+    wide usage.  Due to the \textit{trust-by-default} characteristics, USB
+    security has caused serious problems.  For example, a well-known firmware
+    attack, BadUSB, performs malicious operations on the victim hosts through
+    disguising normal USB devices as human interface devices like keyboards and
+    mice.  However, BadUSB suffers from several limitations.  Attackers cannot
+    obtain the status of user interface to conduct precise attacks, and they
+    can detected by multiple existing countermeasures.  In this work, we
+    extended BadUSB to support the new features of USB Type-C and proposed a
+    multi-mode attack model, \tool.  It obtains UI status to make attacks more
+    precise and effective, and also bypasses existing defense methods for
+    BadUSB.  To the best of our knowledge, \tool is the first attack model
+    utilizing USB Type-C.  To validate the usability and effectiveness, we
+    conducted extensive experiments and a user study on a real-life attack
+    scenario.  10 volunteers are involved in, and 4,796 of 94,058 records
+    obtained by \tool in the user study are related to sensitive information.
+%\fengwei{What results?} \fengwei{what countermeasures do we propose? including
+    %isolated UI rendering.}
+We also discussed the recommended countermeasures for our attack model,
+    including isolated UI rendering, which may be inspiring for future research
+    on defense methods.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 34109e84e91c9b868bfc8cf104302f7f57010479
 \end{abstract}
 
-
 \begin{IEEEkeywords}
-USB;BadUSB;
+USB; BadUSB; Type-C; Attack
 \end{IEEEkeywords}
 
 
