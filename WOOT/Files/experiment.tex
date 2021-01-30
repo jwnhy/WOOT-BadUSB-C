@@ -26,7 +26,7 @@ The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 \mycircled{A} is a Huawei mobile phone as the victim's device; \mycircled{B} is a compact look of \tool prototype; \mycircled{1} is the USB 3.x Hub; \mycircled{2} is a Raspberry Pi 4B as the Single Board Computer; \mycircled{3} is an auxiliary power bank; \mycircled{4} is the Video Capture Card; \mycircled{5} is an Atmel ATMEGA32U4 board as the HID Emulator. 
 %\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
 %2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
-\fengwei{I think it is necessary to explain them in the text again.}
+%\fengwei{I think it is necessary to explain them in the text again.}
 
 
 \begin{figure}[t]
@@ -72,7 +72,8 @@ using \tool.
 %attack.
 
 
-
+%\fengwei{do we need a reference for OCR?}
+%\hongyi{we have discussed this and decide no need.}
 \subsection{Video Capture Mode}
 
 During the experiment of privacy extraction via our video capture mode, we chose \textit{HUAWEI P30}, a
@@ -80,7 +81,7 @@ smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, as the
 target device.  In the privacy extraction experiment, \tool passively captured video
 from the victim's device and used \textit{OpenCV} to identify the sensitive
 information from the video stream.  When the victim viewed text or photos with
-text, \tool used the techniques of Optical Character Recognition (OCR) \fengwei{do we need a reference for OCR?} to
+text, \tool used the techniques of Optical Character Recognition (OCR)  to
 extract text from corresponding video frames. In this experiment, the attacker had
 successfully extracted text like name, address, ID number, and other sensitive
 personal information. We also tested the payment code extractor, which enables
