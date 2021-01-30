@@ -31,13 +31,17 @@
 }
 \usepackage{textcomp}
 
-\usepackage{tikz}
+\usepackage{tikz,pgf}
 \usetikzlibrary{calc}
 \makeatletter
 \def\mfontsize{\f@size}
-\newcommand*\circled[2][draw=blue]{\tikzset{mystyle/.style={circle,#1,minimum size=10,inner sep=0pt}}\tikz[baseline=(char.base)]
+\newcommand{\circled[2]}{
+	\tikzset{mystyle/.style={circle,#1,minimum size=10,inner sep=0pt}}
+	\tikz[baseline=-3pt]
 	{
-		\node[mystyle] (char.center) {\vphantom{WAH1g}#2};}}
+		\node[mystyle] (char.center) {\vphantom{WAH1g}#2};
+	}
+}
 \makeatother
 
 \definecolor{myyellow}{RGB}{237,125,49}
