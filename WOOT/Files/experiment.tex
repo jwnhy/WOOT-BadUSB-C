@@ -13,11 +13,11 @@ our \tool only requires common components that are easily accessible online or
 in any electronic store. Here we choose the following parts to build a
 prototype. To begin with, we choose the Raspberry Pi 4B~\cite{pi4b} as the embedded
 computer inside \tool, which is powerful enough to process video data and has
-onboard WiFi chip. As for the HID emulator, we decide to use a ATMEGA32U4 board~\cite{atmel}
+an onboard WiFi chip. As for the HID emulator, we decide to use an ATMEGA32U4 board~\cite{atmel}
 with USB protocol support. This Atmel chip is able to emulate most HID devices
-with our modified firmware. About the USB 3.x hub, we uses one from the
+with our modified firmware. About the USB 3.x hub, we use one from the
 UGREEN~\cite{ugreen}, which supports HDMI, USB 2.0, and many other exported peripheral.
-Apart from these essential parts, we also uses an auxiliary power-bank to
+Apart from these essential parts, we also use an auxiliary power-bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our prototype \tool can be found in Figure~\ref{fig:armory}.
 \fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
@@ -47,18 +47,18 @@ keyboard and a home-brewed version of GoodUSB~\cite{tian2015defending} is
 deployed to test the defense bypassing. We have tried to deploy the original
 GoodUSB on the target device; as the GoodUSB is proposed in 2015, the code is
 outdated and cannot be executed at modern OS; so we have to home-brew a similar
-defense mechanism based on its paper~\cite{tian2015defending}.  At the
-beginning, our home-brewed version of GoodUSB asked victim to manually complete
-a CAPTCHA to  authorize the new USB device, a.k.a our \tool. But at this time,
+defense mechanism based on its paper~\cite{tian2015defending}.  In the
+beginning, our home-brewed version of GoodUSB asked the victim to manually complete
+a CAPTCHA to authorize the new USB device, a.k.a our \tool. But at this time,
 by the design of GoodUSB, \fengwei{The following sentence is hard to
 understand.}\hongyi{Fixed, removed redundant description} our \tool can already perform limited keystroke to complete the
-CAPTCHA with video stream from \tool. Up
+CAPTCHA with the video stream from \tool. Up
 to this point, the bypass of defense like GoodUSB is completed as our \tool
 gains full function from the GoodUSB and becomes a trusted device. Then, our
 \tool works similar to the original BadUSB, inserting keystroke to perform
 arbitrary execution on the laptop. We tested three scripts, ranging from
 reverse shell backdoor to malware payload execution, all of which resulting in
-success.  With this experiment, we have proven the defense bypassing is succeed
+success.  With this experiment, we have proven the defense bypassing is successful
 using \tool.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
@@ -70,14 +70,14 @@ using \tool.
 During the experiment of privacy extraction, we chose \textit{HUAWEI P30}, a
 smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, as the
 target device.  In the privacy extraction mode, \tool passively captured video
-from the victim's device and used \textit{OpenCV} to identify valuable
+from the victim's device and used \textit{OpenCV} to identify the valuable
 information from video stream.  When the victim viewed text or photos with
 text, \tool used the techniques of Optical Character Recognition (OCR) to
-extract text from corresponding video frames.  In this experiment, attacker had
-successfully extracted text like name, address, ID number and other sensitive
-personal information. We also tested the payment code extractor, which enables
-attacker to identify payment code in the video stream and perform transaction
-without password. As this is also a part of our case study, more details about
+extract text from corresponding video frames.  In this experiment, the attacker had
+successfully extracted text like name, address, ID number, and other sensitive
+personal information. We also tested the payment code extractor, which the enables
+attacker to identify payment code in the video stream and perform transactions
+without the password. As this is also a part of our case study, more details about
 the data extracted can be found in Section~\ref{subsec:case_study} and
 Table~\ref{table:information_extracted}.
 
@@ -86,7 +86,7 @@ the video stream. Don't understand why it is more power-efficient.}
 \hongyi{Reasonable, changed to other advantage}
 After the
 experiment, we have found that as privacy extraction mode only needs to
-process victim's video stream locally, it does not need to transmit the real-time video back to the attacker. This mode is useful when there is no stable network connection between \tool and attacker.
+process the victim's video stream locally, it does not need to transmit the real-time video back to the attacker. This mode is useful when there is no stable network connection between \tool and the attacker.
 
 \subsection{Remote control mode}
 \fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
@@ -96,15 +96,15 @@ To test the capability of remote control mode, we chose \textit{iPad Pro (3rd
 device in this experiment.  Besides disguising as normal HID devices like a
 conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
 stream from the target device to the attacker via WiFi.  After the connection
-establishment, attacker performed a series actions to test the capability of
-\tool. At the beginning, attacker accessed album application on the iPad and
-obtained all the photos inside. After that, attacker sent messages via victim's
-account. At last, attacker performed a small amount of transaction using the
+establishment, the attacker performed a series actions to test the capability of
+\tool. In the beginning, the attacker accessed album application on the iPad and
+obtained all the photos inside. After that, the attacker sent messages via victim's
+account. At last, the attacker performed a transaction using the
 financial application. All of these tests resulted in success.
 
 Through this experiment, we have found that with video transmission and mouse
 emulation, \tool extensively expanded the attack capability of BadUSB,
-especially in mobile devices. We have archived complete hijack of victim's
+especially in mobile devices. We have archived the complete hijack of the victim's
 device in this experiment.
 
 \subsection{Case study}
@@ -117,12 +117,12 @@ bank service and QR code payment.
 \textbf{Sharing Power Bank}.  Sharing power bank provides users with short-term
 rental of power banks.  The company deploys power bank stations in the city and
 users can rent a power bank from any of the power bank station, charge their
-device on the trip, return the rented power bank to the near station and pay
+device on the trip, return the rented power bank to the near station, and pay
 the rental fee.
 
-For an example, Brick~\cite{Brick} is such a power bank sharing service
-provider from Sweden. It provides power bank rental service all over the Sweden
-and is planning on expanding their service around Europe. Moreover, this
+For example, Brick~\cite{Brick} is such a power bank sharing service
+provider from Sweden. It provides power bank rental service all over Sweden
+and is planning on expanding its service around Europe. Moreover, this
 service is even more popular in Asia, power bank stations are deployed in
 markets, stores, and even newsstands.
 %This suggests that this service is becoming more and more common around the global, especially in Asia and Europe.
@@ -146,17 +146,17 @@ Not only does sharing power bank provides convenience to users, but it also
 brings security issues.  We noticed that most of the power bank stations do not
 check the integrity of power banks during the rental process, and users are
 hardly cautious to check the power banks when connecting their devices.  An
-attacker is able to tamper rented power banks and return it to a power bank
-station causing potential threat to subsequent users.
+attacker is able to tamper rented power banks and return them to a power bank
+station causing a potential threat to subsequent users.
 
 
 \textbf{QR Code Payment}.
-QR code payment is a new type of payment method that are popular in Asia. Its most well known cases are WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay}. QR code payment provides merchant and client a convenient way of offline payment while ensuring equivalent security as the credit card.
+QR code payment is a new type of payment method that is popular in Asia. Its most well-known cases are WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay}. QR code payment provides merchant and client a convenient way of offline payment while ensuring equivalent security as the credit card.
 QR code payment is typically performed in the following steps:
-\ding{182} The client presents payment QR code on mobile device to the merchant.
+\ding{182} The client presents the payment QR code on the mobile device to the merchant.
 The QR code is encoded with a globally unique ID to identify the client's account.
-\ding{183} The merchant scans the payment QR code and charges corresponding amount of money.
-By presenting this QR code, the client authorizes proceeding charge.
+\ding{183} The merchant scans the payment QR code and charges the corresponding amount of money.
+By presenting this QR code, the client authorizes the proceeding charge.
 \ding{184} An transaction generated by this scan is sent to the payment service provider.
 Then the payment service provider requests the client to confirm the transaction.
 \ding{185} After confirmation, the payment service provider proceed with this transaction and return the payment result to both the merchant and the client.
@@ -178,40 +178,40 @@ Pay~\cite{Wechat-pay} regards transaction under USD \textdollar 154 as
 micropayments.  Different from a typical payment procedure, when micropayments
 are made, confirmations can be applied automatically without clients'
 permission which aims to provide convenience to both merchant and client.  If a
-victim's payment code is leaked to the attackers, they can use the that code to
+victim's payment code is leaked to the attackers, they can use that code to
 authorize multiple micropayments without permission.  In order to prevent such
 cases, both WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay} has designed a refreshing mechanism for the
 payment code, which is to refresh the QR code every minute. This is sufficient
-to stop attack like sneak shots, but unable to stop real-time attack like our
+to stop an attack like sneak shots but unable to stop a real-time attack like our
 \tool.  In summary, the payment QR code is highly sensitive on users' devices
 and our following case study is about how to obtain this code using an
 attacker-crafted power bank via \tool.
 
 \subsubsection{Attack Scenario}
 
-In this part, we will introduce a real life attack scenario to show that our
+In this part, we will introduce a real-life attack scenario to show that our
 \tool is a practical offensive tool.  This scenario can be decomposed into the
 following steps.
 
 \begin{enumerate}[I. ]
-	\item The attacker rents a power bank from one of power bank stations and replaces the internal components with \tool.
-	\item After the modification, an attacker-crafted power bank is returned to a rental station in a crowded area like airport or railway station, which increases the probability of success.
+	\item The attacker rents a power bank from one of the power bank stations and replaces the internal components with \tool.
+	\item After the modification, an attacker-crafted power bank is returned to a rental station in a crowded area like an airport or railway station, which increases the probability of success.
 	\item a user borrows the modified power bank and connects it to her own device, becoming the victim of \tool.
-	\item The attacker now has complete control over victim and can perform various attack using different modes.
+	\item The attacker now has complete control over the victim and can perform various attacks using different modes.
 \end{enumerate}
 
-Here we summarizes the possible threats toward user under different modes. \hongyi{Better way to express this?}
+Here we summarize the possible threats toward user under different modes. \hongyi{Better way to express this?}
 First, under scripting mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using privacy extraction mode, once the victims access their private data like QR payment  code or album, their private data will be immediately transmitted via \tool to the attacker. Lastly, with remote control mode, the attacker has complete control over the victims' device and can do anything they want.
 
 \shuqing{Background is longer than real user study.}
-As the functionality and effectiveness of scripting mode and remote control mode is rather clear, the former works similar to original BadUSB, the latter hijacks the victim's device completely.\hongyi{I dont know if it's a good enough reason}
+As the functionality and effectiveness of the scripting mode and the remote control mode are rather clear, the former works similar to the original BadUSB, the latter hijacks the victim's device completely.\hongyi{I dont know if it's a good enough reason}
 Here we only validate the usability of privacy extraction mode and conducted a user study.
 \shuqing{10 volunteers.}
 We invited 10 volunteers to participate, who are unconscious of \tool details.
-Before the experiment, we disclose to the volunteers about how their data might be used and request permission from both the volunteers and the institutional ethics review boards.
+Before the experiment, we disclose to the volunteers how their data might be used and request permission from both the volunteers and the institutional ethics review boards.
 During the experiment, volunteers took turns to use their phones for half an hour with \tool connected, which are considered as a normal power bank.
-In order to obtain data close to real life, they are requested to use phones just like when they use the shared power bank outside.
-After the experiment, we introduced to them about our attack, analyze the screen recordings together to make sure their personal data is not at risk.
+To obtain data close to real life, they are requested to use phones just like when they use the shared power bank outside.
+After the experiment, we introduced to them our attack, analyze the screen recordings together to make sure their personal data is not at risk.
 \shuqing{Do we need to mention that agreement the conference required here?}
 \hongyi{I'm also quite concern about this.}
 
@@ -222,9 +222,9 @@ During the automatic analysis, we used scripts to perform OCR recognition for ea
 At last, there are 63882 pieces of data collected among 10 volunteers.
 \shuqing{The data may need to be updated.}
 With these results, we could learn what content the victim was browsing.
-Additionally, some keywords such as \textit{account, username and password} often appear with users' input data because they are often used as labels of input boxes.
+Additionally, some keywords such as \textit{account, username, and password} often appear with users' input data because they are often used as labels of input boxes.
 Such keywords are more likely to lead us to user-specific data.
-For example, when we searched with \textit{account} as keyword, victim's accounts can be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example}.
+For example, when we searched with \textit{account} as a keyword, victim's accounts can be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example}.
 \shuqing{Statistics.}
 The frame number is the position of this frame in the recorded video, which indicates a target for manual analysis for further data extraction.
 
@@ -245,10 +245,10 @@ The frame number is the position of this frame in the recorded video, which indi
 
 
 In the manual analysis, we replayed the recorded video and extracted sensitive information.
-The data we collected are listed in the Table~\ref{table:information_extracted}.
+The data we collected are listed in Table~\ref{table:information_extracted}.
 Accounts of internet applications such as Apple, iCloud, Facebook, Twitter, etc. can be obtained.
 Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboard of the financial applications, can be clearly recorded.
-We can obtain the plain text of password such as WiFi password.
+We can obtain the plain text of passwords such as WiFi passwords.
 Furthermore, the received SMS verification code (usually used to confirm real-name authentication) can be obtained when it appears in the top notification bar.
 
 In summary, though we can't directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract private information including but not limited to social accounts, bank accounts, personal financial situation, etc., if the user unconsciously unlocks the screen.
