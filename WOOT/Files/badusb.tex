@@ -78,7 +78,7 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycir
 	
 	\item\underline{USB 3.x Hub} exports the USB 3.x connector into various ports, like DisplayPort, USB 2.0 port, etc.
 	
-	\item\underline{Video Capture Card} converts DisplayPort signal into UVC-compatible\hongyi{citation needed} data, which is later processed by the Single Board Computer (i.e., an embedded computer).
+	\item\underline{Video Capture Card} converts DisplayPort signal into compatible data, which is later processed by the Single Board Computer (i.e., an embedded computer).
 	
 	\item\underline{HID Emulator} emulates HID device which can be controlled from the attacker.
 	
@@ -102,7 +102,7 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycir
 	\label{fig:attack_model}
 \end{figure}
 
-\textbf{Scripting Mode.} This mode majorly relies on the ``HID Emulator'' in the Figure~\ref{fig:attack_model} to
+\textbf{HID Emulation Mode.} This mode majorly relies on the ``HID Emulator'' in the Figure~\ref{fig:attack_model} to
 send constructed HID packet to the victim. These constructed HID packets are
 interpreted by the victim as valid keystrokes and mouse moves. Thus, the
 attacker can executes arbitrary scripts on the victim's device. This is the
@@ -133,7 +133,7 @@ Moreover, with mouse
 supported, \tool extends the original BadUSB attack and results in further attacks in
 mobile devices.
 
-\textbf{Privacy Extraction Mode.} \tool under this mode does not emulate other
+\textbf{Video Capture Mode.} \tool under this mode does not emulate other
 USB device and solely relies on the video stream function of USB 3.x; it uses
 ``Video Capture'' component as shown in the Figure~\ref{fig:attack_model} to transmit the stream to the embedded ``Single Board Computer''.
 %\fengwei{What is embedded computer? Do we define this in the previous\hongyi{Fixed by using the term mentioned in Figure}
@@ -152,8 +152,8 @@ It is worth mentioning that \tool under this mode is completely passive, making
 it hard to be detected. With different detector implemented, \tool
 under this mode is capable of serving more purposes.
 
-\textbf{Remote Control Mode.} In \tool, we have implemented all components
-required to control a computer/mobile device remotely, including a video stream
+\textbf{Full Control Mode.} In \tool, we have implemented all components
+required to control a computer/mobile device completely, including a video stream
 and a keyboard/mouse emulation. Thus with all components enabled, not only
 the victim's device treat \tool as an external display, but also a valid HID
 input source. Hence we can archive complete hijack of victim's device.

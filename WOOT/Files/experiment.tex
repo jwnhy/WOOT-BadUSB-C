@@ -8,13 +8,13 @@ To evaluate the effectiveness of \tool in different modes, we conducted three
 experiments on \tool using devices with USB Type-C capabilities from different
 OEMs, including a mobile phone, a tablet, and a laptop.
 
-\textbf{Setup.} 
+\textbf{Setup.}
 %\fengwei{I would suggest to add references for devices such as
-%Pi, ATMEGA32U4 board, Yamazawa, etc.} 
+%Pi, ATMEGA32U4 board, Yamazawa, etc.}
 As mentioned in Section~\ref{sec:badusb},
 our \tool only requires common components that are easily accessible online or
 in any electronic store. Here we choose the following parts to build a
-prototype. To begin with, we choose the Raspberry Pi 4B~\cite{pi4b} as the embedded Single Board 
+prototype. To begin with, we choose the Raspberry Pi 4B~\cite{pi4b} as the embedded Single Board
 Computer inside \tool, which is powerful enough to process video data and has
 an onboard WiFi chip. As for the HID Emulator, we use an Atmel ATMEGA32U4 board~\cite{atmel}
 with USB protocol support, which is able to emulate multiple HID devices
@@ -22,15 +22,15 @@ with our modified firmware. About the USB 3.x Hub, we use one from the
 UGREEN~\cite{ugreen}, which supports HDMI, USB 2.0, and many other exported peripherals.
 Apart from these essential parts, we also use an auxiliary power-bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
-The image of our prototype \tool can be found in Figure~\ref{fig:armory}.
-\mycircled{A} is a Huawei mobile phone as the victim's device; \mycircled{B} is a compact look of \tool prototype; \mycircled{1} is the USB 3.x Hub; \mycircled{2} is a Raspberry Pi 4B as the Single Board Computer; \mycircled{3} is an auxiliary power bank; \mycircled{4} is the Video Capture Card; \mycircled{5} is Atmel ATMEGA32U4 board as the HID Emulator. 
+The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
+\mycircled{A} is a Huawei mobile phone as the victim's device; \mycircled{B} is a compact look of \tool prototype; \mycircled{1} is the USB 3.x Hub; \mycircled{2} is a Raspberry Pi 4B as the Single Board Computer; \mycircled{3} is an auxiliary power bank; \mycircled{4} is the Video Capture Card; \mycircled{5} is an Atmel ATMEGA32U4 board as the HID Emulator.
 %\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
 %2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
-\fengwei{I think it is necessary to explain them in the text again.}
+%\fengwei{I think it is necessary to explain them in the text again.}
 
 
 \begin{figure}[t]
-	\includegraphics[width=.98\linewidth]{./Figs/armory_all.png}\\
+	\includegraphics[width=\linewidth]{./Figs/armory_all.png}\\
 	\begin{tabular}{ll}
 	\circled[text=white,fill=myblue]{\scriptsize{A}} Victim's Device    &\circled[text=white,fill=myblue]{\scriptsize{B}}~\tool\\
 	\circled[text=white,fill=myblue]{\footnotesize{1}} USB 3.x Hub        &\circled[text=white,fill=myblue]{\footnotesize{2}} Raspberry Pi 4B\\
@@ -43,77 +43,82 @@ The image of our prototype \tool can be found in Figure~\ref{fig:armory}.
 	\label{fig:armory}
 \end{figure}
 
-\subsection{Scripting mode}
+\subsection{HID Emulator Mode}
 
-In the experiment of scripting mode, we used \textit{Lenovo Xiaoxin Pro 13
+In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC in Windows 10/Ubuntu OS with two USB Type-C interfaces as the
 target device.  During this experiment, \tool disguised itself as a normal
 keyboard and a home-brewed version of GoodUSB~\cite{tian2015defending} is
-deployed to test the defense bypassing. We have tried to deploy the original
+deployed to test the defense-bypassing. We have tried to deploy the original
 GoodUSB on the target device; as the GoodUSB is proposed in 2015, the code is
-outdated and cannot be executed at modern OS; so we have to home-brew a similar
+outdated and cannot be executed at target device; so we have to home-brew a similar
 defense mechanism based on its paper~\cite{tian2015defending}.  In the
 beginning, our home-brewed version of GoodUSB asked the victim to manually complete
-a CAPTCHA to authorize the new USB device, a.k.a our \tool. But at this time,
-by the design of GoodUSB, \fengwei{The following sentence is hard to
-understand.}\hongyi{Fixed, removed redundant description} our \tool can already perform limited keystroke to complete the
-CAPTCHA with the video stream from \tool. Up
-to this point, the bypass of defense like GoodUSB is completed as our \tool
-gains full function from the GoodUSB and becomes a trusted device. Then, our
-\tool works similar to the original BadUSB, inserting keystroke to perform
+a CAPTCHA to authorize the new USB device, a.k.a our \tool.
+%But at this time,
+%by the design of GoodUSB,
+%\fengwei{The following sentence is hard to
+%understand.}\hongyi{Fixed, removed redundant description}
+However, our attack can enter keystrokes to complete the
+CAPTCHA with the video stream by \tool. Up
+to this point, the bypass of defense like GoodUSB is completed and our \tool
+becomes a trusted device. Next, our
+\tool works similar to the original BadUSB, inserting keystrokes to perform
 arbitrary execution on the laptop. We tested three scripts, ranging from
 reverse shell backdoor to malware payload execution, all of which resulting in
-success.  With this experiment, we have proven the defense bypassing is successful
+success. With this experiment, we have demonstrated the defense-bypassing is successful
 using \tool.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
 
 
+%\fengwei{do we need a reference for OCR?}
+%\hongyi{we have discussed this and decide no need.}
+\subsection{Video Capture Mode}
 
-\subsection{Privacy extraction mode}
-
-During the experiment of privacy extraction, we chose \textit{HUAWEI P30}, a
+During the experiment of privacy extraction via our video capture mode, we chose \textit{HUAWEI P30}, a
 smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, as the
-target device.  In the privacy extraction mode, \tool passively captured video
-from the victim's device and used \textit{OpenCV} to identify the valuable
-information from video stream.  When the victim viewed text or photos with
-text, \tool used the techniques of Optical Character Recognition (OCR) to
-extract text from corresponding video frames.  In this experiment, the attacker had
+target device.  In the privacy extraction experiment, \tool passively captured video
+from the victim's device and used \textit{OpenCV} to identify the sensitive
+information from the video stream.  When the victim viewed text or photos with
+text, \tool used the techniques of Optical Character Recognition (OCR)  to
+extract text from corresponding video frames. In this experiment, the attacker had
 successfully extracted text like name, address, ID number, and other sensitive
-personal information. We also tested the payment code extractor, which the enables
-attacker to identify payment code in the video stream and perform transactions
+personal information. We also tested the payment code extractor, which enables
+an attacker to identify payment code in the video stream and perform transactions
 without the password. As this is also a part of our case study, more details about
-the data extracted can be found in Section~\ref{subsec:case_study} and
+the extracted sensitive data can be found in Section~\ref{subsec:case_study} and
 Table~\ref{table:information_extracted}.
 
-\fengwei{I don't understand the following sentence. Both modes need to capture
-the video stream. Don't understand why it is more power-efficient.}
-\hongyi{Reasonable, changed to other advantage}
-After the
-experiment, we have found that as privacy extraction mode only needs to
-process the victim's video stream locally, it does not need to transmit the real-time video back to the attacker. This mode is useful when there is no stable network connection between \tool and the attacker.
+%\fengwei{I don't understand the following sentence. Both modes need to capture
+%the video stream. Don't understand why it is more power-efficient.}
+%\hongyi{Reasonable, changed to other advantage}
+Note that the video capture mode only needs to
+process the victim's video stream locally, it does not need to transmit the real-time video back to the attacker, which is needed when the network connection between \tool and the attacker is not stable.
+%This mode is useful when there is no stable network connection between \tool and the attacker.
 
-\subsection{Remote control mode}
-\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
+\subsection{Fully Control Mode}
+%\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
-To test the capability of remote control mode, we chose \textit{iPad Pro (3rd
-	generation)}, a tablet in iOS 14.3 with a USB Type-C interface, as the target
+To test the capability of the fully control mode, we chose iPad Pro (3rd
+	generation), a tablet in iOS 14.3 with a USB Type-C interface, as the target
 device in this experiment.  Besides disguising as normal HID devices like a
 conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
 stream from the target device to the attacker via WiFi.  After the connection
-establishment, the attacker performed a series actions to test the capability of
-\tool. In the beginning, the attacker accessed album application on the iPad and
+establishment, the attacker performed a series of actions to test the capability of
+\tool. In the beginning, the attacker accessed the album application on the iPad and
 obtained all the photos inside. After that, the attacker sent messages via victim's
 account. At last, the attacker performed a transaction using the
 financial application. All of these tests resulted in success.
 
 Through this experiment, we have found that with video transmission and mouse
 emulation, \tool extensively expanded the attack capability of BadUSB,
-especially in mobile devices. We have archived the complete hijack of the victim's
+especially in mobile devices. In short, we have archived the complete hijack of the victim's
 device in this experiment.
 
 \subsection{Case study}
 \label{subsec:case_study}
+
 \subsubsection{Background}
 
 We first introduce the technical background of our case study, sharing power
@@ -121,30 +126,23 @@ bank service and QR code payment.
 
 \textbf{Sharing Power Bank}.  Sharing power bank provides users with short-term
 rental of power banks.  The company deploys power bank stations in the city and
-users can rent a power bank from any of the power bank station, charge their
-device on the trip, return the rented power bank to the near station, and pay
+users can rent a power bank from any of the power bank stations, charge their
+device on the trip, return the rented power bank to the near stations, and pay
 the rental fee.
 
-For example, Brick~\cite{Brick} is such a power bank sharing service
-provider from Sweden. It provides power bank rental service all over Sweden
-and is planning on expanding its service around Europe. Moreover, this
-service is even more popular in Asia, power bank stations are deployed in
-markets, stores, and even newsstands.
-%This suggests that this service is becoming more and more common around the global, especially in Asia and Europe.
-\shuqing{I think we should paraphrase instead of using the descriptions on the website directly. Just to explain \textbf{what we need}.}
-
-\fengwei{Explain the figure in the text.}
+Power bank sharing is a popular service in Asia, power bank stations are deployed
+in markets, stores, and even newsstands. For example, Figure~\ref{fig:PBS_products} are photos
+of two power bank stations in China, which are taken outside of a supermarket. Brick~\cite{Brick} is also such a power bank sharing service provider from
+Sweden. It provides power bank rental service all over Sweden and is planning on expanding its
+service to entire Europe.
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=.45 \linewidth, height=.45 \linewidth]{./Figs/PBS_mt.png}
 	\includegraphics[width=.45 \linewidth, height=.45 \linewidth]{./Figs/PBS_xd.png}
-	\caption{Two Power Bank Stations}
+	\caption{Two Power Bank Stations.}
 	\label{fig:PBS_products}
 \end{figure}
 
-\yechang{add hyperlink or reference to Brick's website or Brick App on App Store/Google Play.}
-
-\yechang{Add more examples of power bank sharing to show that it is widely used?}
 \shuqing{May use statistics (instead of concrete examples) to explain it.}
 
 Not only does sharing power bank provides convenience to users, but it also
@@ -162,7 +160,7 @@ As illustrated in Figure~\ref{fig:qr_payment_procedure}, QR code payment is typi
 The QR code is encoded with a globally unique ID to identify the client's account.
 \ding{183} The merchant scans the payment QR code and charges the corresponding amount of money.
 By presenting this QR code, the client authorizes the proceeding transaction.
-\ding{184} After confirmation, the payment service provider proceed with this transaction and return the payment result to both the merchant and the client.
+\ding{184} After confirmation, the payment service provider proceeds with this transaction and returns the payment result to both the merchant and the client.
 \shuqing{I think this paragraph can be shorter. No need to explain so many details.}
 \hongyi{Dont know how to be more concise.}
 
@@ -174,16 +172,16 @@ By presenting this QR code, the client authorizes the proceeding transaction.
 \end{figure}
 
 
-In the real-world scenario, some payment service providers use special rules
-for micropayment purchases.  A micropayment is pre-determined by the payment
-service provider with thresholds in the user agreement.  For example, WeChat
+Next, we explain one type of payments called micropayment. A micropayment is pre-determined by the payment
+service provider with thresholds in the user agreement. In real-world scenarios, payment service providers use different rules
+for micropayment purchases. For example, WeChat
 Pay~\cite{Wechat-pay} regards transaction under USD \textdollar 154 as
 micropayments.  Different from a typical payment procedure, when micropayments
 are made, confirmations can be applied automatically without clients'
 permission which aims to provide convenience to both merchant and client.  If a
 victim's payment code is leaked to the attackers, they can use that code to
-authorize multiple micropayments without permission.  In order to prevent such
-cases, both WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay} has designed a refreshing mechanism for the
+authorize multiple micropayments without needing permission.  In order to prevent such
+cases, both WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay} have designed a refreshing mechanism for the
 payment code, which is to refresh the QR code every minute. This is sufficient
 to stop an attack like sneak shots but unable to stop a real-time attack like our
 \tool.  In summary, the payment QR code is highly sensitive on users' devices
@@ -199,32 +197,37 @@ following steps.
 \begin{enumerate}[I. ]
 	\item The attacker rents a power bank from one of the power bank stations and replaces the internal components with \tool.
 	\item After the modification, an attacker-crafted power bank is returned to a rental station in a crowded area like an airport or railway station, which increases the probability of success.
-	\item a user borrows the modified power bank and connects it to her own device, becoming the victim of \tool.
+	\item A user borrows the modified power bank and connects it to her own device, becoming the victim of \tool.
 	\item The attacker now has complete control over the victim and can perform various attacks using different modes.
 \end{enumerate}
 
-Here we summarize the possible threats toward user under different modes. \hongyi{Better way to express this?}
-First, under scripting mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using privacy extraction mode, once the victims access their private data like QR payment  code or album, their private data will be immediately transmitted via \tool to the attacker. Lastly, with remote control mode, the attacker has complete control over the victims' device and can do anything they want.
+Next, we summarize the possible threats toward user under different modes.
+\hongyi{Better way to express this?}
+First, under HID emulator mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data like QR payment  code or album, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with fully control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
 
 \shuqing{Background is longer than real user study.}
-As the functionality and effectiveness of the scripting mode and the remote control mode are rather clear, the former works similar to the original BadUSB, the latter hijacks the victim's device completely.\hongyi{I dont know if it's a good enough reason}
-Here we only validate the usability of privacy extraction mode and conducted a user study.
-We invited 10 volunteers to participate, who are unconscious of \tool details.
-Before the experiment, we disclose to the volunteers how their data might be used and request permission from both the volunteers and the institutional ethics review boards.
-During the experiment, volunteers took turns to use their phones for half an hour with \tool connected, which are considered as a normal power bank.
-To obtain data close to real life, they are requested to use phones just like when they use the shared power bank outside.
-After the experiment, we introduced to them our attack, analyze the screen recordings together to make sure their personal data is not at risk.
+%As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the fully control mode hijacks the victim's device completely.
+\hongyi{I dont know if it's a good enough reason}
+%Here we only validate the usability of privacy extraction mode and conducted a user study.
+
+To further validate our attacking scenario, we invited 10 volunteers, who are students in our university, to participate and conduct a user study.
+Before the user study experiment, we disclose to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
+During the case study, volunteers took turns to use their phones for half an hour with \tool connected, which are considered as a normal power bank.
+To obtain data close to real-life, they are requested to use phones like when they use the normal shared power banks.
+After the case study experiment, we introduced to them our attack, analyze the screen recordings together to make sure their personal data is not at risk.
 \shuqing{Do we need to mention that agreement the conference required here?}
 \hongyi{I'm also quite concern about this.}
 
 
 \subsubsection{Result}
-After collecting the videos, we analyzed the video both automatically and manually.
-During the automatic analysis, we used scripts to perform OCR recognition for each frame in the recorded video and stored all of the OCR results in a database.
-At last, there are 94058 pieces of data collected among 10 volunteers.
+
+After collecting the captured videos of the mobile phone, we analyzed the videos both automatically and manually.
+During the automatic analysis, we used scripts to perform OCR recognition for each frame in the recorded videos and stored all of the OCR results in a database.
+In total, there are $94,058$ entries of data collected among 10 volunteers.
 \shuqing{The data may need to be updated.}
-With these results, we could learn what content the victim was browsing.
-Additionally, some keywords such as \textit{account, username, and password} often appear with users' input data because they are often used as labels of input boxes.
+With these results, we could learn what content the victim visited.
+\fengwei{The following text needs to be revised. It is quite difficult for me to understand. Note that this is important text because reviewers are curious about the result. }
+Additionally, keywords such as \textit{account, username, and password} often appear with users' input data because they are often used as labels of input boxes.
 Such keywords are more likely to lead us to user-specific data.
 For example, when we searched with \textit{account} as a keyword, victim's accounts can be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example}.
 \shuqing{Statistics.}
@@ -234,34 +237,37 @@ The frame number is the position of this frame in the recorded video, which indi
 	\centering
 	\begin{tabular}{|l|l|l|l|}
 		\hline
-		Keyword  & Text                                                                                                                          & Name                           & Frame Number \\ \hline
-		username & X 8B cas.******.edu.cn Username: 11****18 Password:                                                                           & \textless{}user1\textgreater{} & 385          \\ \hline
-		username & Login Weibo Login with SMS and verification code ...... +86 151****4587 & \textless{}user5\textgreater{} & 1947         \\ \hline
-		username & QQ 14*****50| Login with phone number New user registration 2345678 9 0                                                       & \textless{}user3\textgreater{} & 4308         \\ \hline
-		username & connect to *** username h*****l Save account information Open VPN.....                                                        & \textless{}user6\textgreater{} & 7925         \\ \hline
-		+86      & Login with phone number ...... +86 186****2483 |                                                                              & \textless{}user1\textgreater{} & 313          \\ \hline
+		\textbf{Keyword} & \textbf{Text}                                                             & \textbf{Name}                                   & \textbackslash{}textbf\{Frame Number\} \\ \hline
+		username                          & X 8B cas.******.edu.cn Username: 11****18 Password:                                        & \textless{}user1\textgreater{} & 385                                    \\ \hline
+		username                          & Login Weibo Login with SMS and verification code ...... +86 151****4587                    & \textless{}user5\textgreater{} & 1947                                   \\ \hline
+		username                          & QQ 14*****50| Login with phone number New user registration 2345678 9 0                    & \textless{}user3\textgreater{} & 4308                                   \\ \hline
+		username                          & connect to *** username h*****l Save account information Open VPN.....                     & \textless{}user6\textgreater{} & 7925                                   \\ \hline
+		phone number                      & Login with phone number ...... +86 186****2483 |                                           & \textless{}user1\textgreater{} & 313                                    \\ \hline
+		phone number                      & Log in with your mobile phone number. ...... mobile phone number 131****9310 & \textless{}user9\textgreater{} & 210                                    \\ \hline
+		@                                 & contact email 30*******7G@qq.com, contact phone 027-88******                               & \textless{}user7\textgreater{} & 5324                                   \\ \hline
+		@                                 & Account 73*****5@qq.com @qq.com @163.com @gmail.com 	......      & \textless{}user6\textgreater{} & 621                                    \\ \hline
 	\end{tabular}
 	\linebreak
-	\caption{Example of searching OCR results with some keywords}
+	\caption{Examples of Searching OCR Results with Keywords.}
 	\label{tab:ocr_keyword_example}
 \end{table*}
 
 
-In the manual analysis, we replayed the recorded video and extracted sensitive information.
+In the manual analysis, we replayed the videos and extracted sensitive information.
 The data we collected are listed in Table~\ref{table:information_extracted}.
-Accounts of internet applications such as Apple, iCloud, Facebook, Twitter, etc. can be obtained.
-Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboard of the financial applications, can be clearly recorded.
+Accounts of internet applications such as Apple, iCloud, Facebook, Twitter can be obtained.
+Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboards of the financial applications, can be clearly recorded.
 We can obtain the plain text of passwords such as WiFi passwords.
 Furthermore, the received SMS verification code (usually used to confirm real-name authentication) can be obtained when it appears in the top notification bar.
 
-In summary, though we can't directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract private information including but not limited to social accounts, bank accounts, personal financial situation, etc., if the user unconsciously unlocks the screen.
-It is worth mentioning that, those \textit{secure keyboards} built in some financial apps just disrupt keyboard sequences, they can't prevent attacks similar as \tool.
+In summary, though we cannot directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract sensitive information including but not limited to social accounts, bank accounts, personal financial situation, etc., if the user unconsciously unlocks the screen.
+It is worth mentioning that {secure keyboards} built in financial apps show their keyboard typing sequences, which can be easily captured by \tool.
 
 \begin{table*}[t]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Application Column  & Application & Private information leaked                       \\
+		\textbf{Application Column}  & \textbf{Application} & \textbf{Sensitive information leaked}                      \\
 		\hline
 		Finance App         & Alipay      & Alipay account, personal assets(blance)          \\
 		\hline
@@ -283,6 +289,6 @@ It is worth mentioning that, those \textit{secure keyboards} built in some finan
 		\hline
 	\end{tabular}
 	\linebreak
-	\caption{Information extracted}\shuqing{Compress.}
+	\caption{Information Extraction via Manual Analysis.}\shuqing{Compress.}
 	\label{table:information_extracted}
 \end{table*}

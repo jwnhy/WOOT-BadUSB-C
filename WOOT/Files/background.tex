@@ -74,7 +74,7 @@ are not compatible with USB in most cases.
 \end{figure}
 
 Thus, to provide support towards a wider range of peripherals, a 24-pins
-standard called USB Type-C~\cite{typec} is introduced in 2013 by USB-IF~\cite{usbif}.\fengwei{Add a citation for USB-IF} As it is designed to be double-sided, the number of actually usable
+standard called USB Type-C~\cite{typec} is introduced in 2013 by USB-IF~\cite{usbif}. As it is designed to be double-sided, the number of actually usable
 pins is halved. Nevertheless, this standard has largely enhanced the capability
 of the USB 3.x protocol. As presented in Figure~\ref{fig:usb_c_conn}, Type-C added
 two high-speed data lanes (TRX1 \& TRX2) and kept the original data lane (D+ \&
@@ -90,14 +90,18 @@ BadUSB~\cite{rubber} and our \tool.
 %\fengwei{FIXME: add a reference for each attack in the Table.}
 %\fengwei{FIXME: The table is too wide, exceeds the max size.}
 \begin{table*}
-\begin{tabular}{clccc}
+\begin{tabular}{|c|l|c|c|c|}
 	\hline
 	\textbf{Year} & \textbf{Protocol Version} & \textbf{Supported Peripherals} & \textbf{Transfer Speed} & \textbf{Attacks} \\
 	\hline
 	1996 & USB 1.x~\cite{usb10,usb11} & Keyboard, Mouse... & 1.5 Mbit/s or 12 Mbit/s & HID Emulating(BadUSB)~\cite{badusb} \\
+	\hline
 	2000 & USB 2.0~\cite{usb20} & Flash Drive, High-Definition Link, CD Driver... & 480 Mbit/s & Autorun Attack~\cite{duqu}, Juice Filming~\cite{JFC,JFCImpact} \\
+	\hline
 	2008 & USB 3.0~\cite{usb30} & / & 5 Gbit/s & / \\
+	\hline
 	2013 & USB 3.1~\cite{usb31} & HDMI, DisplayPort, ThunderBolt... & 10 Gbit/s & \tool \\
+	\hline
 	2017 & USB 3.2~\cite{usb32} & / & 20 Gbit/s & / \\
 	\hline
 \end{tabular}
