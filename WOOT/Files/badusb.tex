@@ -49,7 +49,7 @@ attacks.
 
 %Though BadUSB devices\cite{badusb} like Rubber Ducky\cite{rubber,
 %rubberducky2020} emulates as a HID device enabling various arbitrary execution
-%attacks, fetching feedback from the victim is much more limited. 
+%attacks, fetching feedback from the victim is much more limited.
 Based on the drawbacks introduced above, several defense mechanisms were
 proposed, like GoodUSB~\cite{tian2015defending}. These defense mechanism
 implemented a CAPTCHA-like~\cite{captcha} procedure, which requires user to
@@ -86,6 +86,12 @@ We might also consider to explain this in the Figure caption.}
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{./Figs/attack_model.png}
+
+	\begin{tabular}{ll}
+	\mycircled{1}Attacker's Device    &\mycircled{2}\tool\\
+	\mycircled{3}Victim's Device
+	\end{tabular}
+
 	\caption{Attack Model}%\shuqing{Need to be more compact.}
 	\label{fig:attack_model}
 \end{figure}
@@ -116,7 +122,7 @@ be obtained in Section~\ref{sec:experiment}.
 The advantage of this mode is that it archives defense bypass and attack
 feedback with video streaming.  \fengwei{I don't understand the sentence below.}\hongyi{Fixed, I think it's redundant and less important}
 %As mentioned above, we only require video stream at the beginning (defense
-%bypass) and the end (result feedback) of the attack. 
+%bypass) and the end (result feedback) of the attack.
 Moreover, with mouse
 supported, \tool extends the original BadUSB attack surface and perform well in
 mobile device.
