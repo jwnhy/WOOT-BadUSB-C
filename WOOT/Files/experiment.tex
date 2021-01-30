@@ -117,6 +117,7 @@ device in this experiment.
 
 \subsection{Case study}
 \label{subsec:case_study}
+
 \subsubsection{Background}
 
 We first introduce the technical background of our case study, sharing power
@@ -124,28 +125,29 @@ bank service and QR code payment.
 
 \textbf{Sharing Power Bank}.  Sharing power bank provides users with short-term
 rental of power banks.  The company deploys power bank stations in the city and
-users can rent a power bank from any of the power bank station, charge their
-device on the trip, return the rented power bank to the near station, and pay
+users can rent a power bank from any of the power bank stations, charge their
+device on the trip, return the rented power bank to the near stations, and pay
 the rental fee.
 
 For example, Brick~\cite{Brick} is such a power bank sharing service
 provider from Sweden. It provides power bank rental service all over Sweden
-and is planning on expanding its service around Europe. Moreover, this
+and part of the Europe. Moreover, this
 service is even more popular in Asia, power bank stations are deployed in
 markets, stores, and even newsstands.
 %This suggests that this service is becoming more and more common around the global, especially in Asia and Europe.
-\shuqing{I think we should paraphrase instead of using the descriptions on the website directly. Just to explain \textbf{what we need}.}
+%\shuqing{I think we should paraphrase instead of using the descriptions on the website directly. Just to explain \textbf{what we need}.}
 
-\fengwei{Explain the figure in the text.}
+%\fengwei{Explain the figure in the text.}
+
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=.45 \linewidth, height=.45 \linewidth]{./Figs/PBS_mt.png}
 	\includegraphics[width=.45 \linewidth, height=.45 \linewidth]{./Figs/PBS_xd.png}
-	\caption{Two Power Bank Stations}
+	\caption{Two Power Bank Stations.}
 	\label{fig:PBS_products}
 \end{figure}
 
-\yechang{add hyperlink or reference to Brick's website or Brick App on App Store/Google Play.}
+%\yechang{add hyperlink or reference to Brick's website or Brick App on App Store/Google Play.}
 
 \yechang{Add more examples of power bank sharing to show that it is widely used?}
 \shuqing{May use statistics (instead of concrete examples) to explain it.}
@@ -165,7 +167,7 @@ As illustrated in Figure~\ref{fig:qr_payment_procedure}, QR code payment is typi
 The QR code is encoded with a globally unique ID to identify the client's account.
 \ding{183} The merchant scans the payment QR code and charges the corresponding amount of money.
 By presenting this QR code, the client authorizes the proceeding transaction.
-\ding{184} After confirmation, the payment service provider proceed with this transaction and return the payment result to both the merchant and the client.
+\ding{184} After confirmation, the payment service provider proceeds with this transaction and returns the payment result to both the merchant and the client.
 \shuqing{I think this paragraph can be shorter. No need to explain so many details.}
 \hongyi{Dont know how to be more concise.}
 
@@ -177,16 +179,16 @@ By presenting this QR code, the client authorizes the proceeding transaction.
 \end{figure}
 
 
-In the real-world scenario, some payment service providers use special rules
-for micropayment purchases.  A micropayment is pre-determined by the payment
-service provider with thresholds in the user agreement.  For example, WeChat
+Next, we explain one type of payments called micropayment. A micropayment is pre-determined by the payment
+service provider with thresholds in the user agreement. In real-world scenarios, payment service providers use different rules
+for micropayment purchases. For example, WeChat
 Pay~\cite{Wechat-pay} regards transaction under USD \textdollar 154 as
 micropayments.  Different from a typical payment procedure, when micropayments
 are made, confirmations can be applied automatically without clients'
 permission which aims to provide convenience to both merchant and client.  If a
 victim's payment code is leaked to the attackers, they can use that code to
-authorize multiple micropayments without permission.  In order to prevent such
-cases, both WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay} has designed a refreshing mechanism for the
+authorize multiple micropayments without needing permission.  In order to prevent such
+cases, both WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay} have designed a refreshing mechanism for the
 payment code, which is to refresh the QR code every minute. This is sufficient
 to stop an attack like sneak shots but unable to stop a real-time attack like our
 \tool.  In summary, the payment QR code is highly sensitive on users' devices
