@@ -1,27 +1,27 @@
 \newcommand{\tool}{\textsc{BadUSB-C}\xspace}
 
-\newcommand{\outline}[1]{\mytodocyan{[outline: #1]}}
-\newcommand{\mytodocyan}[1]{\textcolor{cyan}{\ding{46}~{\sf}~#1}}
+\newcommand{\outline}[1]{}
+\newcommand{\mytodocyan}[1]{}
 
 
-\newcommand{\hongyi}[1]{\mytodopink{[hongyi: #1]}}
-\newcommand{\mytodopink}[1]{\textcolor{violet}{\ding{46}~{\sf}~#1}}
+\newcommand{\hongyi}[1]{}
+\newcommand{\mytodopink}[1]{}
 
-\newcommand{\shuqing}[1]{\mytodopurple{[shuqing: #1]}}
-\newcommand{\mytodopurple}[1]{\textcolor{purple}{\ding{46}~{\sf}~#1}}
+\newcommand{\shuqing}[1]{}
+\newcommand{\mytodopurple}[1]{}
 
-\newcommand{\yechang}[1]{\mytodored{[yechang: #1]}}
-\newcommand{\mytodored}[1]{\textcolor{red}{\ding{46}~{\sf}~#1}}
+\newcommand{\yechang}[1]{}
+\newcommand{\mytodored}[1]{}
 
-\newcommand{\linyou}[1]{\mytodoblue{[linyou: #1]}}
-\newcommand{\mytodoblue}[1]{\textcolor{blue}{\ding{46}~{\sf}~#1}}
+\newcommand{\linyou}[1]{}
+\newcommand{\mytodoblue}[1]{}
 
-\newcommand{\chaozu}[1]{\mytodogrey{[chaozu: #1]}}
-\newcommand{\mytodogrey}[1]{\textcolor{gray}{\ding{46}~{\sf}~#1}}
+\newcommand{\chaozu}[1]{}
+\newcommand{\mytodogrey}[1]{}
 \usepackage{enumerate}
 \usepackage[shortlabels]{enumitem}
 
-\newcommand{\fengwei}[1]{\textcolor{cyan}{fengwei: #1}}
+\newcommand{\fengwei}[1]{}
 
 \newcommand{\mycircled}[1]{%
 	\begin{tikzpicture}[baseline={(char.base)}]
@@ -31,19 +31,23 @@
 }
 \usepackage{textcomp}
 
-\usepackage{tikz}
+\usepackage{tikz,pgf}
 \usetikzlibrary{calc}
 \makeatletter
 \def\mfontsize{\f@size}
-\newcommand*\circled[2][draw=blue]{\tikzset{mystyle/.style={circle,#1,minimum size=10,inner sep=0pt}}\tikz[baseline=(char.base)]
+\newcommand{\circled[2]}{
+	\tikzset{mystyle/.style={circle,#1,minimum size=10,inner sep=0pt}}
+	\tikz[baseline=-3pt]
 	{
-		\node[mystyle] (char.center) {\vphantom{WAH1g}#2};}}
+		\node[mystyle] (char.center) {\vphantom{WAH1g}#2};
+	}
+}
 \makeatother
 
 \definecolor{myyellow}{RGB}{237,125,49}
 \definecolor{myblue}{RGB}{91,155,213}
 
-\usepackage[breaklinks=true,hidelinks,colorlinks=true,citecolor=blue,urlcolor=black,linkcolor=black]{hyperref}
+\usepackage[breaklinks=true,hidelinks,colorlinks=true,citecolor=blue,urlcolor=black,linkcolor=purple]{hyperref}
 \usepackage{balance}
 
 \usepackage{xspace}
