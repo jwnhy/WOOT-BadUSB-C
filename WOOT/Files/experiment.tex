@@ -101,7 +101,7 @@ process the victim's video stream locally, it does not need to transmit the real
 \subsection{Fully Control Mode}
 %\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
-To test the capability of the fully control mode, we chose iPad Pro (3rd
+To test the capability of the full control mode, we chose iPad Pro (3rd
 	generation), a tablet in iOS 14.3 with a USB Type-C interface, as the target
 device in this experiment.  Besides disguising as normal HID devices like a
 conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
@@ -204,10 +204,10 @@ following steps.
 
 Next, we summarize the possible threats toward user under different modes.
 \hongyi{Better way to express this?}
-First, under HID emulator mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data like QR payment  code or album, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with fully control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
+First, under HID emulator mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data like QR payment  code or album, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
 
 \shuqing{Background is longer than real user study.}
-%As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the fully control mode hijacks the victim's device completely.
+%As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the full control mode hijacks the victim's device completely.
 \hongyi{I dont know if it's a good enough reason}
 %Here we only validate the usability of privacy extraction mode and conducted a user study.
 
@@ -266,30 +266,14 @@ It is worth mentioning that {secure keyboards} built in financial apps show thei
 
 \begin{table*}[t]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|}
+	\begin{tabular}{|c|c|c|c|c|c|c|} 
 		\hline
-		\textbf{Category}  & \textbf{Application} & \textbf{Leaked Sensitive Information}                      \\
+		\textbf{Keyword}                               & Account & Password & Phone number & Email & Username & Regexp for email~  \\ 
 		\hline
-		Finance App         & Alipay      & Alipay account, personal assets (blance)          \\
-		\hline
-		Social  Finance App & WeChat      & WeChat account, , chat history             \\
-		\hline
-		Social App          & QQ          & QQ account, interpersonal nexus, chat history    \\
-		\hline
-		Social App          & Twitter     & Twitter account, interpersonal nexus             \\
-		\hline
-		Social App          & Gmail       & Gmail account, mail records                      \\
-		\hline
-		Finance App         & ICBC        & ICBC account, password, personal assets (balance)  \\
-		\hline
-		Finance App         & Paypal      & Paypal account, balance, bank accounts            \\
-		\hline
-		Tool                & Chrome      & Sites visited                                    \\
-		\hline
-		Tool                & Health      & personal physical metrics      					 \\
+		\textbf{Number of records containing keywords} & 680     & 1596     & 1510         & 164   & 522      & 78                 \\
 		\hline
 	\end{tabular}
 	\linebreak
-	\caption{Information Extraction via Manual Analysis.}\shuqing{Compress.}
+	\caption{Information Extraction via Manual Analysis.}
 	\label{table:information_extracted}
 \end{table*}
