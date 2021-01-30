@@ -204,21 +204,24 @@ following steps.
 \begin{enumerate}[I. ]
 	\item The attacker rents a power bank from one of the power bank stations and replaces the internal components with \tool.
 	\item After the modification, an attacker-crafted power bank is returned to a rental station in a crowded area like an airport or railway station, which increases the probability of success.
-	\item a user borrows the modified power bank and connects it to her own device, becoming the victim of \tool.
+	\item A user borrows the modified power bank and connects it to her own device, becoming the victim of \tool.
 	\item The attacker now has complete control over the victim and can perform various attacks using different modes.
 \end{enumerate}
 
-Here we summarize the possible threats toward user under different modes. \hongyi{Better way to express this?}
-First, under scripting mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using privacy extraction mode, once the victims access their private data like QR payment  code or album, their private data will be immediately transmitted via \tool to the attacker. Lastly, with remote control mode, the attacker has complete control over the victims' device and can do anything they want.
+Next, we summarize the possible threats toward user under different modes. 
+\hongyi{Better way to express this?}
+First, under HID emulator mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data like QR payment  code or album, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with fully control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
 
 \shuqing{Background is longer than real user study.}
-As the functionality and effectiveness of the scripting mode and the remote control mode are rather clear, the former works similar to the original BadUSB, the latter hijacks the victim's device completely.\hongyi{I dont know if it's a good enough reason}
-Here we only validate the usability of privacy extraction mode and conducted a user study.
-We invited 10 volunteers to participate, who are unconscious of \tool details.
-Before the experiment, we disclose to the volunteers how their data might be used and request permission from both the volunteers and the institutional ethics review boards.
-During the experiment, volunteers took turns to use their phones for half an hour with \tool connected, which are considered as a normal power bank.
-To obtain data close to real life, they are requested to use phones just like when they use the shared power bank outside.
-After the experiment, we introduced to them our attack, analyze the screen recordings together to make sure their personal data is not at risk.
+%As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the fully control mode hijacks the victim's device completely.
+\hongyi{I dont know if it's a good enough reason}
+%Here we only validate the usability of privacy extraction mode and conducted a user study.
+
+To further validate our attacking scenario, we invited 10 volunteers, who are students in our university, to participate and conduct a user study.
+Before the user study experiment, we disclose to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
+During the case study, volunteers took turns to use their phones for half an hour with \tool connected, which are considered as a normal power bank.
+To obtain data close to real-life, they are requested to use phones like when they use the normal shared power banks.
+After the case study experiment, we introduced to them our attack, analyze the screen recordings together to make sure their personal data is not at risk.
 \shuqing{Do we need to mention that agreement the conference required here?}
 \hongyi{I'm also quite concern about this.}
 
