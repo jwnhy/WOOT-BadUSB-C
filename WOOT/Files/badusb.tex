@@ -102,74 +102,75 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycir
 	\label{fig:attack_model}
 \end{figure}
 
-\textbf{Scripting Mode.} This mode majorly relies on the ``HID Emulator'' to
+\textbf{Scripting Mode.} This mode majorly relies on the ``HID Emulator'' in the Figure~\ref{fig:attack_model} to
 send constructed HID packet to the victim. These constructed HID packets are
 interpreted by the victim as valid keystrokes and mouse moves. Thus, the
 attacker can executes arbitrary scripts on the victim's device. This is the
 function of the original BadUSB. Based on this, we made the following
-improvement.
+improvements.
 
 First, \tool supports defense-bypassing. As the original BadUSB cannot get
-feedback from the victim, defense mechanisms like GoodUSB
-\cite{tian2015defending} are sufficient to prevent these BadUSB attacks.
+feedback from the victim, defense mechanisms like GoodUSB~\cite{tian2015defending} are sufficient to prevent these BadUSB attacks.
 However, these defense mechanisms leverage visual notification to block access
-for unknown USB devices. This means that when the defense request authorization
+for unknown USB devices. This means that when the defense requests authorization
 from the user, our \tool is able to capture the content of authorization
 challenge and bypass it. After the defense is bypassed, \tool continues the
 emulation and script execution, resulting in a successful attack.
 
 Moreover, as the mouse relies on the visual feedback to work properly, its
 emulation and automation were not supported by the original version of BadUSB.
-Yet with the video output support from USB 3.x, our \tool implements
+Yet with the video output support from USB 3.x, our \tool implements a
 full-functional mouse emulation. This function enables attacks toward pure GUI
-programs and shows great potential in the mobile attack scenario. Details can
+programs and shows attacks in the mobile attack scenarios. Details can
 be obtained in Section~\ref{sec:experiment}.
 
 The advantage of this mode is that it archives defense bypass and attack
-feedback with video streaming.  \fengwei{I don't understand the sentence below.}\hongyi{Fixed, I think it's redundant and less important}
+feedback with video streaming.  
+%\fengwei{I don't understand the sentence below.}\hongyi{Fixed, I think it's redundant and less important}
 %As mentioned above, we only require video stream at the beginning (defense
 %bypass) and the end (result feedback) of the attack.
 Moreover, with mouse
-supported, \tool extends the original BadUSB attack surface and perform well in
-mobile device.
+supported, \tool extends the original BadUSB attack and results in further attacks in
+mobile devices.
 
 \textbf{Privacy Extraction Mode.} \tool under this mode does not emulate other
 USB device and solely relies on the video stream function of USB 3.x; it uses
-``Video Capture'' component to transmit the stream to embedded ``Single Board Computer''\fengwei{What is embedded computer? Do we define this in the previous\hongyi{Fixed by using the term mentioned in Figure}
-text?}. The victim's device would mistakenly treat \tool as an external monitor
+``Video Capture'' component as shown in the Figure~\ref{fig:attack_model} to transmit the stream to the embedded ``Single Board Computer''.
+%\fengwei{What is embedded computer? Do we define this in the previous\hongyi{Fixed by using the term mentioned in Figure}
+%text?}. 
+The victim's device would mistakenly treat \tool as an external monitor
 and output its video stream. This stream is latter processed by the embedded
-computer to extract private data.
+computer to extract sensitive data.
 
 When running in this mode, \tool passively processes the victim's video stream
 and detect for ``valuable'' private data.  The data is considered as
-``valuable'' or not is decided by a customized detector, we implement a simple
-payment code detector for the demonstration purpose. Though this detector is
-simple to implement, we successfully transfer money from the victim to the
+``valuable'' or not is decided by a customized detector, we implemented a simple
+payment code detector for the poof-of-concept purpose, which demonstrates that we successfully transfer money from a victim to an
 attacker. More detail can be obtained in Section~\ref{sec:experiment}.
 
 It is worth mentioning that \tool under this mode is completely passive, making
-it hard to be detected and defended. With different detector implemented, \tool
+it hard to be detected. With different detector implemented, \tool
 under this mode is capable of serving more purposes.
 
 \textbf{Remote Control Mode.} In \tool, we have implemented all components
 required to control a computer/mobile device remotely, including a video stream
-and a keyboard/mouse emulation. Thus with all components enabled, not only will
+and a keyboard/mouse emulation. Thus with all components enabled, not only
 the victim's device treat \tool as an external display, but also a valid HID
 input source. Hence we can archive complete hijack of victim's device.
 
-\tool under this mode follows a simple logic. \tool will receive video stream
+\tool under this mode follows a simple logic. \tool receives video stream
 from the victim's device and redirect it to the attacker via GSM/WiFi. In the
 meanwhile, \tool also receives keystrokes and mouse movement from the attacker
-through GSM/WiFi and replay them to the victim by the USB emulation.
+through GSM/WiFi and replays them to the victim by the USB emulation.
 
-This mode enable attacker to perform delicate operation that is beyond
+This mode enable attacker to perform delicate operations that are beyond
 automation. Moreover, this mode provides a backdoor that does not require host
 network and thus is undetectable by the firewall running on the host machine.
 %\hongyi{I think this is a quite good selling point?}\shuqing{Agree with
 %Hongyi.}
 
 The advantage of this mode is that it can completely hijack the victim device
-and provide a backdoor beyond detection of firewalls. But this complete control
+and provide a backdoor beyond detection of firewalls; however, this complete control
 also comes with the price of high power consumption and risk of being detected
 by the user.
 
