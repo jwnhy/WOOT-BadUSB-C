@@ -226,13 +226,14 @@ After collecting the captured videos of the mobile phone, we analyzed the videos
 During the automatic analysis, we used scripts to perform OCR recognition for each frame in the recorded videos and stored all of the OCR results in a database.
 In total, there are $94,058$ entries of data collected among 10 volunteers.
 %\shuqing{The data may need to be updated.}
-With these results, we could learn what content the victim visited.
+With these results, we could learn what content the victim visited, especially the privacy data.
 %\fengwei{The following text needs to be revised. It is quite difficult for me to understand. Note that this is important text because reviewers are curious about the result. }
-Additionally, keywords such as \textit{account, username, and password} often appear with users' input data because they are often used as labels of input boxes.
-Such keywords are more likely to lead us to user-specific data.
+We searched the result database with the keywords \textit{account, username, password, phone number and email}, as well as the regular expression of email.
+The records searched by such keywords and regular expression are usually related to privacy information of users.
 For example, when we searched with \textit{account} as a keyword, victim's accounts can be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example}.
 %\shuqing{Statistics.}
 The frame number is the position of this frame in the recorded video, which indicates a target for manual analysis for further data extraction.
+At last, we found 4,172 of 94,058 records obtained by \tool which are related to privacy information, as shown in the Table~\ref{table:information_extracted}.
 
 \begin{table*}[t]
 	\centering
@@ -255,7 +256,6 @@ The frame number is the position of this frame in the recorded video, which indi
 
 
 In the manual analysis, we replayed the videos and extracted sensitive information.
-The data we collected are listed in Table~\ref{table:information_extracted}.
 Accounts of internet applications such as Apple, iCloud, Facebook, Twitter can be obtained.
 Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboards of the financial applications, can be clearly recorded.
 We can obtain the plain text of passwords such as WiFi passwords.
@@ -266,9 +266,9 @@ It is worth mentioning that {secure keyboards} built in financial apps show thei
 
 \begin{table*}[t]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|} 
+	\begin{tabular}{|c|c|c|c|c|c|c|}
 		\hline
-		\textbf{Keyword}                               & Account & Password & Phone number & Email & Username & Regexp for email~  \\ 
+		\textbf{Keyword}                               & Account & Password & Phone number & Email & Username & Regexp for email~  \\
 		\hline
 		\textbf{Number of records containing keywords} & 680     & 1596     & 1510         & 164   & 522      & 78                 \\
 		\hline
