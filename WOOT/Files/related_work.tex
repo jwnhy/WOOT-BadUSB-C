@@ -38,7 +38,7 @@ host, they could be recognized as a keyboard or mouse. Then the attacker can
 execute malicious payloads as they were using the victim's devices. Due to the
 limitation of USB 2.0~\cite{usb20} protocol, these BadUSB
 attacks~\cite{badusb} are unable to obtain video feedback from the victim
-as video was not supported until USB 3.0~\cite{usb30}. Though USB 2.0 does not
+as video stream was not supported until USB 3.0~\cite{usb30}. Though USB 2.0 does not
 support video transmission, there exists a protocol called MHL (Mobile
 High-Definition Link) which extends the USB standard and allows the video signal to
 be transmitted through the USB interface. JFC~\cite{JFC}, short for juicy filming
@@ -69,8 +69,8 @@ with the connected USB devices as an RF transmitter and \cite{usbkiller,cable}
 inject analog
 power to cause physical damage to the host machine. Even though the data,
 including the video data, could be recovered in this way, these attacks for
-executing malicious code are too difficult to work, and the invisibility is a
-problem that cannot be ignored due to the spatial locality of radio frequency.
+executing malicious code are too difficult to work, and invisibility is a
+problem that cannot be ignored due to the spatial locality of radiofrequency.
 
 Since USB 3.1 was introduced with USB Type-C in 2013, display port and HDMI
 connectors have been provided by USB Type-C, transferring of video data can be
@@ -120,7 +120,7 @@ is plugged in, GoodUSB will load its driver but limit its functionality until a
 series of authorizations are completed. These authorizations are designed to be
 performed manually. As BadUSB is normally unable to obtain the video stream of
 the host, an attacker cannot complete this authorization with
-an automatic script. Thus this defense is sufficient for normal BadUSB attack. But
+an automatic script. Thus this defense is sufficient for a normal BadUSB attack. But
 if the attacker has the access to victim's screen, GoodUSB will be bypassed
 easily as the attacker can just complete this authorization manually and
 perform subsequent attacks.
@@ -137,7 +137,7 @@ short time to reduce the risk of being discovered. This defect causes the
 typing characteristics of BadUSB to be detectable. Pham et
 al.~\cite{pham2010optimizing} optimize windows security features. It can
 block the execution of unsigned files and the installation of unsigned drivers
-carried on portable media. Moreover, in GoodUSB, a VM is deployed in the host to as
+carried on portable media. Moreover, in GoodUSB, a VM is deployed in the host as
 a honeypot to detect and stop malicious behavior of USB devices.
 
 In addition to injection attacks, data theft attack is also one of the focuses
@@ -149,10 +149,10 @@ like GPU/CPU usage to detect JFC attack.
 
 To summarize, there exists a clear trade-off between the effectiveness and the
 plug-and-play property. Though hardware disabling solutions like USB Condom
-archives almost absolute security, the functionality of USB is scarified.
+archives almost absolute security, the functionality of USB is sacrificed.
 Other solutions like GoodUSB or whitelist are either bypassable or insufficient
 under certain cases.  Some vendors may sacrifice defensive capabilities to
-improve the usability, which allows attackers to take advantage of.
+improve usability, which allows attackers to take advantage of.
 
 We summarize the former effort in USB attack and defense in
 Table~\ref{table:attack_vs_defense}, which illustrates the effectiveness of

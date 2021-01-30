@@ -8,46 +8,46 @@ points adopted in this work. We also organized a brief timeline for introducing
 key points of each protocol in Table~\ref{table:usb_timeline}.
 
 %\noindent\outline{USB1.x}\\
-Proposed in 1996, USB 1.0\cite{usb10} was developed to provide an unified
-interface and thus reducing the cost of re-configuring the software. It is
+Proposed in 1996, USB 1.0\cite{usb10} was developed to provide a unified
+interface and thus reducing the cost of reconfiguring the software. It is
 worth mentioning that as a polled-bus interface, all data transfers are
 initiated by the host.
 
 %\noindent\outline{HID Protocol}\\
 Right after one year of the appearance of USB 1.0, a standard named HID (Human
-Interface Device)\hongyi{Citation Needed} was born on the basis of USB. HID is
-designed with the goal of unifying the implementation for devices like mouse,
+Interface Device)~\cite{hid} was born based on USB. HID is
+designed with to unify the implementation for devices like mouse,
 keyboard, etc. Before its appearance, the standard is divided between
-manufacturers, for example, mouses of Company A may uses X-Y coordinates to
-represent its location while mouses of Company B uses relative displacement.
-This means every device needs their own drivers to work. After HID, people just
+manufacturers, for example, the mouse of Company A may use X-Y coordinates to
+represent its location while the mouse of Company B uses relative displacement.
+This means every device needs its own drivers to work. After HID, people just
 write one driver for an entire class of HIDs. Furthermore, HID standard also
 requires all devices to be PnP (\emph{Plug-and-Play}), which is indeed
-convenient but may be insecure too.
+convenient but insecure too.
 
 In 1998, the first widely supported USB protocol was born. USB1.1\cite{usb11}
 provided two data transfer rates which are Low Speed (1.5 Mbit/s) and Full
 Speed (12 MBit/s). At this point, due to the transfer limit, it only supports
-limited types of devices like keyboard, mice, etc.
+limited types of devices like keyboards, mice, etc.
 
 %\noindent\outline{USB2.0}\\
 In 2000, USB 2.0\cite{usb20} specification was released. With High Speed (480
-Mbit/s) mode introduced, printer, camera, CD-ROM drive and network cards were
-supported in this revision. Such high data transfer rate also gave rise to the
-popularity of ``flash drive'', portable device that allows physically
+Mbit/s) mode introduced, printer, camera, CD-ROM drive, and network cards were
+supported in this revision. Such a high data transfer rate also gave rise to the
+popularity of ``flash drive'', a portable device that allows physically
 transferring data around~\cite{sok}. Though various peripherals were supported
-in USB 2.0, there was no reliable way to identify the type of a device. This
-security flaw allowed attacks like BadUSB~\cite{rubber}.
+in USB 2.0, there was no reliable way to identify the type of device. This
+security flaw allowed attacks like BadUSB~\cite{badusb,rubber}.
 
 %\noindent\outline{USB3.x}\\
 USB 3.0\cite{usb30} was announced in 2008, with a Super Speed (5 Gbit/s) data
 transfer rate. Like its predecessor, more classes of peripherals were supported
-in this revision. In 2013, USB Type-C connector standard was introduced as a
+in this revision. In 2013, the USB Type-C connector standard was introduced as a
 part of USB 3.1\cite{usb31}, providing a unified connector type for
 PowerDelivery (PD), Thunderbolt, DisplayPort, and HDMI.  Yet no improvement of
 security was introduced in 3.x revisions, meaning any device claiming
-themselves as a monitor can capture the video stream from the host. Exposing
-such multi-propose connector unprotected is dangerous and allows attacks like
+itself as a monitor can capture the video stream from the host. Exposing
+such a multi-propose connector unprotected is dangerous and allows attacks like
 this work \tool. In 2017, USB 3.2\cite{usb32} was released, doubling the data
 transfer rate (20 Gbit/s).
 
@@ -69,36 +69,34 @@ are not compatible with USB in most cases.  \begin{figure}[t] \centering
 Connector} \label{fig:usb_c_conn} \end{figure}
 
 Thus, to provide support towards a wider range of peripherals, a 24-pins
-standard called USB Type-C is introduced in 2013 by USB-IF\fengwei{Need a
-citation}. As it is designed to be double-sided, the number of actual usable
+standard called USB Type-C~\cite{typec} is introduced in 2013 by USB-IF. As it is designed to be double-sided, the number of actually usable
 pins is halved. Nevertheless, this standard has largely enhanced the capability
-of USB 3.x protocol. As presented in Figure~\ref{fig:usb_c_conn}, Type-C added
-two high speed data lanes (TRX1 \& TRX2) and kept the original data lane (D+ \&
+of the USB 3.x protocol. As presented in Figure~\ref{fig:usb_c_conn}, Type-C added
+two high-speed data lanes (TRX1 \& TRX2) and kept the original data lane (D+ \&
 D-). The added lanes are used exclusively to support peripherals like
 DisplayPort while the kept data lane transfers USB packets.
 
 %\noindent\outline{Security Problem}\\
 During the development of USB specification, security was rarely considered. As
 the USB-IF believes it is the duty of original equipment manufacturers (OEMs)
-to decide whether security features should be implemented.\hongyi{Citation
-needed}. But the divergent implementations give a chance for attack like
+to decide whether security features should be implemented~\cite{usbsec}. But the divergent implementations give a chance for attacks like
 BadUSB~\cite{rubber} and our \tool.
 
-\fengwei{FIXME: add a reference for each attack in the Table.}
+%\fengwei{FIXME: add a reference for each attack in the Table.}
 \begin{table*}
 \begin{tabular}{|c|c|c|c|c|}
 	\hline
 	Year & Protocol Version & Supported Peripherals & Transfer Speed & Attacks \\
 	\hline
-	1996 & USB 1.x & Keyboard, Mouse... & 1.5 Mbit/s or 12 Mbit/s & HID Emulating(BadUSB) \\
+	1996 & USB 1.x~\cite{usb10,usb11} & Keyboard, Mouse... & 1.5 Mbit/s or 12 Mbit/s & HID Emulating(BadUSB)~\cite{badusb} \\
 	\hline
-	2000 & USB 2.0 & Flash Drive, High-Definition Link, CD Driver... & 480 Mbit/s & Autorun Attack, Juice Filming Attack \\
+	2000 & USB 2.0~\cite{usb20} & Flash Drive, High-Definition Link, CD Driver... & 480 Mbit/s & Autorun Attack~\cite{duqu}, Juice Filming Attack~\cite{JFC,JFCImpact} \\
 	\hline
-	2008 & USB 3.0 & / & 5 Gbit/s & / \\
+	2008 & USB 3.0~\cite{usb30} & / & 5 Gbit/s & / \\
 	\hline
-	2013 & USB 3.1 & HDMI, DisplayPort, ThunderBolt... & 10 Gbit/s & \tool \\
+	2013 & USB 3.1~\cite{usb31} & HDMI, DisplayPort, ThunderBolt... & 10 Gbit/s & \tool \\
 	\hline
-	2017 & USB 3.2 & / & 20 Gbit/s & / \\
+	2017 & USB 3.2~\cite{usb32} & / & 20 Gbit/s & / \\
 	\hline
 \end{tabular}
 	\linebreak
