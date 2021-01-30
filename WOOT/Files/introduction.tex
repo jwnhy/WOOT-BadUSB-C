@@ -58,7 +58,7 @@ performing precise attacks.  We did experiments to verify that \tool could also
 bypass many countermeasures for BadUSB since they often rely on interaction
 with the graphical interface.  Moreover, we implemented multiple attacking
 modes of USB attacks based on our approach to verify its effectiveness,
-including scripting, remote control, and privacy extraction.  To improve the
+including HID Emulator Mode, Video Capture Mode, and Full Control Mode.  To improve the
 efficiency and performance of \tool, we designed a filtering algorithm to
 preprocess the video data before network transmission.  Moreover, we conducted
 a series of experiments for each attack mode as well as for different types of
@@ -67,7 +67,10 @@ validate the usability of \tool.  We also conducted a user study for attacks in
 sharing power banks, one of the application scenarios of \tool.  During the
 user study, we obtained a large amount of sensitive data through \tool, since
 users are usually unconscious of the necessity to check the USB devices they
-plugged in for security purposes.  After the validation of our attack model, we
+plugged in for security purposes.  
+10 volunteers are involved in the user study.
+At last, we found that 4,796 of 94,058 records obtained by \tool are related to privacy information of users.
+After the validation of our attack model, we
 proposed several defense methods as countermeasures, including external
 hardware authorization, distrust-by-default, etc.  It is worth noting that we
 designed a method, called isolated UI rendering, to separate the user interface
