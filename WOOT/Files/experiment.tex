@@ -96,23 +96,23 @@ Note that the video capture mode only needs to
 process the victim's video stream locally, it does not need to transmit the real-time video back to the attacker, which is needed when the network connection between \tool and the attacker is not stable. 
 %This mode is useful when there is no stable network connection between \tool and the attacker.
 
-\subsection{Remote control mode}
-\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
+\subsection{Fully Control Mode}
+%\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
-To test the capability of remote control mode, we chose \textit{iPad Pro (3rd
-	generation)}, a tablet in iOS 14.3 with a USB Type-C interface, as the target
+To test the capability of the fully control mode, we chose iPad Pro (3rd
+	generation), a tablet in iOS 14.3 with a USB Type-C interface, as the target
 device in this experiment.  Besides disguising as normal HID devices like a
 conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
 stream from the target device to the attacker via WiFi.  After the connection
-establishment, the attacker performed a series actions to test the capability of
-\tool. In the beginning, the attacker accessed album application on the iPad and
+establishment, the attacker performed a series of actions to test the capability of
+\tool. In the beginning, the attacker accessed the album application on the iPad and
 obtained all the photos inside. After that, the attacker sent messages via victim's
 account. At last, the attacker performed a transaction using the
 financial application. All of these tests resulted in success.
 
 Through this experiment, we have found that with video transmission and mouse
 emulation, \tool extensively expanded the attack capability of BadUSB,
-especially in mobile devices. We have archived the complete hijack of the victim's
+especially in mobile devices. In short, we have archived the complete hijack of the victim's
 device in this experiment.
 
 \subsection{Case study}
