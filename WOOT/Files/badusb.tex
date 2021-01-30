@@ -68,7 +68,7 @@ we implement for various scenarios.
 \subsubsection{Attack Model}
 
 
-Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycircled{1} represents the victim's devices; \mycircled{2} is our \tool; \mycircled{3} is the attacker's remote PC. The details of each component in \tool are as follows.\mycircled{1} 
+Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycircled{1} represents the victim's devices; \mycircled{2} is our \tool; \mycircled{3} is the attacker's remote PC. The details of each component in \tool are as follows.
 
 %\fengwei{We need to
 %explain the figure. What are the boxes? Where is victim? Where is the attacker?
@@ -76,10 +76,17 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycir
 %We might also consider to explain this in the Figure caption.}
 
 \begin{itemize}
-	\item\textit{USB 3.x Hub} exports the USB 3.x connector into various ports, like DisplayPort, USB 2.0 port etc.
-	\item\textit{Video Capture Card} convert DisplayPort signal into UVC-compatible\hongyi{citation needed} data, which is later processed by embedded computer.
-	\item\textit{Single Board Computer} processes video stream from the victim where private data is extracted and transmitted via GSM/WiFi to the attacker.
-	\item\textit{HID Emulator} emulates HID device which can be controlled from the attacker.
+	
+	\item\underline{USB 3.x Hub} exports the USB 3.x connector into various ports, like DisplayPort, USB 2.0 port, etc.
+	
+	\item\underline{Video Capture Card} converts DisplayPort signal into UVC-compatible\hongyi{citation needed} data, which is later processed by the Single Board Computer (i.e., an embedded computer).
+	
+	\item\underline{HID Emulator} emulates HID device which can be controlled from the attacker.
+	
+	\item\underline{Single Board Computer} processes video stream from the victim via the Video Capture Card or sends commands to the victim via HID Emulator.
+	
+	\item\underline{Wi-Fi/GSM Module} transmits the sensitive data or receives commands to/from the remote attacker PC.
+
 \end{itemize}
 
 
