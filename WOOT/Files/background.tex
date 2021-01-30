@@ -15,7 +15,7 @@ initiated by the host.
 
 %\noindent\outline{HID Protocol}\\
 Right after one year of the appearance of USB 1.0, a standard named HID (Human
-Interface Device)\hongyi{Citation Needed} was born based on USB. HID is
+Interface Device)~\cite{hid} was born based on USB. HID is
 designed with to unify the implementation for devices like mouse,
 keyboard, etc. Before its appearance, the standard is divided between
 manufacturers, for example, the mouse of Company A may use X-Y coordinates to
@@ -69,8 +69,7 @@ are not compatible with USB in most cases.  \begin{figure}[t] \centering
 Connector} \label{fig:usb_c_conn} \end{figure}
 
 Thus, to provide support towards a wider range of peripherals, a 24-pins
-standard called USB Type-C is introduced in 2013 by USB-IF\fengwei{Need a
-citation}. As it is designed to be double-sided, the number of actually usable
+standard called USB Type-C~\cite{typec} is introduced in 2013 by USB-IF. As it is designed to be double-sided, the number of actually usable
 pins is halved. Nevertheless, this standard has largely enhanced the capability
 of the USB 3.x protocol. As presented in Figure~\ref{fig:usb_c_conn}, Type-C added
 two high-speed data lanes (TRX1 \& TRX2) and kept the original data lane (D+ \&
@@ -80,11 +79,10 @@ DisplayPort while the kept data lane transfers USB packets.
 %\noindent\outline{Security Problem}\\
 During the development of USB specification, security was rarely considered. As
 the USB-IF believes it is the duty of original equipment manufacturers (OEMs)
-to decide whether security features should be implemented.\hongyi{Citation
-needed}. But the divergent implementations give a chance for attacks like
+to decide whether security features should be implemented~\cite{usbsec}. But the divergent implementations give a chance for attacks like
 BadUSB~\cite{rubber} and our \tool.
 
-\fengwei{FIXME: add a reference for each attack in the Table.}
+%\fengwei{FIXME: add a reference for each attack in the Table.}
 \begin{table*}
 \begin{tabular}{|c|c|c|c|c|}
 	\hline
