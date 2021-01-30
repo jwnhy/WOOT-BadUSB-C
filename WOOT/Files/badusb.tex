@@ -3,17 +3,14 @@
 \subsection{Threat Model}
 
 We build our threat model on the basic assumptions that common users without
-technical background would not treat normal-looking USB device as highly
-dangerous and be cautious about them. These assumptions are approved in a
-relevant work about charging attack~\cite{JFCImpact}. Moreover, we neglect the
-effect of notification about common USB device, as normal users usually are not
-equipped with the necessary knowledge to fully understand such notices. In
+technical background would not treat normal-looking USB device as malicious and be cautious about them. This assumption is consistent with existing works~\cite{JFCImpact}. Moreover, we neglect the
+effect of notifications from USB devices, as users may not have the knowledge to fully understand such notifications. In
 fact, during our experiment, no device had security notifications raised about
-suspicious USB devices and only mobile devices had raised charging notification
-about our \tool, which may not be a sufficient warning towards users.
+suspicious USB devices and only mobile devices had raised a charging notification
+about our \tool, which may not be a sufficient warning for users.
 
 We also assume the victim's device is equipped with fully functional USB 3.x
-protocol and USB Type C connector. As the USB 3.x standard is more and more
+protocol and USB Type-C connector. As the USB 3.x standard is
 common nowadays, this assumption can be easily fulfilled especially in recent
 devices.
 
@@ -29,51 +26,54 @@ devices.
 %\noindent\hongyi{The following mode is to be further decided}\\
 %\outline{DETAIL of each mode}\\ \outline{Automatic Scripting Mode}\\
 %\outline{Remote Control Mode}\\ \outline{OCR/QR Recognition Mode}\\
-As we introduced in Section~\ref{sec:related_work}, there are plenty of
-existing work~\cite{rubber,badusb,
-rubberducky2020,usbbypassing,iseeyou,usbdriver} focusing on BadUSB attack.
+
+As introduced in Section~\ref{sec:related_work}, 
+existing works~\cite{rubber,badusb,
+rubberducky2020,usbbypassing,iseeyou,usbdriver} focus on BadUSB attacks.
 Many of these take advantage of the \textit{trust-by-default} policy of PC,
 pretend to be normal HID devices and utilize USB protocol to perform attacks.
 However, these attacks suffer from various drawbacks: \ding{182} attackers can
 only simulate limited types of devices such as HIDs (like keyboards and mice)
 and disks, which makes the attacks less effective; \ding{183} accurate attacks
-could not be performed due to lack of user interface (UI).  Whatever HID the
+could not be performed due to lack of user interface (UI) status. Whatever HID the
 attackers simulate their USB devices to be, they could not obtain the UI to
-check the current situation, which makes it nearly impossible to carry out
-their attacks precisely or confirm the effects after attacks.
-
-In this work, we utilized the new features of USB 3.x~\cite{usb31,usb32} to
-address the problems above.  Benefiting from latest protocol, we simulated
-external display and thus obtained the video stream to perform accurate
-attacks.
+check the status information, which makes it nearly impossible to carry out
+their attacks precisely or know the effects after attacks.
 
 %Though BadUSB devices\cite{badusb} like Rubber Ducky\cite{rubber,
 %rubberducky2020} emulates as a HID device enabling various arbitrary execution
 %attacks, fetching feedback from the victim is much more limited.
 Based on the drawbacks introduced above, several defense mechanisms were
-proposed, like GoodUSB~\cite{tian2015defending}. These defense mechanism
+proposed. GoodUSB~\cite{tian2015defending}
 implemented a CAPTCHA-like~\cite{captcha} procedure, which requires user to
 complete certain challenges when an unknown HID device is plugged in. As the
-BadUSB is only able to emulate a limited kind of devices like HID or disks, by
-no means the BadUSB can bypass it. Our \tool, on the other hand, is capable of
-bypassing this type of defense. Taking advantage of USB 3.x~\cite{usb31,usb32},
+BadUSB is only able to emulate a limited kind of devices such as HIDs or disks, by
+no means the BadUSB can bypass it. 
+
+In this work, we utilize the new features of USB 3.x~\cite{usb31,usb32} to
+address the problem above.  Benefiting from the latest protocol, we simulate
+external display and thus obtain the video stream to perform accurate
+attacks.
+Thus, our \tool is capable of
+bypassing defenses such as GoodUSB. Taking advantage of USB 3.x~\cite{usb31,usb32},
 \tool can fetch the video stream of the victim and complete the challenge
 manually by the attacker. Moreover, with video capability combined with
 traditional BadUSB, our \tool achieved multiple new attack paradigms and are
 tested under various real-world scenarios.
 
-As there were various BadUSB implementations available, we only focus on its
-core functionality and our extension. In this section, we first introduce the
+As there were various BadUSB implementations available, this work focuses on our new extensions. Next, we first introduce the
 components we used in \tool, then we focus on the three different attack modes
 we implement for various scenarios.
 
 \subsubsection{Attack Model}
 
-The components in our attack model are as follows, and the relation between
-them is illustrated at Figure~\ref{fig:attack_model}. \fengwei{We need to
-explain the figure. What are the boxes? Where is victim? Where is the attacker?
-The list below only shows the internal components in the malicious USB device.
-We might also consider to explain this in the Figure caption.}
+
+Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycircled{1} represents the victim's devices; \mycircled{2} is our \tool; \mycircled{3} is the attacker's remote PC. The details of each component in \tool are as follows.\mycircled{1} 
+
+%\fengwei{We need to
+%explain the figure. What are the boxes? Where is victim? Where is the attacker?
+%The list below only shows the internal components in the malicious USB device.
+%We might also consider to explain this in the Figure caption.}
 
 \begin{itemize}
 	\item\textit{USB 3.x Hub} exports the USB 3.x connector into various ports, like DisplayPort, USB 2.0 port etc.
@@ -88,8 +88,8 @@ We might also consider to explain this in the Figure caption.}
 	\includegraphics[width=\linewidth]{./Figs/attack_model.png}
 
 	\begin{tabular}{ll}
-	\mycircled{1}Attacker's Device    &\mycircled{2}\tool\\
-	\mycircled{3}Victim's Device
+	\mycircled{1} Victim's Devices    &\mycircled{2}\tool\\
+	\mycircled{3} Attacker's Remote PC
 	\end{tabular}
 
 	\caption{Attack Model}%\shuqing{Need to be more compact.}
