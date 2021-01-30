@@ -1,40 +1,45 @@
 \section{Experiment}
 \label{sec:experiment}
-\shuqing{Many parts in this section are much more likely to lie in implementation, introducing how \tool works. Doesn't look like experiment.}
+%\shuqing{Many parts in this section are much more likely to lie in implementation, introducing how \tool works. Doesn't look like experiment.}
 
 %\shuqing{Experiment for devices and case study needed.}
+
 To evaluate the effectiveness of \tool in different modes, we conducted three
 experiments on \tool using devices with USB Type-C capabilities from different
 OEMs, including a mobile phone, a tablet, and a laptop.
 
-\textit{Setup.} \fengwei{I would suggest to add references for devices such as
-Pi, ATMEGA32U4 board, Yamazawa, etc.} As mentioned in Section~\ref{sec:badusb},
+\textbf{Setup.} 
+%\fengwei{I would suggest to add references for devices such as
+%Pi, ATMEGA32U4 board, Yamazawa, etc.} 
+As mentioned in Section~\ref{sec:badusb},
 our \tool only requires common components that are easily accessible online or
 in any electronic store. Here we choose the following parts to build a
-prototype. To begin with, we choose the Raspberry Pi 4B~\cite{pi4b} as the embedded
-computer inside \tool, which is powerful enough to process video data and has
-an onboard WiFi chip. As for the HID emulator, we decide to use an ATMEGA32U4 board~\cite{atmel}
-with USB protocol support. This Atmel chip is able to emulate most HID devices
-with our modified firmware. About the USB 3.x hub, we use one from the
-UGREEN~\cite{ugreen}, which supports HDMI, USB 2.0, and many other exported peripheral.
+prototype. To begin with, we choose the Raspberry Pi 4B~\cite{pi4b} as the embedded Single Board 
+Computer inside \tool, which is powerful enough to process video data and has
+an onboard WiFi chip. As for the HID Emulator, we use an Atmel ATMEGA32U4 board~\cite{atmel}
+with USB protocol support, which is able to emulate multiple HID devices
+with our modified firmware. About the USB 3.x Hub, we use one from the
+UGREEN~\cite{ugreen}, which supports HDMI, USB 2.0, and many other exported peripherals.
 Apart from these essential parts, we also use an auxiliary power-bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our prototype \tool can be found in Figure~\ref{fig:armory}.
-\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
-2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
+\mycircled{A} is a Huawei mobile phone as the victim's device; \mycircled{B} is a compact look of \tool prototype; \mycircled{1} is the USB 3.x Hub; \mycircled{2} is a Raspberry Pi 4B as the Single Board Computer; \mycircled{3} is an auxiliary power bank; \mycircled{4} is the Video Capture Card; \mycircled{5} is Atmel ATMEGA32U4 board as the HID Emulator. 
+%\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
+%2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
+\fengwei{I think it is necessary to explain them in the text again.}
 
 
 \begin{figure}[t]
 	\includegraphics[width=.98\linewidth]{./Figs/armory_all.png}\\
 	\begin{tabular}{ll}
-	\mycircled{A}Victim's Device    &\mycircled{B}\tool\\
-	\mycircled{1}USB 3.x Hub        &\mycircled{2}Raspberry Pi 4B\\
-	\mycircled{3}Auxiliary Power Bank &\mycircled{4}Video Capture\\
-	\mycircled{5}ATMEGAA32U4 Board
+	\circled[text=white,fill=myblue]{\scriptsize{A}} Victim's Device    &\circled[text=white,fill=myblue]{\scriptsize{B}}~\tool\\
+	\circled[text=white,fill=myblue]{\footnotesize{1}} USB 3.x Hub        &\circled[text=white,fill=myblue]{\footnotesize{2}} Raspberry Pi 4B\\
+	\circled[text=white,fill=myblue]{\footnotesize{3}} Auxiliary Power Bank &\circled[text=white,fill=myblue]{\footnotesize{4}} Video Capture\\
+	\circled[text=white,fill=myblue]{\footnotesize{5}} ATMEGAA32U4 Board
 	\end{tabular}
 
 
-	\caption{\tool}
+	\caption{\tool Prototype}
 	\label{fig:armory}
 \end{figure}
 
