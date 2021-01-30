@@ -27,7 +27,7 @@ devices.
 %\outline{DETAIL of each mode}\\ \outline{Automatic Scripting Mode}\\
 %\outline{Remote Control Mode}\\ \outline{OCR/QR Recognition Mode}\\
 
-As introduced in Section~\ref{sec:related_work}, 
+As introduced in Section~\ref{sec:related_work},
 existing works~\cite{rubber,badusb,
 rubberducky2020,usbbypassing,iseeyou,usbdriver} focus on BadUSB attacks.
 Many of these take advantage of the \textit{trust-by-default} policy of PC,
@@ -48,7 +48,7 @@ proposed. GoodUSB~\cite{tian2015defending}
 implemented a CAPTCHA-like~\cite{captcha} procedure, which requires user to
 complete certain challenges when an unknown HID device is plugged in. As the
 BadUSB is only able to emulate a limited kind of devices such as HIDs or disks, by
-no means the BadUSB can bypass it. 
+no means the BadUSB can bypass it.
 
 In this work, we utilize the new features of USB 3.x~\cite{usb31,usb32} to
 address the problem above.  Benefiting from the latest protocol, we simulate
@@ -68,7 +68,7 @@ we implement for various scenarios.
 \subsubsection{Attack Model}
 
 
-Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycircled{1} represents the victim's devices; \mycircled{2} is our \tool; \mycircled{3} is the attacker's remote PC. The details of each component in \tool are as follows.\mycircled{1} 
+Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycircled{1} represents the victim's devices; \mycircled{2} is our \tool; \mycircled{3} is the attacker's remote PC. The details of each component in \tool are as follows.\mycircled{1}
 
 %\fengwei{We need to
 %explain the figure. What are the boxes? Where is victim? Where is the attacker?
@@ -88,13 +88,8 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \mycir
 	\includegraphics[width=\linewidth]{./Figs/attack_model.png}
 
 	\begin{tabular}{ll}
-<<<<<<< HEAD
-	\mycircled{1}Victim's Device    &\mycircled{2}\tool\\
-	\mycircled{3}Attacker's Device
-=======
 	\mycircled{1} Victim's Devices    &\mycircled{2}\tool\\
 	\mycircled{3} Attacker's Remote PC
->>>>>>> 7bce229ca8ea38c7e1f77ea6f0bbd26f20727864
 	\end{tabular}
 
 	\caption{Attack Model}%\shuqing{Need to be more compact.}
