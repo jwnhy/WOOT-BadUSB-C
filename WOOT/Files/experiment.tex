@@ -227,12 +227,14 @@ After the case study experiment, we introduced to them our attack, analyze the s
 
 
 \subsubsection{Result}
-After collecting the videos, we analyzed the video both automatically and manually.
-During the automatic analysis, we used scripts to perform OCR recognition for each frame in the recorded video and stored all of the OCR results in a database.
-At last, there are 94058 pieces of data collected among 10 volunteers.
+
+After collecting the captured videos of the mobile phone, we analyzed the videos both automatically and manually.
+During the automatic analysis, we used scripts to perform OCR recognition for each frame in the recorded videos and stored all of the OCR results in a database.
+In total, there are $94,058$ entries of data collected among 10 volunteers.
 \shuqing{The data may need to be updated.}
-With these results, we could learn what content the victim was browsing.
-Additionally, some keywords such as \textit{account, username, and password} often appear with users' input data because they are often used as labels of input boxes.
+With these results, we could learn what content the victim visited.
+\fengwei{The following text needs to be revised. It is quite difficult for me to understand. Note that this is important text because reviewers are curious about the result. }
+Additionally, keywords such as \textit{account, username, and password} often appear with users' input data because they are often used as labels of input boxes.
 Such keywords are more likely to lead us to user-specific data.
 For example, when we searched with \textit{account} as a keyword, victim's accounts can be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example}.
 \shuqing{Statistics.}
@@ -242,7 +244,7 @@ The frame number is the position of this frame in the recorded video, which indi
 	\centering
 	\begin{tabular}{|l|l|l|l|}
 		\hline
-		Keyword  & Text                                                                                                                          & Name                           & Frame Number \\ \hline
+		\textbf{Keyword}  & \textbf{Text}                                                                                                                          & \textbf{Name}                           & \textbf{Frame Number} \\ \hline
 		username & X 8B cas.******.edu.cn Username: 11****18 Password:                                                                           & \textless{}user1\textgreater{} & 385          \\ \hline
 		username & Login Weibo Login with SMS and verification code ...... +86 151****4587 & \textless{}user5\textgreater{} & 1947         \\ \hline
 		username & QQ 14*****50| Login with phone number New user registration 2345678 9 0                                                       & \textless{}user3\textgreater{} & 4308         \\ \hline
@@ -250,12 +252,12 @@ The frame number is the position of this frame in the recorded video, which indi
 		+86      & Login with phone number ...... +86 186****2483 |                                                                              & \textless{}user1\textgreater{} & 313          \\ \hline
 	\end{tabular}
 	\linebreak
-	\caption{Example of searching OCR results with some keywords}
+	\caption{Examples of Searching OCR Results with Keywords.}
 	\label{tab:ocr_keyword_example}
 \end{table*}
 
 
-In the manual analysis, we replayed the recorded video and extracted sensitive information.
+In the manual analysis, we replayed the videos and extracted sensitive information.
 The data we collected are listed in Table~\ref{table:information_extracted}.
 Accounts of internet applications such as Apple, iCloud, Facebook, Twitter, etc. can be obtained.
 Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboard of the financial applications, can be clearly recorded.
@@ -291,6 +293,6 @@ It is worth mentioning that, those \textit{secure keyboards} built in some finan
 		\hline
 	\end{tabular}
 	\linebreak
-	\caption{Information extracted}\shuqing{Compress.}
+	\caption{Information Extraction.}\shuqing{Compress.}
 	\label{table:information_extracted}
 \end{table*}
