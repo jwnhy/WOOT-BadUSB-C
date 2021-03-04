@@ -48,24 +48,7 @@ The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC in Windows 10/Ubuntu OS with two USB Type-C interfaces as the
-target device.  During this experiment, \tool disguised itself as a normal
-keyboard and a home-brewed version of GoodUSB~\cite{tian2015defending} is
-deployed to test the defense-bypassing. We have tried to deploy the original
-GoodUSB on the target device; as the GoodUSB is proposed in 2015, the code is
-outdated and cannot be executed at target device; so we have to home-brew a similar
-defense mechanism based on its paper~\cite{tian2015defending}.  In the
-beginning, our home-brewed version of GoodUSB asked the victim to manually complete
-a CAPTCHA to authorize the new USB device, a.k.a our \tool.
-%But at this time,
-%by the design of GoodUSB,
-%\fengwei{The following sentence is hard to
-%understand.}\hongyi{Fixed, removed redundant description}
-However, our attack can enter keystrokes to complete the
-CAPTCHA with the video stream by \tool. Up
-to this point, the bypass of defense like GoodUSB is completed and our \tool
-becomes a trusted device. Next, our
-\tool works similar to the original BadUSB, inserting keystrokes to perform
-arbitrary execution on the laptop. We tested three scripts, ranging from
+target device. \hongyi{TODO: FIXING} We tested three scripts, ranging from
 reverse shell backdoor to malware payload execution, all of which resulting in
 success. With this experiment, we have demonstrated the defense-bypassing is successful
 using \tool.
