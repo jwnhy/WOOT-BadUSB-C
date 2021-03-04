@@ -77,8 +77,8 @@ using \tool.
 %\hongyi{we have discussed this and decide no need.}
 \subsection{Video Capture Mode}
 
-During the experiment of privacy extraction via our video capture mode, we chose \textit{HUAWEI P30}, a
-smartphone in EMUI 9.1 (Android 9.0 based) with a USB Type-C interface, as the
+During the experiment of privacy extraction via our video capture mode, we chose \textit{HUAWEI P30 (ELE-AL00)}, a
+smartphone in EMUI 11.0.0.135(C00E128R2P5) (Android 10.0 based) with a USB Type-C interface, as the
 target device.  In the privacy extraction experiment, \tool passively captured video
 from the victim's device and used \textit{OpenCV} to identify the sensitive
 information from the video stream.  When the victim viewed text or photos with
@@ -251,7 +251,7 @@ To further validate our attacking scenario, we invited 10 volunteers, who are st
 Before the user study experiment, we disclose to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
 During the case study, volunteers took turns to use their phones for half an hour with \tool connected, which are considered as a normal power bank.
 To obtain data close to real-life, they are requested to use phones like when they use the normal shared power banks.
-After the case study experiment, we introduced to them our attack, analyze the screen recordings together to make sure their personal data is not at risk.
+After every case study experiment, we introduced to him/her our attack, showed him/her the only raw files (video recorded and corresponding OCR results), told him/her to analyze the screen recordings and replace certain characters of the private data that appear in the OCR result with asterisks. It protects their privacy and is also a mark for us to confirm that the data we find contains their private data. After he/she made sure their private data is not at risk, he/she can destroy the only raw files, give the desensitized OCR result back to us. 
 \shuqing{Do we need to mention that agreement the conference required here?}
 \hongyi{I'm also quite concern about this.}
 
