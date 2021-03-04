@@ -11,7 +11,7 @@ about our \tool, which may not be a sufficient warning for users.
 
 We also assume the victim's device is equipped with fully functional USB 3.x
 protocol and USB Type-C connector. As the USB 3.x standard is
-common nowadays, this assumption can be easily fulfilled especially in recent
+common nowadays, this assumption can be fulfilled in recent
 devices.
 
 %\subsection{Motivation}
@@ -44,22 +44,13 @@ their attacks precisely or know the effects after attacks.
 %rubberducky2020} emulates as a HID device enabling various arbitrary execution
 %attacks, fetching feedback from the victim is much more limited.
 Based on the drawbacks introduced above, several defense mechanisms were
-proposed. GoodUSB~\cite{tian2015defending}
-implemented a CAPTCHA-like~\cite{captcha} procedure, which requires user to
-complete certain challenges when an unknown HID device is plugged in. As the
-BadUSB is only able to emulate a limited kind of devices such as HIDs or disks, by
-no means the BadUSB can bypass it.
+proposed. For example, GoodUSB~\cite{tian2015defending}
+implemented a authorization procedure when a new device is plugged in and blocks other functions excepted authorized ones.
 
 In this work, we utilize the new features of USB 3.x~\cite{usb31,usb32} to
 address the problem above.  Benefiting from the latest protocol, we simulate
 external display and thus obtain the video stream to perform accurate
-attacks.
-Thus, our \tool is capable of
-bypassing defenses such as GoodUSB. Taking advantage of USB 3.x~\cite{usb31,usb32},
-\tool can fetch the video stream of the victim and complete the challenge
-manually by the attacker. Moreover, with video capability combined with
-traditional BadUSB, our \tool achieved multiple new attack paradigms and are
-tested under various real-world scenarios.
+attacks. However, we still unable to bypass defenses like GoodUSB~\cite{tian2015defending}, which completely blocks unauthorized functionality. This will be further discussed in Section~\ref{sec:discussion}
 
 As there were various BadUSB implementations available, this work focuses on our new extensions. Next, we first introduce the
 components we used in \tool, then we focus on the three different attack modes
@@ -109,13 +100,7 @@ attacker can executes arbitrary scripts on the victim's device. This is the
 function of the original BadUSB. Based on this, we made the following
 improvements.
 
-First, \tool supports defense-bypassing. As the original BadUSB cannot get
-feedback from the victim, defense mechanisms like GoodUSB~\cite{tian2015defending} are sufficient to prevent these BadUSB attacks.
-However, these defense mechanisms leverage visual notification to block access
-for unknown USB devices. This means that when the defense requests authorization
-from the user, our \tool is able to capture the content of authorization
-challenge and bypass it. After the defense is bypassed, \tool continues the
-emulation and script execution, resulting in a successful attack.
+First, as \tool has established a feedback channel using USB 3.2 protocol, when performing keystroke and mouse movement injection, attacker can obtain real-time feedback from the victim's devices. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such feedback channel largely strengthen the attack ability of \tool.
 
 Moreover, as the mouse relies on the visual feedback to work properly, its
 emulation and automation were not supported by the original version of BadUSB.
@@ -129,7 +114,7 @@ feedback with video streaming.
 %\fengwei{I don't understand the sentence below.}\hongyi{Fixed, I think it's redundant and less important}
 %As mentioned above, we only require video stream at the beginning (defense
 %bypass) and the end (result feedback) of the attack.
-Moreover, with mouse
+Also, with mouse
 supported, \tool extends the original BadUSB attack and results in further attacks in
 mobile devices.
 
