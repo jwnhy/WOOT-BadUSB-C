@@ -57,10 +57,7 @@ After the \tool is plugged into the victim's device, there is an initialization 
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC in Windows 10 with two USB Type-C interfaces as the
-target device.  We tested three scripts, ranging from
-reverse shell backdoor to malware payload execution, all of which resulting in
-success. With this experiment, we have demonstrated the defense-bypassing is successful
-using \tool.
+target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's devices raise a pop-up window asking victim's what mode should new screen be set to. \tool immediately inject a sequence of mouse movement and click to set itself as a mirror to the primary monitor. Thus we have successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulting in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attacker real-time feedback which allows attacker to perform more accurate attack.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
 
@@ -184,7 +181,7 @@ station causing a potential threat to subsequent users.
 
 \textbf{QR Code Payment}.
 QR code payment is a new type of payment method that is popular in Asia. Its most well-known cases are WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay}. QR code payment provides merchant and client a convenient way of offline payment while ensuring equivalent security as the credit card.
-As illustrated in Figure~\ref{fig:qr_payment_procedure}, QR code payment is typically performed in the following steps:
+As illustrated in Figure~\ref{fig:qr_payment_procedure}, QR code paymeinformation from the video stream.  When the victim viewed text or photos withnt is typically performed in the following steps:
 \ding{182} The client presents the payment QR code on the mobile device to the merchant.
 The QR code is encoded with a globally unique ID to identify the client's account.
 \ding{183} The merchant scans the payment QR code and charges the corresponding amount of money.
