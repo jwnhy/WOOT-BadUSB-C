@@ -44,11 +44,20 @@ The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 	\label{fig:armory}
 \end{figure}
 
+\subsection{Attack Initialization}
+After the \tool is plugged into the victim's device, there is an initialization process to make sure the \tool is able to carry out subsequent attack.
+\begin{itemize}
+	\item \textbf{Screen Mirror}:
+		During our experiment, we noticed that some devices do not mirror their screen to our \tool by default. In this case, \tool will inject a sequence of keystrokes and mouse movements to set the victim's device into mirror their screen. For example, in Windows 10, \tool can inject `Win+P' keystroke and a mouse click on the `Duplicate' option. However, as \tool is unable to obtain the screen during this process, this can only be performed blindly with a possibility of failure.
+	\item \textbf{Dismiss Notification}:
+		In our experiment, we found that some devices will notify the user presence of an external screen. To avoid being discovered by the victim, \tool will inject keystrokes and mouse movement to dismiss these notifications. Detailed notifications is listed in Table~\ref{tab:notification}.
+\end{itemize}
+
 \subsection{HID Emulator Mode}
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
-2020}, a PC in Windows 10/Ubuntu OS with two USB Type-C interfaces as the
-target device. \hongyi{TODO: FIXING} We tested three scripts, ranging from
+2020}, a PC in Windows 10 with two USB Type-C interfaces as the
+target device.  We tested three scripts, ranging from
 reverse shell backdoor to malware payload execution, all of which resulting in
 success. With this experiment, we have demonstrated the defense-bypassing is successful
 using \tool.
