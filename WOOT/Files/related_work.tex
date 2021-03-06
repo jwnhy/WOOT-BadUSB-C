@@ -40,8 +40,7 @@ attacks~\cite{badusb} are unable to obtain video feedback from the victim
 as video stream was not supported until USB 3.0~\cite{usb30}. Though USB 2.0 does not
 support video transmission, there exists a protocol called MHL (Mobile
 High-Definition Link) which extends the USB standard and allows the video signal to
-be transmitted through the USB interface. JFC~\cite{JFC}, short for juicy filming
-charging is such a work that abuses this standard and exfiltrate video data
+be transmitted through the USB interface. JFC~\cite{JFC}, short for Juicy Filming Attacks is such a work that abuses this standard and exfiltrate video data
 from the victim without permission. However, in JFC, this data exfiltration is not
 combined with BadUSB attacks, and MHL is an outdated standard, which limits its
 capability.
@@ -76,7 +75,7 @@ connectors have been provided by USB Type-C, transferring of video data can be
 combined with the other attacks, like protocol masquerading,  protocol
 corruption, and code injection. This has paved the path for our \tool.
 
-It is worth noting that our \tool is different from JFC~\cite{JFC}. Firstly, Juice Filming Attacks can not control the attacked device, but can only video-capture user inputs during charging. However, our \tool can monitor the screen at the same time as controling the attacked device, which enhances the efficiency of stealing users’ private data. Second, we design an prototype to attack in real time remotely. Third, the scope of \tool is wider, \tool also poses a threat to laptops that charged with use USB-C interface.
+It is worth noting that our \tool is different from JFC~\cite{JFC}. Juice Filming Attacks can not control the attacked device, it can only video-capture user inputs during charging. However, our \tool can control the attacked device at the same time as monitoring the screen, which enhances the efficiency of stealing users' private data. 
 
 \subsection{USB Security Defenses}
 \label{subsec:usb_defence}
@@ -113,11 +112,13 @@ by the device to the user and let the user decides whether to authorize. When a 
 is plugged in, GoodUSB limits its functionality before enumeration until a
 series of authorizations are completed. These authorizations are designed to be
 performed manually, thus the malicious devices will be detected for making a different claim 
-that does not match the authorization results. USBeSafe\cite{usbesafe} analyses the 
+that does not match the authorization results. 
+USBeSafe\cite{usbesafe} analyses the 
 feature vector constructed from with data collected from USB Request Block(URBs), 
 it would detect the novel USB packets based on the machine learning algorithm and send 
 a alert to the user before enumeration. As BadUSB attacks normally request privileged 
 interfaces during enumerating, these defenses are sufficient for these attacks.
+Moreover, Mueller \emph{et al.}~\cite{MuellerZN19} improve the security without changing user experience. It can detect the presence of the user, block malicious device in the user's absenc until the session is unlocked.
 
 After the USB enumeration and driver loading, some related works
 archive `defense in depth'
@@ -134,7 +135,7 @@ a honeypot to detect and stop malicious behavior of USB devices.
 
 In addition to injection attacks, data theft attack is also one of the focuses
 of the academic community. As mentioned in Section~\ref{subsec:usb_attack}, there
-exists an attack called JFC (Juicy Film Charging)~\cite{JFC} which abuses the MHL
+exists an attack called JFC~\cite{JFC} which abuses the MHL
 standard to steal video stream from the victim. In order to mitigate this
 issue, Meng et al.~\cite{meng2018252} proposed a statistical model using status
 like GPU/CPU usage to detect JFC attacks.
@@ -173,6 +174,14 @@ each defense against various attacks, including our \tool, on the software layer
 		\hline
 		\makecell{GoodUSB~\cite{tian2015defending}} & \makecell*[c]{\circlehalf} & \circlefull & \circlefull &\circlefull& \circlefull\\
 		\hline
+
+		\makecell{USBeSafe~\cite{usbesafe}} & \makecell*[c]{\circleempty} & \circlefull & \circlefull &\circlefull& \circlefull\\
+		\hline
+
+		\makecell{Mueller \emph{et al.}~\cite{MuellerZN19}} & \makecell*[c]{\circleempty} & \circlefull & \circlefull &\circlehalf& \circlefull\\
+		\hline
+		
+	
 
 		\makecell{Neuner \emph{et al.}~\cite{neuner2018usblock}} & \makecell*[c]{\circleempty} & \circlefull & \circleempty &\circleempty& \circleempty\\
 		\hline
