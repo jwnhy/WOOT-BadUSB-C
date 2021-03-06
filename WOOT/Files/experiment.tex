@@ -53,10 +53,25 @@ After the \tool is plugged into the victim's device, there is an initialization 
 		In our experiment, we found that some devices will notify the user presence of an external screen. To avoid being discovered by the victim, \tool will inject keystrokes and mouse movement to dismiss these notifications. Detailed notifications is listed in Table~\ref{tab:notification}.
 \end{itemize}
 
+\begin{table*}[]
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Device                                                               & Operating System                                                                                         & Notification              & Dismiss Action                                            \\ \hline
+		\begin{tabular}[c]{@{}c@{}}Lenovo Xiaoxin Pro 13\\ 2020\end{tabular} & Windows 10 (OS Build 18363.1379)                                                                         & Pop-up                    & ``Win+P''-\textgreater{}Mouse click on `Duplicate' Option \\ \hline
+		\multirow{2}{*}{HUAWEI P30 (ELE-AL00)}                               & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}EMUI 11.0.0.135(C00E128R2P5)\\ Android 10 based\end{tabular}} & Status bar indicator      & N/A                                                       \\ \cline{3-4} 
+		&                                                                                                          & Persistent notifications  & N/A                                                       \\ \hline
+		\multirow{2}{*}{iPad Pro (3rd generation)}                           & \multirow{2}{*}{iOS 14.4 (Build 18D52)}                                                                  & Status bar indicator      & N/A                                                       \\ \cline{3-4} 
+		&                                                                                                          & Pop-up (only when locked) & N/A                                                       \\ \hline
+	\end{tabular}
+	\linebreak
+	\caption{Notifications about \tool}
+	\label{tab:notification}
+\end{table*}
+
 \subsection{HID Emulator Mode}
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
-2020}, a PC in Windows 10 with two USB Type-C interfaces as the
+2020}, a PC in Windows 10 (OS Build 18363.1379) with two USB Type-C interfaces as the
 target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's devices raise a pop-up window asking victim's what mode should new screen be set to. \tool immediately inject a sequence of mouse movement and click to set itself as a mirror to the primary monitor. Thus we have successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulting in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attacker real-time feedback which allows attacker to perform more accurate attack.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
@@ -91,7 +106,7 @@ process the victim's video stream locally, it does not need to transmit the real
 %\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
 To test the capability of the full control mode, we chose iPad Pro (3rd
-	generation), a tablet in iOS 14.3 with a USB Type-C interface, as the target
+	generation), a tablet in iOS 14.4 (Build 18D52) with a USB Type-C interface, as the target
 device in this experiment.  Besides disguising as normal HID devices like a
 conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
 stream from the target device to the attacker via WiFi.  After the connection
