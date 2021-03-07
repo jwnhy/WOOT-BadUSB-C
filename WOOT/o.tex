@@ -1,0 +1,112 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+
+\makeatletter
+\def\lst@makecaption{%
+  \def\@captype{table}%
+  \@makecaption
+}
+\makeatother
+
+\input{./Files/util.tex}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+
+\begin{document}
+
+\title{\tool: Revisiting BadUSB with Type-C}
+
+\author{Anonymous Authors}
+%\author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
+%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+%\textit{name of organization (of Aff.)}\\
+%City, Country \\
+%email address or ORCID}
+%\and
+%\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
+%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+%\textit{name of organization (of Aff.)}\\
+%City, Country \\
+%email address or ORCID}
+%\and
+%\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
+%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+%\textit{name of organization (of Aff.)}\\
+%City, Country \\
+%email address or ORCID}
+%\and
+%\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
+%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+%\textit{name of organization (of Aff.)}\\
+%City, Country \\
+%email address or ORCID}
+%\and
+%\IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
+%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+%\textit{name of organization (of Aff.)}\\
+%City, Country \\
+%email address or ORCID}
+%\and
+%\IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
+%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+%\textit{name of organization (of Aff.)}\\
+%City, Country \\
+%email address or ORCID}
+%}
+
+\maketitle
+\thispagestyle{plain}
+\pagestyle{plain}
+
+
+\begin{abstract}
+
+The security of USB protocol has been paid extensive attention to, despite its
+    wide usage.  Due to the \textit{trust-by-default} characteristics, USB
+    security has caused serious problems.  For example, a well-known firmware
+    attack, BadUSB, performs malicious operations on the victim hosts through
+    disguising normal USB devices as human interface devices like keyboards and
+    mice.  However, BadUSB suffers from several limitations.  Attackers cannot
+    obtain the status of user interface to conduct precise attacks, and they
+    can be detected by multiple existing countermeasures.  In this work, we
+    extended BadUSB to support the new features of USB Type-C and proposed a
+    multi-mode attack model, \tool.  It obtains UI status to make attacks more
+    precise and effective, and also bypasses existing defense methods for
+    BadUSB.  To the best of our knowledge, \tool is the first attack model
+    utilizing USB Type-C.  To validate the usability and effectiveness, we
+    conducted extensive experiments and a user study on a real-life attack
+    scenario.  10 volunteers are involved in, and 4,172 of 94,058 records
+    obtained by \tool in the user study are related to sensitive information.
+%\fengwei{What results?} \fengwei{what countermeasures do we propose? including
+    %isolated UI rendering.}
+We also discussed the recommended countermeasures for our attack model,
+    including isolated UI rendering, which may be inspiring for future research
+    on defense methods.
+\end{abstract}
+
+\begin{IEEEkeywords}
+USB; BadUSB; Type-C; Attack
+\end{IEEEkeywords}
+
+
+
+\input{./Files/introduction.tex}
+\input{./Files/background.tex}
+\input{./Files/related_work.tex}
+\input{./Files/badusb.tex}
+\input{./Files/experiment.tex}
+\input{./Files/countermeasure.tex}
+\input{./Files/discussion.tex}
+\input{./Files/conclusion.tex}
+%\input{./Files/acknowledgement.tex}
+
+\balance
+
+\bibliographystyle{IEEEtran}
+\bibliography{BadUSBC}
+
+
+\end{document}
