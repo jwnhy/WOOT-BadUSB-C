@@ -2,14 +2,14 @@
 \label{sec:discussion}
 
 \subsection{Limitation}
-There exist multiple limitations of \tool. To begin with, when \tool is attached, the victim's device may not be set to mirror the screen. Depending on victim's settings, the \tool may be used as an extended monitor. For some smartphone vendors (e.g. Smartisan and Huawei), their devices are equipped with Desktop mode, which allows user to display an desktop on the external monitor. In these cases, the victim would easily notice the presence of \tool and become suspicious. Apart from that, we also noticed that in most devices, when an external monitor is connected to the device, there will be notifications about the monitor. In iPad, there is a small blue icon on the notification bar. In Huawei P30, there is a pop-up for user to select the functionality of the external monitor. In latter case of a pop-up, \tool can dismiss it by injecting keystrokes and mouse movements. But they are notifications after all and victims may notice \tool is a malicious device. Also, it cannot be ignored that DisplayPort over USB / DisplayPort Alternate Mode is not available on all devices. When selecting devices to test \tool, we find that many smartphones equipped with USB-C connector does not support USB 3.2 protocol. This lack of support further limited \tool. But we believe that USB 3.2 will be more popular and better supported, so it is important for us to take defense against attacks like \tool in advance.
+There exist multiple limitations of \tool. To begin with, when \tool is attached, the victim's device may not be set to mirror the screen. Depending on victim's settings, the \tool may be used as an extended monitor or not be enabled at all. Additionally, some smartphone vendor (e.g. Huawei and Smartisan) provide a Desktop Mode to users, which displays a desktop on external screen instead of mirroring. In these cases, \tool is either easily noticeable to victim or disabled.  Apart from that, we also noticed that in most devices, when an external monitor is connected to the device, there will be notifications about the monitor. In iPad, there is a small blue icon on the notification bar. In Windows 10, there is a pop-up for user to select the functionality of the external monitor. In latter case of a pop-up, \tool can dismiss it by injecting keystrokes and mouse movements. But they are still noticeable by the victim. Also, it cannot be ignored that DisplayPort over \ac{USB} is not available on all devices. When selecting devices to test \tool, we find that many smartphones equipped with USB-C connector does not support \ac{USB} 3.2 protocol. This lack of support further limited \tool.
 \begin{comment}
 There exist multiple limitations of \tool.  To begin with, \tool can only gain
 the information and control access of the host itself instead of external
 hardware.  Consequently, as we introduced in the
 Section~\ref{sec:countermeasures}, \tool can hardly bypass the defense
 approaches that use external hardware for authorization.  Moreover, most of
-the devices will prompt users to give authentication to the USB devices or
+the devices will prompt users to give authentication to the \ac{USB} devices or
 select one of the functional modes after they are plugged in.  Though some of
 such prompts are not conspicuous for non-experts, especially when \tool is
 concealed within other functional hardware such as power banks \shuqing{If
@@ -21,12 +21,12 @@ prompting messages.
 
 %\shuqing{Left after experiment to finish. Will discuss from different modes
 %and application scenarios.}
-The USB protocol is used widely as introduced in the preceding sections.  As the
+The \ac{USB} protocol is used widely as introduced in the preceding sections.  As the
 technologies develop rapidly, more and more devices will be equipped with USB-C
 capabilities, which makes \tool more influential.  Due to the neglect to
-check the security of plugged-in USB devices of non-professional users, \tool
+check the security of plugged-in \ac{USB} devices of non-professional users, \tool
 can be hardly detected by them while attacks are performing.  The popularity
-and universality of public USB devices, including sharing power banks, even
+and universality of public \ac{USB} devices, including sharing power banks, even
 increase such risks.  Moreover, \tool provides a better way for traditional
 BadUSB attacks, since attackers can obtain the screen streaming with ease.
 Attackers can use such technologies to perform more precise attacks, such as

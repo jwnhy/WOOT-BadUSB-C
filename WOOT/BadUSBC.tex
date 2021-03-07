@@ -62,19 +62,30 @@
 \pagestyle{plain}
 
 
+\newacro{USB}{Universal Serial Bus}
+\newacro{HID}{Human Interface Device}
+\newacro{UI}{User Interface}
+\newacro{PnP}{Plug-and-Play}
+\newacro{OEM}{Original Equipment Manufacturer}
+\newacro{DoS}{Denial of Service}
+\newacro{MHL}{Mobile High-Definition Link}
+\newacro{URB}{USB Request Block}
+\newacro{OCR}{Optical Character Recognition}
+\newacro{GUI}{Graphical User Interface}
+
 \begin{abstract}
 
-The security of USB protocol has been paid extensive attention to because of its
-    wide usage.  Due to the \textit{trust-by-default} characteristics, USB
+The security of \ac{USB} protocol has been paid extensive attention to because of its
+    wide usage.  Due to the \textit{trust-by-default} characteristics, \ac{USB}
     security has caused serious problems.  For example, a well-known firmware
     attack, BadUSB, performs malicious operations on the victim hosts through
-    disguising normal USB devices as human interface devices like keyboards and
+    disguising normal \ac{USB} devices as human interface devices like keyboards and
     mice.  However, BadUSB suffers from several limitations.  Attackers cannot
     obtain the status of user interface to conduct precise attacks as well as get the visual feedback of their attacks.  In this work, we
-    extended BadUSB to support the new features of USB Type-C and proposed a
+    extended BadUSB to support the new features of \ac{USB} Type-C and proposed a
     multi-mode attack model, \tool.  It obtains UI status to make attacks more 
     precise and effective.  To the best of our knowledge, \tool is the first attack model
-    utilizing USB Type-C.  To validate the usability and effectiveness, we
+    utilizing \ac{USB} Type-C.  To validate the usability and effectiveness, we
     conducted extensive experiments and a user study on a real-life attack
     scenario.  10 volunteers are involved in, and 4,172 of 94,058 records
     obtained by \tool in the user study are related to sensitive information.
@@ -90,6 +101,7 @@ USB; BadUSB; Type-C; Attack
 \end{IEEEkeywords}
 
 
+\acresetall
 
 \input{./Files/introduction.tex}
 \input{./Files/background.tex}
@@ -100,6 +112,10 @@ USB; BadUSB; Type-C; Attack
 \input{./Files/discussion.tex}
 \input{./Files/conclusion.tex}
 %\input{./Files/acknowledgement.tex}
+
+
+
+
 
 \balance
 

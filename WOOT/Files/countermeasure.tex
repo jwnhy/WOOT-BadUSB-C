@@ -18,7 +18,7 @@ the host from being hijacked. Though USBCheckIn is an adequate defense against
 \tool, the external hardware brings additional cost and inconvenience,
 especially for mobile devices.
 
-\textbf{Distrust-by-Default.} Most security issues of USB protocol are due to
+\textbf{Distrust-by-Default.} Most security issues of \ac{USB} protocol are due to
 its \textit{trust-by-default} assumption; \tool also relies on this feature to work.
 To defend against \tool and other USB-based attacks, we can simply reject all
 {unauthorized} device -- applying the \textit{distrust-by-default} policy.  It
@@ -29,14 +29,14 @@ GoodUSB~\cite{tian2015defending}.
 GoodUSB permits limited functionality of untrusted devices while this strict policy forbids all functions of an untrusted device. Though \textit{distrust-by-default} policy effectively
 prevents these attacks, it also causes considerable inconvenience for users.
 
-\textbf{Isolated UI Rendering.} During our experiments, we noticed that \tool
+\textbf{Isolated \ac{UI} Rendering.} During our experiments, we noticed that \tool
 is actually unable to redirect out the locking screen keyboard from the iPad
 OS. Instead, the keyboard is only available on the internal display. However,
 this defense is only enabled on the locking screen keyboard, other keyboards
 (e.g., the virtual ones used by the apps) are still vulnerable to our \tool.
 This mechanism has inspired us to propose a new defense against our \tool
-called \emph{Isolated UI Rendering}. As illustrated in
-Figure~\ref{fig:isolated_ui}, we designed two separated UI render layers and corresponding drivers, one
+called \emph{Isolated \ac{UI} Rendering}. As illustrated in
+Figure~\ref{fig:isolated_ui}, we designed two separated \ac{UI} render layers and corresponding drivers, one
 is secure the other is insecure. When an application requires to render, it can
 pass the content along with a tag identifying whether the content is
 ``sensitive'' or not. If the content is tagged with ``sensitive'', then the OS
@@ -49,7 +49,7 @@ For example, in Figure~\ref{fig:isolated_ui}, the `password' and `keyboard' are 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{./Figs/isolated_ui.png}
-	\caption{Isolated UI Rendering}%\shuqing{Maybe we can increase the font?}
+	\caption{Isolated \ac{UI} Rendering}%\shuqing{Maybe we can increase the font?}
 	\label{fig:isolated_ui}
 \end{figure}
 %\fengwei{what are untrusted and trusted screens? are they internal and external displays?}

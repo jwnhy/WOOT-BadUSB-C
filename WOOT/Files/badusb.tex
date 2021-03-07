@@ -3,14 +3,14 @@
 \subsection{Threat Model}
 
 We build our threat model on the basic assumptions that common users without
-technical background would not treat normal-looking USB device as malicious and be cautious about them. This assumption is consistent with existing works~\cite{JFCImpact}. Moreover, we neglect the
-effect of notifications from USB devices, as users may not have the knowledge to fully understand such notifications. In
+technical background would not treat normal-looking \ac{USB} device as malicious and be cautious about them. This assumption is consistent with existing works~\cite{JFCImpact}. Moreover, we neglect the
+effect of notifications from \ac{USB} devices, as users may not have the knowledge to fully understand such notifications. In
 fact, during our experiment, no device had security notifications raised about
-suspicious USB devices and only mobile devices had raised a charging notification
+suspicious \ac{USB} devices and only mobile devices had raised a charging notification
 about our \tool, which may not be a sufficient warning for users.
 
-We also assume the victim's device is equipped with fully functional USB 3.x
-protocol and USB Type-C connector. As the USB 3.x standard is
+We also assume the victim's device is equipped with fully functional \ac{USB} 3.x
+protocol and \ac{USB} Type-C connector. As the \ac{USB} 3.x standard is
 common nowadays, this assumption can be fulfilled in recent
 devices.
 
@@ -31,12 +31,12 @@ As introduced in Section~\ref{sec:related_work},
 existing works~\cite{rubber,badusb,
 rubberducky2020,usbbypassing,iseeyou,usbdriver} focus on BadUSB attacks.
 Many of these take advantage of the \textit{trust-by-default} policy of PC,
-pretend to be normal HID devices and utilize USB protocol to perform attacks.
+pretend to be normal \ac{HID} devices and utilize \ac{USB} protocol to perform attacks.
 However, these attacks suffer from various drawbacks: \ding{182} attackers can
-only simulate limited types of devices such as HIDs (like keyboards and mice)
+only simulate limited types of devices such as \acp{HID} (like keyboards and mice)
 and disks, which makes the attacks less effective; \ding{183} accurate attacks
-could not be performed due to lack of user interface (UI) status. Whatever HID the
-attackers simulate their USB devices to be, they could not obtain the UI to
+could not be performed due to lack of \ac{UI} status. Whatever \ac{HID} the
+attackers simulate their \ac{USB} devices to be, they could not obtain the \ac{UI} to
 check the status information, which makes it nearly impossible to carry out
 their attacks precisely or know the effects after attacks.
 
@@ -47,7 +47,7 @@ Based on the drawbacks introduced above, several defense mechanisms were
 proposed. For example, GoodUSB~\cite{tian2015defending}
 implemented a authorization procedure when a new device is plugged in and blocks other functions excepted authorized ones.
 
-In this work, we utilize the new features of USB 3.x~\cite{usb31,usb32} to
+In this work, we utilize the new features of \ac{USB} 3.x~\cite{usb31,usb32} to
 address the problem above.  Benefiting from the latest protocol, we simulate
 external display and thus obtain the video stream to perform accurate
 attacks. However, we still unable to bypass defenses like GoodUSB~\cite{tian2015defending}, which completely blocks unauthorized functionality. This will be further discussed in Section~\ref{sec:discussion}
@@ -62,18 +62,18 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 
 %\fengwei{We need to
 %explain the figure. What are the boxes? Where is victim? Where is the attacker?
-%The list below only shows the internal components in the malicious USB device.
+%The list below only shows the internal components in the malicious \ac{USB} device.
 %We might also consider to explain this in the Figure caption.}
 
 \begin{itemize}
 	
-	\item\underline{USB 3.x Hub} exports the USB 3.x connector into various ports, like DisplayPort, USB 2.0 port, etc.
+	\item\underline{USB 3.x Hub} exports the \ac{USB} 3.x connector into various ports, like DisplayPort, \ac{USB} 2.0 port, etc.
 	
 	\item\underline{Video Capture Card} converts DisplayPort signal into compatible data, which is later processed by the Single Board Computer (i.e., an embedded computer).
 	
-	\item\underline{HID Emulator} emulates HID device which can be controlled from the attacker.
+	\item\underline{\ac{HID} Emulator} emulates \ac{HID} device which can be controlled from the attacker.
 	
-	\item\underline{Single Board Computer} processes video stream from the victim via the Video Capture Card or sends commands to the victim via HID Emulator.
+	\item\underline{Single Board Computer} processes video stream from the victim via the Video Capture Card or sends commands to the victim via \ac{HID} Emulator.
 	
 	\item\underline{Wi-Fi/GSM Module} transmits the sensitive data or receives commands to/from the remote attacker PC.
 
@@ -93,19 +93,19 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 	\label{fig:attack_model}
 \end{figure}
 
-\textbf{HID Emulation Mode.} This mode majorly relies on the ``HID Emulator'' in the Figure~\ref{fig:attack_model} to
-send constructed HID packet to the victim. These constructed HID packets are
+\textbf{\ac{HID} Emulation Mode.} This mode majorly relies on the ``\ac{HID} Emulator'' in the Figure~\ref{fig:attack_model} to
+send constructed \ac{HID} packet to the victim. These constructed \ac{HID} packets are
 interpreted by the victim as valid keystrokes and mouse moves. Thus, the
 attacker can executes arbitrary scripts on the victim's device. This is the
 function of the original BadUSB. Based on this, we made the following
 improvements.
 
-First, as \tool has established a feedback channel using USB 3.2 protocol, when performing keystroke and mouse movement injection, attacker can obtain real-time feedback from the victim's devices. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such feedback channel largely strengthen the attack ability of \tool.
+First, as \tool has established a feedback channel using \ac{USB} 3.2 protocol, when performing keystroke and mouse movement injection, attacker can obtain real-time feedback from the victim's devices. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such feedback channel largely strengthen the attack ability of \tool.
 
 Moreover, as the mouse relies on the visual feedback to work properly, its
 emulation and automation were not supported by the original version of BadUSB.
-Yet with the video output support from USB 3.x, our \tool implements a
-full-functional mouse emulation. This function enables attacks toward pure GUI
+Yet with the video output support from \ac{USB} 3.x, our \tool implements a
+full-functional mouse emulation. This function enables attacks toward pure \ac{GUI}
 programs and shows attacks in the mobile attack scenarios. Details can
 be obtained in Section~\ref{sec:experiment}.
 
@@ -119,7 +119,7 @@ supported, \tool extends the original BadUSB attack and results in further attac
 mobile devices.
 
 \textbf{Video Capture Mode.} \tool under this mode does not emulate other
-USB device and solely relies on the video stream function of USB 3.x; it uses
+USB device and solely relies on the video stream function of \ac{USB} 3.x; it uses
 ``Video Capture'' component as shown in the Figure~\ref{fig:attack_model} to transmit the stream to the embedded ``Single Board Computer''.
 %\fengwei{What is embedded computer? Do we define this in the previous\hongyi{Fixed by using the term mentioned in Figure}
 %text?}. 
@@ -140,13 +140,13 @@ under this mode is capable of serving more purposes.
 \textbf{Full Control Mode.} In \tool, we have implemented all components
 required to control a computer/mobile device completely, including a video stream
 and a keyboard/mouse emulation. Thus with all components enabled, not only
-the victim's device treat \tool as an external display, but also a valid HID
+the victim's device treat \tool as an external display, but also a valid \ac{HID}
 input source. Hence we can archive complete hijack of victim's device.
 
 \tool under this mode follows a simple logic. \tool receives video stream
 from the victim's device and redirect it to the attacker via GSM/WiFi. In the
 meanwhile, \tool also receives keystrokes and mouse movement from the attacker
-through GSM/WiFi and replays them to the victim by the USB emulation.
+through GSM/WiFi and replays them to the victim by the \ac{USB} emulation.
 
 This mode enable attacker to perform delicate operations that are beyond
 automation. Moreover, this mode provides a backdoor that does not require host
