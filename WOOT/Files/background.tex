@@ -31,8 +31,8 @@ speed (12 MBit/s). At this point, due to the transfer limit, it only supports
 limited types of devices like keyboards, mice, etc.
 
 %\noindent\outline{USB2.0}\\
-In 2000, USB 2.0~\cite{usb20} specification was released. With high speed (480
-Mbit/s) mode introduced, printers, cameras, CD-ROM drives, and network cards were
+In 2000, USB 2.0~\cite{usb20} specification was released. With high speed \mbox{(480
+Mbit/s)} mode introduced, printers, cameras, CD-ROM drives, and network cards were
 supported in this revision. Such a high data transfer rate also gave rise to the
 popularity of ``flash drive'', a portable device that allows physically
 transferring data around~\cite{sok}. Though various peripherals were supported
@@ -60,9 +60,9 @@ transfer rate (20 Gbit/s).
 \end{figure}
 
 As illustrated in Figure~\ref{fig:usb_conn}, the original USB 1.x \& 2.x
-connector only has two pins for data transferring (D+ \& D-), which has
-significantly limited data transfer rate (5 Gbits/s Max) and cannot support for
-peripherals like DisplayPort (10.8 Gbit/s Min). Apart from that, support for
+connector only has two pins for data transferring \mbox{(D+ \& D-)}, which has
+significantly limited data transfer rate \mbox{(5 Gbits/s Max)} and cannot support for
+peripherals like DisplayPort \mbox{(10.8 Gbit/s Min)}. Apart from that, support for
 other peripherals also require dedicated transferring lane as their standards
 are not compatible with USB in most cases.  
 
@@ -77,13 +77,13 @@ Thus, to provide support towards a wider range of peripherals, a 24-pins
 standard called USB Type-C~\cite{typec} is introduced in 2013 by USB-IF~\cite{usbif}. As it is designed to be double-sided, the number of actually usable
 pins is halved. Nevertheless, this standard has largely enhanced the capability
 of the USB 3.x protocol. As presented in Figure~\ref{fig:usb_c_conn}, Type-C added
-two high-speed data lanes (TRX1 \& TRX2) and kept the original data lane (D+ \&
-D-). The added lanes are used exclusively to support peripherals like
+two high-speed data lanes \mbox{(TRX1 \& TRX2)} and kept the original data lane \mbox{(D+ \&
+D-)}. The added lanes are used exclusively to support peripherals like
 DisplayPort while the kept data lane transfers USB packets.
 
 %\noindent\outline{Security Problem}\\
 During the development of USB specification, security was rarely considered. As
-the USB-IF believes it is the duty of original equipment manufacturers (OEMs)
+the USB-IF believes it is the duty of original equipment manufacturers \mbox{(OEMs)}
 to decide whether security features should be implemented~\cite{usbsec}. But the divergent implementations give a chance for attacks like
 BadUSB~\cite{rubber} and our \tool.
 
@@ -94,7 +94,7 @@ BadUSB~\cite{rubber} and our \tool.
 	\hline
 	\textbf{Year} & \textbf{Protocol Version} & \textbf{Supported Peripherals} & \textbf{Transfer Speed} & \textbf{Attacks} \\
 	\hline
-	1996 & USB 1.x~\cite{usb10,usb11} & Keyboard, Mouse... & 1.5 Mbit/s or 12 Mbit/s & HID Emulating(BadUSB)~\cite{badusb} \\
+	1996 & USB 1.x~\cite{usb10,usb11} & Keyboard, Mouse... & 1.5 Mbit/s or 12 Mbit/s & HID Emulating (BadUSB)~\cite{badusb} \\
 	\hline
 	2000 & USB 2.0~\cite{usb20} & Flash Drive, High-Definition Link, CD Driver... & 480 Mbit/s & Autorun Attack~\cite{duqu}, Juice Filming~\cite{JFC,JFCImpact} \\
 	\hline
