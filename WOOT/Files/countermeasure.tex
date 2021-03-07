@@ -10,8 +10,8 @@ internal display for authorization, which can be bypassed via our \tool.
 Next, we discuss our recommended countermeasures against \tool.
 
 \textbf{External Hardware Authorization.} One possible countermeasure is to
-introduce external hardware completing the authorization process. Contrary to
-the GoodUSB, USBCheckIn~\cite{usbcheckin} adopts a dedicated hardware between
+introduce external hardware completing the authorization process. For example,
+ USBCheckIn~\cite{usbcheckin} adopts a dedicated hardware between
 the host and device. When a device is plugged-in, the authorization will be
 conducted on the dedicated hardware instead of the internal display, preventing
 the host from being hijacked. Though USBCheckIn is an adequate defense against
@@ -21,13 +21,10 @@ especially for mobile devices.
 \textbf{Distrust-by-Default.} Most security issues of \ac{USB} protocol are due to
 its \textit{trust-by-default} assumption; \tool also relies on this feature to work.
 To defend against \tool and other USB-based attacks, we can simply reject all
-{unauthorized} device -- applying the \textit{distrust-by-default} policy.  It
-is worth mentioning that \textit{distrust-by-default} policy is not the same as
-GoodUSB~\cite{tian2015defending}.  
-%\fengwei{the following sentence needs to be
-%written. I am confused.}\hongyi{Fixed, use more concise sentences} 
-GoodUSB permits limited functionality of untrusted devices while this strict policy forbids all functions of an untrusted device. Though \textit{distrust-by-default} policy effectively
-prevents these attacks, it also causes considerable inconvenience for users.
+{unauthorized} device -- applying the \textit{distrust-by-default} policy. For example, 
+in GoodUSB~\cite{tian2015defending}, all \ac{USB} devices are enabled with corresponding 
+functionality only after being authorized by the user. This defense effectively stops attack 
+like \tool.
 
 \textbf{Isolated \ac{UI} Rendering.} During our experiments, we noticed that \tool
 is actually unable to redirect out the locking screen keyboard from the iPad
