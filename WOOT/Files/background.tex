@@ -81,7 +81,7 @@ D-)}. The added lanes are used exclusively to support peripherals like
 DisplayPort while the kept data lane transfers \ac{USB} packets.
 
 %\noindent\outline{Security Problem}\\
-During the development of \ac{USB} specification, security was rarely considered. As
+During the development of \ac{USB} specification, security was considered insufficiently~\cite{sok}. As
 the \ac{USB}-IF believes it is the duty of \acp{OEM}
 to decide whether security features should be implemented~\cite{usbsec}. But the divergent implementations give a chance for attacks like
 BadUSB~\cite{rubber} and our \tool.
@@ -93,7 +93,7 @@ BadUSB~\cite{rubber} and our \tool.
 	\hline
 	\textbf{Year} & \textbf{Protocol Version} & \textbf{Supported Peripherals} & \textbf{Transfer Speed} & \textbf{Attacks} \\
 	\hline
-	1996 & \ac{USB} 1.x~\cite{usb10,usb11} & Keyboard, Mouse... & 1.5 Mbit/s or 12 Mbit/s & \ac{HID} Emulating (BadUSB)~\cite{badusb} \\
+	1996 & \ac{USB} 1.x~\cite{usb10,usb11} & Keyboard, Mouse... & 1.5 Mbit/s or 12 Mbit/s & \ac{HID} Emulation (BadUSB)~\cite{badusb} \\
 	\hline
 	2000 & \ac{USB} 2.0~\cite{usb20} & Flash Drive, High-Definition Link, CD Driver... & 480 Mbit/s & Autorun Attack~\cite{duqu}, Juice Filming~\cite{JFC,JFCImpact} \\
 	\hline

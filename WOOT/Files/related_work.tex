@@ -52,7 +52,7 @@ zero-day exploit and malicious \textit{autorun.inf} to execute the malware
 automatically. There are also works like \cite{brain,stuxnet,conficker}
 following the same paradigm and performing code-injection attacks. These
 attacks are much more damaging and flexible,
-but they require certain existing flaws like a \cite{zero-day} vulnerability and \ac{USB} is merely
+but they require certain existing flaws like a zero-day vulnerability\cite{zero-day}  and \ac{USB} is merely
 a payload delivery method.
 
 % Using USB for information leakage
@@ -74,19 +74,18 @@ connectors have been provided by \ac{USB} Type-C, transferring of video data can
 combined with the other attacks, like protocol masquerading,  protocol
 corruption, and code injection. This has paved the path for our \tool.
 
-It is worth noting that our \tool is different from JFC~\cite{JFC}. Juice Filming Attacks can not control the attacked device, it can only video-capture user inputs during charging. However, our \tool can control the attacked device at the same time as monitoring the screen, which enhances the efficiency of stealing users' private data. 
+It is worth noting that our \tool is different from JFC~\cite{JFC}. Juice Filming Attacks cannot control the attacked device, it can only video-capture user inputs during charging. However, our \tool can control the attacked device at the same time as monitoring the screen, which enhances the efficiency of stealing users' private data. 
 
 \subsection{USB Security Defenses}
 \label{subsec:usb_defence}
 
 Many defenses have been proposed to defend against BadUSB attacks~\cite{sok}.
 
-From the hardware perspective, the BadUSB attack requires `D-' and `D+' pins which
+From the hardware perspective, the BadUSB attack requires \mbox{`D-' and `D+'} pins which
 are defined by the protocol to transmit data. Without these pins, data cannot 
 be transferred via a \ac{USB} cable. Based
 on this fact, \ac{USB} Condom~\cite{Condom} is a hardware solution to block data
-channels by adding a blocker in the connector. This blocker can cut off the `D-'
-and `D+' connection while leaving power pins intact. However, this method poses
+channels by adding a blocker in the connector. This blocker can cut off the \mbox{`D-' and `D+'} connection while leaving power pins intact. However, this method poses
 a great challenge to the \ac{PnP} property of \ac{USB}, as once it is deployed, it
 stops all \ac{USB} functions other than charging.
 
