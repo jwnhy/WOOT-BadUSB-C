@@ -106,7 +106,7 @@ relies on the rich experience of administrators to build a whitelist. However, s
 modified \ac{USB} devices may hide their real functionality from the user.
 
 To solve this flaw, GoodUSB~\cite{tian2015defending} reports the functionality claimed
-by the device to the user and let the user decides whether to authorize. When a device
+by the device to the user and let the user decide whether to authorize. When a device
 is plugged in, GoodUSB limits its functionality before enumeration until a
 series of authorizations are completed. These authorizations are designed to be
 performed manually, thus the malicious devices will be detected for making a different claim 
@@ -126,7 +126,7 @@ the temporal characteristics of BadUSB-liked attacks. This defense mechanism is
 effective because the attacker cannot obtain the screen of the host using
 BadUSB. In this case, the malicious device can only inject keystrokes in a very
 short time to reduce the risk of being discovered. This defect causes the
-typing characteristics of BadUSB to be detectable. Pham \emph{et al.}~\cite{pham2010optimizing} optimize windows security features, which can
+typing characteristics of BadUSB to be detectable. Pham \emph{et al.}~\cite{pham2010optimizing} optimize Windows security features, which can
 block the execution of unsigned files and the installation of unsigned drivers
 carried on portable media. Moreover, in GoodUSB, a VM is deployed in the host as
 a honeypot to detect and stop malicious behavior of \ac{USB} devices.
