@@ -47,9 +47,9 @@ capability.
 % Using USB devices to inject code
 Besides attacking from the protocol perspective, previous works use a
 \ac{USB} device as a payload delivery means. Duqu~\cite{duqu} uses a user-mode
-rootkit to hide malicious files on the \ac{USB} storage device, \cite{flame} uses a
+rootkit to hide malicious files on the \ac{USB} storage device, Flame\cite{flame} uses a
 zero-day exploit and malicious \textit{autorun.inf} to execute the malware
-automatically. There are also works like \cite{brain,stuxnet,conficker}
+automatically. There are also works \cite{brain,stuxnet,conficker}
 following the same paradigm and performing code-injection attacks. These
 attacks are much more damaging and flexible,
 but they require certain existing flaws like a zero-day vulnerability\cite{zero-day}  and \ac{USB} is merely
@@ -112,7 +112,7 @@ series of authorizations are completed. These authorizations are designed to be
 performed manually, thus the malicious devices will be detected for making a different claim 
 that does not match the authorization results. 
 USBeSafe\cite{usbesafe} analyses the 
-feature vector constructed from with data collected from \acp{URB}, 
+feature vector constructed with the data collected from \acp{URB}, 
 it would detect the novel \ac{USB} packets based on the machine learning algorithm and send 
 a alert to the user before enumeration. As BadUSB attacks normally request privileged 
 interfaces during enumerating, these defenses are sufficient for these attacks.
