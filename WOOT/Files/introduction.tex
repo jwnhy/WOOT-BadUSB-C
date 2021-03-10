@@ -51,9 +51,11 @@ above and implemented a multi-mode attack model of \ac{USB}, named \tool.  \tool
 extends BadUSB to support the features of \ac{USB} Type-C.  Since \ac{USB} Type-C can transfer video stream data, \tool could obtain the information of the
 victim's graphical interface during attacks.  Combining it with the emulation
 of traditional \acp{HID} like keyboards and mice, attackers are capable of
-performing precise attacks.  We did experiments to verify that \tool could also
-bypass some countermeasures for BadUSB since they often rely on interaction
-with the graphical interface.  Moreover, we implemented multiple attacking
+performing precise attacks.  
+%We did experiments to verify that \tool could also
+%bypass some countermeasures for BadUSB since they often rely on interaction
+%with the graphical interface.  
+Moreover, we implemented multiple attacking
 modes of \ac{USB} attacks based on our approach to verify its effectiveness,
 including \ac{HID} Emulator Mode, Video Capture Mode, and Full Control Mode.  To improve the
 efficiency and performance of \tool, we designed a filtering algorithm to
