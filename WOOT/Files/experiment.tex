@@ -50,9 +50,15 @@ After the \tool is plugged into the victim's device, there is an initialization 
 	\item \textbf{Screen Mirror}:
 		During our experiment, we noticed that some devices do not mirror their screen to our \tool by default. In this case, \tool will inject a sequence of keystrokes and mouse movements to set the victim's device into mirror their screen. For example, in Windows 10, \tool can inject `Win+P' keystroke and a mouse click on the `Duplicate' option. However, as \tool is unable to obtain the screen during this process, this can only be performed blindly with a possibility of failure.
 	\item \textbf{Dismiss Notification}:
-		In our experiment, we found that some devices will notify the user presence of an external screen. To avoid being discovered by the victim, \tool will inject keystrokes and mouse movement to dismiss these notifications. Detailed notifications is listed in Table~\ref{tab:notification}.
+		In our experiment, we found that some devices will notify the user presence of an external screen. During our experiment, the following notifications are raised: 
+		\begin{itemize}
+		 \item On Lenovo Xiaoxin Pro 13, it raised a pop-up asking user to select the functionality of the external screen. 
+		 \item On Huawei P30, it showed a status bar indicator and a persistent notification about the external monitor.
+		 \item On iPad Pro (\nth{3} generation), it also showed a blue status bar indicator and a notification about \ac{USB} accessories if iPad is locked.
+		\end{itemize}
+		To avoid being discovered by the victim, \tool can inject keystrokes and mouse movement to dismiss some of these notifications. For example, in the first case, \tool is able to inject a sequence of mouse movement to set the screen at mirror mode to dismiss the pop-up.
 \end{itemize}
-
+\begin{comment}
 \begin{table*}[]
 	\begin{tabular}{|c|c|c|c|}
 		\hline
@@ -67,6 +73,7 @@ After the \tool is plugged into the victim's device, there is an initialization 
 	\caption{Notifications about \tool}
 	\label{tab:notification}
 \end{table*}
+\end{comment}
 
 \subsection{HID Emulator Mode}
 
