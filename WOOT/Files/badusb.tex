@@ -3,7 +3,7 @@
 \subsection{Threat Model}
 
 We build our threat model on the basic assumptions that common users without
-technical background would not treat normal-looking \ac{USB} device as malicious and be cautious about them. This assumption is consistent with existing works~\cite{JFCImpact}. Moreover, we neglect the
+technical background would not treat normal-looking \ac{USB} device as malicious and be cautious about them. This assumption is consistent with existing works~\cite{JFCImpact}. Moreover, we omit the
 effect of notifications from \ac{USB} devices, as users may not have the knowledge to fully understand such notifications. In
 fact, during our experiment, no device had security notifications raised about
 suspicious \ac{USB} devices and only mobile devices had raised a charging notification
@@ -45,7 +45,7 @@ their attacks precisely or know the effects after attacks.
 %attacks, fetching feedback from the victim is much more limited.
 Based on the drawbacks introduced above, several defense mechanisms were
 proposed. For example, GoodUSB~\cite{tian2015defending}
-implemented a authorization procedure when a new device is plugged in and blocks other functions excepted authorized ones.
+implemented an authorization procedure when a new device is plugged in and blocks other functions except authorized ones.
 
 In this work, we utilize the new features of \ac{USB} 3.x~\cite{usb31,usb32} to
 address the problem above.  Benefiting from the latest protocol, we simulate
@@ -93,23 +93,23 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 	\label{fig:attack_model}
 \end{figure}
 
-\textbf{\ac{HID} Emulation Mode.} This mode majorly relies on the ``\ac{HID} Emulator'' in the Figure~\ref{fig:attack_model} to
+\textbf{\ac{HID} Emulation Mode.} This mode mainly relies on the ``\ac{HID} Emulator'' in the Figure\shuqing{fig 3 delete?}~\ref{fig:attack_model} to
 send constructed \ac{HID} packet to the victim. These constructed \ac{HID} packets are
 interpreted by the victim as valid keystrokes and mouse moves. Thus, the
 attacker can executes arbitrary scripts on the victim's device. This is the
 function of the original BadUSB. Based on this, we made the following
 improvements.
 
-First, as \tool has established a feedback channel using \ac{USB} 3.2 protocol, when performing keystroke and mouse movement injection, attacker can obtain real-time feedback from the victim's devices. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such feedback channel largely strengthen the attack ability of \tool.
+First, as \tool has established a feedback channel using \ac{USB} 3.2 protocol, when performing keystroke and mouse movement injection, attacker can obtain real-time feedback from the victim's devices. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such a feedback channel largely strengthens the attack ability of \tool.
 
 Moreover, as the mouse relies on the visual feedback to work properly, its
 emulation and automation were not supported by the original version of BadUSB.
 Yet with the video output support from \ac{USB} 3.x, our \tool implements a
-full-functional mouse emulation. This function enables attacks toward pure \ac{GUI}
+fully-functional mouse emulation. This function enables attacks toward pure \ac{GUI}
 programs and shows attacks in the mobile attack scenarios. Details can
 be obtained in Section~\ref{sec:experiment}.
 
-The advantage of this mode is that it archives defense bypass and attack
+The advantage of this mode is that it achieves defense bypass and attack
 feedback with video streaming.  
 %\fengwei{I don't understand the sentence below.}\hongyi{Fixed, I think it's redundant and less important}
 %As mentioned above, we only require video stream at the beginning (defense
@@ -119,43 +119,43 @@ supported, \tool extends the original BadUSB attack and results in further attac
 mobile devices.
 
 \textbf{Video Capture Mode.} \tool under this mode does not emulate other
-USB device and solely relies on the video stream function of \ac{USB} 3.x; it uses
+USB device and solely relies on the video stream function of \ac{USB} 3.x; it uses the 
 ``Video Capture'' component as shown in the Figure~\ref{fig:attack_model} to transmit the stream to the embedded ``Single Board Computer''.
 %\fengwei{What is embedded computer? Do we define this in the previous\hongyi{Fixed by using the term mentioned in Figure}
 %text?}. 
-The victim's device would mistakenly treat \tool as an external monitor
+The victim's device mistakenly treats \tool as an external monitor
 and output its video stream. This stream is latter processed by the embedded
 computer to extract sensitive data.
 
 When running in this mode, \tool passively processes the victim's video stream
-and detect for ``valuable'' private data.  The data is considered as
-``valuable'' or not is decided by a customized detector, we implemented a simple
+and detects ``valuable'' private data.  The data is considered as
+``valuable'' or not by a customized detector. We implemented a simple
 payment code detector for the poof-of-concept purpose, which demonstrates that we successfully transfer money from a victim to an
 attacker. More detail can be obtained in Section~\ref{sec:experiment}.
 
 It is worth mentioning that \tool under this mode is completely passive, making
-it hard to be detected. With different detector implemented, \tool
+it hard to be detected. With different detectors implemented, \tool
 under this mode is capable of serving more purposes.
 
 \textbf{Full Control Mode.} In \tool, we have implemented all components
 required to control a computer/mobile device completely, including a video stream
-and a keyboard/mouse emulation. Thus with all components enabled, not only
+and a keyboard/mouse emulation. Thus with all components enabled, not only does
 the victim's device treat \tool as an external display, but also a valid \ac{HID}
-input source. Hence we can archive complete hijack of victim's device.
+input source. Hence we can achieve complete hijack of victim's device.
 
 \tool under this mode follows a simple logic. \tool receives video stream
-from the victim's device and redirect it to the attacker via GSM/WiFi. In the
-meanwhile, \tool also receives keystrokes and mouse movement from the attacker
+from the victim's device and redirects it to the attacker via GSM/WiFi. In the
+meanwhile, \tool also receives keystrokes and mouse movements from the attacker
 through GSM/WiFi and replays them to the victim by the \ac{USB} emulation.
 
 This mode enables attacker to perform delicate operations that are beyond
-automation. Moreover, this mode provides a backdoor that does not require host
+automation. Moreover, this mode provides a backdoor that does not require a host
 network and thus is undetectable by the firewall running on the host machine.
 %\hongyi{I think this is a quite good selling point?}\shuqing{Agree with
 %Hongyi.}
 
-The advantage of this mode is that it can completely hijack the victim device
-and provide a backdoor beyond detection of firewalls; however, this complete control
+The advantage of this mode is that it can completely hijack the victims device
+and provides a backdoor beyond detection of firewalls; however, this complete control
 also comes with the price of high power consumption and risk of being detected
 by the user.
 
