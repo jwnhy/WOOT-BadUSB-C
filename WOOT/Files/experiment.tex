@@ -205,10 +205,8 @@ station causing a potential threat to subsequent users.
 
 \textbf{QR Code Payment}.
 QR code payment is a new type of payment method that is popular in Asia. Its most well-known cases are WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay}. QR code payment provides merchant and client a convenient way of offline payment while ensuring equivalent security as the credit card.
-====================================================
-As illustrated in Figure~\ref{fig:qr_payment_procedure}, QR code payment information from the video stream.  
-When the victim viewed text or photos withnt is typically performed in the following steps:
-====================================================
+As illustrated in Figure~\ref{fig:qr_payment_procedure},
+ QR code payments are typically performed in the following steps:
 \ding{182} The client presents the payment QR code on the mobile device to the merchant.
 The QR code is encoded with a globally unique ID to identify the client's account.
 \ding{183} The merchant scans the payment QR code and charges the corresponding amount of money.
@@ -250,13 +248,13 @@ following steps.
 \begin{enumerate}[I. ]
 	\item The attacker rents a power bank from one of the power bank stations and replaces the internal components with \tool.
 	\item After the modification, an attacker-crafted power bank is returned to a rental station in a crowded area like an airport or railway station, which increases the probability of success.
-	\item A user borrows the modified power bank and connects it to her own device, becoming the victim of \tool.
+	\item A user borrows the modified power bank and connects it to his/her own device, becoming the victim of \tool.
 	\item The attacker now has complete control over the victim and can perform various attacks using different modes.
 \end{enumerate}
 
 Next, we summarize the possible threats toward users under different modes.
 %\hongyi{Better way to express this?}
-First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using video capture mode, once the victims accesses their sensitive data such as QR payment  code or photos, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
+First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data such as QR payment  code or photos, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
 
 \shuqing{Background is longer than real user study.}
 %As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the full control mode hijacks the victim's device completely.
@@ -264,25 +262,25 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 %Here we only validate the usability of privacy extraction mode and conducted a user study.
 
 To further validate our attacking scenario, we invited 10 volunteers, who are students in our university, to participate and conduct a user study.
-Before the user study experiment, we discloses to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
-During the case study, volunteers took turns to use their phones for half an hour with \tool connected, which is considered as a normal power bank usage time.
-To obtain data close to real-life, they were requested to use phones just as they would when normally using the shared power banks.\shuqing{check}
-After each experiment, the raw video and the corresponding \ac{OCR} result file will be generated automatically, then we presented these files to him/her, introduced our attack, told him/her to analyze the video file and replace certain characters of the private data that appear in the \ac{OCR} result file with asterisks. It protects their privacy and is also a mark for us to confirm that the data we find contains their private data. At last, he/she would destroy all original files, leave only the desensitized \ac{OCR} result for us. 
-\shuqing{Do we need to mention that agreement the conference required here?}
-\hongyi{I'm also quite concern about this.}
+Before the user study experiment, we disclosed to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
+During the case study, volunteers took turns to use their phones for half an hour with \tool connected.
+To obtain data close to real-life, they were requested to use phones just as they were normally using sharing power banks.
+After each experiment, the raw video and the corresponding \ac{OCR} result file was generated automatically, then we presented these files to him/her, introduced our attack, told him/her to analyze the video file and replace certain characters of the private data that appear in the \ac{OCR} result file with asterisks. This protects their privacy and is also a mark for us to confirm that the data we find contains their private data. At last, he/she would destroy all original files, leave only the desensitized \ac{OCR} result for us. 
+%\shuqing{Do we need to mention that agreement the conference required here?}
+%\hongyi{I'm also quite concern about this.}
 
 
 \subsubsection{Result}
 
 After collecting the captured videos of the mobile phone, we analyzed the videos both automatically and manually.
 During the automatic analysis, we used scripts to perform \ac{OCR} recognition for each frame in the recorded videos and stored all of the \ac{OCR} results in a database.
-In total, there are 94,058 entries of data collected from 10 volunteers.
+In total, there are 94,058 entries of data from 10 volunteers.
 %\shuqing{The data may need to be updated.}
 With these results, we could learn what content the victim visited, especially the privacy data.
 %\fengwei{The following text needs to be revised. It is quite difficult for me to understand. Note that this is important text because reviewers are curious about the result. }
 We searched the result database with the keywords \textit{account, username, password, phone number and email}, as well as the regular expression of email.
-The records searched by such keywords and regular expression are usually related to privacy information of users.
-For example, when we searched with \textit{account} as a keyword, victim's accounts can be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example} and Table~\ref{table:information_extracted}.
+The records searched by such keywords and regular expressions are usually related to privacy information of users.
+For example, when we searched with \textit{account} as a keyword, victim's accounts could be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example} and Table~\ref{table:information_extracted}.
 %\shuqing{Statistics.}
 The frame number is the position of this frame in the recorded video, which indicates a target for manual analysis for further data extraction.
 At last, we found 4,172 of 94,058 records obtained by \tool which are related to privacy information, as shown in the Table~\ref{table:information_extracted}.

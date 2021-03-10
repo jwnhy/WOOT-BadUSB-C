@@ -115,11 +115,11 @@ feature vector constructed with the data collected from \acp{URB},
 detects the novel \ac{USB} packets based on the machine learning algorithm and sends 
 a alert to the user before enumeration. As BadUSB attacks normally request privileged 
 interfaces during enumerating, these defenses are sufficient for these attacks.
-Moreover, Mueller \emph{et al.}~\cite{MuellerZN19} improve the security without changing user experience. It can detect the presence of the user, block malicious device in the user's absenc until the session is unlocked.
+Moreover, Mueller \emph{et al.}~\cite{MuellerZN19} improve the security without changing user experience. It can detect the presence of the user, block malicious device in the user's absence until the session is unlocked.
 
-After the \ac{USB} enumeration and driver loading, some related works
-archive `defense in depth'
-against BadUSB attacks.  Neuner \emph{et al.}~\cite{neuner2018usblock}
+
+After the \ac{USB} enumeration and driver loading, some related works follow the \textit{defense in depth} approach to defend against BadUSB attacks.  
+Neuner \emph{et al.}~\cite{neuner2018usblock}
 prevent BadUSB attacks from the malicious flash drive by analyzing
 the temporal characteristics of BadUSB-like attacks. This defense mechanism is
 effective because the attacker cannot obtain the screen of the host using

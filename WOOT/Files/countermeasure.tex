@@ -1,10 +1,10 @@
 \section{Countermeasures}
 \label{sec:countermeasures}
 
-Authorization mechanisms like GoodUSB~\cite{tian2015defending} have been
-proposed as countermeasures against BadUSB attacks. As mentioned in
-Section~\ref{sec:badusb} and Section~\ref{sec:experiment}, GoodUSB relies on
-internal display for authorization, which can be bypassed via our \tool. 
+%Authorization mechanisms like GoodUSB~\cite{tian2015defending} have been
+%proposed as countermeasures against BadUSB attacks. As mentioned in
+%Section~\ref{sec:badusb} and Section~\ref{sec:experiment}, GoodUSB relies on
+%internal display for authorization, which can be bypassed via our \tool. 
 %Hence, GoodUSB is indeed a great defense against traditional BadUSB attack but
 %no defense at all for our \tool. 
 Next, we discuss our recommended countermeasures against \tool.
@@ -14,7 +14,7 @@ introduce external hardware completing the authorization process. For example,
  \mbox{USBCheckIn}~\cite{usbcheckin} adopts a dedicated hardware between
 the host and device. When a device is plugged-in, the authorization will be
 conducted on the dedicated hardware instead of the internal display, preventing
-the host from being hijacked. Though \mbox{USBCheckIn} is an adequate defense against
+the host from being hijacked. Although \mbox{USBCheckIn} is an adequate defense against
 \tool, the external hardware brings additional cost and inconvenience,
 especially for mobile devices.
 
@@ -29,9 +29,9 @@ Such defense methods effectively stop attacks
 like \tool.
 
 \textbf{Isolated \ac{UI} Rendering.} During our experiments, we noticed that \tool
-is actually unable to redirect out the locking screen keyboard from the iPad
+is actually unable to mirror the lock screen keyboard from the iPad
 OS. Instead, the keyboard is only available on the internal display. However,
-this defense is only enabled on the locking screen keyboard, other keyboards
+this defense is only enabled on the lock screen keyboard, other keyboards
 (e.g., the virtual ones used by the apps) are still vulnerable to our \tool.
 This mechanism has inspired us to propose a new defense against our \tool
 called \emph{Isolated \ac{UI} Rendering}. As illustrated in
@@ -43,7 +43,7 @@ will only render it on the secure layer, which only shows the sensitive content
 (e.g., a keyboard) on the trusted screen. For the rest of the rendering, it
 would render on both the trusted and untrusted display (e.g., insensitive
 contents).
-For example, in Figure~\ref{fig:isolated_ui}, the `password' and `keyboard' are recognized as sensitive while other parts of content are in sensitive. Thus, the `password' and `keyboard' are not rendered on untrusted screen.
+For example, in Figure~\ref{fig:isolated_ui}, the ``password'' and ``keyboard'' are recognized as sensitive while other parts of content are insensitive. Thus, the ``password'' and ``keyboard'' are not rendered on untrusted screen.
 
 \begin{figure}[t]
 	\centering
