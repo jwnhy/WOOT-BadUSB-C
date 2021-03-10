@@ -39,7 +39,7 @@ limitation of \ac{USB} 2.0~\cite{usb20} protocol, these BadUSB
 attacks~\cite{badusb} are unable to obtain video feedback from the victim
 as video stream was not supported until \ac{USB} 3.0~\cite{usb30}. Although \ac{USB} 2.0 does not
 support video transmission, there exists a protocol called \ac{MHL} which extends the \ac{USB} standard and allows the video signal to
-be transmitted through the \ac{USB} interface. JFC~\cite{JFC}, short for Juicy Filming Attacks is an example that abuses this standard and exfiltrate video data
+be transmitted through the \ac{USB} interface. JFA~\cite{JFC}, short for Juice Filming Attacks is an example that abuses this standard and exfiltrates video data
 from the victim without permission. However, in JFC, this data exfiltration is not
 combined with BadUSB attacks, and \ac{MHL} is an outdated standard, which limits its
 capability.
@@ -58,11 +58,10 @@ a payload delivery method.
 % Using USB for information leakage
 As a data transmission protocol, \ac{USB} inevitably leaks electromagnetic signals
 to the environment which may contain sensitive information. Leveraging this
-physical phenomenon, previous research~\cite{smartphone,
+physical phenomenon, previous works~\cite{smartphone,
 poweremi,revealing,su2017usb,usbgpslocator,bates2014leveraging,badusbhub,usbfinger,side,usbdriver}
-eavesdrop on leaked signals and recover the sensitive data. In a similar fashion,\shuqing{citation}
-\cite{usbee,turnip} emit electromagnetic emissions by data injection on the bus
-with the connected \ac{USB} devices as an RF transmitter and \cite{usbkiller,cable}
+eavesdrop on leaked signals and recover the sensitive data. In a similar fashion, USBee\cite{usbee} and TURNIPSCHOOL\cite{turnip} emit electromagnetic emissions by data injection on the bus
+with the connected \ac{USB} devices as an RF transmitter and USBKiller\cite{usbkiller}
 inject analog
 power to cause physical damage to the host machine. Even though the data,
 including the video data, could be recovered in this way, these attacks for
@@ -113,7 +112,7 @@ performed manually, thus the malicious devices will be detected if they make a d
 that does not match the authorization results. 
 USBeSafe\cite{usbesafe} analyses the 
 feature vector constructed with the data collected from \acp{URB}, 
-it detects the novel \ac{USB} packets based on the machine learning algorithm and sends 
+detects the novel \ac{USB} packets based on the machine learning algorithm and sends 
 a alert to the user before enumeration. As BadUSB attacks normally request privileged 
 interfaces during enumerating, these defenses are sufficient for these attacks.
 Moreover, Mueller \emph{et al.}~\cite{MuellerZN19} improve the security without changing user experience. It can detect the presence of the user, block malicious device in the user's absenc until the session is unlocked.

@@ -4,10 +4,7 @@
 
 We build our threat model on the basic assumptions that common users without
 technical background would not treat normal-looking \ac{USB} device as malicious and be cautious about them. This assumption is consistent with existing works~\cite{JFCImpact}. Moreover, we omit the
-effect of notifications from \ac{USB} devices, as users may not have the knowledge to fully understand such notifications. In
-fact, during our experiment, no device had security notifications raised about
-suspicious \ac{USB} devices and only mobile devices had raised a charging notification
-about our \tool, which may not be a sufficient warning for users.
+effect of notifications from \ac{USB} devices, as users may not have the knowledge to fully understand such notifications. 
 
 We also assume the victim's device is equipped with fully functional \ac{USB} 3.x
 protocol and \ac{USB} Type-C connector. As the \ac{USB} 3.x standard is
@@ -93,14 +90,14 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 	\label{fig:attack_model}
 \end{figure}
 
-\textbf{\ac{HID} Emulation Mode.} This mode mainly relies on the ``\ac{HID} Emulator'' in the Figure\shuqing{fig 3 delete?}~\ref{fig:attack_model} to
+\textbf{\ac{HID} Emulation Mode.} This mode mainly relies on the ``\ac{HID} Emulator'' in Figure~\ref{fig:attack_model} to
 send constructed \ac{HID} packet to the victim. These constructed \ac{HID} packets are
 interpreted by the victim as valid keystrokes and mouse moves. Thus, the
-attacker can executes arbitrary scripts on the victim's device. This is the
+attacker can execute arbitrary scripts on the victim's device. This is the
 function of the original BadUSB. Based on this, we made the following
 improvements.
 
-First, as \tool has established a feedback channel using \ac{USB} 3.2 protocol, when performing keystroke and mouse movement injection, attacker can obtain real-time feedback from the victim's devices. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such a feedback channel largely strengthens the attack ability of \tool.
+First, as \tool has established a feedback channel using \ac{USB} 3.2 protocol, when performing keystroke and mouse movement injection, an attacker can obtain real-time feedback from the victim's devices. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such a feedback channel largely strengthens the attack ability of \tool.
 
 Moreover, as the mouse relies on the visual feedback to work properly, its
 emulation and automation were not supported by the original version of BadUSB.
@@ -141,20 +138,20 @@ under this mode is capable of serving more purposes.
 required to control a computer/mobile device completely, including a video stream
 and a keyboard/mouse emulation. Thus with all components enabled, not only does
 the victim's device treat \tool as an external display, but also a valid \ac{HID}
-input source. Hence we can achieve complete hijack of victim's device.
+input source. Hence we can achieve complete hijack of the victim's device.
 
 \tool under this mode follows a simple logic. \tool receives video stream
 from the victim's device and redirects it to the attacker via GSM/WiFi. In the
 meanwhile, \tool also receives keystrokes and mouse movements from the attacker
 through GSM/WiFi and replays them to the victim by the \ac{USB} emulation.
 
-This mode enables attacker to perform delicate operations that are beyond
+This mode enables attackers to perform delicate operations that are beyond
 automation. Moreover, this mode provides a backdoor that does not require a host
 network and thus is undetectable by the firewall running on the host machine.
 %\hongyi{I think this is a quite good selling point?}\shuqing{Agree with
 %Hongyi.}
 
-The advantage of this mode is that it can completely hijack the victims device
+The advantage of this mode is that it can completely hijack the victim's device
 and provides a backdoor beyond detection of firewalls; however, this complete control
 also comes with the price of high power consumption and risk of being detected
 by the user.
