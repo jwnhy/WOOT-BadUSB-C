@@ -32,20 +32,20 @@ attack scheme. Due to the lack of authentication in the \ac{USB} protocol, malic
 devices can hide their real functionality with re-written
 firmware~\cite{rubber,badusb,rubberducky2020,usbbypassing,iseeyou,usbdriver}.
 These works rewrite the firmware of a normal-looking flash drive, which allows
-it to pretend like other devices. When these modified drives are connected to the
+it to act like other devices. When these modified drives are connected to the
 host, they could be recognized as a keyboard or mouse. Then the attacker can
 execute malicious payloads as they were using the victim's devices. Due to the
 limitation of \ac{USB} 2.0~\cite{usb20} protocol, these BadUSB
 attacks~\cite{badusb} are unable to obtain video feedback from the victim
-as video stream was not supported until \ac{USB} 3.0~\cite{usb30}. Though \ac{USB} 2.0 does not
+as video stream was not supported until \ac{USB} 3.0~\cite{usb30}. Although \ac{USB} 2.0 does not
 support video transmission, there exists a protocol called \ac{MHL} which extends the \ac{USB} standard and allows the video signal to
-be transmitted through the \ac{USB} interface. JFC~\cite{JFC}, short for Juicy Filming Attacks is such a work that abuses this standard and exfiltrate video data
+be transmitted through the \ac{USB} interface. JFC~\cite{JFC}, short for Juicy Filming Attacks is an example that abuses this standard and exfiltrate video data
 from the victim without permission. However, in JFC, this data exfiltration is not
 combined with BadUSB attacks, and \ac{MHL} is an outdated standard, which limits its
 capability.
 
 % Using USB devices to inject code
-Besides attacking from the protocol perspective, previous works use a
+Besides attacking from the protocol perspective, previous works\shuqing{re?} used a
 \ac{USB} device as a payload delivery means. Duqu~\cite{duqu} uses a user-mode
 rootkit to hide malicious files on the \ac{USB} storage device, Flame\cite{flame} uses a
 zero-day exploit and malicious \textit{autorun.inf} to execute the malware

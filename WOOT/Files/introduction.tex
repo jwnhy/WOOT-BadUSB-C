@@ -2,25 +2,25 @@
 \label{sec:introduction}
 
 The \ac{USB} protocol has become popular worldwide
-since its appearance, as it provides a unified and easy-to-use approach for a
+since its appearance\shuqing{When?}, as it provides a unified and easy-to-use approach for a
 extensive range of devices to communicate with each other.  From version 1.0 till
 now, \ac{USB} specification has evolved rapidly and offered more and more
 functionalities.  Nowadays, devices with \ac{USB} support are ubiquitous.
 
-On the other side of the coin, the security of \ac{USB} has caused severe problems.
+Conversely, the security of \ac{USB} has caused severe problems.
 Recent research of all USB specifications indicates that security has not been taken into consideration.~\cite{sok}  There are more than 400
-vulnerabilities referencing \ac{USB} on CVE list~\cite{website:CVE-list}.  As a
+vulnerabilities related to \ac{USB} on CVE list~\cite{website:CVE-list}.  As a
 result, many attackers exploit these vulnerabilities and the
 \textit{trust-by-default} characteristics of \ac{USB} to conduct attacks, which puts
 the privacy and financial security of \ac{USB} users in danger~\cite{sok}.
 
 BadUSB is a well-known class of firmware attacks~\cite{badusb}.  These attacks
-are conducted by modifying the device firmware, which will disguise
+are conducted by modifying the device firmware, which are disguised
  as ordinary \ac{USB} devices as other types of devices that are \textit{trust-by-default}
-by the hosts.  Typical simulated devices include \ac{HID}~\cite{hid} and disks.  Utilizing BadUSB,
-attackers can pretend themselves as regular users, typing malicious commands to
-victim computers, downloading and executing malicious scripts, and copying out
-private data from disks.  Such attacks can easily escape from traditional
+by the hosts.  Typically, simulated devices include \ac{HID}~\cite{hid} and disks.  Utilizing BadUSB,
+attackers can pretend to be regular users, typing malicious commands to
+victims' computers, downloading and executing malicious scripts, and copying out
+private data from disks.  Such attacks can easily \shuqing{arg1} get detected by from traditional
 anti-virus software since it is hard to distinguish them from ordinary \ac{USB}
 devices.
 
@@ -46,11 +46,11 @@ It provides a graphical interface for users to describe the functionalities or
 roles of the \ac{USB} device and reject any usage beyond the description.
 %\shuqing{Can't bypass USBCheckIn.}
 
-In this work, we proposed our approach addressing the limitations mentioned
+In this work, we addressed the limitations mentioned
 above and implemented a multi-mode attack model of \ac{USB}, named \tool.  \tool
 extends BadUSB to support the features of \ac{USB} Type-C.  Since \ac{USB} Type-C can transfer video stream data, \tool could obtain the information of the
 victim's graphical interface during attacks.  Combining it with the emulation
-of traditional \acp{HID} like keyboards and mice, attackers are capable of
+of traditional \acp{HID}, e.g., keyboards and mice, attackers are capable of
 performing precise attacks.  
 %We did experiments to verify that \tool could also
 %bypass some countermeasures for BadUSB since they often rely on interaction
@@ -68,7 +68,7 @@ user study, we obtained a large amount of sensitive data through \tool, since
 users are usually unconscious of the necessity to check the \ac{USB} devices they
 plugged in for security purposes.  
 Ten volunteers are involved in the user study.
-Finally, we found that 4,796 of 94,058 records obtained by \tool are related to users' privacy information.
+Finally, we found that 4,796 of 94,058 records obtained by \tool are related to users' privacy information, demonstrating the \shuqing{importance of our re?}.
 After the validation of our attack model, we
 proposed several defense methods as countermeasures, including external
 hardware authorization, distrust-by-default, etc.  It is worth noting that we
