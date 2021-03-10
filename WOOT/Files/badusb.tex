@@ -4,7 +4,7 @@
 
 We build our threat model on the basic assumptions that common users without
 technical background would not treat normal-looking \ac{USB} device as malicious and be cautious about them. This assumption is consistent with existing works~\cite{JFCImpact}. Moreover, we omit the
-effect of notifications from \ac{USB} devices, as users may not have the knowledge to fully understand such notifications. 
+effect of notifications from \ac{USB} devices, as users may not have the knowledge to fully understand such notifications.
 
 We also assume the victim's device is equipped with fully functional \ac{USB} 3.x
 protocol and \ac{USB} Type-C connector. As the \ac{USB} 3.x standard is
@@ -63,15 +63,15 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 %We might also consider to explain this in the Figure caption.}
 
 \begin{itemize}
-	
+
 	\item\underline{USB 3.x Hub} exports the \ac{USB} 3.x connector into various ports, like DisplayPort, \ac{USB} 2.0 port, etc.
-	
+
 	\item\underline{Video Capture Card} converts DisplayPort signal into compatible data, which is later processed by the Single Board Computer (i.e., an embedded computer).
-	
+
 	\item\underline{\ac{HID} Emulator} emulates \ac{HID} device which can be controlled from the attacker.
-	
+
 	\item\underline{Single Board Computer} processes video stream from the victim via the Video Capture Card or sends commands to the victim via \ac{HID} Emulator.
-	
+
 	\item\underline{Wi-Fi/GSM Module} transmits the sensitive data or receives commands to/from the remote attacker PC.
 
 \end{itemize}
@@ -107,7 +107,7 @@ programs and shows attacks in the mobile attack scenarios. Details can
 be obtained in Section~\ref{sec:experiment}.
 
 The advantage of this mode is that it achieves defense bypass and attack
-feedback with video streaming.  
+feedback with video streaming.
 %\fengwei{I don't understand the sentence below.}\hongyi{Fixed, I think it's redundant and less important}
 %As mentioned above, we only require video stream at the beginning (defense
 %bypass) and the end (result feedback) of the attack.
@@ -116,10 +116,10 @@ supported, \tool extends the original BadUSB attack and results in further attac
 mobile devices.
 
 \textbf{Video Capture Mode.} \tool under this mode does not emulate other
-USB device and solely relies on the video stream function of \ac{USB} 3.x; it uses the 
+USB device and solely relies on the video stream function of \ac{USB} 3.x; it uses the
 ``Video Capture'' component as shown in the Figure~\ref{fig:attack_model} to transmit the stream to the embedded ``Single Board Computer''.
 %\fengwei{What is embedded computer? Do we define this in the previous\hongyi{Fixed by using the term mentioned in Figure}
-%text?}. 
+%text?}.
 The victim's device mistakenly treats \tool as an external monitor
 and output its video stream. This stream is latter processed by the embedded
 computer to extract sensitive data.
@@ -127,7 +127,7 @@ computer to extract sensitive data.
 When running in this mode, \tool passively processes the victim's video stream
 and detects ``valuable'' private data.  The data is considered as
 ``valuable'' or not by a customized detector. We implemented a simple
-payment code detector for the poof-of-concept purpose, which demonstrates that we successfully transfer money from a victim to an
+payment code detector for the proof-of-concept purpose, which demonstrates that we successfully transfer money from a victim to an
 attacker. More detail can be obtained in Section~\ref{sec:experiment}.
 
 It is worth mentioning that \tool under this mode is completely passive, making
