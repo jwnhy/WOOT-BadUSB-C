@@ -24,7 +24,7 @@ Apart from these essential parts, we also use an auxiliary power-bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 
-\circled[text=white,fill=myblue]{\scriptsize{A}} is a Huawei mobile phone as the victim's device; \circled[text=white,fill=myblue]{\scriptsize{B}} is a compact look of \tool prototype; \circled[text=white,fill=myblue]{\scriptsize{1}} is the \ac{USB} 3.x Hub; \circled[text=white,fill=myblue]{\scriptsize{2}} is a Raspberry Pi 4B as the Single Board Computer; \circled[text=white,fill=myblue]{\scriptsize{3}} is an auxiliary power bank; \circled[text=white,fill=myblue]{\scriptsize{4}} is the Video Capture Card; \circled[text=white,fill=myblue]{\scriptsize{5}} is an Atmel ATMEGA32U4 board as the \ac{HID} Emulator.
+\circled[text=white,fill=myblue]{\scriptsize{A}} is a Huawei mobile phone, the victim's device; \circled[text=white,fill=myblue]{\scriptsize{B}} is a compact look of \tool prototype; \circled[text=white,fill=myblue]{\scriptsize{1}} is the \ac{USB} 3.x Hub; \circled[text=white,fill=myblue]{\scriptsize{2}} is a Raspberry Pi 4B as the Single Board Computer; \circled[text=white,fill=myblue]{\scriptsize{3}} is an auxiliary power bank; \circled[text=white,fill=myblue]{\scriptsize{4}} is the Video Capture Card; \circled[text=white,fill=myblue]{\scriptsize{5}} is an Atmel ATMEGA32U4 board as the \ac{HID} Emulator.
 %\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
 %2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
 %\fengwei{I think it is necessary to explain them in the text again.}
@@ -50,29 +50,36 @@ After the \tool is plugged into the victim's device, there is an initialization 
 	\item \textbf{Screen Mirror}:
 		During our experiment, we noticed that some devices do not mirror their screen to our \tool by default. In this case, \tool will inject a sequence of keystrokes and mouse movements to set the victim's device into mirror their screen. For example, in Windows 10, \tool can inject `Win+P' keystroke and a mouse click on the `Duplicate' option. However, as \tool is unable to obtain the screen during this process, this can only be performed blindly with a possibility of failure.
 	\item \textbf{Dismiss Notification}:
-		In our experiment, we found that some devices will notify the user presence of an external screen. To avoid being discovered by the victim, \tool will inject keystrokes and mouse movement to dismiss these notifications. Detailed notifications is listed in Table~\ref{tab:notification}.
+		In our experiment, we found that some devices will notify the user the presence of an external screen. During our experiment, the following notifications are raised: 
+		\begin{itemize}
+		 \item On Lenovo Xiaoxin Pro 13, it raised a pop-up asking user to select the functionality of the external screen. 
+		 \item On Huawei P30, it showed a status bar indicator and a persistent notification about the external monitor.
+		 \item On iPad Pro (\nth{3} generation), it also showed a blue status bar indicator and a notification about \ac{USB} accessories if iPad is locked.
+		\end{itemize}
+		To avoid being discovered by the victim, \tool can inject keystrokes and mouse movement to dismiss some of these notifications. For example, in the first case, \tool is able to inject a sequence of mouse movements to set the screen at mirror mode to dismiss the pop-up.
 \end{itemize}
-
+\begin{comment}
 \begin{table*}[]
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		Device                                                               & Operating System                                                                                         & Notification              & Dismiss Action                                            \\ \hline
 		\begin{tabular}[c]{@{}c@{}}Lenovo Xiaoxin Pro 13\\ 2020\end{tabular} & Windows 10 (OS Build 18363.1379)                                                                         & Pop-up                    & ``Win+P''-\textgreater{}Mouse click on `Duplicate' Option \\ \hline
-		\multirow{2}{*}{HUAWEI P30 (ELE-AL00)}                               & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}EMUI 11.0.0.135(C00E128R2P5)\\ Android 10 based\end{tabular}} & Status bar indicator      & N/A                                                       \\ \cline{3-4} 
+		\multirow{2}{*}{HUAWEI P30 (ELE-AL00)}                               & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}EMUI 11.0.0.135(C00E128R2P5)\\ Android 10 based\end{tabular}} & Status bar indicator      & N/A                                                       \\ \cline{3-4}
 		&                                                                                                          & Persistent notifications  & N/A                                                       \\ \hline
-		\multirow{2}{*}{iPad Pro (3rd generation)}                           & \multirow{2}{*}{iOS 14.4 (Build 18D52)}                                                                  & Status bar indicator      & N/A                                                       \\ \cline{3-4} 
+		\multirow{2}{*}{iPad Pro (3rd generation)}                           & \multirow{2}{*}{iOS 14.4 (Build 18D52)}                                                                  & Status bar indicator      & N/A                                                       \\ \cline{3-4}
 		&                                                                                                          & Pop-up (only when locked) & N/A                                                       \\ \hline
 	\end{tabular}
 	\linebreak
 	\caption{Notifications about \tool}
 	\label{tab:notification}
 \end{table*}
+\end{comment}
 
 \subsection{HID Emulator Mode}
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC in Windows 10 (OS Build 18363.1379) with two \ac{USB} Type-C interfaces as the
-target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's devices raise a pop-up window asking victim's what mode should new screen be set to. \tool immediately inject a sequence of mouse movement and click to set itself as a mirror to the primary monitor. Thus we have successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulting in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attacker real-time feedback which allows attacker to perform more accurate attack.
+target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's devices raise a pop-up window asking victims what mode should new screen be set to. \tool immediately inject a sequence of mouse movement and click to set itself as a mirror to the primary monitor. Thus we have successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulting in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attacker real-time feedback which allows attacker to perform more accurate attack.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
 
@@ -123,6 +130,10 @@ device in this experiment.
 
 \subsection{Case study}
 \label{subsec:case_study}
+\tool can be used in various attack scenarios, ranging from mobile devices to PC devices.
+For example, \tool can be attached to the power station, which provides USB 3 hubs, in the airport to perform attacks.
+Most people charge their laptops or smartphones in the power station in emergency, with negligence of security.
+In the following paragraphs, 
 
 \subsubsection{Background}
 
@@ -165,7 +176,7 @@ device in this experiment.
 We first introduce the technical background of our case study, sharing power
 bank service and QR code payment.
 
-\textbf{Sharing Power Bank}.  Sharing power bank provides users with short-term
+\textbf{Sharing Power Bank}.  Sharing power banks provide users with short-term
 rental of power banks.  The company deploys power bank stations in the city and
 users can rent a power bank from any of the power bank stations, charge their
 device on the trip, return the rented power bank to the near stations, and pay
@@ -186,7 +197,7 @@ service to entire Europe.
 
 \shuqing{May use statistics (instead of concrete examples) to explain it.}
 
-Not only does sharing power bank provides convenience to users, but it also
+Not only do sharing power bank provide convenience to users, but it also
 brings security issues.  We noticed that most of the power bank stations do not
 check the integrity of power banks during the rental process, and users are
 hardly cautious to check the power banks when connecting their devices.  An
@@ -196,7 +207,7 @@ station causing a potential threat to subsequent users.
 
 \textbf{QR Code Payment}.
 QR code payment is a new type of payment method that is popular in Asia. Its most well-known cases are WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay}. QR code payment provides merchant and client a convenient way of offline payment while ensuring equivalent security as the credit card.
-As illustrated in Figure~\ref{fig:qr_payment_procedure}, QR code paymeinformation from the video stream.  When the victim viewed text or photos withnt is typically performed in the following steps:
+As illustrated in Figure~\ref{fig:qr_payment_procedure}, QR code payment information from the video stream.  When the victim viewed text or photos withnt\shuqing{?} is typically performed in the following steps:
 \ding{182} The client presents the payment QR code on the mobile device to the merchant.
 The QR code is encoded with a globally unique ID to identify the client's account.
 \ding{183} The merchant scans the payment QR code and charges the corresponding amount of money.
@@ -216,7 +227,7 @@ By presenting this QR code, the client authorizes the proceeding transaction.
 Next, we explain one type of payments called micropayment. A micropayment is pre-determined by the payment
 service provider with thresholds in the user agreement. In real-world scenarios, payment service providers use different rules
 for micropayment purchases. For example, WeChat
-Pay~\cite{Wechat-pay} regards transaction under USD \textdollar 154 as
+Pay~\cite{Wechat-pay} regards transactions under USD \textdollar 154 as
 micropayments.  Different from a typical payment procedure, when micropayments
 are made, confirmations can be applied automatically without clients'
 permission which aims to provide convenience to both merchant and client.  If a
@@ -224,7 +235,7 @@ victim's payment code is leaked to the attackers, they can use that code to
 authorize multiple micropayments without needing permission.  In order to prevent such
 cases, both WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay} have designed a refreshing mechanism for the
 payment code, which is to refresh the QR code every minute. This is sufficient
-to stop an attack like sneak shots but unable to stop a real-time attack like our
+to stop an attack like opportunistic theft of QR code but unable to stop a real-time attack like our
 \tool.  In summary, the payment QR code is highly sensitive on users' devices
 and our following case study is about how to obtain this code using an
 attacker-crafted power bank via \tool.
@@ -232,7 +243,7 @@ attacker-crafted power bank via \tool.
 \subsubsection{Attack Scenario}
 
 In this part, we will introduce a real-life attack scenario to show that our
-\tool is a practical offensive tool.  This scenario can be decomposed into the
+\tool is a practical offensive tool.  This scenario can be broken down into the
 following steps.
 
 \begin{enumerate}[I. ]
@@ -243,8 +254,8 @@ following steps.
 \end{enumerate}
 
 Next, we summarize the possible threats toward users under different modes.
-\hongyi{Better way to express this?}
-First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data like QR payment  code or album, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
+%\hongyi{Better way to express this?}
+First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using video capture mode, once the victims accesses their sensitive data such as QR payment  code or photos, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
 
 \shuqing{Background is longer than real user study.}
 %As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the full control mode hijacks the victim's device completely.
@@ -252,10 +263,10 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 %Here we only validate the usability of privacy extraction mode and conducted a user study.
 
 To further validate our attacking scenario, we invited 10 volunteers, who are students in our university, to participate and conduct a user study.
-Before the user study experiment, we disclose to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
-During the case study, volunteers took turns to use their phones for half an hour with \tool connected, which are considered as a normal power bank.
-To obtain data close to real-life, they are requested to use phones like when they use the normal shared power banks.
-After every case study experiment, we introduced to him/her our attack, showed him/her the only raw files (video recorded and corresponding \ac{OCR} results), told him/her to analyze the screen recordings and replace certain characters of the private data that appear in the \ac{OCR} result with asterisks. It protects their privacy and is also a mark for us to confirm that the data we find contains their private data. After he/she made sure their private data is not at risk, he/she can destroy the only raw files, give the desensitized \ac{OCR} result back to us. 
+Before the user study experiment, we discloses to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
+During the case study, volunteers took turns to use their phones for half an hour with \tool connected, which is considered as a normal power bank usage time.
+To obtain data close to real-life, they were requested to use phones just as they would when normally using the shared power banks.\shuqing{check}
+After each experiment, the raw video and the corresponding \ac{OCR} result file will be generated automatically, then we presented these files to him/her, introduced our attack, told him/her to analyze the video file and replace certain characters of the private data that appear in the \ac{OCR} result file with asterisks. It protects their privacy and is also a mark for us to confirm that the data we find contains their private data. At last, he/she would destroy all original files, leave only the desensitized \ac{OCR} result for us. 
 \shuqing{Do we need to mention that agreement the conference required here?}
 \hongyi{I'm also quite concern about this.}
 
@@ -264,7 +275,7 @@ After every case study experiment, we introduced to him/her our attack, showed h
 
 After collecting the captured videos of the mobile phone, we analyzed the videos both automatically and manually.
 During the automatic analysis, we used scripts to perform \ac{OCR} recognition for each frame in the recorded videos and stored all of the \ac{OCR} results in a database.
-In total, there are 94,058 entries of data collected among 10 volunteers.
+In total, there are 94,058 entries of data collected from 10 volunteers.
 %\shuqing{The data may need to be updated.}
 With these results, we could learn what content the victim visited, especially the privacy data.
 %\fengwei{The following text needs to be revised. It is quite difficult for me to understand. Note that this is important text because reviewers are curious about the result. }
