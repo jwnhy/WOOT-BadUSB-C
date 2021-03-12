@@ -1,0 +1,161 @@
+\documentclass[journal,12pt,onecolumn,draftclsnofoot,]{IEEEtran}
+\newcommand{\TheName}{\textsc{Ninja}}
+
+\usepackage{pifont} 
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+
+\begin{document}
+\title{Summary of Changes}
+\maketitle
+
+
+We would like to express our gratefulness to the reviewers for your 
+precious time on reviewing our submission. Here, we present the
+motivation of submitting a journal paper based on our USENIX
+Security 2017 conference paper and summarize the major updates
+and improvements. Then, we provide a list of the detailed changes
+in our IEEE TIFS submission.
+
+\section{Changes Between IEEE TIFS Submission and USENIX Security 2017 Paper}
+
+In our USENIX Security 2017 conference paper~\cite{ninja:usenix17}, we proposed
+\TheName{}, which is a transparent malware analysis system on ARM platform.
+It reduces the footprints and artifacts of an analysis system and provides a
+more transparent execution environment for the malware analyst. 
+
+However, in the scenario of continuous malware analysis, it is also important
+to achieve a fast system restoration. Thus, we design a fast
+restoration mechanism which improves the existing restoration
+systems~\cite{barebox:acsac11,barecloud:usenix14,malt:sp15,bolt:acsac17}. 
+Specifically, we implement selective memory restoration, runtime file system
+restoration, and complete context restoration. The selective memory restoration
+leverages hardware-based tracing to record the changed memory addresses and
+helps to improve the efficiency of memory restoration. The runtime file system
+restoration uses existing runtime file system switching technology to efficiently switch
+between alternative file systems, while the complete context restoration performs
+a complete system register restoration after each analysis session.
+
+Moreover, we extend the trace subsystem of \TheName{} to support data address tracing.
+The data address tracing records the related data address of each load/restore
+instruction and helps an analyst to learn additional information
+about the current running status of a target malware. As an example, 
+the analyst may easily infer the plaintext or encryption keys in AES algorithm
+with the data addresses~\cite{armageddon:usenix16}. Moreover, the data address 
+information is also helpful for dynamic taint analysis~\cite{sokda:sp10} and 
+the selective memory restoration discussed above.
+In light of this, we add data address tracing to the trace subsystem and implement
+it in an NXP i.MX53 Quick Start Board. This implementation
+leverages Linux as the rich OS instead of Android (which we implemented in our USENIX Security conference version) and shows the OS-agnostic feature of \TheName{}.
+
+We also
+improve the instruction tracing with address range and process ID filters.
+These filters help the analyst focus on the interested instructions and processes.
+Additionally, we implement more debugging functions related to the CPU 
+speculative execution. The PMU-based functionality may provide more granularities 
+for stepping. Moreover, some of these granularities are related to the 
+speculative execution feature of the CPU which is abused by recent 
+Meltdown~\cite{meltdown:lipp} and Spectre~\cite{spectre:kocher} attacks.
+With these additional granularities, the analyst can calculate the Meltdown-
+and Spectre- related events like cache miss ratio, number of speculatively
+executed instructions, and branch mispredict ratio. These statistic data
+are proposed to infer Meltdown and Spectre 
+attacks~\cite{detection:israel, detection:capsule8}.
+
+\iffalse
+Our case study with the Meltdown attack on the ARM 
+platform~\cite{meltdownpoc:cosmin} shows that \TheName{} is capable of detecting 
+this new attack. 
+\fi
+
+Some contents are also removed due to conciseness and the page limit. 
+
+
+\section{Detailed Changes}
+
+\subsection{Abstract}
+1) Added a discussion of the newly implemented system restoration mechanism.
+
+\subsection{Introduction}
+1) Added a brief introduction of the improved system restoration.
+
+2) Added the performance evaluation result of our system restoration mechanism.
+
+3) Added a detailed description of the new contributions of this journal extension 
+as compared with our conference paper.
+
+4) Removed the evaluation result of instruction skid.
+
+\subsection{Background}
+1) Removed the background about ARM architecture.
+
+2) Removed Figure 1: The ARMv8 and ARMv7 architectures.
+
+% FIXME: What is Futuremark?
+3) Removed the survey of Futuremark about the ARM processors in popular smartphones and tablets.
+
+\subsection{Related Work}
+1) Added Section 3.3 to discuss the related works on the system restoration.
+
+3) Revised the related works on transparent malware analysis on x86 in Section 3.1.
+
+2) Removed Section 3.3: TrustZone-related systems.
+
+\subsection{System Architecture}
+1) Added data address tracing in Section 4.2 (i.e., using another feature
+of the ETM to achieve the data address tracing).
+
+2) Added CPU speculative execution related example (i.e., the 
+\texttt{INST\_SPEC} event that fires after an instruction is 
+speculatively executed) in Section 4.3.
+
+\subsection{Design and Implementation}
+1) Added a new implementation testbed, an NXP i.MX53 Quick Start Board.
+
+2) Added instruction address filter in Section 5.3.1 (i.e., using the
+address range comparators in the ETM to restrict the trace to
+specific memory ranges).
+
+3) Added process ID filter in Section 5.3.1 (i.e., using the context
+ID filters in the ETM to restrict the trace to a specific process).
+
+4) Added Section 5.3.4 to describe the detailed data address tracing.
+
+5) Added $6$ more granularities for
+stepping debug including branch instruction,
+mispredicted branch instruction, L1 data cache read operation,
+L1 data cache refill operation, speculatively executing a
+load instruction, and speculatively executing a branch instruction 
+in Section 5.4.1.
+
+6) Added Table 1: Representative stepping modes in \TheName{}.
+
+7) Added Section 5.5 to describe the improved system restoration including selective memory restoration, runtime file system restoration, and complete context restoration.
+
+8) Revised Section 5.6 for conciseness.
+
+\subsection{Evaluation}
+1) Added Section 7.3.2 to evaluate the performance of the newly implemented
+system restoration.
+
+2) Added Table 5: Time consumption of system restoration.
+
+3) Revised the description in Section 7.2.1 and Section 7.2.2 for conciseness.
+
+4) Removed Section 7.1: Output of tracing subsystem and Section 7.5: Skid evaluation.
+
+5) Removed Figure 7: Accessing system instruction interface and Figure 8: Memory
+mapped interface.
+
+\subsection{Conclusion}
+1) Added a description of the improved system restoration mechanism.
+
+\subsection{Appendix}
+1) Removed the appendix section.
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,./bibliography/zhenyu}
+
+
+\end{document}
+

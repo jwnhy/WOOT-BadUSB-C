@@ -2,7 +2,11 @@
 \label{sec:discussion}
 
 \subsection{Limitation}
-There exist multiple limitations of \tool. To begin with, when \tool is attached, the victim's device may not be set to mirror the screen. Depending on victim's settings, the \tool may be used as an extended monitor or not be enabled at all. Additionally, some smartphone vendor (e.g. Huawei and Smartisan) provide a Desktop Mode to users, which displays a desktop on external screen instead of mirroring. In these cases, \tool is either easily noticeable to victim or disabled.  Apart from that, we also noticed that in most devices, when an external monitor is connected to the device, there will be notifications about the monitor. In iPad, there is a small blue icon on the notification bar. In Windows 10, there is a pop-up for user to select the functionality of the external monitor. In latter case of a pop-up, \tool can dismiss it by injecting keystrokes and mouse movements. But they are still noticeable by the victim. Also, it cannot be ignored that DisplayPort over \ac{USB} is not available on all devices. When selecting devices to test \tool, we find that many smartphones equipped with USB-C connector does not support \ac{USB} 3.2 protocol. This lack of support further limited \tool.
+There exist multiple limitations of \tool. To begin with, when \tool is attached, the victim's device may not be set to mirror the screen. 
+Depending on the victim's settings, the \tool may be used as an extended monitor or not be enabled at all. Additionally, some smartphone vendors (e.g. Huawei and Smartisan) provide a Desktop Mode to users, which displays a desktop on external screen instead of mirroring. 
+Moreover, as mentioned in Section~\ref{sec:experiment}, \tool cannot directly obtain the information on the lock screen.
+In these cases, \tool is either easily noticeable to the victim or disabled.  Apart from that, we also noticed that in most devices, when an external monitor is connected to the device, there will be notifications about the monitor. In iPad, there is a small blue icon on the notification bar. In Windows 10, there is a pop-up for user to select the functionality of the external monitor. In latter case of a pop-up, \tool can dismiss it by injecting keystrokes and mouse movements. But they are still noticeable by the victim. Also, it cannot be ignored that DisplayPort over \ac{USB} is not available on all devices. When selecting devices to test \tool, we find that many smartphones equipped with USB-C connectors do not support \ac{USB} 3.2 protocol. Such lack of support further limits \tool.
+
 \begin{comment}
 There exist multiple limitations of \tool.  To begin with, \tool can only gain
 the information and control access of the host itself instead of external
@@ -23,13 +27,13 @@ prompting messages.
 %and application scenarios.}
 The \ac{USB} protocol is used widely as introduced in the preceding sections.  As the
 technologies develop rapidly, more and more devices will be equipped with USB-C
-capabilities, which makes \tool more influential.  Due to the neglect to
-check the security of plugged-in \ac{USB} devices of non-professional users, \tool
-can be hardly detected by them while attacks are performing.  The popularity
-and universality of public \ac{USB} devices, including sharing power banks, even
+capabilities, which makes \tool more influential.  
+Since non-professional users often neglect checking the security of plug-in \ac{USB} devices, they are often unaware of the attacks from \tool.
+can be hardly detected by them while attacks are performing.  
+The popularity and universality of public \ac{USB} devices, including sharing power banks, even
 increase such risks.  Moreover, \tool provides a better way for traditional
 BadUSB attacks, since attackers can obtain the screen streaming with ease.
 Attackers can use such technologies to perform more precise attacks, such as
-interacting with the user interface, as well as control the consequences of their
+interacting with the user interface and controlling the consequences of their
 attacks.  In summary, \tool can be applied in various application scenarios and
 brings rather huge impacts.
