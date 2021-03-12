@@ -263,8 +263,10 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 
 To further validate our attacking scenario, we invited 10 volunteers, who are students in our university, to participate and conduct a user study.
 Before the user study experiment, we disclosed to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
-During the case study, volunteers took turns to use their phones for half an hour with \tool connected.
+During the case study, volunteers took turns to use their phones for half an hour with \tool connected. 
 To obtain data close to real-life, they were requested to use phones just as they were normally using sharing power banks.
+At the same time, we used scripts to perform \ac{OCR} recognition for each frame in the videos stream and stored all of the \ac{OCR} results in a database.
+
 After each experiment, the raw video and the corresponding \ac{OCR} result file was generated automatically, then we presented these files to him/her, introduced our attack, told him/her to analyze the video file and replace certain characters of the private data that appear in the \ac{OCR} result file with asterisks. This protects their privacy and is also a mark for us to confirm that the data we find contains their private data. At last, he/she would destroy all original files, leave only the desensitized \ac{OCR} results for us. 
 %\shuqing{Do we need to mention that agreement the conference required here?}
 %\hongyi{I'm also quite concern about this.}
@@ -272,9 +274,7 @@ After each experiment, the raw video and the corresponding \ac{OCR} result file 
 
 \subsubsection{Result}
 
-After collecting the captured videos of the mobile phone, we analyzed the videos automatically.
-During the automatic analysis, we used scripts to perform \ac{OCR} recognition for each frame in the recorded videos and stored all of the \ac{OCR} results in a database.
-In total, there are 94,058 entries of data from 10 volunteers.
+In total, there are 94,058 entries of data from 10 volunteers. An entry is a combination of the case number, the frame number and the desensitized \ac{OCR} result.
 %\shuqing{The data may need to be updated.}
 With these results, we could learn what content the victim visited, especially the privacy data.
 %\fengwei{The following text needs to be revised. It is quite difficult for me to understand. Note that this is important text because reviewers are curious about the result. }
