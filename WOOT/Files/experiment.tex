@@ -272,7 +272,7 @@ After each experiment, the raw video and the corresponding \ac{OCR} result file 
 
 \subsubsection{Result}
 
-After collecting the captured videos of the mobile phone, we analyzed the videos both automatically and manually.
+After collecting the captured videos of the mobile phone, we analyzed the videos automatically.
 During the automatic analysis, we used scripts to perform \ac{OCR} recognition for each frame in the recorded videos and stored all of the \ac{OCR} results in a database.
 In total, there are 94,058 entries of data from 10 volunteers.
 %\shuqing{The data may need to be updated.}
@@ -282,15 +282,7 @@ We searched the result database with the keywords \textit{account, username, pas
 The records searched by such keywords and regular expressions are usually related to privacy information of users.
 For example, when we searched with \textit{account} as a keyword, victim's accounts could be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example} and Table~\ref{table:information_extracted}.
 %\shuqing{Statistics.}
-The frame number is the position of this frame in the recorded video, which indicates a target for manual analysis for further data extraction.
 At last, we found 4,172 of 94,058 records obtained by \tool which are related to privacy information, as shown in the Table~\ref{table:information_extracted}.
-
-
-In the manual analysis, we replayed the videos and extracted sensitive information.
-Accounts of internet applications such as Apple, iCloud, Facebook, Twitter can be obtained.
-Moreover, all of the typing inputs on the virtual keyboard, including the system keyboard and the built-in security keyboards of the financial applications, can be clearly recorded.
-We can obtain the plain text of passwords such as WiFi passwords.
-Furthermore, the received SMS verification code (usually used to confirm real-name authentication) can be obtained when it appears in the top notification bar.
 
 In summary, though we cannot directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract sensitive information including but not limited to social accounts, bank accounts, personal financial situation, etc., if the user unconsciously unlocks the screen.
 It is worth mentioning that {secure keyboards} built in financial apps show their keyboard typing sequences, which can be easily captured by \tool.
