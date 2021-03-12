@@ -2,8 +2,8 @@
 \label{sec:badusb}
 \subsection{Threat Model}
 
-We build our threat model on the basic assumptions that common users without
-technical background would not treat normal-looking \ac{USB} device as malicious and be cautious about them. This assumption is consistent with existing works~\cite{JFCImpact}. Moreover, we omit the
+We build our threat model on a basic assumption that common users without
+technical background would not treat a normal-looking \ac{USB} device as malicious and be cautious about them. This assumption is consistent with existing works~\cite{JFCImpact}. Moreover, we omit the
 effect of notifications from \ac{USB} devices, as users may not have the knowledge to fully understand such notifications.
 
 We also assume the victim's device is equipped with fully functional \ac{USB} 3.x
@@ -30,9 +30,9 @@ rubberducky2020,usbbypassing,iseeyou,usbdriver} focus on BadUSB attacks.
 Many of these take advantage of the \textit{trust-by-default} policy of PC,
 pretend to be normal \ac{HID} devices and utilize \ac{USB} protocol to perform attacks.
 However, these attacks suffer from various drawbacks: \ding{182} attackers can
-only simulate limited types of devices such as \acp{HID} (like keyboards and mice)
+only simulate limited types of devices such as \acp{HID} (e.g. keyboards and mice)
 and disks, which makes the attacks less effective; \ding{183} accurate attacks
-could not be performed due to lack of \ac{UI} status. Whatever \ac{HID} the
+could not be performed due to lack of \ac{UI} status. Whatever \acp{HID} the
 attackers simulate their \ac{USB} devices to be, they could not obtain the \ac{UI} to
 check the status information, which makes it nearly impossible to carry out
 their attacks precisely or know the effects after attacks.
@@ -45,8 +45,8 @@ proposed. For example, GoodUSB~\cite{tian2015defending}
 implemented an authorization procedure when a new device is plugged in and blocks other functions except authorized ones.
 
 In this work, we utilize the new features of \ac{USB} 3.x~\cite{usb31,usb32} to
-address the problem above.  Benefiting from the latest protocol, we simulate
-external display and thus obtain the video stream to perform accurate
+address the problems above.  Benefiting from the latest protocol, we simulate
+an external display and thus obtain the video stream to perform accurate
 attacks. However, we still unable to bypass defenses like GoodUSB~\cite{tian2015defending}, which completely blocks unauthorized functionality. This will be further discussed in Section~\ref{sec:discussion}
 
 As there were various BadUSB implementations available, this work focuses on our new extensions. Next, we first introduce the
@@ -68,7 +68,7 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 
 	\item\underline{Video Capture Card} converts DisplayPort signal into compatible data, which is later processed by the Single Board Computer (i.e., an embedded computer).
 
-	\item\underline{\ac{HID} Emulator} emulates \ac{HID} device which can be controlled from the attacker.
+	\item\underline{\ac{HID} Emulator} emulates \ac{HID} device which can be controlled by the attacker.
 
 	\item\underline{Single Board Computer} processes video stream from the victim via the Video Capture Card or sends commands to the victim via \ac{HID} Emulator.
 
@@ -103,10 +103,10 @@ Moreover, as the mouse relies on the visual feedback to work properly, its
 emulation and automation were not supported by the original version of BadUSB.
 Yet with the video output support from \ac{USB} 3.x, our \tool implements a
 fully-functional mouse emulation. This function enables attacks toward pure \ac{GUI}
-programs and shows attacks in the mobile attack scenarios. Details can
+programs and shows potential in the mobile attack scenarios. Details can
 be obtained in Section~\ref{sec:experiment}.
 
-The advantage of this mode is that it achieves defense bypass and attack
+The advantage of this mode is that it achieves attack
 feedback with video streaming.
 %\fengwei{I don't understand the sentence below.}\hongyi{Fixed, I think it's redundant and less important}
 %As mentioned above, we only require video stream at the beginning (defense

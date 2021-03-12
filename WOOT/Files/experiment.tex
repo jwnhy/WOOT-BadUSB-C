@@ -20,7 +20,7 @@ an onboard WiFi chip. As for the \ac{HID} Emulator, we use an Atmel ATMEGA32U4 b
 with \ac{USB} protocol support, which is able to emulate multiple \acp{HID}
 with our modified firmware. About the \ac{USB} 3.x Hub, we use one from the
 UGREEN~\cite{ugreen}, which supports HDMI, \ac{USB} 2.0, and many other exported peripherals.
-Apart from these essential parts, we also use an auxiliary power-bank to
+Apart from these essential parts, we also use an auxiliary power bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 
@@ -78,8 +78,8 @@ After the \tool is plugged into the victim's device, there is an initialization 
 \subsection{HID Emulator Mode}
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
-2020}, a PC in Windows 10 (OS Build 18363.1379) with two \ac{USB} Type-C interfaces as the
-target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's devices raise a pop-up window asking victims what mode should the new screen be set to. \tool immediately injects a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we have successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
+2020}, a PC in Windows 10 \mbox{(OS Build 18363.1379)} with two \ac{USB} Type-C interfaces as the
+target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's devices raised a pop-up window asking victims what mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
 
@@ -89,7 +89,7 @@ target device. During this experiment, \tool disguised itself as a normal keyboa
 \subsection{Video Capture Mode}
 
 During the experiment of privacy extraction via our video capture mode, we chose \textit{HUAWEI P30 (ELE-AL00)}, a
-smartphone in EMUI 11.0.0.135(C00E128R2P5) (Android 10.0 based) with a \ac{USB} Type-C interface, as the
+smartphone in EMUI 11.0.0.135(C00E128R2P5) \mbox{(Android 10.0 based)} with a \ac{USB} Type-C interface, as the
 target device.  In the privacy extraction experiment, \tool passively captured video
 from the victim's device and used \textit{OpenCV} to identify the sensitive
 information from the video stream.  When the victim viewed text or photos with
@@ -97,7 +97,7 @@ text, \tool used the techniques of \ac{OCR}  to
 extract text from corresponding video frames. In this experiment, the attacker
 successfully extracted text such as name, address, ID number, and other sensitive
 personal information. We also tested the payment code extractor, which enables
-an attacker to identify payment code in the video stream and perform transactions
+an attacker to identify payment code in the video stream and performs transactions
 without the password. As this is also a part of our case study, more details about
 the extracted sensitive data can be found in Section~\ref{subsec:case_study} and
 Table~\ref{table:information_extracted}.
@@ -106,7 +106,7 @@ Table~\ref{table:information_extracted}.
 %the video stream. Don't understand why it is more power-efficient.}
 %\hongyi{Reasonable, changed to other advantage}
 Note that the video capture mode only needs to
-process the victim's video stream locally, it does not need to transmit the real-time video back to the attacker, which is needed when the network connection between \tool and the attacker is not stable.
+process the victim's video stream locally, it does not need to transmit the real-time video back to the attacker, which is useful when the network connection between \tool and the attacker is not stable.
 %This mode is useful when there is no stable network connection between \tool and the attacker.
 
 \subsection{Fully Control Mode}
@@ -196,7 +196,7 @@ service to entire Europe.
 
 \shuqing{May use statistics (instead of concrete examples) to explain it.}
 
-Sharing power banks not only provide convenience to users, but also bring security issues.  We noticed that most of the power bank stations do not
+Sharing power banks not only provides convenience to users, but also brings security issues.  We noticed that most of the power bank stations do not
 check the integrity of power banks during the rental process, and users are
 hardly cautious to check the power banks when connecting their devices.  An
 attacker is able to tamper rented power banks and return them to a power bank
@@ -249,12 +249,12 @@ following steps.
 	\item The attacker rents a power bank from one of the power bank stations and replaces the internal components with \tool.
 	\item After the modification, an attacker-crafted power bank is returned to a rental station in a crowded area like an airport or railway station, which increases the probability of success.
 	\item A user borrows the modified power bank and connects it to his/her own device, becoming the victim of \tool.
-	\item The attacker now has complete control over the victim and can perform various attacks using different modes.
+	\item The attacker now has complete control over the victim's device and can perform various attacks using different modes.
 \end{enumerate}
 
 Next, we summarize the possible threats toward users under different modes.
 %\hongyi{Better way to express this?}
-First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor script into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data such as QR payment  code or photos, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
+First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor scripts into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data such as QR payment  code or photos, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
 
 \shuqing{Background is longer than real user study.}
 %As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the full control mode hijacks the victim's device completely.
@@ -265,7 +265,7 @@ To further validate our attacking scenario, we invited 10 volunteers, who are st
 Before the user study experiment, we disclosed to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
 During the case study, volunteers took turns to use their phones for half an hour with \tool connected.
 To obtain data close to real-life, they were requested to use phones just as they were normally using sharing power banks.
-After each experiment, the raw video and the corresponding \ac{OCR} result file was generated automatically, then we presented these files to him/her, introduced our attack, told him/her to analyze the video file and replace certain characters of the private data that appear in the \ac{OCR} result file with asterisks. This protects their privacy and is also a mark for us to confirm that the data we find contains their private data. At last, he/she would destroy all original files, leave only the desensitized \ac{OCR} result for us. 
+After each experiment, the raw video and the corresponding \ac{OCR} result file was generated automatically, then we presented these files to him/her, introduced our attack, told him/her to analyze the video file and replace certain characters of the private data that appear in the \ac{OCR} result file with asterisks. This protects their privacy and is also a mark for us to confirm that the data we find contains their private data. At last, he/she would destroy all original files, leave only the desensitized \ac{OCR} results for us. 
 %\shuqing{Do we need to mention that agreement the conference required here?}
 %\hongyi{I'm also quite concern about this.}
 
