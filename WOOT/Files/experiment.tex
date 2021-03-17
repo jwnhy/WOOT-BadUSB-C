@@ -24,7 +24,7 @@ Apart from these essential parts, we also use an auxiliary power bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 
-\circled[text=white,fill=myblue]{\scriptsize{A}} is a Huawei mobile phone, the victim's device; \circled[text=white,fill=myblue]{\scriptsize{B}} is a compact look of \tool prototype; \circled[text=white,fill=myblue]{\scriptsize{1}} is the \ac{USB} 3.x Hub; \circled[text=white,fill=myblue]{\scriptsize{2}} is a Raspberry Pi 4B as the Single Board Computer; \circled[text=white,fill=myblue]{\scriptsize{3}} is an auxiliary power bank; \circled[text=white,fill=myblue]{\scriptsize{4}} is the Video Capture Card; \circled[text=white,fill=myblue]{\scriptsize{5}} is an Atmel ATMEGA32U4 board as the \ac{HID} Emulator.
+\circled[text=white,fill=myblue]{\scriptsize{A}} is a HUAWEI mobile phone, the victim's device; \circled[text=white,fill=myblue]{\scriptsize{B}} is a compact look of \tool prototype; \circled[text=white,fill=myblue]{\scriptsize{1}} is the \ac{USB} 3.x Hub; \circled[text=white,fill=myblue]{\scriptsize{2}} is a Raspberry Pi 4B as the Single Board Computer; \circled[text=white,fill=myblue]{\scriptsize{3}} is an auxiliary power bank; \circled[text=white,fill=myblue]{\scriptsize{4}} is the Video Capture Card; \circled[text=white,fill=myblue]{\scriptsize{5}} is an Atmel ATMEGA32U4 board as the \ac{HID} Emulator.
 %\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
 %2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
 %\fengwei{I think it is necessary to explain them in the text again.}
@@ -49,12 +49,12 @@ The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 After the \tool is plugged into the victim's device, there is an initialization process to make sure the \tool is able to carry out subsequent attack.
 \begin{itemize}
 	\item \textbf{Screen Mirror}:
-		During our experiment, we noticed that some devices do not mirror their screen to our \tool by default. In this case, \tool will inject a sequence of keystrokes to set the victim's device into mirror their screen. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject `Win+P' multiple times to switch between different modes for external display. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{`Command+F1'} keystroke to  set the monitor into mirroring the primary screen. However, if the victim has default  setting for external monitor display mode, \tool will have to try these keystroke repeatedly to set itself into mirroring the victim's screen. For example, in Ubuntu, if the default setting is to disable external screen, \tool needs to press `Win+P' four times while if the default setting is to extend the primary screen, \tool needs to press `Win+P' five times.
+		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device into mirror their screens. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject `Win+P' to switch between different modes for external display. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{`Command+F1'} keystroke to set the monitor into mirroring the primary screen. However, if the victim has default setting for external monitor display mode, \tool will have to try these keystroke repeatedly to set itself into mirroring the victim's screen. For example, in Ubuntu, if the default setting is to disable external screen, \tool needs to press `Win+P' four times while if the default setting is to extend the primary screen, \tool needs to press `Win+P' five times. In EMUI, there is a special mode called `Desktop Mode', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is victim's default setting, \tool can inject mouse movements to switch to mirror mode as \tool can obtain victim's `desktop' in this mode.
 	\item \textbf{Dismiss Notification}:
 		In our experiment, we found that some devices will notify the user the presence of an external screen. During our experiment, the following notifications were raised: 
 		\begin{itemize}
 		 \item On Lenovo Xiaoxin Pro 13, it raised a pop-up asking user to select the functionality of the external screen. 
-		 \item On Huawei P30, it showed a status bar indicator and a persistent notification about the external monitor.
+		 \item On HUAWEI P30, it showed a status bar indicator and a persistent notification about the external monitor.
 		 \item On iPad Pro (the third generation), it also showed a blue status bar indicator and a notification about \ac{USB} accessories if iPad is locked.
 		\end{itemize}
 		To avoid being discovered by the victim, \tool can inject keystrokes and mouse movements to dismiss some of these notifications. For example, in the first case, \tool is able to inject a sequence of mouse movements to set the screen at mirror mode to dismiss the pop-up.
@@ -89,9 +89,9 @@ target device. During this experiment, \tool disguised itself as a normal keyboa
 %\hongyi{we have discussed this and decide no need.}
 \subsection{Video Capture Mode}
 
-During the experiment of privacy extraction via our video capture mode, we chose \textit{HUAWEI P30 (ELE-AL00)}, a
-smartphone in EMUI 11.0.0.135(C00E128R2P5) \mbox{(Android 10.0 based)} with a \ac{USB} Type-C interface, as the
-target device.  In the privacy extraction experiment, \tool passively captured video
+During the experiment of privacy extraction via our video capture mode, we chose \mbox{\textit{HUAWEI P30 (ELE-AL00)}}, a
+smartphone in \mbox{EMUI 11.0.0.135(C00E128R2P5)} \mbox{(Android 10.0 based)} with a \ac{USB} Type-C interface, as the
+target device. In the privacy extraction experiment, \tool passively captured video
 from the victim's device and used \textit{OpenCV} to identify the sensitive
 information from the video stream.  When the victim viewed text or photos with
 text, \tool used the techniques of \ac{OCR}  to
@@ -99,7 +99,10 @@ extract text from corresponding video frames. In this experiment, the attacker
 successfully extracted text such as name, address, ID number, and other sensitive
 personal information. We also tested the payment code extractor, which enables
 an attacker to identify payment code in the video stream and performs transactions
-without the password. As this is also a part of our case study, more details about
+without the password. During our experiment, we noticed that this HUAWEI device supports `Desktop Mode' 
+for its external screen, which enables user to use their devices like a desktop computer with a external screen.
+If \tool is set into this mode, \tool is able to inject mouse movements to set itself into mirroring the primary screen, as we discussed in Section~\ref{subsec:attack_init}.
+As this is also a part of our case study, more details about
 the extracted sensitive data can be found in Section~\ref{subsec:case_study} and
 Table~\ref{table:information_extracted}.
 
