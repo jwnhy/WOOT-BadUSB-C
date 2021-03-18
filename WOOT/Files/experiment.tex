@@ -262,31 +262,38 @@ It is worth mentioning that {secure keyboards} built in financial apps show thei
 		\hline
 		\textbf{Category}  					& \textbf{Application} & \textbf{Leaked Sensitive Information}		& \textbf{Leaked Sensitive Information after Authentication} \\
 		\hline
-		Social \& Finance App 				& WeChat      & WeChat account, Asset status, chat history    		& \\
+		Social \& Finance App 				& WeChat      & Account, Asset status, Chat History, Payment Code   & \\
 		\hline
-		\multirow{3}{*}{Social App}			& QQ          & QQ account, interpersonal nexus, chat history   	& \\
+		\multirow{3}{*}{Social App}
+											%& QQ          & Account, Interpersonal Nexus, Chat History   	& \\
+											%\cline{2-4}
+							       			& WhatsApp    & Account, Interpersonal Nexus, Chat History, Phone Number           	& \\
 											\cline{2-4}
-							       			& Twitter     & Twitter account, interpersonal nexus            	& \\
-											\cline{2-4}
-							       			& Gmail       & Gmail account, Mail records                     	& \\
+							       			& Facebook    & Account, Posts, Interpersonal Nexus, Contact Info                     	& \\
 		\hline
-		\multirow{3}{*}{Finance App}       	& Alipay      & Alipay account, Asset status         				& \\
+		\multirow{3}{*}{Finance App}       	& Alipay      & Account, Asset status, Payment Code         				& \\
 											\cline{2-4}
-											& ICBC        & ICBC account, password, Asset status  				& \\
+											& Cash App    & Email, Phone Number, Cash Balance			& \\
 											\cline{2-4}
-											& Paypal      & Paypal account, bank accounts, Asset status     	& \\
+											& Paypal      & Account, PayPal Balance     				& \\
 		\hline
-		\multirow{2}{*}{Tool}               & Chrome      & Sites visited                                   	& \\
-											\cline{2-4}
-		                					& Health      & Personal physical metrics      						& \\
+		\multirow{1}{*}{Shopping App}		& Amazon Shopping  & Account, Orders, Shopping Cart         & \\
+											%\cline{2-4}
+		                					%& Taobao      & Personal physical metrics      						& \\
 		\hline
-		\multirow{2}{*}{System}             & Settings - WiFi   & WiFi SSID                                	&  WiFi password \\
+		\multirow{2}{*}{Tool}               & Chrome      & Browsing History                                	& \\
+											\cline{2-4}
+		                					& Health      & Personal Physical Metrics      						& \\
+		\hline
+		\multirow{2}{*}{System}             & Contacts    &                                 	&  WiFi password \\
+											\cline{2-4}
+											& Settings - WiFi   & WiFi SSID                                	&  WiFi password \\
 											\cline{2-4}
 		                					& Settings - VPN    & VPN address, VPN account, VPN password      						& \\
 		\hline
 	\end{tabular}
 	\linebreak
-	\caption{Information Extraction via Manual Analysis.}
+	\caption{Information Extraction.}
 	\label{table:information_extracted}
 \end{table*}
 
