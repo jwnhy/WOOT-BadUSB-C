@@ -237,47 +237,48 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 
 We notice that, with \tool, the attacker can view any victim's information that does not require authentication with video capture mode or full control mode.
 However, the information that requires authentication can only be obtained with video capture mode after the victim's authentication.
-To further validate our attacking scenario, we conduct an experiment to find out what types of sensitive information are protected by default. We installed x applications on an Android phone, set up each application with the strategy that
+To further validate our attacking scenario, we conduct an experiment to find out what types of sensitive information are protected by default. We selected 11 applications on Android, set up each application with the strategy that
+\yechang{Application version....????}
 \ding{182} Login in with a test account,
 \ding{183} Keep the default settings,
-\ding{184} Agree to it when it asks to enable authentication before accessing private data, then
-recorded all information shown in applications with or without authentication.
+\ding{184} Agree to it when it asks to enable authentication before accessing private data,
+then recorded all information shown in applications with or without authentication.
+It is worth mentioning that {secure keyboards} built-in financial apps show their keyboard typing sequences, which can be easily captured by \tool.
 
-As the result shown in the Table~\ref{table:information_extracted}, if the victim uses a password instead of biometric authentication, the password can be leaked out and cause greater harm, such as guessing other passwords on the device.
-As the victim uses the device and accesses information, the possibility of the leakage of information that needs authentication would increase, and this kind of information often brings greater risk such as hacking accounts.
-Meanwhile, the leakage of the information that can be obtained without authentication is enough to bring potential risk to the victim, such as misappropriating the victim's payment code, using the victim's personal information for illegal crimes.
+
+As the result shown in Table~\ref{table:information_extracted}, most payment applications use in-app authentication to ensure payment security but biometric authentication is not enabled by default. If the victim uses a password instead of biometric authentication, the password can be leaked out and used to guess screen unlock passcode or hack accounts, which threats the victim's property.
+And the leakage of the information that can be obtained without authentication is sufficient to bring potential risk to the victim, such as misappropriating the victim's payment code, using the victim's personal information for illegal crimes.
 
 
 \subsubsection{Result}
 
-In summary, though we cannot directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract sensitive information including but not limited to social accounts, bank accounts, personal financial situation, if the user unconsciously unlocks the screen.
-The information that requires authentication is still safer than the information that does not require authentication. The attacker can not directly obtain this kind of information aggressively through the full control mode.
-It is worth mentioning that {secure keyboards} built in financial apps show their keyboard typing sequences, which can be easily captured by \tool.
-
-
+In summary, if the user unconsciously unlocks the screen and visits corresponding applications, we can still view all of the information presented on the screen, extract sensitive information including but not limited to social accounts, bank accounts, personal property status.
+The information that requires authentication is safer than the information that does not require authentication. The attacker can not directly obtain this kind of information aggressively through the full control mode. But the possibility of the leakage of information that needs authentication would increase as the victim uses the device.
 
 \begin{table*}[t]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|}
 		\hline
-		\textbf{Category}  					& \textbf{Application} & \textbf{Leaked Sensitive Information}		& \textbf{Leaked Sensitive Information after Authentication} \\
+		\multirow{2}{*}{\textbf{Category} } & \multirow{2}{*}{ \textbf{Application} } & \multicolumn{2}{c|}{\textbf{Leaked Sensitive Information}} \\
+															\cline{3-4}
+											&				& \textbf{Without Authentication}						& \textbf{With Authentication} \\
 		\hline
-		Social \& Finance App 				& WeChat      & Account, Asset status, Chat History, Payment Code   & \\
+		Social \& Finance App 				& WeChat      & Account, Property Status, Chat History, Payment Code   		& Payment Password \\
 		\hline
 		\multirow{3}{*}{Social App}
 											%& QQ          & Account, Interpersonal Nexus, Chat History   	& \\
 											%\cline{2-4}
-							       			& WhatsApp    & Account, Interpersonal Nexus, Chat History, Phone Number           	& \\
+							       			& WhatsApp    & Account, Interpersonal Nexus, Chat History, Phone Number    & \\
 											\cline{2-4}
-							       			& Facebook    & Account, Posts, Interpersonal Nexus, Contact Info                     	& \\
+							       			& Facebook    & Account, Posts, Interpersonal Nexus, Contact Info           & \\
 		\hline
-		\multirow{3}{*}{Finance App}       	& Alipay      & Account, Asset status, Payment Code         				& \\
+		\multirow{3}{*}{Finance App}       	& Alipay      & Account, Property Status, Payment Code         				& Payment Password \\
 											\cline{2-4}
-											& Cash App    & Email, Phone Number, Cash Balance			& \\
+											& Cash App    & Email, Phone Number, Cash Balance							& Payment Password \\
 											\cline{2-4}
-											& Paypal      & Account, PayPal Balance     				& \\
+											& Paypal      & Account, PayPal Balance     								& Payment Password \\
 		\hline
-		\multirow{1}{*}{Shopping App}		& Amazon Shopping  & Account, Orders, Shopping Cart         & \\
+		\multirow{1}{*}{Shopping App}		& Amazon Shopping  & Account, Orders, Shopping Cart         				& \\
 											%\cline{2-4}
 		                					%& Taobao      & Personal physical metrics      						& \\
 		\hline
@@ -285,7 +286,7 @@ It is worth mentioning that {secure keyboards} built in financial apps show thei
 											\cline{2-4}
 		                					& Health      & Personal Physical Metrics      						& \\
 		\hline
-		\multirow{2}{*}{System}             & Contacts    &                                 	&  WiFi password \\
+		\multirow{2}{*}{System}             &  Messages   & Interpersonal Nexus, Chat History, Contacts' Phone Number &   \\
 											\cline{2-4}
 											& Settings - WiFi   & WiFi SSID                                	&  WiFi password \\
 											\cline{2-4}
@@ -293,7 +294,7 @@ It is worth mentioning that {secure keyboards} built in financial apps show thei
 		\hline
 	\end{tabular}
 	\linebreak
-	\caption{Information Extraction.}
+	\caption{Sensitive Information Leaked From Applications.}
 	\label{table:information_extracted}
 \end{table*}
 
