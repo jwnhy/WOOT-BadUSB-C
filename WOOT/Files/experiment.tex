@@ -237,15 +237,21 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 
 We notice that, with \tool, the attacker can view any victim's information that does not require authentication with video capture mode or full control mode.
 However, the information that requires authentication can only be obtained with video capture mode after the victim's authentication.
-To further validate our attacking scenario, we conduct a experiment to find out what types of sensitive information are protected by default. We install x applications on an Android phone, setup each application with the strategy that
-\ding{182} Login in with a test account.
-\ding{183} Keep the default settings.
-\ding{184} Agree to it when it asks to enable authentication before accessing private data.
+To further validate our attacking scenario, we conduct an experiment to find out what types of sensitive information are protected by default. We installed x applications on an Android phone, set up each application with the strategy that
+\ding{182} Login in with a test account,
+\ding{183} Keep the default settings,
+\ding{184} Agree to it when it asks to enable authentication before accessing private data, then
+recorded all information shown in applications with or without authentication. The result is shown in the Table~\ref{table:information_extracted}.
+
+However, if the victim uses a password instead of biometric authentication, the password can be leaked out and cause greater harm, such as guessing other passwords on the device.
+As the victim uses the device and accesses information, the possibility of the leakage of information that needs authentication would increase, and this kind of information often brings greater risk such as hacking accounts.
+Meanwhile, the leakage of the information that can be obtained without authentication is enough to bring potential risk to the victim, such as misappropriating the victim's payment code, using the victim's personal information for illegal crimes.
 
 
 \subsubsection{Result}
 
 In summary, though we cannot directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract sensitive information including but not limited to social accounts, bank accounts, personal financial situation, if the user unconsciously unlocks the screen.
+The information that requires authentication is still safer than the information that does not require authentication. The attacker can not directly obtain this kind of information aggressively through the full control mode.
 It is worth mentioning that {secure keyboards} built in financial apps show their keyboard typing sequences, which can be easily captured by \tool.
 
 
