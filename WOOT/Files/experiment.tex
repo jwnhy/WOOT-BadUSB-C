@@ -234,6 +234,55 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 \hongyi{I dont know if it's a good enough reason}
 %Here we only validate the usability of privacy extraction mode and conducted a user study.
 
+
+We notice that, with \tool, the attacker can view any victim's information that does not require authentication with video capture mode or full control mode.
+However, the information that requires authentication can only be obtained with video capture mode after the victim's authentication.
+To further validate our attacking scenario, we conduct a experiment to find out what types of sensitive information are protected by default. We install x applications on an Android phone, setup each application with the strategy that
+\ding{182} Login in with a test account.
+\ding{183} Keep the default settings.
+\ding{184} Agree to it when it asks to enable authentication before accessing private data.
+
+
+\subsubsection{Result}
+
+In summary, though we cannot directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract sensitive information including but not limited to social accounts, bank accounts, personal financial situation, if the user unconsciously unlocks the screen.
+It is worth mentioning that {secure keyboards} built in financial apps show their keyboard typing sequences, which can be easily captured by \tool.
+
+
+
+\begin{table*}[t]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		\textbf{Category}  					& \textbf{Application} & \textbf{Leaked Sensitive Information}    & \textbf{Leaked Sensitive Information after Authentication} \\
+		\hline
+		Social \& Finance App 				& WeChat      & WeChat account, Asset status, chat history    & \\
+		\hline
+		\multirow{3}{*}{Social App}			& QQ          & QQ account, interpersonal nexus, chat history   & \\
+											\cline{2-4}
+							       			& Twitter     & Twitter account, interpersonal nexus            & \\
+											\cline{2-4}
+							       			& Gmail       & Gmail account, Mail records                     & \\
+		\hline
+		\multirow{3}{*}{Finance App}       	& Alipay      & Alipay account, Asset status         			& \\
+											\cline{2-4}
+											& ICBC        & ICBC account, password, Asset status  			& \\
+											\cline{2-4}
+											& Paypal      & Paypal account, bank accounts, Asset status     & \\
+		\hline
+		Tool                & Chrome      & Sites visited                                   & \\
+		\hline
+		Tool                & Health      & Personal physical metrics      					& \\
+		\hline
+	\end{tabular}
+	\linebreak
+	\caption{Information Extraction via Manual Analysis.}
+	\label{table:information_extracted}
+\end{table*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % It is unfortunate that the user study is not part of the paper anymore.
 \iffalse
 
