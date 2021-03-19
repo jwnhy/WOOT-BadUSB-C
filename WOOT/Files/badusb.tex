@@ -28,7 +28,7 @@ As introduced in Section~\ref{sec:related_work},
 existing works~\cite{rubber,badusb,
 rubberducky2020,usbbypassing,iseeyou,usbdriver} focus on BadUSB attacks.
 Many of these take advantage of the \textit{trust-by-default} policy of PC,
-pretend to be normal \ac{HID} devices and utilize \ac{USB} protocol to perform attacks.
+pretend to be normal \ac{HID} devices and utilize the \ac{USB} protocol to perform attacks.
 However, these attacks suffer from various drawbacks: \ding{182} attackers can
 only simulate limited types of devices such as \acp{HID} (e.g. keyboards and mice)
 and disks, which makes the attacks less effective; \ding{183} accurate attacks
@@ -47,7 +47,7 @@ implemented an authorization procedure when a new device is plugged in and block
 In this work, we utilize the new features of \ac{USB} 3.x~\cite{usb31,usb32} to
 address the problems above.  Benefiting from the latest protocol, we simulate
 an external display and thus obtain the video stream to perform accurate
-attacks. However, we still unable to bypass defenses like GoodUSB~\cite{tian2015defending}, which completely blocks unauthorized functionality. This will be further discussed in Section~\ref{sec:discussion}
+attacks. However, we are still unable to bypass defenses like GoodUSB~\cite{tian2015defending}, which completely blocks unauthorized functionality. This will be further discussed in Section~\ref{sec:discussion}
 
 As there were various BadUSB implementations available, this work focuses on our new extensions. Next, we first introduce the
 components we used in \tool, then we focus on the three different attack modes
@@ -70,7 +70,7 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 
 	\item\underline{\ac{HID} Emulator} emulates \ac{HID} device which can be controlled by the attacker.
 
-	\item\underline{Single Board Computer} processes video stream from the victim via the Video Capture Card or sends commands to the victim via \ac{HID} Emulator.
+	\item\underline{Single Board Computer} processes the video stream from the victim via the Video Capture Card or sends commands to the victim via \ac{HID} Emulator.
 
 	\item\underline{Wi-Fi/GSM Module} transmits the sensitive data or receives commands to/from the remote attacker PC.
 
@@ -121,7 +121,7 @@ USB device and solely relies on the video stream function of \ac{USB} 3.x; it us
 %\fengwei{What is embedded computer? Do we define this in the previous\hongyi{Fixed by using the term mentioned in Figure}
 %text?}.
 The victim's device mistakenly treats \tool as an external monitor
-and output its video stream. This stream is latter processed by the embedded
+and output its video stream. This stream is later processed by the embedded
 computer to extract sensitive data.
 
 When running in this mode, \tool passively processes the victim's video stream

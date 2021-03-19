@@ -18,7 +18,7 @@ prototype. To begin with, we choose the Raspberry Pi 4B~\cite{pi4b} as the embed
 Computer inside \tool, which is powerful enough to process video data and has
 an onboard WiFi chip. As for the \ac{HID} Emulator, we use an Atmel ATMEGA32U4 board~\cite{atmel}
 with \ac{USB} protocol support, which is able to emulate multiple \acp{HID}
-with our modified firmware. About the \ac{USB} 3.x Hub, we use one from the
+with our modified firmware. About the \ac{USB} 3.x Hub, we use one from 
 UGREEN~\cite{ugreen}, which supports HDMI, \ac{USB} 2.0, and many other exported peripherals.
 Apart from these essential parts, we also use an auxiliary power bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
@@ -46,7 +46,7 @@ The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 
 \subsection{Attack Initialization}
 \label{subsec:attack_init}
-After the \tool is plugged into the victim's device, there is an initialization process to make sure the \tool is able to carry out subsequent attack.
+After the \tool is plugged into the victim's device, there is an initialization process to make sure the \tool is able to carry out subsequent attacks.
 \begin{itemize}
 	\item \textbf{Screen Mirror}:
 		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device into mirror their screens. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject `Win+P' (`Super' is another name for the `Win' key) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and Windows 10 is similar. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{`Command+F1'} keystroke to set the monitor into mirroring the primary screen. In EMUI, there is a special mode called `Desktop Mode', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is victim's default setting, \tool can inject mouse movements to switch to mirror mode as \tool can obtain victim's `desktop' in this mode.
@@ -84,7 +84,7 @@ After the \tool is plugged into the victim's device, there is an initialization 
 \subsection{HID Emulator Mode}
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
-2020}, a PC in Windows 10 \mbox{(OS Build 18363.1379)} and Ubuntu 20.04.2 LTS with two \ac{USB} Type-C interfaces as the
+2020}, a PC with Windows 10 \mbox{(OS Build 18363.1379)} and Ubuntu 20.04.2 LTS with two \ac{USB} Type-C interfaces as the
 target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's devices raised a pop-up window asking victims what mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
@@ -122,7 +122,7 @@ process the victim's video stream locally, it does not need to transmit the real
 %\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
 To test the capability of the full control mode, we chose iPad Pro (3rd
-	generation), a tablet in iOS 14.4 (Build 18D52) with a \ac{USB} Type-C interface, as the target
+	generation), a tablet running iOS 14.4 (Build 18D52) with a \ac{USB} Type-C interface, as the target
 device in this experiment.  Besides disguising as normal \acp{HID} like a
 conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
 stream from the target device to the attacker via WiFi.  After establishing the connection, the attacker performed a series of actions to test the capability of
