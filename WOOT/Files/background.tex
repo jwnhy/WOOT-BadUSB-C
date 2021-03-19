@@ -20,7 +20,7 @@ keyboards, etc. Before its appearance, the standard is divided between
 manufacturers, for example, the mouse of Company A may use X-Y coordinates to
 represent its location while the mouse of Company B uses relative displacement.
 This means every device needs its own driver to work. After \ac{HID}, users only need to
-write one driver for an entire class of \acp{HID}. Furthermore, \ac{HID} standard also
+write one driver for an entire class of \acp{HID}. Furthermore, the \ac{HID} standard also
 requires all devices to be \ac{PnP}, which is indeed
 convenient but insecure too.
 
@@ -30,7 +30,7 @@ speed (12 MBit/s). At this point, due to the transfer limit, it only supports
 limited types of devices like keyboards, mice, etc.
 
 %\noindent\outline{USB2.0}\\
-In 2000, \ac{USB} 2.0~\cite{usb20} specification was released. With high speed \mbox{(480
+In 2000, the \ac{USB} 2.0~\cite{usb20} specification was released. With high speed \mbox{(480
 Mbit/s)} mode introduced, printers, cameras, CD-ROM drives, and network cards were
 supported in this revision. Such a high data transfer rate also gave rise to the
 popularity of ``flash drive'', a portable device that allows physically
@@ -80,7 +80,7 @@ D-)}. The added lanes are used exclusively to support peripherals like
 DisplayPort while the kept data lane transfers \ac{USB} packets.
 
 %\noindent\outline{Security Problem}\\
-During the development of \ac{USB} specification, security was insufficiently considered~\cite{sok}. 
+During the development of the \ac{USB} specification, security was insufficiently considered~\cite{sok}. 
 The \ac{USB}-IF believes it is the duty of \acp{OEM}
 to decide whether security features should be implemented~\cite{usbsec}. But the divergent implementations give a chance for attacks like
 BadUSB~\cite{rubber} and our \tool.
