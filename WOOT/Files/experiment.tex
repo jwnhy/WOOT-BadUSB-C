@@ -234,30 +234,21 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 \hongyi{I dont know if it's a good enough reason}
 %Here we only validate the usability of privacy extraction mode and conducted a user study.
 
+To further validate our attacking scenario, we conducted an experiment to simulate a real-world attack scenario. We selected 11 applications on  \mbox{\textit{HUAWEI P30 (ELE-AL00)}}, test each application with the following strategy
+\ding{182} Attach \tool to the test device.
+\ding{183} Login in with a test account.
+\ding{184} Keep the default settings.
+\ding{185} Simulate daily usage of the application.
 
-We notice that, with \tool, the attacker can view any victim's information that does not require authentication with video capture mode or full control mode.
-However, the information that requires authentication can only be obtained with video capture mode after the victim's authentication.
-To further validate our attacking scenario, we conduct an experiment to find out what types of sensitive information are protected by default. We selected 11 applications on Android, set up each application with the strategy that
-\yechang{Application version....????}
-\ding{182} Login in with a test account,
-\ding{183} Keep the default settings,
-\ding{184} Agree to it when it asks to enable authentication before accessing private data,
-then recorded all information shown in applications with or without authentication.
-It is worth mentioning that {secure keyboards} built-in financial apps show their keyboard typing sequences, which can be easily captured by \tool.
-
-
-As the result shown in Table~\ref{table:information_extracted}, most payment applications use in-app authentication to ensure payment security but biometric authentication is not enabled by default. If the victim uses a password instead of biometric authentication, the password can be leaked out and used to guess screen unlock passcode or hack accounts, which threats the victim's property.
-And the leakage of the information that can be obtained without authentication is sufficient to bring potential risk to the victim, such as misappropriating the victim's payment code, using the victim's personal information for illegal crimes.
+During this experiment, we first tested full control mode which actively gathered sensitive information, then tested video capture mode which passively collected the sensitive information visited by victims. We noticed that, most sensitive information could be gathered directly through full control mode without victim's interaction, but there was also certain information that had to be collected passively through video capture mode. For example, as illustrated in Table~\ref{table:information_extracted}, in most applications, information like `Account' can be gathered directly while information like `Payment Password' cannot be collected until the victim inputs his/her password.
 
 
 \subsubsection{Result}
-
-In summary, if the user unconsciously unlocks the screen and visits corresponding applications, we can still view all of the information presented on the screen, extract sensitive information including but not limited to social accounts, bank accounts, personal property status.
-The information that requires authentication is safer than the information that does not require authentication. The attacker can not directly obtain this kind of information aggressively through the full control mode. But the possibility of the leakage of information that needs authentication would increase as the victim uses the device.
+In summary, as shown in Table~\ref{table:information_extracted}, our \tool is able to actively gather most sensitive information such as browsing history, personal account, phone number without victim's interaction. There also exists information such as payment password that is not available immediately, but such a piece of information can be collected once the victim input it on his/her smartphone. The gathered information can be further used to deduce victim's lock screen password and poses even greater threat to victim's privacy.
 
 \begin{table*}[t]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|c|}
+	\begin{tabular}{|c|c|l|l|c|c|}
 		\hline
 		\multirow{2}{*}{\textbf{Category} } & \multirow{2}{*}{ \textbf{Application} } & \multicolumn{2}{c|}{\textbf{Leaked Sensitive Information}} \\
 															\cline{3-4}
@@ -284,13 +275,13 @@ The information that requires authentication is safer than the information that 
 		\hline
 		\multirow{2}{*}{Tool}               & Chrome      & Browsing History                                	& \\
 											\cline{2-4}
-		                					& Health      & Personal Physical Metrics      						& \\
+		                					& Health      & Personal Health Metrics      						& \\
 		\hline
 		\multirow{2}{*}{System}             &  Messages   & Interpersonal Nexus, Chat History, Contacts' Phone Number &   \\
 											\cline{2-4}
-											& Settings - WiFi   & WiFi SSID                                	&  WiFi password \\
+											& Settings - WiFi   & WiFi SSID                                	&  WiFi Password \\
 											\cline{2-4}
-		                					& Settings - VPN    & VPN address, VPN account, VPN password      						& \\
+		                					& Settings - VPN    & VPN Address, VPN Account, VPN Password      						& \\
 		\hline
 	\end{tabular}
 	\linebreak
