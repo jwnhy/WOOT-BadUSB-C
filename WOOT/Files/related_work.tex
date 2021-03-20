@@ -42,10 +42,10 @@ as video stream was not supported until \ac{USB} 3.0~\cite{usb30}.
 \ac{MHL} extends the \ac{USB} standard and allows the video signal to
 be transmitted through the \ac{USB} interface even for \ac{USB} 2.0 protocol. 
 JFA~\cite{JFC}, short for Juice Filming Attacks,
-abuses this standard and monitoring victim's device utilizing \ac{USB} 2.0 protocol. Although the JFA~\cite{JFC} could exfiltrates video data from the victim's device without permission,  
+abuses this standard and monitoring the victim's device utilizing \ac{USB} 2.0 protocol. Although the JFA~\cite{JFC} could exfiltrates video data from the victim's device without permission,  
 there are two main limitation compared with \tool: 
-\ding{182} JFA~\cite{JFC} can only exfiltrate video data passively from the victim's device, while \tool can control the victim's device at the same time as monitoring the screen. All data can be collected by JFA only after the victim's interaction, while \tool can gather sensitive data actively through \ac{HID} injection. For example, if the victim leaves his/her phone charging without locking it, the JFA cannot obtain anything in this case, while \tool can actively control victim's device and gather sensitive information.
-\ding{183} The official list of \ac{MHL} Devices~\cite{MHLlist} shows that the latest devices supporting \ac{MHL} were released in 2015, which indicates the lack of support of \ac{MHL} and limits the attack range of JFA. \tool attacks over \ac{USB} Type-C interface, the latest \ac{USB} connector designed to replace all previous USB connector including MicroUSB~\cite{li2018usb}. So \tool has a wider attack range. 
+\ding{182} JFA~\cite{JFC} can only exfiltrate video data passively from the victim's device, while \tool can control the victim's device at the same time as monitoring the screen. All data can be collected by JFA only after the victim's interaction, while \tool can gather sensitive data actively through \ac{HID} injection. For example, if the victim leaves his/her phone charging without locking it, JFA cannot obtain anything in this case, while \tool can actively control his/her device and gather sensitive information.
+\ding{183} The official list of \ac{MHL} Devices~\cite{MHLlist} shows that the latest mobile devices supporting \ac{MHL} were released in 2015, which indicates the lack of support of \ac{MHL} and limits the attack range of JFA. \tool attacks over \ac{USB} Type-C interface, the latest \ac{USB} connector designed to replace all previous USB connector including MicroUSB~\cite{li2018usb}. So \tool has a wider attack range. 
 
 % Using USB devices to inject code
 Besides attacking from the protocol perspective, previous works\shuqing{re?} used a
