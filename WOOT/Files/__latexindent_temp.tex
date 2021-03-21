@@ -6,7 +6,7 @@
 %\outline{Attack survey table}\\
 %\outline{Attack or current works about USB Type-C}\\
 
-In this part, we survey related works on USB attack in Section~\ref{subsec:usb_attack}, and USB defence security in Section \ref{subsec:usb_defence}, respectively.
+In this part, we surveyed related works on USB attack in Section~\ref{subsec:usb_attack}, and USB defence security in Section \ref{subsec:usb_defence}, respectively.
 
 \subsection{USB Attack}
 \label{subsec:usb_attack}
@@ -34,8 +34,8 @@ Since USB 3.1 was introduced with USB Type-C in 2013, display port and HDMI conn
 \label{subsec:usb_defence}
 There are already many defenses proposed against BadUSB attacks and a comprehensive investigation of previous work.\cite{sok}.
 
-From the hardware perspective, BadUSB attack requires `D-' and `D+' pins which are defined by protocol to transmitting data.
-Without these pins, data can't be transferred via USB cable. Based on this fact, USB Condom \cite{Condom} is a hardware solution to block data channel by adding blocker in the connector. This blocker can cut off the `D-' and `D+' connection while leave power pins intact.
+From the hardware perspective, BadUSB attack requires data lane \mbox{(D+ \& D-)} which are defined by protocol to transmitting data.
+Without these pins, data can't be transferred via USB cable. Based on this fact, USB Condom \cite{Condom} is a hardware solution to block data channel by adding blocker in the connector. This blocker can cut off the data lane \mbox{(D+ \& D-)} connection while leave power pins intact.
 However, this method poses a great challenge to plug-and-play property of USB, as once it is deployed, it will stop all USB functions other than charging.
 
 Under the premise of ensuring the full functionality of USB devices, there have been some works trying to improve the security during connection establishment.

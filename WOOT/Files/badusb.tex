@@ -92,12 +92,12 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 
 \textbf{\ac{HID} Emulation Mode.} This mode mainly relies on the ``\ac{HID} Emulator'' in Figure~\ref{fig:attack_model} to
 send constructed \ac{HID} packet to the victim. These constructed \ac{HID} packets are
-interpreted by the victim as valid keystrokes and mouse moves. Thus, the
+interpreted by the victim as valid keystrokes and mouse movements. Thus, the
 attacker can execute arbitrary scripts on the victim's device. This is the
 function of the original BadUSB. Based on this, we made the following
 improvements.
 
-First, as \tool has established a feedback channel using \ac{USB} 3.x protocol, when performing keystroke and mouse movement injection, an attacker can obtain real-time feedback from the victim's devices. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such a feedback channel largely strengthens the attack ability of \tool.
+First, as \tool has established a feedback channel using \ac{USB} 3.x protocol, when performing keystroke and mouse movement injection, an attacker can obtain real-time feedback from the victim's device. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such a feedback channel largely strengthens the attack ability of \tool.
 
 Moreover, as the mouse relies on the visual feedback to work properly, its
 emulation and automation were not supported by the original version of BadUSB.
@@ -127,7 +127,7 @@ computer to extract sensitive data.
 When running in this mode, \tool passively processes the victim's video stream
 and detects ``valuable'' private data.  The data is considered as
 ``valuable'' or not by a customized detector. We implemented a simple
-payment code detector for the proof-of-concept purpose, which demonstrates that we successfully transfer money from a victim to an
+payment code detector for the proof-of-concept purpose, which demonstrates that we successfully transfered money from a victim to an
 attacker. More detail can be obtained in Section~\ref{sec:experiment}.
 
 It is worth mentioning that \tool under this mode is completely passive, making

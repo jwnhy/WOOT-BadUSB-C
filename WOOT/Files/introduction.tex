@@ -49,7 +49,7 @@ roles of the \ac{USB} device and reject any usage beyond the description.
 In this work, we addressed the limitations mentioned
 above and implemented a multi-mode attack model of \ac{USB}, named \tool.  \tool
 extends BadUSB to support the features of \ac{USB} Type-C.  
-Although many smartphones equipped with USB-C connectors do not support \ac{USB} 3.x protocol, such as the products of Xiaomi, more and more vendors like HUAWEI and Samsung tend to support \ac{USB} 3.x protocol in their \mbox{high-end} smartphones~\cite{usbclist}.
+Although many smartphones equipped with USB-C connectors do not support \ac{USB} 3.x protocol, such as some non-flagship products of Xiaomi, more and more vendors like HUAWEI and Samsung tend to support \ac{USB} 3.x protocol in their \mbox{high-end} smartphones~\cite{usbclist}.
 Since \mbox{\ac{USB} Type-C} can transfer video stream data, \tool could obtain the information of the
 victim's \ac{GUI} during attacks.  Combining it with the emulation
 of traditional \acp{HID}, e.g., keyboards and mice, attackers are capable of
@@ -70,8 +70,6 @@ sharing power banks, one of the application scenarios of \tool.  During the
 user study, we obtained a large amount of sensitive data through \tool, since
 users are usually unconscious of the necessity to check the \ac{USB} devices they
 plugged in for security purposes.  
-Ten volunteers participated in the user study.
-Finally, we found that 4,796 of 94,058 records obtained by \tool are related to users' privacy information.
 After the validation of our attack model, we
 proposed several defense methods as countermeasures, including external
 hardware authorization, distrust-by-default, etc.  It is worth noting that we
