@@ -13,14 +13,14 @@ experiments on \tool using devices with \ac{USB} Type-C capabilities from differ
 %Pi, ATMEGA32U4 board, Yamazawa, etc.}
 As mentioned in Section~\ref{sec:badusb},
 our \tool only requires common components that are easily accessible online or
-in any electronic store. Here we choose the following parts to build a
-prototype. To begin with, we choose the Raspberry Pi 4B~\cite{pi4b} as the embedded Single Board
+in any electronic store. Here we chose the following parts to build a
+prototype. To begin with, we chose the Raspberry Pi 4B~\cite{pi4b} as the embedded Single Board
 Computer inside \tool, which is powerful enough to process video data and has
-an onboard WiFi chip. As for the \ac{HID} Emulator, we use an Atmel ATMEGA32U4 board~\cite{atmel}
+an onboard WiFi chip. As for the \ac{HID} Emulator, we used an Atmel ATMEGA32U4 board~\cite{atmel}
 with \ac{USB} protocol support, which is able to emulate multiple \acp{HID}
-with our modified firmware. About the \ac{USB} 3.x Hub, we use one from
+with our modified firmware. About the \ac{USB} 3.x Hub, we used one from
 UGREEN~\cite{ugreen}, which supports HDMI, \ac{USB} 2.0, and many other exported peripherals.
-Apart from these essential parts, we also use an auxiliary power bank to
+Apart from these essential parts, we also used an auxiliary power bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 
@@ -49,7 +49,7 @@ The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 After the \tool is plugged into the victim's device, there is an initialization process to make sure the \tool is able to carry out subsequent attacks.
 \begin{itemize}
 	\item \textbf{Screen Mirror}:
-		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device into mirror their screens. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject `Win+P' (`Super' is another name for the `Win' key) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and Windows 10 is similar. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{`Command+F1'} keystroke to set the monitor into mirroring the primary screen. In EMUI, there is a special mode called `Desktop Mode', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is victim's default setting, \tool can inject mouse movements to switch to mirror mode as \tool can obtain victim's `desktop' in this mode.
+		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device into mirror their screens. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject `Win+P' (`Super' is another name for the `Win' key) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and Windows 10 is similar. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{`Command+F1'} keystrokes to set the monitor into mirroring the primary screen. In EMUI, there is a special mode called `Desktop Mode', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is victim's default setting, \tool can inject mouse movements to switch to mirror mode as \tool can obtain victim's `desktop' in this mode.
 		\begin{figure}[H]
 			\includegraphics[width=\linewidth]{./Figs/ubuntu_switch.png}\\
 			\caption{Screen Mode Switch in Ubuntu.}
@@ -85,7 +85,7 @@ After the \tool is plugged into the victim's device, there is an initialization 
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC with Windows 10 \mbox{(OS Build 18363.1379)} and Ubuntu 20.04.2 LTS with two \ac{USB} Type-C interfaces as the
-target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's devices raised a pop-up window asking victims what mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
+target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
 
@@ -302,7 +302,7 @@ During the case study, volunteers took turns to use their phones for half an hou
 To obtain data close to real-life, they were requested to use phones just as they were normally using sharing power banks.
 At the same time, we used scripts to perform \ac{OCR} recognition for each frame in the videos stream and stored all of the \ac{OCR} results in a database.
 
-After each experiment, the raw video and the corresponding \ac{OCR} result file was generated automatically, then we presented these files to him/her, introduced our attack, told him/her to analyze the video file and replace certain characters of the private data that appear in the \ac{OCR} result file with asterisks. This protects their privacy and is also a mark for us to confirm that the data we find contains their private data. At last, he/she would destroy all original files, leave only the desensitized \ac{OCR} results for us.
+After each experiment, the raw video and the corresponding \ac{OCR} result file was generated automatically, then we presented these files to him/her, introduced our attack, told him/her to analyze the video file and replace certain characters of the private data that appear in the \ac{OCR} result file with asterisks. This protects their privacy and is also a mark for us to confirm that the data we found contains their private data. At last, he/she would destroy all original files, leave only the desensitized \ac{OCR} results for us.
 %\shuqing{Do we need to mention that agreement the conference required here?}
 %\hongyi{I'm also quite concern about this.}
 
