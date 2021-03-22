@@ -1,6 +1,6 @@
 \documentclass[conference]{IEEEtran}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /tmp/PU2VPE45Xt/latexdiff-vc-34a97a8d8868555507dd875f30368a64cb8b20eb/BadUSBC.tex   Fri Mar 12 15:55:21 2021
+%DIF DEL /tmp/lpJorvJYJP/latexdiff-vc-34a97a8d8868555507dd875f30368a64cb8b20eb/BadUSBC.tex   Fri Mar 12 15:55:21 2021
 %DIF ADD BadUSBC.tex                                                                         Mon Mar 22 19:40:14 2021
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
@@ -581,13 +581,14 @@ be transmitted through the \ac{USB} interface \DIFdelbegin \DIFdel{. JFA}\DIFdel
 }\ac{JFA}\DIFaddend ~\cite{JFC},
 \DIFdelbegin \DIFdel{short for Juice Filming Attacks is an example that }\DIFdelend abuses this standard and \DIFaddbegin \DIFadd{monitoring the victim's device utilizing }\ac{USB} \DIFadd{2.0 protocol. Although }\ac{JFA}\DIFadd{~\mbox{%DIFAUXCMD
 \cite{JFC} }\hspace{0pt}%DIFAUXCMD
-could }\DIFaddend exfiltrates video data from the victim\DIFdelbegin \DIFdel{without permission. However, in JFA, this data exfiltration is not
-combined with BadUSB attacks, and }\DIFdelend \DIFaddbegin \DIFadd{'s device without permission,  
-there are two main limitation compared with }\tool\DIFadd{: 
-}\ding{182} \ac{JFA}\DIFadd{~\mbox{%DIFAUXCMD
+could }\DIFaddend exfiltrates video data from the victim\DIFdelbegin \DIFdel{without permission. However,  
+in JFA, this data exfiltration is not
+combined with BadUSB attacks }\DIFdelend \DIFaddbegin \DIFadd{'s device without permission}\DIFaddend ,  
+\DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{there are two main limitations compared with }\tool\DIFadd{: 
+(1) }\ac{JFA}\DIFadd{~\mbox{%DIFAUXCMD
 \cite{JFC} }\hspace{0pt}%DIFAUXCMD
-can only exfiltrate video data passively from the victim's device, while }\tool \DIFadd{can control the victim's device at the same time as monitoring the screen. All data can be collected by }\ac{JFA} \DIFadd{only after the victim's interaction, while }\tool \DIFadd{can gather sensitive data actively through }\ac{HID} \DIFadd{injection. For example, if a victim leaves his/her phone charging without locking it, }\ac{JFA} \DIFadd{cannot obtain anything in this case, while }\tool \DIFadd{can actively control his/her device and gather sensitive information.
-}\ding{183} \DIFadd{The official list of }\DIFaddend \ac{MHL} \DIFdelbegin \DIFdel{is an outdated standard, which limits its
+can only exfiltrate video data passively from the victim's device, while }\tool \DIFadd{can control the victim's device at the same time as monitoring the screen. All data can be collected by }\ac{JFA} \DIFadd{only after the victim's interaction, while }\tool \DIFadd{can gather sensitive data actively through }\ac{HID} \DIFadd{injections. For example, if a victim leaves his/her phone charging without locking it, }\ac{JFA} \DIFadd{cannot conduct attacks in this case, while }\tool \DIFadd{can actively control his/her device and gather sensitive information.
+(2) The official list of }\DIFaddend \ac{MHL} \DIFdelbegin \DIFdel{is an outdated standard, which limits its
 capability. }\DIFdelend \DIFaddbegin \DIFadd{Devices~\mbox{%DIFAUXCMD
 \cite{MHLlist} }\hspace{0pt}%DIFAUXCMD
 shows that the latest mobile devices supporting }\ac{MHL} \DIFadd{were released in 2015, which indicates the lack of support of }\ac{MHL} \DIFadd{and limits the attack range of }\ac{JFA}\DIFadd{. }\tool \DIFadd{attacks over }\ac{USB} \DIFadd{Type-C interface, the latest }\ac{USB} \DIFadd{connector designed to replace all previous USB connector including MicroUSB~\mbox{%DIFAUXCMD
@@ -1034,7 +1035,7 @@ successfully extracted text such as name, address, ID number, and other sensitiv
 personal information. We also tested the payment code extractor, which enables
 an attacker to identify payment code in the video stream and performs transactions
 without the password. \DIFaddbegin \DIFadd{During our experiment, we noticed that this HUAWEI device supports `Desktop Mode'
-for its external screen, which enables user to use their devices like a desktop computer with a external screen.
+for its external screen, which enables user to use their devices like a desktop computer with an external screen.
 If }\tool \DIFadd{is set into this mode, }\tool \DIFadd{is able to inject mouse movements to set itself into mirroring the primary screen, as we discussed in Section~\ref{subsec:attack_init}.
 }\DIFaddend As this is also a part of our case study, more details about
 the extracted sensitive data can be found in Section~\ref{subsec:case_study} and
@@ -1516,8 +1517,5 @@ it more practical.
 
 
 \balance
-
-
-
 
 \end{document}
