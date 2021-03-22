@@ -23,7 +23,7 @@ packets. Based on this, Facedancer~\cite{facedancer} and
 Syzkaller~\cite{syzkaller} use fuzzing techniques to uncover the bugs lying in
 the kernel drivers. These bugs can cause kernel crashes and lead to a \ac{DoS} attack.
 Though this poses a great challenge to the availability of a system, this
-attack still requires physical access to the host and is unable to cause more
+attack still requires physical access to the victim's device and is unable to cause more
 damage other than \ac{DoS}.
 
 % USB protocol attacks
@@ -33,19 +33,19 @@ devices can hide their real functionality with re-written
 firmware~\cite{rubber,badusb,rubberducky2020,usbbypassing,iseeyou,usbdriver}.
 These works rewrite the firmware of a normal-looking flash drive, which allows
 it to act like other devices. When these modified drives are connected to the
-host, they could be recognized as a keyboard or mouse. Then the attacker can
+victim's device, they could be recognized as a keyboard or mouse. Then attackers can
 execute malicious payloads as they are using the victim's device. Due to the
 limitation of \ac{USB} 2.0~\cite{usb20} protocol, these BadUSB
-attacks~\cite{badusb} are unable to obtain video feedback from the victim
+attacks~\cite{badusb} are unable to obtain video feedback from the victim's device
 as video stream was not supported until \ac{USB} 3.0~\cite{usb30}. 
 
 \ac{MHL} extends the \ac{USB} standard and allows the video signal to
 be transmitted through the \ac{USB} interface even for \ac{USB} 2.0 protocol. 
 \ac{JFA}~\cite{JFC},
-abuses this standard and monitoring the victim's device utilizing \ac{USB} 2.0 protocol. Although \ac{JFA}~\cite{JFC} could exfiltrates video data from the victim's device without permission,  
+abuses this standard and monitors the victim's device utilizing \ac{USB} 2.0 protocol. Although \ac{JFA}~\cite{JFC} could exfiltrates video data from the victim's device without permission,  
 there are two main limitations compared with \tool: 
-(1) \ac{JFA}~\cite{JFC} can only exfiltrate video data passively from the victim's device, while \tool can control the victim's device at the same time as monitoring the screen. All data can be collected by \ac{JFA} only after the victim's interaction, while \tool can gather sensitive data actively through \ac{HID} injections. For example, if a victim leaves his/her phone charging without locking it, \ac{JFA} cannot conduct attacks in this case, while \tool can actively control his/her device and gather sensitive information.
-(2) The official list of \ac{MHL} Devices~\cite{MHLlist} shows that the latest mobile devices supporting \ac{MHL} were released in 2015, which indicates the lack of support of \ac{MHL} and limits the attack range of \ac{JFA}. \tool attacks over \ac{USB} Type-C interface, the latest \ac{USB} connector designed to replace all previous USB connectors including MicroUSB~\cite{li2018usb}. So \tool has a wider attack range. 
+(1) \ac{JFA}~\cite{JFC} can only exfiltrate video data passively from the victim's device, while \tool can control the victim's device at the same time as monitoring the screen. The data can only be collected by \ac{JFA} after the victim's interaction, while \tool can gather sensitive data actively through \ac{HID} injections. For example, if a victim leaves his/her phone charging without locking it, \ac{JFA} cannot conduct attacks in this case, while \tool can actively control his/her device and gather sensitive information.
+(2) The official list of \ac{MHL} Devices~\cite{MHLlist} shows that the latest mobile devices supporting \ac{MHL} were released in 2015, which indicates the lack of support of \ac{MHL} and limits the attack range of \ac{JFA}. \tool attacks the victim's device over \ac{USB} Type-C interface, the latest \ac{USB} connector designed to replace all previous USB connectors including MicroUSB~\cite{li2018usb}. So \tool has a wider attack range. 
 
 % Using USB devices to inject code
 Besides attacking from the protocol perspective, previous works\shuqing{re?} use a
@@ -87,10 +87,10 @@ be transferred via a \ac{USB} cable. Based
 on this fact, \ac{USB} Condom~\cite{Condom} is a hardware solution to block data
 channels by adding a blocker in the connector. This blocker can cut off the \mbox{(D+ \& D-)} connection while leaving the power pins intact. However, this method poses
 a great challenge to the \ac{PnP} property of \ac{USB}, as once it is deployed, it
-stops all \ac{USB} functions other than charging.
+will stop all \ac{USB} functions other than charging.
 
 Under the premise of ensuring the full functionality of \ac{USB} devices, some works
-improve the security while establishing connection. Windows Defender
+improve the security while establishing a connection. Windows Defender
 ATP~\cite{windenfenderwhite} maintains a whitelist of \ac{USB} devices, only devices
 on the whitelist are allowed to communicate with the host. This prevents all
 potential attacks from untrusted devices, however, this requires users to have a
@@ -106,7 +106,7 @@ relies on the rich experience of administrators to build a whitelist. However, s
 modified \ac{USB} devices may hide their real functionality from the user.
 
 To solve this flaw, GoodUSB~\cite{tian2015defending} reports the functionality claimed
-by the device to the user and lets the user decide whether to authorize. When a device
+by the \ac{USB} device to the user and lets the user decide whether to authorize. When a device
 is plugged in, GoodUSB blocks its functionality before enumeration until a
 series of authorizations are completed. These authorizations are designed to be
 performed manually, thus the malicious devices will be detected if they make a different claim 
@@ -116,14 +116,14 @@ feature vector constructed with the data collected from USB Request Blocks,
 detects the novel \ac{USB} packets based on the machine learning algorithm and sends 
 an alert to the user before enumeration. As BadUSB attacks normally request privileged 
 interfaces during enumerating, these defenses are sufficient for these attacks.
-Moreover, Mueller \emph{et al.}~\cite{MuellerZN19} improve the security without changing user experience. It can detect the presence of the user, block malicious devices in the user's absence until the session is unlocked.
+Moreover, Mueller \emph{et al.}~\cite{MuellerZN19} improve the security without changing the user experience. It can detect the presence of the user, block malicious devices in the user's absence until the session is unlocked.
 
 
 After the \ac{USB} enumeration and driver loading, some related works follow the \textit{defense in depth} approach to defend against BadUSB attacks.  
 Neuner \emph{et al.}~\cite{neuner2018usblock}
 prevent BadUSB attacks from the malicious flash drive by analyzing
 the temporal characteristics of BadUSB-like attacks. This defense mechanism is
-effective because the attacker cannot obtain the screen of the victim host using
+effective because the attacker cannot obtain the screen of the victim's device using
 BadUSB. In this case, the malicious device can only inject keystrokes in a very
 short time to reduce the risk of being discovered. 
 This property causes the
@@ -135,13 +135,13 @@ a honeypot to detect and stop malicious behavior of \ac{USB} devices.
 In addition to injection attacks, data theft attack is also one of the focuses
 of the academic community. As mentioned in Section~\ref{subsec:usb_attack}, there
 exists an attack called \ac{JFA}~\cite{JFC} which abuses the \ac{MHL}
-standard to steal the video stream from the victim. In order to mitigate this
+standard to steal the video stream from the victim's mobile phone. In order to mitigate this
 issue, Meng et al.~\cite{meng2018252} propose a statistical model using status
 like GPU/CPU usage to detect \ac{JFA} attacks.
 
 Therefore, there exists a clear trade-off between the effectiveness and the
 \ac{PnP} property. Although hardware disabling solutions like \ac{USB} Condom
-achieves almost absolute security, the functionality of \ac{USB} is sacrificed.
+achieve almost absolute security, the functionality of \ac{USB} is sacrificed.
 Other solutions like whitelist are either bypassable or insufficient
 under certain scenarios. Vendors may sacrifice complete security to
 improve usability, which allows attackers to take advantage of.

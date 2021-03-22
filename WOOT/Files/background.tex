@@ -4,7 +4,7 @@
 %\noindent\outline{USB Standard}\\
 
 We first introduce the development of \ac{USB} specification and emphasize the key
-points adopted in this work. We also organized a brief timeline for introducing
+points adopted in this work. We also organize a brief timeline for introducing
 key points of each protocol in Table~\ref{table:usb_timeline}.
 
 %\noindent\outline{USB1.x}\\
@@ -15,8 +15,8 @@ initiated by the host.
 
 %\noindent\outline{HID Protocol}\\
 Right after one year of the appearance of \ac{USB} 1.0, a standard named \acf{HID}~\cite{hid} was designed based on \ac{USB}. \ac{HID} is
-designed to unify the implementation for devices like mice,
-keyboards, etc. Before its appearance, the standard is divided among
+designed to unify the implementation for devices like keyboards,
+mice, etc. Before its appearance, the standard is divided among
 manufacturers, for example, the mouse of Company A may use X-Y coordinates to
 represent its location while the mouse of Company B uses relative displacement.
 This means every device needs its own driver to work. After \ac{HID}, users only need to
@@ -25,26 +25,26 @@ requires all devices to be \ac{PnP}, which is indeed
 convenient but insecure too.
 
 In 1998, the first widely supported \ac{USB} protocol was designed. \ac{USB} 1.1~\cite{usb11}
-provided two data transfer rates which are low speed (1.5 Mbit/s) and full
+provides two data transfer rates which are low speed (1.5 Mbit/s) and full
 speed (12 MBit/s). At this point, due to the transfer limitation, it only supports
 limited types of devices like keyboards, mice, etc.
 
 %\noindent\outline{USB2.0}\\
 In 2000, the \ac{USB} 2.0~\cite{usb20} specification was released. With high speed \mbox{(480
-Mbit/s)} mode introduced, printers, cameras, CD-ROM drives, and network cards were
-supported in this revision. Such a high data transfer rate also gave rise to the
+Mbit/s)} mode introduced, printers, cameras, CD-ROM drives, and network cards are
+supported in this revision. Such a high data transfer rate also give rise to the
 popularity of ``flash drive'', a portable device that allows physically
-transferring data around~\cite{sok}. Although various peripherals were supported
-in \ac{USB} 2.0, there was no reliable way to identify the type of device. This
-security flaw allowed attacks like BadUSB~\cite{badusb,rubber}.
+transferring data around~\cite{sok}. Although various peripherals are supported
+in \ac{USB} 2.0, there is no reliable way to identify the type of device. This
+security flaw allows attacks like BadUSB~\cite{badusb,rubber}.
 
 %\noindent\outline{USB3.x}\\
 \ac{USB} 3.0~\cite{usb30} was introduced in 2008, with a super speed \mbox{(5 Gbit/s)} data
-transfer rate. Like its predecessor, more classes of peripherals were supported
+transfer rate. Like its predecessor, more classes of peripherals are supported
 in this revision. In 2013, the \ac{USB} Type-C connector standard was introduced as a
 part of \ac{USB} 3.1~\cite{usb31}, providing a unified connector type for
 PowerDelivery, Thunderbolt, DisplayPort, and HDMI.  Yet no improvement of
-security was introduced in 3.x revisions, meaning any device claiming
+security is introduced in 3.x revisions, meaning any device claiming
 itself as a monitor can capture the video stream from the host. Exposing
 such a multi-purpose connector unprotected is insecure and allows attacks similar to \tool. In 2017, \ac{USB} 3.2~\cite{usb32} was released, doubling the data
 transfer rate (20 Gbit/s).
@@ -74,8 +74,8 @@ are not compatible with \ac{USB} in most cases.
 Thus, to provide support towards a wider range of peripherals, a 24-pins
 standard called \ac{USB} Type-C~\cite{typec} was introduced in 2013 by \ac{USB}-IF~\cite{usbif}. As it is designed to be double-sided, the number of actually usable
 pins is halved. Nevertheless, this standard has largely enhanced the capability
-of the \ac{USB} 3.x protocol. As presented in Figure~\ref{fig:usb_c_conn}, Type-C added
-two high-speed data lanes \mbox{(TRX1 \& TRX2)} and kept the original data lane \mbox{(D+ \&
+of the \ac{USB} 3.x protocol. As presented in Figure~\ref{fig:usb_c_conn}, Type-C add
+two high-speed data lanes \mbox{(TRX1 \& TRX2)} and keep the original data lane \mbox{(D+ \&
 D-)}. The added lanes are used exclusively to support peripherals like
 DisplayPort while the kept data lane transfers \ac{USB} packets.
 

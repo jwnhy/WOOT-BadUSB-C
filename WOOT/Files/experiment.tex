@@ -82,9 +82,9 @@ After the \tool is plugged into the victim's device, there is an initialization 
 \end{table*}
 \end{comment}
 
-\subsection{HID Emulator Mode}
+\subsection{HID Emulation Mode}
 
-In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
+In the experiment of HID emulation mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC with Windows 10 \mbox{(OS Build 18363.1379)} and Ubuntu 20.04.2 LTS with two \ac{USB} Type-C interfaces as the
 target devices. During this experiment, \tool disguised itself as a normal keyboard and an external display as a feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a series of mouse movements and clicks to set itself as a mirror to the primary display. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of them resulted in success.
 Compared with original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback, which allows attackers to conduct more accurate attacks.
