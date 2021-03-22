@@ -1,6 +1,6 @@
 \documentclass[conference]{IEEEtran}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /tmp/N4FUPx3z7t/latexdiff-vc-314f235ab46b938161be51ed502ce917872bfd7b/BadUSBC.tex   Mon Mar 22 08:55:03 2021
+%DIF DEL /tmp/PU2VPE45Xt/latexdiff-vc-34a97a8d8868555507dd875f30368a64cb8b20eb/BadUSBC.tex   Fri Mar 12 15:55:21 2021
 %DIF ADD BadUSBC.tex                                                                         Mon Mar 22 19:40:14 2021
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
@@ -253,7 +253,8 @@
 \newacro{URB}{USB Request Block}
 \newacro{OCR}{Optical Character Recognition}
 \newacro{GUI}{Graphical User Interface}
-\newacro{JFA}{Juice Filming Attacks}
+\DIFaddbegin \newacro{JFA}{Juice Filming Attacks}
+\DIFaddend 
 
 \begin{abstract}
 
@@ -268,7 +269,10 @@ The security of the \ac{USB} protocol has been paid extensive attention to becau
     multi-mode attack model, \tool.  This obtains UI status to make attacks more 
     precise and effective.  To the best of our knowledge, \tool is the first attack model
     utilizing \ac{USB} Type-C.  To validate the usability and effectiveness, we
-    conducted extensive experiments to simulate daily usage and summarized the private information collected.
+    conducted extensive experiments \DIFdelbegin \DIFdel{and a user study on a real-life attack
+    scenario.  Ten volunteers participated. 4,172 of 94,058 records
+    obtained by }%DIFDELCMD < \tool %%%
+\DIFdel{in the user study are related to sensitive information }\DIFdelend \DIFaddbegin \DIFadd{to simulate daily usage and summarized the private information collected}\DIFaddend .
 %\fengwei{What results?} \fengwei{what countermeasures do we propose? including
     %isolated UI rendering.}
 We also discussed the recommended countermeasures for our attack model,
@@ -335,16 +339,19 @@ roles of the \ac{USB} device and reject any usage beyond the description.
 In this work, we addressed the limitations mentioned
 above and implemented a multi-mode attack model of \ac{USB}, named \tool.  \tool
 extends BadUSB to support the features of \ac{USB} Type-C.  
-Although many smartphones equipped with USB-C connectors do not support \ac{USB} 3.x protocol, such as some non-flagship products of Xiaomi, more and more vendors like HUAWEI and Samsung tend to support \ac{USB} 3.x protocol in their \mbox{high-end} smartphones~\cite{usbclist}.
-Since \mbox{\ac{USB} Type-C} can transfer video stream data, \tool could obtain the information of the
+\DIFdelbegin \DIFdel{Since }\DIFdelend \DIFaddbegin \DIFadd{Although many smartphones equipped with USB-C connectors do not support }\DIFaddend \ac{USB} \DIFdelbegin \DIFdel{Type-C }\DIFdelend \DIFaddbegin \DIFadd{3.x protocol, such as some non-flagship products of Xiaomi, more and more vendors like HUAWEI and Samsung tend to support }\ac{USB} \DIFadd{3.x protocol in their \mbox{high-end} smartphones~\mbox{%DIFAUXCMD
+\cite{usbclist}}\hspace{0pt}%DIFAUXCMD
+.
+Since \mbox{\ac{USB} Type-C} }\DIFaddend can transfer video stream data, \tool could obtain the information of the
 victim's \ac{GUI} during attacks.  Combining it with the emulation
 of traditional \acp{HID}, e.g., keyboards and mice, attackers are capable of
 performing precise attacks.  
 %We did experiments to verify that \tool could also
 %bypass some countermeasures for BadUSB since they often rely on interaction
 %with the graphical interface. 
+ \DIFaddbegin 
 
-Moreover, we implemented multiple attacking
+\DIFaddend Moreover, we implemented multiple attacking
 modes of \ac{USB} attacks based on our approach to verify its effectiveness,
 including \ac{HID} Emulator Mode, Video Capture Mode, and \DIFdelbegin \DIFdel{Full }\DIFdelend \DIFaddbegin \DIFadd{Fully }\DIFaddend Control Mode.  To improve the
 efficiency and performance of \tool, we designed a filtering algorithm to
@@ -360,6 +367,9 @@ user study, we obtained a large amount of sensitive data through }%DIFDELCMD < \
 users are usually unconscious of the necessity to check the }%DIFDELCMD < \ac{USB} %%%
 \DIFdel{devices they
 plugged in for security purposes.  
+Ten volunteers participated in the user study.
+Finally, we found that 4,796 of 94,058 records obtained by }%DIFDELCMD < \tool %%%
+\DIFdel{are related to users' privacy information.
 }\DIFdelend After the validation of our attack model, we
 proposed several defense methods as countermeasures, including external
 hardware authorization, distrust-by-default, etc.  It is worth noting that we
@@ -428,13 +438,13 @@ initiated by the host.
 
 %\noindent\outline{HID Protocol}\\
 Right after one year of the appearance of \ac{USB} 1.0, a standard named \acf{HID}~\cite{hid} was designed based on \ac{USB}. \ac{HID} is
-designed to unify the implementation for devices like mice,
+designed \DIFdelbegin \DIFdel{with }\DIFdelend to unify the implementation for devices like mice,
 keyboards, etc. Before its appearance, the standard is divided \DIFdelbegin \DIFdel{between
 }\DIFdelend \DIFaddbegin \DIFadd{among
 }\DIFaddend manufacturers, for example, the mouse of Company A may use X-Y coordinates to
 represent its location while the mouse of Company B uses relative displacement.
 This means every device needs its own driver to work. After \ac{HID}, users only need to
-write one driver for an entire class of \acp{HID}. Furthermore, the \ac{HID} standard also
+write one driver for an entire class of \acp{HID}. Furthermore, \DIFaddbegin \DIFadd{the }\DIFaddend \ac{HID} standard also
 requires all devices to be \ac{PnP}, which is indeed
 convenient but insecure too.
 
@@ -444,7 +454,7 @@ speed (12 MBit/s). At this point, due to the transfer \DIFdelbegin \DIFdel{limit
 limited types of devices like keyboards, mice, etc.
 
 %\noindent\outline{USB2.0}\\
-In 2000, the \ac{USB} 2.0~\cite{usb20} specification was released. With high speed \mbox{(480
+In 2000, \DIFaddbegin \DIFadd{the }\DIFaddend \ac{USB} 2.0~\cite{usb20} specification was released. With high speed \mbox{(480
 Mbit/s)} mode introduced, printers, cameras, CD-ROM drives, and network cards were
 supported in this revision. Such a high data transfer rate also gave rise to the
 popularity of ``flash drive'', a portable device that allows physically
@@ -494,7 +504,7 @@ D-)}. The added lanes are used exclusively to support peripherals like
 DisplayPort while the kept data lane transfers \ac{USB} packets.
 
 %\noindent\outline{Security Problem}\\
-During the development of the \ac{USB} specification, security was insufficiently considered~\cite{sok}. 
+During the development of \DIFaddbegin \DIFadd{the }\DIFaddend \ac{USB} specification, security was insufficiently considered~\cite{sok}. 
 The \ac{USB}-IF believes it is the duty of \acp{OEM}
 to decide whether security features should be implemented~\cite{usbsec}. But the divergent implementations give a chance for attacks like
 BadUSB~\cite{rubber} and our \tool.
@@ -530,7 +540,7 @@ BadUSB~\cite{rubber} and our \tool.
 %\outline{Attack survey table}\\
 %\outline{Attack or current works about USB Type-C}\\
 
-We surveyed related works on \ac{USB} attacks in Section~\ref{subsec:usb_attack} and
+We \DIFdelbegin \DIFdel{survey }\DIFdelend \DIFaddbegin \DIFadd{surveyed }\DIFaddend related works on \ac{USB} attacks in Section~\ref{subsec:usb_attack} and
 \ac{USB} security defense in Section~\ref{subsec:usb_defence}, respectively.
 
 \subsection{USB Attacks}
@@ -558,21 +568,35 @@ firmware~\cite{rubber,badusb,rubberducky2020,usbbypassing,iseeyou,usbdriver}.
 These works rewrite the firmware of a normal-looking flash drive, which allows
 it to act like other devices. When these modified drives are connected to the
 host, they could be recognized as a keyboard or mouse. Then the attacker can
-execute malicious payloads as they are using the victim's device. Due to the
+execute malicious payloads as they \DIFdelbegin \DIFdel{were }\DIFdelend \DIFaddbegin \DIFadd{are }\DIFaddend using the victim's \DIFdelbegin \DIFdel{devices}\DIFdelend \DIFaddbegin \DIFadd{device}\DIFaddend . Due to the
 limitation of \ac{USB} 2.0~\cite{usb20} protocol, these BadUSB
 attacks~\cite{badusb} are unable to obtain video feedback from the victim
 as video stream was not supported until \ac{USB} 3.0~\cite{usb30}. 
+\DIFdelbegin \DIFdel{Although }%DIFDELCMD < \ac{USB} %%%
+\DIFdel{2.0 does not
+support video transmission, there exists a protocol called }\DIFdelend \DIFaddbegin 
 
-\ac{MHL} extends the \ac{USB} standard and allows the video signal to
-be transmitted through the \ac{USB} interface even for \ac{USB} 2.0 protocol. 
-\ac{JFA}~\cite{JFC},
-abuses this standard and monitoring the victim's device utilizing \ac{USB} 2.0 protocol. Although \ac{JFA}~\cite{JFC} could exfiltrates video data from the victim's device without permission,  
-there are two main limitation compared with \tool: 
-\ding{182} \ac{JFA}~\cite{JFC} can only exfiltrate video data passively from the victim's device, while \tool can control the victim's device at the same time as monitoring the screen. All data can be collected by \ac{JFA} only after the victim's interaction, while \tool can gather sensitive data actively through \ac{HID} injection. For example, if a victim leaves his/her phone charging without locking it, \ac{JFA} cannot obtain anything in this case, while \tool can actively control his/her device and gather sensitive information.
-\ding{183} The official list of \ac{MHL} Devices~\cite{MHLlist} shows that the latest mobile devices supporting \ac{MHL} were released in 2015, which indicates the lack of support of \ac{MHL} and limits the attack range of \ac{JFA}. \tool attacks over \ac{USB} Type-C interface, the latest \ac{USB} connector designed to replace all previous USB connector including MicroUSB~\cite{li2018usb}. So \tool has a wider attack range. 
+\DIFaddend \ac{MHL} \DIFdelbegin \DIFdel{which }\DIFdelend extends the \ac{USB} standard and allows the video signal to
+be transmitted through the \ac{USB} interface \DIFdelbegin \DIFdel{. JFA}\DIFdelend \DIFaddbegin \DIFadd{even for }\ac{USB} \DIFadd{2.0 protocol. 
+}\ac{JFA}\DIFaddend ~\cite{JFC},
+\DIFdelbegin \DIFdel{short for Juice Filming Attacks is an example that }\DIFdelend abuses this standard and \DIFaddbegin \DIFadd{monitoring the victim's device utilizing }\ac{USB} \DIFadd{2.0 protocol. Although }\ac{JFA}\DIFadd{~\mbox{%DIFAUXCMD
+\cite{JFC} }\hspace{0pt}%DIFAUXCMD
+could }\DIFaddend exfiltrates video data from the victim\DIFdelbegin \DIFdel{without permission. However, in JFA, this data exfiltration is not
+combined with BadUSB attacks, and }\DIFdelend \DIFaddbegin \DIFadd{'s device without permission,  
+there are two main limitation compared with }\tool\DIFadd{: 
+}\ding{182} \ac{JFA}\DIFadd{~\mbox{%DIFAUXCMD
+\cite{JFC} }\hspace{0pt}%DIFAUXCMD
+can only exfiltrate video data passively from the victim's device, while }\tool \DIFadd{can control the victim's device at the same time as monitoring the screen. All data can be collected by }\ac{JFA} \DIFadd{only after the victim's interaction, while }\tool \DIFadd{can gather sensitive data actively through }\ac{HID} \DIFadd{injection. For example, if a victim leaves his/her phone charging without locking it, }\ac{JFA} \DIFadd{cannot obtain anything in this case, while }\tool \DIFadd{can actively control his/her device and gather sensitive information.
+}\ding{183} \DIFadd{The official list of }\DIFaddend \ac{MHL} \DIFdelbegin \DIFdel{is an outdated standard, which limits its
+capability. }\DIFdelend \DIFaddbegin \DIFadd{Devices~\mbox{%DIFAUXCMD
+\cite{MHLlist} }\hspace{0pt}%DIFAUXCMD
+shows that the latest mobile devices supporting }\ac{MHL} \DIFadd{were released in 2015, which indicates the lack of support of }\ac{MHL} \DIFadd{and limits the attack range of }\ac{JFA}\DIFadd{. }\tool \DIFadd{attacks over }\ac{USB} \DIFadd{Type-C interface, the latest }\ac{USB} \DIFadd{connector designed to replace all previous USB connector including MicroUSB~\mbox{%DIFAUXCMD
+\cite{li2018usb}}\hspace{0pt}%DIFAUXCMD
+. So }\tool \DIFadd{has a wider attack range. 
+}\DIFaddend 
 
 % Using USB devices to inject code
-Besides attacking from the protocol perspective, previous works\shuqing{re?} use a
+Besides attacking from the protocol perspective, previous works\shuqing{re?} \DIFdelbegin \DIFdel{used }\DIFdelend \DIFaddbegin \DIFadd{use }\DIFaddend a
 \ac{USB} device as a payload delivery means. Duqu~\cite{duqu} uses a user-mode
 rootkit to hide malicious files on the \ac{USB} storage device, Flame\cite{flame} uses a
 zero-day exploit and malicious \textit{autorun.inf} to execute the malware
@@ -589,7 +613,7 @@ physical phenomenon, previous works~\cite{smartphone,
 poweremi,revealing,su2017usb,usbgpslocator,bates2014leveraging,badusbhub,usbfinger,side,usbdriver}
 eavesdrop on the leaked signals and recover the sensitive data. In a similar fashion, USBee\cite{usbee} and TURNIPSCHOOL\cite{turnip} emit electromagnetic emissions by data injection on the bus
 with the connected \ac{USB} devices as an RF transmitter and USBKiller\cite{usbkiller}
-injects analog
+\DIFdelbegin \DIFdel{inject }\DIFdelend \DIFaddbegin \DIFadd{injects }\DIFaddend analog
 power to cause physical damage to the host machine. Even though the data,
 including the video data, could be recovered in this way, these attacks for
 executing malicious code are too difficult to work, and invisibility is a
@@ -600,16 +624,24 @@ connectors have been provided by \ac{USB} Type-C, transferring of video data can
 combined with the other attacks, like protocol masquerading,  protocol
 corruption, and code injection. This has paved the path for our \tool.
 
-\subsection{USB Security Defenses}
+\DIFdelbegin \DIFdel{It is worth noting that our }%DIFDELCMD < \tool %%%
+\DIFdel{is different from JFA~\mbox{%DIFAUXCMD
+\cite{JFC}}\hspace{0pt}%DIFAUXCMD
+. Juice Filming Attacks cannot control the attacked device, it can only video-capture user inputs during charging. However, our }%DIFDELCMD < \tool %%%
+\DIFdel{can control the attacked device at the same time as monitoring the screen, which enhances the efficiency of stealing users' private data. 
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \subsection{USB Security Defenses}
 \label{subsec:usb_defence}
 
 Many defenses have been proposed to defend against BadUSB attacks~\cite{sok}.
 
-From the hardware perspective, the BadUSB attack requires \mbox{(D+ \& D-)} pins which
+From the hardware perspective, the BadUSB attack requires \mbox{\DIFdelbegin \DIFdel{`D-' and `}\DIFdelend \DIFaddbegin \DIFadd{(}\DIFaddend D+ \DIFdelbegin \DIFdel{'}\DIFdelend \DIFaddbegin \DIFadd{\& D-)}\DIFaddend } pins which
 are defined by the protocol to transmit data. Without these pins, data cannot 
 be transferred via a \ac{USB} cable. Based
 on this fact, \ac{USB} Condom~\cite{Condom} is a hardware solution to block data
-channels by adding a blocker in the connector. This blocker can cut off the \mbox{(D+ \& D-)} connection while leaving the power pins intact. However, this method poses
+channels by adding a blocker in the connector. This blocker can cut off the \mbox{\DIFdelbegin \DIFdel{`D-' and `}\DIFdelend \DIFaddbegin \DIFadd{(}\DIFaddend D+ \DIFdelbegin \DIFdel{'}\DIFdelend \DIFaddbegin \DIFadd{\& D-)}\DIFaddend } connection while leaving the power pins intact. However, this method poses
 a great challenge to the \ac{PnP} property of \ac{USB}, as once it is deployed, it
 stops all \ac{USB} functions other than charging.
 
@@ -630,13 +662,14 @@ relies on the rich experience of administrators to build a whitelist. However, s
 modified \ac{USB} devices may hide their real functionality from the user.
 
 To solve this flaw, GoodUSB~\cite{tian2015defending} reports the functionality claimed
-by the device to the user and lets the user decide whether to authorize. When a device
+by the device to the user and \DIFdelbegin \DIFdel{let }\DIFdelend \DIFaddbegin \DIFadd{lets }\DIFaddend the user decide whether to authorize. When a device
 is plugged in, GoodUSB blocks its functionality before enumeration until a
 series of authorizations are completed. These authorizations are designed to be
 performed manually, thus the malicious devices will be detected if they make a different claim 
 that does not match the authorization results. 
 USBeSafe\cite{usbesafe} analyses the 
-feature vector constructed with the data collected from USB Request Blocks, 
+feature vector constructed with the data collected from \DIFdelbegin %DIFDELCMD < \acp{URB}%%%
+\DIFdelend \DIFaddbegin \DIFadd{USB Request Blocks}\DIFaddend , 
 detects the novel \ac{USB} packets based on the machine learning algorithm and sends 
 an alert to the user before enumeration. As BadUSB attacks normally request privileged 
 interfaces during enumerating, these defenses are sufficient for these attacks.
@@ -647,10 +680,10 @@ After the \ac{USB} enumeration and driver loading, some related works follow the
 Neuner \emph{et al.}~\cite{neuner2018usblock}
 prevent BadUSB attacks from the malicious flash drive by analyzing
 the temporal characteristics of BadUSB-like attacks. This defense mechanism is
-effective because the attacker cannot obtain the screen of the victim host using
+effective because the attacker cannot obtain the screen of the \DIFaddbegin \DIFadd{victim }\DIFaddend host using
 BadUSB. In this case, the malicious device can only inject keystrokes in a very
 short time to reduce the risk of being discovered. 
-This property causes the
+This \DIFdelbegin \DIFdel{defect }\DIFdelend \DIFaddbegin \DIFadd{property }\DIFaddend causes the
 typing characteristics of BadUSB to be detectable. Pham \emph{et al.}~\cite{pham2010optimizing} optimize Windows security features, which can
 block the execution of unsigned files and the installation of unsigned drivers
 carried on portable media. Moreover, in GoodUSB, a VM is deployed in the host as
@@ -658,10 +691,10 @@ a honeypot to detect and stop malicious behavior of \ac{USB} devices.
 
 In addition to injection attacks, data theft attack is also one of the focuses
 of the academic community. As mentioned in Section~\ref{subsec:usb_attack}, there
-exists an attack called \ac{JFA}~\cite{JFC} which abuses the \ac{MHL}
-standard to steal the video stream from the victim. In order to mitigate this
+exists an attack called \DIFdelbegin \DIFdel{JFA}\DIFdelend \DIFaddbegin \ac{JFA}\DIFaddend ~\cite{JFC} which abuses the \ac{MHL}
+standard to steal \DIFaddbegin \DIFadd{the }\DIFaddend video stream from the victim. In order to mitigate this
 issue, Meng et al.~\cite{meng2018252} propose a statistical model using status
-like GPU/CPU usage to detect \ac{JFA} attacks.
+like GPU/CPU usage to detect \DIFdelbegin \DIFdel{JFA }\DIFdelend \DIFaddbegin \ac{JFA} \DIFaddend attacks.
 
 Therefore, there exists a clear trade-off between the effectiveness and the
 \ac{PnP} property. Although hardware disabling solutions like \ac{USB} Condom
@@ -758,7 +791,7 @@ As introduced in Section~\ref{sec:related_work},
 existing works~\cite{rubber,badusb,
 rubberducky2020,usbbypassing,iseeyou,usbdriver} focus on BadUSB attacks.
 Many of these take advantage of the \textit{trust-by-default} policy of PC,
-pretend to be normal \ac{HID} devices and utilize the \ac{USB} protocol to perform attacks.
+pretend to be normal \ac{HID} devices and utilize \DIFaddbegin \DIFadd{the }\DIFaddend \ac{USB} protocol to perform attacks.
 However, these attacks suffer from various drawbacks: \ding{182} attackers can
 only simulate limited types of devices such as \acp{HID} (e.g. keyboards and mice)
 and disks, which makes the attacks less effective; \ding{183} accurate attacks
@@ -777,7 +810,7 @@ implemented an authorization procedure when a new device is plugged in and block
 In this work, we utilize the new features of \ac{USB} 3.x~\cite{usb31,usb32} to
 address the problems above.  Benefiting from the latest protocol, we simulate
 an external display and thus obtain the video stream to perform accurate
-attacks. However, we are still unable to bypass defenses like GoodUSB~\cite{tian2015defending}, which completely blocks unauthorized functionality. This will be further discussed in Section~\ref{sec:discussion}
+attacks. However, we \DIFaddbegin \DIFadd{are }\DIFaddend still unable to bypass defenses like GoodUSB~\cite{tian2015defending}, which completely blocks unauthorized functionality. This will be further discussed in Section~\ref{sec:discussion}
 
 As there were various BadUSB implementations available, this work focuses on our new extensions. Next, we first introduce the
 components we used in \tool, then we focus on the three different attack modes
@@ -800,7 +833,7 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 
 	\item\underline{\ac{HID} Emulator} emulates \ac{HID} device which can be controlled by the attacker.
 
-	\item\underline{Single Board Computer} processes the video stream from the victim via the Video Capture Card or sends commands to the victim via \ac{HID} Emulator.
+	\item\underline{Single Board Computer} processes \DIFaddbegin \DIFadd{the }\DIFaddend video stream from the victim via the Video Capture Card or sends commands to the victim via \ac{HID} Emulator.
 
 	\item\underline{Wi-Fi/GSM Module} transmits the sensitive data or receives commands to/from the remote attacker PC.
 
@@ -822,12 +855,12 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 
 \textbf{\ac{HID} Emulation Mode.} This mode mainly relies on the ``\ac{HID} Emulator'' in Figure~\ref{fig:attack_model} to
 send constructed \ac{HID} \DIFdelbegin \DIFdel{packet }\DIFdelend \DIFaddbegin \DIFadd{packets }\DIFaddend to the victim. These constructed \ac{HID} packets are
-interpreted by the victim as valid keystrokes and mouse movements. Thus, \DIFdelbegin \DIFdel{the
+interpreted by the victim as valid keystrokes and mouse \DIFdelbegin \DIFdel{moves}\DIFdelend \DIFaddbegin \DIFadd{movements}\DIFaddend . Thus, \DIFdelbegin \DIFdel{the
 attacker }\DIFdelend \DIFaddbegin \DIFadd{attackers }\DIFaddend can execute arbitrary scripts on the victim's device. This is the
 function of \DIFdelbegin \DIFdel{the original }\DIFdelend BadUSB. Based on this, we made the following
 improvements.
 
-First, as \tool has established a feedback channel using \ac{USB} 3.x protocol, when performing keystroke and mouse \DIFdelbegin \DIFdel{movement }\DIFdelend \DIFaddbegin \DIFadd{movements }\DIFaddend injection, an attacker can obtain real-time feedback from the victim's device. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such a feedback channel largely strengthens the attack ability of \tool.
+First, as \tool has established a feedback channel using \ac{USB} \DIFdelbegin \DIFdel{3.2 }\DIFdelend \DIFaddbegin \DIFadd{3.x }\DIFaddend protocol, when performing keystroke and mouse \DIFdelbegin \DIFdel{movement }\DIFdelend \DIFaddbegin \DIFadd{movements }\DIFaddend injection, an attacker can obtain real-time feedback from the victim's \DIFdelbegin \DIFdel{devices}\DIFdelend \DIFaddbegin \DIFadd{device}\DIFaddend . This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such a feedback channel largely strengthens the attack ability of \tool.
 
 Moreover, as the mouse relies on the visual feedback to work properly, its
 emulation and automation were not supported by the original version of BadUSB.
@@ -851,13 +884,13 @@ USB device and solely relies on the video stream function of \ac{USB} 3.x; it us
 %\fengwei{What is embedded computer? Do we define this in the previous\hongyi{Fixed by using the term mentioned in Figure}
 %text?}.
 The victim's device mistakenly treats \tool as an external monitor
-and output its video stream. This stream is later processed by the embedded
+and output its video stream. This stream is \DIFdelbegin \DIFdel{latter }\DIFdelend \DIFaddbegin \DIFadd{later }\DIFaddend processed by the embedded
 computer to extract sensitive data.
 
 When running in this mode, \tool passively processes the victim's video stream
 and detects ``valuable'' private data.  The data is considered as
 ``valuable'' or not by a customized detector. We implemented a simple
-payment code detector for the proof-of-concept purpose, which demonstrates that we successfully transfered money from a victim to an
+payment code detector for the proof-of-concept purpose, which demonstrates that we successfully \DIFdelbegin \DIFdel{transfer }\DIFdelend \DIFaddbegin \DIFadd{transfered }\DIFaddend money from a victim to an
 attacker. More detail can be obtained in Section~\ref{sec:experiment}.
 
 It is worth mentioning that \tool under this mode is completely passive, making
@@ -902,18 +935,20 @@ experiments on \tool using devices with \ac{USB} Type-C capabilities from differ
 %Pi, ATMEGA32U4 board, Yamazawa, etc.}
 As mentioned in Section~\ref{sec:badusb},
 our \tool only requires common components that are easily accessible online or
-in any electronic store. Here we chose the following parts to build a
-prototype. To begin with, we chose the Raspberry Pi 4B~\cite{pi4b} as the embedded Single Board
+in any electronic store. Here we \DIFdelbegin \DIFdel{choose }\DIFdelend \DIFaddbegin \DIFadd{chose }\DIFaddend the following parts to build a
+prototype. To begin with, we \DIFdelbegin \DIFdel{choose }\DIFdelend \DIFaddbegin \DIFadd{chose }\DIFaddend the Raspberry Pi 4B~\cite{pi4b} as the embedded Single Board
 Computer inside \tool, which is powerful enough to process video data and has
-an onboard WiFi chip. As for the \ac{HID} Emulator, we used an Atmel ATMEGA32U4 board~\cite{atmel}
+an onboard WiFi chip. As for the \ac{HID} Emulator, we \DIFdelbegin \DIFdel{use }\DIFdelend \DIFaddbegin \DIFadd{used }\DIFaddend an Atmel ATMEGA32U4 board~\cite{atmel}
 with \ac{USB} protocol support, which is able to emulate multiple \acp{HID}
-with our modified firmware. About the \ac{USB} 3.x Hub, we used one from
-UGREEN~\cite{ugreen}, which supports HDMI, \ac{USB} 2.0, and many other exported peripherals.
-Apart from these essential parts, we also used an auxiliary power bank to
+with our modified firmware. About the \ac{USB} 3.x Hub, we \DIFdelbegin \DIFdel{use one from
+the
+}\DIFdelend \DIFaddbegin \DIFadd{used one from
+}\DIFaddend UGREEN~\cite{ugreen}, which supports HDMI, \ac{USB} 2.0, and many other exported peripherals.
+Apart from these essential parts, we also \DIFdelbegin \DIFdel{use }\DIFdelend \DIFaddbegin \DIFadd{used }\DIFaddend an auxiliary power bank to
 provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 
-\circled[text=white,fill=myblue]{\scriptsize{A}} is a HUAWEI mobile phone, the victim's device; \circled[text=white,fill=myblue]{\scriptsize{B}} is a compact look of \tool prototype; \circled[text=white,fill=myblue]{\scriptsize{1}} is the \ac{USB} 3.x Hub; \circled[text=white,fill=myblue]{\scriptsize{2}} is a Raspberry Pi 4B as the Single Board Computer; \circled[text=white,fill=myblue]{\scriptsize{3}} is an auxiliary power bank; \circled[text=white,fill=myblue]{\scriptsize{4}} is the Video Capture Card; \circled[text=white,fill=myblue]{\scriptsize{5}} is an Atmel ATMEGA32U4 board as the \ac{HID} Emulator.
+\circled[text=white,fill=myblue]{\scriptsize{A}} is a \DIFdelbegin \DIFdel{Huawei }\DIFdelend \DIFaddbegin \DIFadd{HUAWEI }\DIFaddend mobile phone, the victim's device; \circled[text=white,fill=myblue]{\scriptsize{B}} is a compact look of \tool prototype; \circled[text=white,fill=myblue]{\scriptsize{1}} is the \ac{USB} 3.x Hub; \circled[text=white,fill=myblue]{\scriptsize{2}} is a Raspberry Pi 4B as the Single Board Computer; \circled[text=white,fill=myblue]{\scriptsize{3}} is an auxiliary power bank; \circled[text=white,fill=myblue]{\scriptsize{4}} is the Video Capture Card; \circled[text=white,fill=myblue]{\scriptsize{5}} is an Atmel ATMEGA32U4 board as the \ac{HID} Emulator.
 %\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
 %2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
 %\fengwei{I think it is necessary to explain them in the text again.}
@@ -934,22 +969,25 @@ The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 \end{figure}
 
 \subsection{Attack Initialization}
-\label{subsec:attack_init}
-After the \tool is plugged into the victim's device, there is an initialization process to make sure the \tool is able to carry out subsequent attacks.
+\DIFaddbegin \label{subsec:attack_init}
+\DIFaddend After the \tool is plugged into the victim's device, there is an initialization process to make sure the \tool is able to carry out subsequent \DIFdelbegin \DIFdel{attack}\DIFdelend \DIFaddbegin \DIFadd{attacks}\DIFaddend .
 \begin{itemize}
 	\item \textbf{Screen Mirror}:
-		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device \DIFdelbegin \DIFdel{into mirror their screens}\DIFdelend \DIFaddbegin \DIFadd{to mirror the primary screen}\DIFaddend . In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject \DIFdelbegin \DIFdel{`}\DIFdelend \DIFaddbegin \DIFadd{``}\DIFaddend Win+P\DIFdelbegin \DIFdel{' (`Super' is another name for the `Win' key }\DIFdelend \DIFaddbegin \DIFadd{'' (The ``Win'' key is the ``Super'' key in Windows and Ubuntu by default}\DIFaddend ) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and \DIFdelbegin \DIFdel{Windows 10 is similar . }\DIFdelend \DIFaddbegin \DIFadd{it is similar in Windows 10. }\DIFaddend In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{\DIFdelbegin \DIFdel{`}\DIFdelend \DIFaddbegin \DIFadd{``}\DIFaddend Command+F1\DIFdelbegin \DIFdel{'}\DIFdelend \DIFaddbegin \DIFadd{''}\DIFaddend } keystrokes to set the \DIFdelbegin \DIFdel{monitor into mirroring }\DIFdelend \DIFaddbegin \DIFadd{victim's device to mirror }\DIFaddend the primary screen. In EMUI, there is a special mode called \DIFdelbegin \DIFdel{`Desktop Mode'}\DIFdelend \DIFaddbegin \DIFadd{``Desktop Mode''}\DIFaddend , which allows users to use their smartphones like a desktop computer with an external screen. If this mode is \DIFaddbegin \DIFadd{enabled, as }\DIFaddend victim's \DIFdelbegin \DIFdel{default setting}\DIFdelend \DIFaddbegin \DIFadd{``desktop'' can be obtained}\DIFaddend , \tool can inject mouse movements to switch to mirror mode\DIFdelbegin \DIFdel{as }%DIFDELCMD < \tool %%%
-\DIFdel{can obtain victim's `desktop' in this mode}\DIFdelend .
-		\begin{figure}[H]
+		During our experiment, we noticed that some devices \DIFdelbegin \DIFdel{do }\DIFdelend \DIFaddbegin \DIFadd{did }\DIFaddend not mirror their \DIFdelbegin \DIFdel{screen }\DIFdelend \DIFaddbegin \DIFadd{screens }\DIFaddend to our \tool by default. In this case, \tool \DIFdelbegin \DIFdel{will }\DIFdelend \DIFaddbegin \DIFadd{would }\DIFaddend inject a sequence of keystrokes \DIFdelbegin \DIFdel{and mouse movements }\DIFdelend to set the victim's device \DIFdelbegin \DIFdel{into mirror their screen. For example, in }\DIFdelend \DIFaddbegin \DIFadd{to mirror the primary screen. In both }\DIFaddend Windows 10 \DIFaddbegin \DIFadd{and Ubuntu (Gnome Desktop)}\DIFaddend , \tool can inject \DIFdelbegin \DIFdel{`}\DIFdelend \DIFaddbegin \DIFadd{``}\DIFaddend Win+P\DIFdelbegin \DIFdel{' keystroke and a mouse click on the `Duplicate'option. However, as }%DIFDELCMD < \tool %%%
+\DIFdel{is unable to obtain the screenduring this process, this can only be performed blindly with a possibility of failure.
+		}\DIFdelend \DIFaddbegin \DIFadd{'' (The ``Win'' key is the ``Super'' key in Windows and Ubuntu by default) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and it is similar in Windows 10. In MacOS, according to the official manual~\mbox{%DIFAUXCMD
+\cite{appleman}}\hspace{0pt}%DIFAUXCMD
+, }\tool \DIFadd{can inject \mbox{``Command+F1''} keystrokes to set the victim's device to mirror the primary screen. In EMUI, there is a special mode called ``Desktop Mode'', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is enabled, as victim's ``desktop'' can be obtained, }\tool \DIFadd{can inject mouse movements to switch to mirror mode.
+		}\begin{figure}[H]
 			\includegraphics[width=\linewidth]{./Figs/ubuntu_switch.png}\\
-			\caption{\DIFaddbeginFL \DIFaddFL{Switching }\DIFaddendFL Screen Mode \DIFdelbeginFL \DIFdelFL{Switch }\DIFdelendFL in Ubuntu.}
+			\caption{\DIFaddFL{Switching Screen Mode in Ubuntu.}}
 			\label{fig:ubuntu_switch}
 		\end{figure}
-	\item \textbf{Dismiss Notification}:
+	\DIFaddend \item \textbf{Dismiss Notification}:
 		In our experiment, we found that some devices \DIFdelbegin \DIFdel{will }\DIFdelend \DIFaddbegin \DIFadd{would }\DIFaddend notify the user the presence of an external screen. During our experiment, the following notifications were raised:
 		\begin{itemize}
 		 \item On Lenovo Xiaoxin Pro 13, it raised a pop-up asking user to select the functionality of the external screen.
-		 \item On HUAWEI P30, it showed a status bar indicator and a persistent notification about the external monitor.
+		 \item On \DIFdelbegin \DIFdel{Huawei }\DIFdelend \DIFaddbegin \DIFadd{HUAWEI }\DIFaddend P30, it showed a status bar indicator and a persistent notification about the external monitor.
 		 \item On iPad Pro (the third generation), it also showed a blue status bar indicator and a notification about \ac{USB} accessories if iPad is locked.
 		\end{itemize}
 		To avoid being discovered by the victim, \tool can inject keystrokes and mouse movements to dismiss some of these notifications. For example, in the first case, \tool is able to inject a sequence of mouse movements to set the screen at mirror mode to dismiss the pop-up.
@@ -974,8 +1012,8 @@ After the \tool is plugged into the victim's device, there is an initialization 
 \subsection{HID Emulator Mode}
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
-2020}, a PC with Windows 10 \mbox{(OS Build 18363.1379)} and Ubuntu 20.04.2 LTS with two \ac{USB} Type-C interfaces as the
-target \DIFdelbegin \DIFdel{device}\DIFdelend \DIFaddbegin \DIFadd{devices}\DIFaddend . During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of \DIFdelbegin \DIFdel{which }\DIFdelend \DIFaddbegin \DIFadd{them }\DIFaddend resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
+2020}, a PC \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{with }\DIFaddend Windows 10 \mbox{(OS Build 18363.1379)} \DIFaddbegin \DIFadd{and Ubuntu 20.04.2 LTS }\DIFaddend with two \ac{USB} Type-C interfaces as the
+target \DIFdelbegin \DIFdel{device}\DIFdelend \DIFaddbegin \DIFadd{devices}\DIFaddend . During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's \DIFdelbegin \DIFdel{devices }\DIFdelend \DIFaddbegin \DIFadd{device }\DIFaddend raised a pop-up window asking \DIFdelbegin \DIFdel{victims what }\DIFdelend \DIFaddbegin \DIFadd{the victim which }\DIFaddend mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of \DIFdelbegin \DIFdel{which }\DIFdelend \DIFaddbegin \DIFadd{them }\DIFaddend resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
 
@@ -984,8 +1022,9 @@ target \DIFdelbegin \DIFdel{device}\DIFdelend \DIFaddbegin \DIFadd{devices}\DIFa
 %\hongyi{we have discussed this and decide no need.}
 \subsection{Video Capture Mode}
 
-During the experiment of privacy extraction via our video capture mode, we chose \mbox{\textit{HUAWEI P30 (ELE-AL00)}}, a
-smartphone in \mbox{EMUI 11.0.0.135(C00E128R2P5)} \mbox{(Android 10.0 based)} with a \ac{USB} Type-C interface, as the
+During the experiment of privacy extraction via our video capture mode, we chose \DIFdelbegin \textit{\DIFdel{HUAWEI P30 (ELE-AL00)}}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{\mbox{\textit{HUAWEI P30 (ELE-AL00)}}}\DIFaddend , a
+smartphone in \DIFdelbegin \DIFdel{EMUI 11.0.0.135(C00E128R2P5) }\DIFdelend \DIFaddbegin \DIFadd{\mbox{EMUI 11.0.0.135(C00E128R2P5)} }\DIFaddend \mbox{(Android 10.0 based)} with a \ac{USB} Type-C interface, as the
 target device. In the privacy extraction experiment, \tool passively captured video
 from the victim's device and used \textit{OpenCV} to identify the sensitive
 information from the video stream.  When the victim viewed text or photos with
@@ -994,10 +1033,10 @@ extract text from corresponding video frames. In this experiment, the attacker
 successfully extracted text such as name, address, ID number, and other sensitive
 personal information. We also tested the payment code extractor, which enables
 an attacker to identify payment code in the video stream and performs transactions
-without the password. During our experiment, we noticed that this HUAWEI device supports `Desktop Mode'
+without the password. \DIFaddbegin \DIFadd{During our experiment, we noticed that this HUAWEI device supports `Desktop Mode'
 for its external screen, which enables user to use their devices like a desktop computer with a external screen.
-If \tool is set into this mode, \tool is able to inject mouse movements to set itself into mirroring the primary screen, as we discussed in Section~\ref{subsec:attack_init}.
-As this is also a part of our case study, more details about
+If }\tool \DIFadd{is set into this mode, }\tool \DIFadd{is able to inject mouse movements to set itself into mirroring the primary screen, as we discussed in Section~\ref{subsec:attack_init}.
+}\DIFaddend As this is also a part of our case study, more details about
 the extracted sensitive data can be found in Section~\ref{subsec:case_study} and
 Table~\ref{table:information_extracted}.
 
@@ -1012,7 +1051,7 @@ process the victim's video stream locally, it does not need to transmit the real
 %\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
 To test the capability of the full control mode, we chose iPad Pro (3rd
-	generation), a tablet running iOS 14.4 (Build 18D52) with a \ac{USB} Type-C interface, as the target
+	generation), a tablet \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{running }\DIFaddend iOS 14.4 (Build 18D52) with a \ac{USB} Type-C interface, as the target
 device in this experiment.  Besides disguising \DIFaddbegin \DIFadd{themself }\DIFaddend as normal \acp{HID} like a
 conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
 stream from the target device to the attacker via WiFi.  After establishing the connection, the attacker performed a series of actions to test the capability of
@@ -1035,7 +1074,112 @@ In the following paragraphs, we will demonstrate the attack scenarios of \tool u
 
 \subsubsection{Background}
 
-We first introduce the technical background of our case study, sharing power
+\DIFdelbegin %DIFDELCMD < \begin{table*}[t]
+%DIFDELCMD < 	\centering
+%DIFDELCMD < 	\begin{tabular}{|l|l|l|l|}
+%DIFDELCMD < 		\hline
+%DIFDELCMD < 		%%%
+\textbf{\DIFdelFL{Keyword}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdelFL{Text}}                                                             %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdelFL{Name}}                                   %DIFAUXCMD
+%DIFDELCMD < & %%%
+\textbf{\DIFdelFL{Frame Number}} %DIFAUXCMD
+%DIFDELCMD < \\ \hline
+%DIFDELCMD < 		%%%
+\DIFdelFL{username                          }%DIFDELCMD < & %%%
+\DIFdelFL{X 8B cas.******.edu.cn Username: 11****18 Password:                                        }%DIFDELCMD < & %%%
+\DIFdelFL{\textless{}user1\textgreater{} }%DIFDELCMD < & %%%
+\DIFdelFL{385                                    }%DIFDELCMD < \\ \hline
+%DIFDELCMD < 		%%%
+\DIFdelFL{username                          }%DIFDELCMD < & %%%
+\DIFdelFL{Login Weibo Login with SMS and verification code ...... +86 151****4587                    }%DIFDELCMD < & %%%
+\DIFdelFL{\textless{}user5\textgreater{} }%DIFDELCMD < & %%%
+\DIFdelFL{1947                                   }%DIFDELCMD < \\ \hline
+%DIFDELCMD < 		%%%
+\DIFdelFL{username                          }%DIFDELCMD < & %%%
+\DIFdelFL{QQ 14*****50| Login with phone number New user registration 2345678 9 0                    }%DIFDELCMD < & %%%
+\DIFdelFL{\textless{}user3\textgreater{} }%DIFDELCMD < & %%%
+\DIFdelFL{4308                                   }%DIFDELCMD < \\ \hline
+%DIFDELCMD < 		%%%
+\DIFdelFL{username                          }%DIFDELCMD < & %%%
+\DIFdelFL{connect to *** username h*****l Save account information Open VPN.....                     }%DIFDELCMD < & %%%
+\DIFdelFL{\textless{}user6\textgreater{} }%DIFDELCMD < & %%%
+\DIFdelFL{7925                                   }%DIFDELCMD < \\ \hline
+%DIFDELCMD < 		%%%
+\DIFdelFL{phone number                      }%DIFDELCMD < & %%%
+\DIFdelFL{Login with phone number ...... +86 186****2483 |                                           }%DIFDELCMD < & %%%
+\DIFdelFL{\textless{}user1\textgreater{} }%DIFDELCMD < & %%%
+\DIFdelFL{313                                    }%DIFDELCMD < \\ \hline
+%DIFDELCMD < 		%%%
+\DIFdelFL{phone number                      }%DIFDELCMD < & %%%
+\DIFdelFL{Log in with your mobile phone number. ...... mobile phone number 131****9310 }%DIFDELCMD < & %%%
+\DIFdelFL{\textless{}user9\textgreater{} }%DIFDELCMD < & %%%
+\DIFdelFL{210                                    }%DIFDELCMD < \\ \hline
+%DIFDELCMD < 		%%%
+\DIFdelFL{@                                 }%DIFDELCMD < & %%%
+\DIFdelFL{contact email 30*******7G@qq.com, contact phone 027-88******                               }%DIFDELCMD < & %%%
+\DIFdelFL{\textless{}user7\textgreater{} }%DIFDELCMD < & %%%
+\DIFdelFL{5324                                   }%DIFDELCMD < \\ \hline
+%DIFDELCMD < 		%%%
+\DIFdelFL{@                                 }%DIFDELCMD < & %%%
+\DIFdelFL{Account 73*****5@qq.com @qq.com @163.com @gmail.com 	......      }%DIFDELCMD < & %%%
+\DIFdelFL{\textless{}user6\textgreater{} }%DIFDELCMD < & %%%
+\DIFdelFL{621                                    }%DIFDELCMD < \\ \hline
+%DIFDELCMD < 	\end{tabular}
+%DIFDELCMD < 	\linebreak
+%DIFDELCMD < 	%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Examples of Searching }%DIFDELCMD < \ac{OCR} %%%
+\DIFdelFL{Results with Keywords.}}
+	%DIFAUXCMD
+%DIFDELCMD < \label{tab:ocr_keyword_example}
+%DIFDELCMD < \end{table*}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{table*}[t]
+%DIFDELCMD < 	\centering
+%DIFDELCMD < 	\begin{tabular}{|c|c|c|c|c|c|c|}
+%DIFDELCMD < 		\hline
+%DIFDELCMD < 		%%%
+\textbf{\DIFdelFL{Keyword}}                               %DIFAUXCMD
+%DIFDELCMD < & %%%
+\DIFdelFL{Account }%DIFDELCMD < & %%%
+\DIFdelFL{Password }%DIFDELCMD < & %%%
+\DIFdelFL{Phone number }%DIFDELCMD < & %%%
+\DIFdelFL{Email }%DIFDELCMD < & %%%
+\DIFdelFL{Username }%DIFDELCMD < & %%%
+\DIFdelFL{Regexp for email~  }%DIFDELCMD < \\
+%DIFDELCMD < 		\hline
+%DIFDELCMD < 		%%%
+\textbf{\DIFdelFL{Number of records containing keywords}} %DIFAUXCMD
+%DIFDELCMD < & %%%
+\DIFdelFL{680     }%DIFDELCMD < & %%%
+\DIFdelFL{1,596     }%DIFDELCMD < & %%%
+\DIFdelFL{1,510         }%DIFDELCMD < & %%%
+\DIFdelFL{164   }%DIFDELCMD < & %%%
+\DIFdelFL{522      }%DIFDELCMD < & %%%
+\DIFdelFL{78                 }%DIFDELCMD < \\
+%DIFDELCMD < 		\hline
+%DIFDELCMD < 		%%%
+\textbf{\DIFdelFL{Total Number of Records}} %DIFAUXCMD
+%DIFDELCMD < & \multicolumn{6}{c|}{4,172} \\
+%DIFDELCMD < 		\hline
+%DIFDELCMD < 	\end{tabular}
+%DIFDELCMD < 	\linebreak
+%DIFDELCMD < 	%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Privacy Extraction Result.}}
+	%DIFAUXCMD
+%DIFDELCMD < \label{table:information_extracted}
+%DIFDELCMD < \end{table*}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend We first introduce the technical background of our case study, sharing power
 banks and QR code payment.
 
 \textbf{Sharing Power Banks}.  Sharing power banks provide users with short-term
@@ -1127,75 +1271,106 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 \hongyi{I dont know if it's a good enough reason}
 %Here we only validate the usability of privacy extraction mode and conducted a user study.
 
-\subsubsection{Experiment}
+\DIFdelbegin \DIFdel{To further validate our attacking scenario , we invited 10 volunteers, who are students in our university, to participate and conduct a user study.
+Before the user study experiment, we disclosed to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
+During the case study, volunteers took turns to use their phones for half an hour with }\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Experiment}}
 
-\DIFdelbegin \DIFdel{To further test }\DIFdelend \DIFaddbegin \DIFadd{We conducted experiments to further validate }\DIFaddend the capabilities of \tool 
-in \DIFdelbegin \DIFdel{this attack scenario , we conducted a simulation experiment.
-We selected }\DIFdelend \DIFaddbegin \DIFadd{the attack scenario introduced in Section~\ref{subsec:attack-scenario}.
-}\DIFaddend 11 applications \DIFaddbegin \DIFadd{were selected and tested }\DIFaddend on \mbox{\textit{HUAWEI P30 (ELE-AL00)}} \DIFdelbegin \DIFdel{, test each application with the following strategy
-}%DIFDELCMD < \ding{182} %%%
-\DIFdelend \DIFaddbegin \DIFadd{step by step:
-(1) }\DIFaddend Login in with a test account.
-\DIFdelbegin %DIFDELCMD < \ding{183} %%%
-\DIFdelend \DIFaddbegin \DIFadd{(2) }\DIFaddend Keep the default settings.
-\DIFdelbegin %DIFDELCMD < \ding{184} %%%
-\DIFdelend \DIFaddbegin \DIFadd{(3) }\DIFaddend Attach attacker's \tool to the test device.
-\DIFdelbegin %DIFDELCMD < \ding{185} %%%
-\DIFdelend \DIFaddbegin \DIFadd{(4) }\DIFaddend Simulate victim's daily usage of the application.
+\DIFadd{We conducted experiments to further validate the capabilities of }\DIFaddend \tool 
+\DIFdelbegin \DIFdel{connected. 
+To obtain data close to real-life, they were requested to use phones just as they were normally using sharing power banks.
+At the same time, we used scripts to perform }%DIFDELCMD < \ac{OCR} %%%
+\DIFdel{recognition for each frame in the videos stream and stored all of the }%DIFDELCMD < \ac{OCR} %%%
+\DIFdel{results in a database}\DIFdelend \DIFaddbegin \DIFadd{in the attack scenario introduced in Section~\ref{subsec:attack-scenario}.
+11 applications were selected and tested on \mbox{\textit{HUAWEI P30 (ELE-AL00)}} step by step:
+(1) Login in with a test account.
+(2) Keep the default settings.
+(3) Attach attacker's }\tool \DIFadd{to the test device.
+(4) Simulate victim's daily usage of the application}\DIFaddend .
 
-During this experiment, we tested full control mode which actively obtained sensitive information and video capture mode which passively obtained the sensitive information visited by the victim. We noticed that, most sensitive information could be obtained directly through full control mode without victim's interaction, but there was also certain information that had to be obtained passively through video capture mode. For example, as illustrated in Table~\ref{table:information_extracted}, in most applications, information like ``Account'' can be obtained directly while information like ``Payment Password'' cannot be obtained until the victim inputs his/her password.
+\DIFdelbegin \DIFdel{After each experiment, the raw video and the corresponding }%DIFDELCMD < \ac{OCR} %%%
+\DIFdel{result file was generated automatically, then we presented these files to him/her, introduced our attack, told him/her to analyze the video file and replace certain characters of the private data that appear in the }%DIFDELCMD < \ac{OCR} %%%
+\DIFdel{result file with asterisks. This protects their privacy and is also a mark for us to confirm thatthe data we find contains their private data. At last, he/she would destroy all original files, leave only the desensitized }%DIFDELCMD < \ac{OCR} %%%
+\DIFdel{results for us. 
+%DIF < \shuqing{Do we need to mention that agreement the conference required here?}
+%DIF < \hongyi{I'm also quite concern about this.}
+}%DIFDELCMD < 
 
-\subsubsection{Result}
-In summary, \tool is able to actively obtain most sensitive information from the screen, such as browsing history, personal account, phone number without victim's interaction. There also exists information such as payment password that is not available immediately, but such a piece of information can be obtained once the victim inputs it. The obtained information can be \DIFdelbegin \DIFdel{further }\DIFdelend used to guess the victim's lock screen password and poses \DIFdelbegin \DIFdel{even greater }\DIFdelend \DIFaddbegin \DIFadd{further }\DIFaddend threat to victim's privacy.
+%DIFDELCMD < %%%
+\subsubsection{\DIFdel{Result}}
+%DIFAUXCMD
+\addtocounter{subsubsection}{-1}%DIFAUXCMD
+%DIFDELCMD < 
 
-\begin{table*}[t]
+%DIFDELCMD < %%%
+\DIFdel{In total, there are 94}\DIFdelend \DIFaddbegin \DIFadd{During this experiment, we tested full control mode which actively obtained sensitive information and video capture mode which passively obtained the sensitive information visited by the victim. We noticed that}\DIFaddend , \DIFdelbegin \DIFdel{058 entries of data from 10 volunteers. An entry is a combination of the case number, the frame number and the desensitized }%DIFDELCMD < \ac{OCR} %%%
+\DIFdel{result.
+%DIF < \shuqing{The data may need to be updated.}
+With these results, we could learn what content the victimvisited, especially the privacy data.
+%DIF < \fengwei{The following text needs to be revised. It is quite difficult for me to understand. Note that this is important text because reviewers are curious about the result. }
+We searched the result database with the keywords }\textit{\DIFdel{account, username, password, phone number and email}}%DIFAUXCMD
+\DIFdel{, as well as the regular expression of email.
+The records searched by such keywords and regular expressions are usually related to privacy information of users}\DIFdelend \DIFaddbegin \DIFadd{most sensitive information could be obtained directly through full control mode without victim's interaction, but there was also certain information that had to be obtained passively through video capture mode}\DIFaddend . For example, \DIFdelbegin \DIFdel{when we searched with }\textit{\DIFdel{account}} %DIFAUXCMD
+\DIFdel{as a keyword, victim's accounts could be found in the database, as shown in the Table~\ref{tab:ocr_keyword_example} and Table~\ref{table:information_extracted}.
+%DIF < \shuqing{Statistics.}
+At last, we found 4, 172 of 94}\DIFdelend \DIFaddbegin \DIFadd{as illustrated in Table~\ref{table:information_extracted}}\DIFaddend , \DIFdelbegin \DIFdel{058 records obtained by }%DIFDELCMD < \tool %%%
+\DIFdel{which are related to privacy information , as shown in the Table~\ref{table:information_extracted}}\DIFdelend \DIFaddbegin \DIFadd{in most applications, information like ``Account'' can be obtained directly while information like ``Payment Password'' cannot be obtained until the victim inputs his/her password}\DIFaddend .
+
+\DIFaddbegin \subsubsection{\DIFadd{Result}}
+\DIFaddend In summary, \DIFdelbegin \DIFdel{though we cannot directly obtain the user's password on the lock screen, we can still check all of the information presented on the screen, extract sensitive information including but not limited to social accounts, bank accounts, personal financial situation, etc., if the user unconsciously unlocks the screen.
+It is worth mentioning that }%DIFDELCMD < {%%%
+\DIFdel{secure keyboards}%DIFDELCMD < } %%%
+\DIFdel{built in financial apps show their keyboard typing sequences, which can be easily captured by }\DIFdelend \tool \DIFdelbegin \DIFdel{.
+}\DIFdelend \DIFaddbegin \DIFadd{is able to actively obtain most sensitive information from the screen, such as browsing history, personal account, phone number without victim's interaction. There also exists information such as payment password that is not available immediately, but such a piece of information can be obtained once the victim inputs it. The obtained information can be used to guess the victim's lock screen password and poses further threat to victim's privacy.
+}\DIFaddend 
+
+\DIFaddbegin \begin{table*}[t]
 	\centering
 	\begin{tabular}{|c|c|l|l|c|c|}
 		\hline
 		\multirow{2}{*}{\textbf{Category} } & \multirow{2}{*}{ \textbf{Application} } & \multicolumn{2}{c|}{\textbf{Leaked Sensitive Information}} \\
 															\cline{3-4}
-											&				& \textbf{Without Victim's Interaction}						& \textbf{With Victim's Interaction} \\
+											&				& \textbf{\DIFaddFL{Without Victim's Interaction}}						& \textbf{\DIFaddFL{With Victim's Interaction}} \\
 		\hline
-		Social \& Finance App 				& WeChat (8.0.1)      & Account, Financial Status, Chat History, Payment Code   		& Payment Password \\
+		\DIFaddFL{Social \& Finance App 				}& \DIFaddFL{WeChat (8.0.1)      }& \DIFaddFL{Account, Financial Status, Chat History, Payment Code   		}& \DIFaddFL{Payment Password }\\
 		\hline
 		\multirow{2}{*}{Social App}
-											%& QQ          & Account, Contacts, Chat History   	& \\
-											%\cline{2-4}
-							       			& WhatsApp (2.21.5.18)    & Account, Contacts, Chat History, Phone Number    & \\
+											%DIF > & QQ          & Account, Contacts, Chat History   	& \\
+											%DIF > \cline{2-4}
+							       			& \DIFaddFL{WhatsApp (2.21.5.18)    }& \DIFaddFL{Account, Contacts, Chat History, Phone Number    }& \\
 											\cline{2-4}
-							       			& Facebook (309.0.0.47.119)   & Account, Posts, Contacts           & \\
+							       			& \DIFaddFL{Facebook (309.0.0.47.119)   }& \DIFaddFL{Account, Posts, Contacts           }& \\
 		\hline
-		\multirow{3}{*}{Finance App}       	& Alipay (10.2.15.9500)      & Account, Financial Status, Payment Code         				& Payment Password \\
+		\multirow{3}{*}{Finance App}       	& \DIFaddFL{Alipay (10.2.15.9500)      }& \DIFaddFL{Account, Financial Status, Payment Code         				}& \DIFaddFL{Payment Password }\\
 											\cline{2-4}
-											& Cash App (3.35.1)   & Email, Phone Number, Cash Balance							& Payment Password \\
+											& \DIFaddFL{Cash App (3.35.1)   }& \DIFaddFL{Email, Phone Number, Cash Balance							}& \DIFaddFL{Payment Password }\\
 											\cline{2-4}
-											& Paypal (7.38.1)      & Account, PayPal Balance     								& Payment Password \\
+											& \DIFaddFL{Paypal (7.38.1)      }& \DIFaddFL{Account, PayPal Balance     								}& \DIFaddFL{Payment Password }\\
 		\hline
-		\multirow{1}{*}{Shopping App}		& Amazon Shopping (22.6.0.100)  & Account, Orders, Shopping Cart         				& \\
-											%\cline{2-4}
-		                					%& Taobao      & Personal physical metrics      						& \\
+		\multirow{1}{*}{Shopping App}		& \DIFaddFL{Amazon Shopping (22.6.0.100)  }& \DIFaddFL{Account, Orders, Shopping Cart         				}& \\
+											%DIF > \cline{2-4}
+		                					%DIF > & Taobao      & Personal physical metrics      						& \\
 		\hline
-		\multirow{2}{*}{Tool}               & Chrome (89.0.4389.72)      & Browsing History                                	& \\
+		\multirow{2}{*}{Tool}               & \DIFaddFL{Chrome (89.0.4389.72)      }& \DIFaddFL{Browsing History                                	}& \\
 											\cline{2-4}
-		                					& Health (11.0.5.508)      & Personal Health Metrics      						& \\
+		                					& \DIFaddFL{Health (11.0.5.508)      }& \DIFaddFL{Personal Health Metrics      						}& \\
 		\hline
-		\multirow{3}{*}{System}             &  Messages (11.0.1.430)   & Contacts, Chat History				 &   \\
+		\multirow{3}{*}{System}             &  \DIFaddFL{Messages (11.0.1.430)   }& \DIFaddFL{Contacts, Chat History				 }&   \\
 											\cline{2-4}
-											& Settings (11.0.0.300) - WiFi   & WiFi SSID                                	&  WiFi Password \\
+											& \DIFaddFL{Settings (11.0.0.300) - WiFi   }& \DIFaddFL{WiFi SSID                                	}&  \DIFaddFL{WiFi Password }\\
 											\cline{2-4}
-		                					& Settings (11.0.0.300) - VPN    & VPN Address, VPN Account, VPN Password      						& \\
+		                					& \DIFaddFL{Settings (11.0.0.300) - VPN    }& \DIFaddFL{VPN Address, VPN Account, VPN Password      						}& \\
 		\hline
 	\end{tabular}
 	\linebreak
-	\caption{Sensitive Information Leaked From Applications.}
+	\caption{\DIFaddFL{Sensitive Information Leaked From Applications.}}
 	\label{table:information_extracted}
 \end{table*}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% It is unfortunate that the user study is not part of the paper anymore.
+%DIF > %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%DIF >  It is unfortunate that the user study is not part of the paper anymore.
 
-\section{Countermeasures}
+\DIFaddend \section{Countermeasures}
 \label{sec:countermeasures}
 
 %Authorization mechanisms like GoodUSB~\cite{tian2015defending} have been
@@ -1256,9 +1431,14 @@ For example, in Figure~\ref{fig:isolated_ui}, the ``password'' and ``keyboard'' 
 
 \subsection{Limitation}
 There exist multiple limitations of \tool. To begin with, when \tool is attached, the victim's device may not be set to mirror the screen. 
-Depending on the victim's settings, the \tool may be used as an extended monitor or be set to `Desktop Mode' or not be enabled at all. Though we proposed the attack initialization in Section~\ref{subsec:attack_init} to inject keystrokes to ensure \tool is mirroring primary screen. But without knowing the exact operating system of the victim's device, \tool may have to try multiple injections before successfully mirroring \DIFaddbegin \DIFadd{the screen}\DIFaddend .
+Depending on the victim's settings, the \tool may be used as an extended monitor or \DIFaddbegin \DIFadd{be set to `Desktop Mode' or }\DIFaddend not be enabled at all. \DIFdelbegin \DIFdel{Additionally, some smartphone vendors (e.g. Huawei and Smartisan) provide a Desktop Mode to users, which displays a desktop on external screeninstead of mirroring}\DIFdelend \DIFaddbegin \DIFadd{Though we proposed the attack initialization in Section~\ref{subsec:attack_init} to inject keystrokes to ensure }\tool \DIFadd{is mirroring primary screen. But without knowing the exact operating system of the victim's device, }\tool \DIFadd{may have to try multiple injections before successfully mirroring the screen}\DIFaddend .
 Moreover, as mentioned in Section~\ref{sec:experiment}, \tool cannot directly obtain the information on the lock screen.
- Apart from that, we also noticed that in most devices, when an external monitor is connected to the device, there will be notifications about the monitor. In iPad, there is a small blue icon on the notification bar. In Windows 10, there is a pop-up for user to select the functionality of the external monitor. In latter case of a pop-up, \tool can dismiss it by injecting keystrokes as described in Section~\ref{subsec:attack_init}. But they are still noticeable by the victim. Also, it cannot be ignored that DisplayPort over \ac{USB} is not available on all devices. When selecting devices to test \tool, we find that many smartphones equipped with USB-C connectors actually do not support \ac{USB} 3.x protocol. There is a incomplete list of devices that support DisplayPort over \ac{USB}~\cite{usbclist}. Most vendors like HUAWEI and Samsung tend to support \ac{USB} 3.x protocol in their \mbox{high-end} smartphones. But there also exists vendor like Xiaomi who does not support \ac{USB} 3.x protocol at all. 
+ \DIFdelbegin \DIFdel{In these cases, }%DIFDELCMD < \tool %%%
+\DIFdel{is either easily noticeable to the victim or disabled.  }\DIFdelend Apart from that, we also noticed that in most devices, when an external monitor is connected to the device, there will be notifications about the monitor. In iPad, there is a small blue icon on the notification bar. In Windows 10, there is a pop-up for user to select the functionality of the external monitor. In latter case of a pop-up, \tool can dismiss it by injecting keystrokes \DIFdelbegin \DIFdel{and mouse movements}\DIFdelend \DIFaddbegin \DIFadd{as described in Section~\ref{subsec:attack_init}}\DIFaddend . But they are still noticeable by the victim. Also, it cannot be ignored that DisplayPort over \ac{USB} is not available on all devices. When selecting devices to test \tool, we find that many smartphones equipped with USB-C connectors \DIFaddbegin \DIFadd{actually }\DIFaddend do not support \ac{USB} \DIFdelbegin \DIFdel{3.2 protocol. Such lack of support further limits }%DIFDELCMD < \tool%%%
+\DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{3.x protocol. There is a incomplete list of devices that support DisplayPort over }\ac{USB}\DIFadd{~\mbox{%DIFAUXCMD
+\cite{usbclist}}\hspace{0pt}%DIFAUXCMD
+. Most vendors like HUAWEI and Samsung tend to support }\ac{USB} \DIFadd{3.x protocol in their \mbox{high-end} smartphones. But there also exists vendor like Xiaomi who does not support }\ac{USB} \DIFadd{3.x protocol at all. 
+}\DIFaddend 
 
 \begin{comment}
 There exist multiple limitations of \tool.  To begin with, \tool can only gain
@@ -1283,8 +1463,8 @@ technologies develop rapidly, more and more devices will be equipped with USB-C
 capabilities\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
 \cite{li2018usb}}\hspace{0pt}%DIFAUXCMD
 }\DIFaddend , which makes \tool more influential.  
-Since non-professional users may neglect checking the security of plug-in \ac{USB} devices, 
-they may unaware of the attacks from \tool.
+Since non-professional users \DIFdelbegin \DIFdel{often }\DIFdelend \DIFaddbegin \DIFadd{may }\DIFaddend neglect checking the security of plug-in \ac{USB} devices, 
+they \DIFdelbegin \DIFdel{are often }\DIFdelend \DIFaddbegin \DIFadd{may }\DIFaddend unaware of the attacks from \tool.
 can be hardly detected by them while attacks are performing.  
 The popularity and universality of public \ac{USB} devices, including sharing power banks, even
 increase such risks.  Moreover, \tool provides a better way for traditional
@@ -1301,7 +1481,7 @@ brings rather huge impacts.
 Leveraging the new features of \ac{USB} 3.x~\cite{usb30,usb31,usb32}, we explore a
 new attack scheme named \tool and three attack modes. Each of these three modes
 has its own strength and use scenarios. The \ac{HID} Emulation mode largely extends the
-original BadUSB. The video capture mode proved practical and powerful, as it extracts
+original BadUSB. The video capture mode proved practical and powerful\DIFdelbegin \DIFdel{in the user study}\DIFdelend , as it extracts
 victim's sensitive information in a stealthy way. The fully control mode
 achieves the complete hijack of the target device, allowing us to perform various
 types of subsequent attacks. By experimenting \tool with mobile phones, tablets,
@@ -1319,11 +1499,17 @@ hope to lower the power consumption for network transmission in \tool to make
 it more practical.
 
 \section{Responsible Disclosure}
-Responsible disclosure have already been carried out, we have contacted HUAWEI and Apple through proper channels. We received response from HUAWEI on March \nth{7} and discussed the mitigation plan on March \nth{10} while Apple has not responded yet. HUAWEI security team has confirmed this issue and been working on mitigation. We are actively facilitating their mitigation process and waiting for a fix to be deployed. After the mitigation is deployed, HUAWEI will assign a CVE ID for this vulnerability.
+\DIFdelbegin %DIFDELCMD < 
 
-\section{Acknowledgement}
-We are very grateful to our shepherd, Michael Schwarz\DIFaddbegin \DIFadd{, }\DIFaddend and the anonymous reviewers for their valuable \DIFdelbegin \DIFdel{comments }\DIFdelend \DIFaddbegin \DIFadd{feedback }\DIFaddend that improved the paper.
-%\input{./Files/acknowledgement.tex}
+%DIFDELCMD < %%%
+\DIFdelend Responsible disclosure have already been carried out, we have \DIFdelbegin \DIFdel{already contacted Huawei }\DIFdelend \DIFaddbegin \DIFadd{contacted HUAWEI }\DIFaddend and Apple through proper \DIFdelbegin \DIFdel{channel and are waiting for mitigation being deployed. We revived response from Huawei on }%DIFDELCMD < \nth{7} %%%
+\DIFdel{March and discussed about }\DIFdelend \DIFaddbegin \DIFadd{channels. We received response from HUAWEI on March }\nth{7} \DIFadd{and discussed }\DIFaddend the mitigation plan on \DIFdelbegin %DIFDELCMD < \nth{10} %%%
+\DIFdel{March }\DIFdelend \DIFaddbegin \DIFadd{March }\nth{10} \DIFaddend while Apple has not responded yet. \DIFaddbegin \DIFadd{HUAWEI security team has confirmed this issue and been working on mitigation. We are actively facilitating their mitigation process and waiting for a fix to be deployed. After the mitigation is deployed, HUAWEI will assign a CVE ID for this vulnerability.
+}
+
+\section{\DIFadd{Acknowledgement}}
+\DIFadd{We are very grateful to our shepherd, Michael Schwarz, and the anonymous reviewers for their valuable feedback that improved the paper.
+}\DIFaddend %\input{./Files/acknowledgement.tex}
 
 
 
