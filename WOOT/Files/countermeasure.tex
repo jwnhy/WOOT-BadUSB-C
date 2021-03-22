@@ -21,7 +21,7 @@ especially for mobile devices.
 \textbf{Distrust-by-Default.} Most security issues of \ac{USB} protocol are due to
 its \textit{trust-by-default} assumption; \tool also relies on this feature to work.
 To defend against \tool and other USB-based attacks, we can simply reject all
-{unauthorized} device -- applying the \textit{distrust-by-default} policy. For example, 
+{unauthorized} devices -- applying the \textit{distrust-by-default} policy. For example, 
 in GoodUSB~\cite{tian2015defending}, all \ac{USB} devices are enabled with corresponding 
 functionality only after being authorized by the user. 
 Defense like USB Condom distrusts all types of \ac{USB} devices by blocking data channels and stopping all \ac{USB} functions other than charging.
@@ -36,10 +36,10 @@ this defense is only enabled on the lock screen keyboard, other keyboards
 This mechanism has inspired us to propose a new defense against our \tool
 called \emph{Isolated \ac{UI} Rendering}. As illustrated in
 Figure~\ref{fig:isolated_ui}, we designed two separated \ac{UI} render layers and corresponding drivers, one
-is secure the other is insecure. When an application requires to render, it can
+is secure the another is insecure. When an application requires to render, it can
 pass the content along with a tag identifying whether the content is
 ``sensitive'' or not. If the content is tagged with ``sensitive'', then the OS
-will only render it on the secure layer, which only shows the sensitive content
+could only render it on the secure layer, which only shows the sensitive content
 (e.g., a keyboard) on the trusted screen. For the rest of the rendering, it
 would render on both the trusted and untrusted display (e.g., insensitive
 contents).

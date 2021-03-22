@@ -32,7 +32,7 @@ pretend to be normal \ac{HID} devices and utilize the \ac{USB} protocol to perfo
 However, these attacks suffer from various drawbacks: \ding{182} attackers can
 only simulate limited types of devices such as \acp{HID} (e.g. keyboards and mice)
 and disks, which makes the attacks less effective; \ding{183} accurate attacks
-could not be performed due to lack of \ac{UI} status. Whatever \acp{HID} the
+could not be performed due to a lack of \ac{UI} status. Whatever \acp{HID} the
 attackers simulate their \ac{USB} devices to be, they could not obtain the \ac{UI} to
 check the status information, which makes it nearly impossible to carry out
 their attacks precisely or know the effects after attacks.
@@ -91,13 +91,12 @@ Figure~\ref{fig:attack_model} shows the architecture of our attack model. \circl
 \end{figure}
 
 \textbf{\ac{HID} Emulation Mode.} This mode mainly relies on the ``\ac{HID} Emulator'' in Figure~\ref{fig:attack_model} to
-send constructed \ac{HID} packet to the victim. These constructed \ac{HID} packets are
-interpreted by the victim as valid keystrokes and mouse movements. Thus, the
-attacker can execute arbitrary scripts on the victim's device. This is the
-function of the original BadUSB. Based on this, we made the following
+send constructed \ac{HID} packets to the victim. These constructed \ac{HID} packets are
+interpreted by the victim as valid keystrokes and mouse movements. Thus, attackers can execute arbitrary scripts on the victim's device. This is the
+function of BadUSB. Based on this, we made the following
 improvements.
 
-First, as \tool has established a feedback channel using \ac{USB} 3.x protocol, when performing keystroke and mouse movement injection, an attacker can obtain real-time feedback from the victim's device. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such a feedback channel largely strengthens the attack ability of \tool.
+First, as \tool has established a feedback channel using \ac{USB} 3.x protocol, when performing keystroke and mouse movements injection, an attacker can obtain real-time feedback from the victim's device. This feedback allows an attacker to tell whether the previous attack succeeded and decide what to perform next. Existence of such a feedback channel largely strengthens the attack ability of \tool.
 
 Moreover, as the mouse relies on the visual feedback to work properly, its
 emulation and automation were not supported by the original version of BadUSB.
@@ -112,8 +111,7 @@ feedback with video streaming.
 %As mentioned above, we only require video stream at the beginning (defense
 %bypass) and the end (result feedback) of the attack.
 Also, with mouse
-supported, \tool extends the original BadUSB attack and results in further attacks in
-mobile devices.
+supported, \tool extends the original BadUSB attack and results in further attacks.
 
 \textbf{Video Capture Mode.} \tool under this mode does not emulate other
 USB device and solely relies on the video stream function of \ac{USB} 3.x; it uses the
@@ -143,7 +141,7 @@ input source. Hence we can achieve complete hijack of the victim's device.
 \tool under this mode follows a simple logic. \tool receives video stream
 from the victim's device and redirects it to the attacker via GSM/WiFi. In the
 meanwhile, \tool also receives keystrokes and mouse movements from the attacker
-through GSM/WiFi and replays them to the victim by the \ac{USB} emulation.
+through GSM/WiFi and replays them to the victim's device by the \ac{USB} emulation.
 
 This mode enables attackers to perform delicate operations that are beyond
 automation. Moreover, this mode provides a backdoor that does not require a host

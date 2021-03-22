@@ -3,7 +3,7 @@
 
 \subsection{Limitation}
 There exist multiple limitations of \tool. To begin with, when \tool is attached, the victim's device may not be set to mirror the screen. 
-Depending on the victim's settings, the \tool may be used as an extended monitor or be set to `Desktop Mode' or not be enabled at all. Though we proposed the attack initialization in Section~\ref{subsec:attack_init} to inject keystrokes to ensure \tool is mirroring primary screen. But without knowing the exact operating system of the victim's device, \tool may have to try multiple injections before successfully mirroring.
+Depending on the victim's settings, the \tool may be used as an extended monitor or be set to `Desktop Mode' or not be enabled at all. Though we proposed the attack initialization in Section~\ref{subsec:attack_init} to inject keystrokes to ensure \tool is mirroring primary screen. But without knowing the exact operating system of the victim's device, \tool may have to try multiple injections before successfully mirroring the screen.
 Moreover, as mentioned in Section~\ref{sec:experiment}, \tool cannot directly obtain the information on the lock screen.
  Apart from that, we also noticed that in most devices, when an external monitor is connected to the device, there will be notifications about the monitor. In iPad, there is a small blue icon on the notification bar. In Windows 10, there is a pop-up for user to select the functionality of the external monitor. In latter case of a pop-up, \tool can dismiss it by injecting keystrokes as described in Section~\ref{subsec:attack_init}. But they are still noticeable by the victim. Also, it cannot be ignored that DisplayPort over \ac{USB} is not available on all devices. When selecting devices to test \tool, we find that many smartphones equipped with USB-C connectors actually do not support \ac{USB} 3.x protocol. There is a incomplete list of devices that support DisplayPort over \ac{USB}~\cite{usbclist}. Most vendors like HUAWEI and Samsung tend to support \ac{USB} 3.x protocol in their \mbox{high-end} smartphones. But there also exists vendor like Xiaomi who does not support \ac{USB} 3.x protocol at all. 
 
@@ -27,7 +27,7 @@ prompting messages.
 %and application scenarios.}
 The \ac{USB} protocol is used widely as introduced in the preceding sections.  As the
 technologies develop rapidly, more and more devices will be equipped with USB-C
-capabilities, which makes \tool more influential.  
+capabilities~\cite{li2018usb}, which makes \tool more influential.  
 Since non-professional users may neglect checking the security of plug-in \ac{USB} devices, 
 they may unaware of the attacks from \tool.
 can be hardly detected by them while attacks are performing.  

@@ -49,7 +49,7 @@ The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 After the \tool is plugged into the victim's device, there is an initialization process to make sure the \tool is able to carry out subsequent attacks.
 \begin{itemize}
 	\item \textbf{Screen Mirror}:
-		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device to mirror the primary screen. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject ``Win+P'' (The ``Win'' key is the ``Super'' key in Windows and Ubuntu by default) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and Windows 10 is similar. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{``Command+F1''} keystrokes to set the victim's device to mirror the primary screen. In EMUI, there is a special mode called ``Desktop Mode'', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is enabled, as victim's ``desktop'' can be obtained, \tool can inject mouse movements to switch to mirror mode.
+		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device to mirror the primary screen. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject ``Win+P'' (The ``Win'' key is the ``Super'' key in Windows and Ubuntu by default) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and it is similar in Windows 10. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{``Command+F1''} keystrokes to set the victim's device to mirror the primary screen. In EMUI, there is a special mode called ``Desktop Mode'', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is enabled, as victim's ``desktop'' can be obtained, \tool can inject mouse movements to switch to mirror mode.
 		\begin{figure}[H]
 			\includegraphics[width=\linewidth]{./Figs/ubuntu_switch.png}\\
 			\caption{Switching Screen Mode in Ubuntu.}
@@ -85,7 +85,7 @@ After the \tool is plugged into the victim's device, there is an initialization 
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC with Windows 10 \mbox{(OS Build 18363.1379)} and Ubuntu 20.04.2 LTS with two \ac{USB} Type-C interfaces as the
-target device. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of which resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
+target devices. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of them resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
 
@@ -123,7 +123,7 @@ process the victim's video stream locally, it does not need to transmit the real
 
 To test the capability of the full control mode, we chose iPad Pro (3rd
 	generation), a tablet running iOS 14.4 (Build 18D52) with a \ac{USB} Type-C interface, as the target
-device in this experiment.  Besides disguising as normal \acp{HID} like a
+device in this experiment.  Besides disguising themself as normal \acp{HID} like a
 conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
 stream from the target device to the attacker via WiFi.  After establishing the connection, the attacker performed a series of actions to test the capability of
 \tool. In the beginning, the attacker accessed the album application on the iPad and
@@ -227,7 +227,7 @@ following steps.
 
 Next, we summarize the possible threats toward users under different modes.
 %\hongyi{Better way to express this?}
-First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor scripts into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data such as QR payment  code or photos, their sensitive data will be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' device and can conduct any action on the victim device.
+First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor scripts into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data such as QR payment  code or photos, their sensitive data could be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' devices and could conduct any actions on the victims' devices.
 
 \shuqing{Background is longer than real user study.}
 %As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the full control mode hijacks the victim's device completely.
