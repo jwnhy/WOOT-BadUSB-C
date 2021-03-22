@@ -52,7 +52,7 @@ After the \tool is plugged into the victim's device, there is an initialization 
 		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device to mirror the primary screen. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject ``Win+P'' (The ``Win'' key is the ``Super'' key in Windows and Ubuntu by default) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and Windows 10 is similar. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{``Command+F1''} keystrokes to set the victim's device to mirror the primary screen. In EMUI, there is a special mode called ``Desktop Mode'', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is enabled, as victim's ``desktop'' can be obtained, \tool can inject mouse movements to switch to mirror mode.
 		\begin{figure}[H]
 			\includegraphics[width=\linewidth]{./Figs/ubuntu_switch.png}\\
-			\caption{Screen Mode Switch in Ubuntu.}
+			\caption{Switching Screen Mode in Ubuntu.}
 			\label{fig:ubuntu_switch}
 		\end{figure}
 	\item \textbf{Dismiss Notification}:
@@ -167,7 +167,7 @@ service to entire Europe.
 	\label{fig:PBS_products}
 \end{figure}
 
-\shuqing{May use statistics (instead of concrete examples) to explain it.}
+%\shuqing{May use statistics (instead of concrete examples) to explain it.}
 
 Sharing power banks not only provides convenience to users, but also brings security issues.  We noticed that most of the power bank stations do not
 check the integrity of power banks during the rental process, and users are
@@ -199,7 +199,7 @@ By presenting this QR code, the client authorizes the proceeding transaction.
 Next, we explain one type of payments called micropayment. A micropayment is pre-determined by the payment
 service provider with thresholds in the user agreement. In real-world scenarios, payment service providers use different rules
 for micropayment purchases. For example, WeChat
-Pay~\cite{Wechat-pay} regards transactions under USD \textdollar 154 as
+Pay~\cite{Wechat-pay} regards transactions under US\textdollar 154 as
 micropayments.  Different from a typical payment procedure, when micropayments
 are made, confirmations can be applied automatically without clients'
 permission which aims to provide convenience to both merchant and client.  If a
@@ -213,6 +213,7 @@ and our following case study is about how to obtain this code using an
 attacker-crafted power bank via \tool.
 
 \subsubsection{Attack Scenario}
+\label{subsec:attack-scenario}
 
 In this part, we will introduce a real-life attack scenario to show that our
 \tool is a practical offensive tool.  This scenario can be broken down into the
@@ -236,12 +237,13 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 
 \subsubsection{Experiment}
 
-To further test the capabilities of \tool in this attack scenario, we conducted a simulation experiment.
-We selected 11 applications on \mbox{\textit{HUAWEI P30 (ELE-AL00)}}, test each application with the following strategy
-\ding{182} Login in with a test account.
-\ding{183} Keep the default settings.
-\ding{184} Attach attacker's \tool to the test device.
-\ding{185} Simulate victim's daily usage of the application.
+We conducted experiments to further validate the capabilities of \tool 
+in the attack scenario introduced in Section~\ref{subsec:attack-scenario}.
+11 applications were selected and tested on \mbox{\textit{HUAWEI P30 (ELE-AL00)}} step by step:
+(1) Login in with a test account.
+(2) Keep the default settings.
+(3) Attach attacker's \tool to the test device.
+(4) Simulate victim's daily usage of the application.
 
 During this experiment, we tested full control mode which actively obtained sensitive information and video capture mode which passively obtained the sensitive information visited by the victim. We noticed that, most sensitive information could be obtained directly through full control mode without victim's interaction, but there was also certain information that had to be obtained passively through video capture mode. For example, as illustrated in Table~\ref{table:information_extracted}, in most applications, information like ``Account'' can be obtained directly while information like ``Payment Password'' cannot be obtained until the victim inputs his/her password.
 
