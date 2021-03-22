@@ -69,7 +69,7 @@ After the \tool is plugged into the victim's device, there is an initialization 
 	\begin{tabular}{|c|c|c|c|}
 		\hline
 		Device                                                               & Operating System                                                                                         & Notification              & Dismiss Action                                            \\ \hline
-		\begin{tabular}[c]{@{}c@{}}Lenovo Xiaoxin Pro 13\\ 2020\end{tabular} & Windows 10 (OS Build 18363.1379)                                                                         & Pop-up                    & ``Win+P''-\textgreater{}Mouse click on `Duplicate' Option \\ \hline
+		\begin{tabular}[c]{@{}c@{}}Lenovo Xiaoxin Pro 13\\ 2020\end{tabular} & Windows 10 (OS Build 18363.1379)                                                                         & Pop-up                    & ``Win+P''-\textgreater{}Mouse click on ``Duplicate'' Option \\ \hline
 		\multirow{2}{*}{HUAWEI P30 (ELE-AL00)}                               & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}EMUI 11.0.0.135(C00E128R2P5)\\ Android 10 based\end{tabular}} & Status bar indicator      & N/A                                                       \\ \cline{3-4}
 		&                                                                                                          & Persistent notifications  & N/A                                                       \\ \hline
 		\multirow{2}{*}{iPad Pro (3rd generation)}                           & \multirow{2}{*}{iOS 14.4 (Build 18D52)}                                                                  & Status bar indicator      & N/A                                                       \\ \cline{3-4}
@@ -85,7 +85,8 @@ After the \tool is plugged into the victim's device, there is an initialization 
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC with Windows 10 \mbox{(OS Build 18363.1379)} and Ubuntu 20.04.2 LTS with two \ac{USB} Type-C interfaces as the
-target devices. During this experiment, \tool disguised itself as a normal keyboard and an external screen as feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of them resulted in success. Compared to original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback which allows attackers to perform more accurate attacks.
+target devices. During this experiment, \tool disguised itself as a normal keyboard and an external screen as a feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of them resulted in success.
+Compared with original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback, which allows attackers to conduct more accurate attacks.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
 
@@ -104,8 +105,8 @@ extract text from corresponding video frames. In this experiment, the attacker
 successfully extracted text such as name, address, ID number, and other sensitive
 personal information. We also tested the payment code extractor, which enables
 an attacker to identify payment code in the video stream and performs transactions
-without the password. During our experiment, we noticed that this HUAWEI device supports `Desktop Mode'
-for its external screen, which enables user to use their devices like a desktop computer with an external screen.
+without the password. During our experiment, we noticed that this HUAWEI device supports ``Desktop Mode''
+for its external screen, which enable users to use their devices as if they were using a computer with an external monitor.
 If \tool is set into this mode, \tool is able to inject mouse movements to set itself into mirroring the primary screen, as we discussed in Section~\ref{subsec:attack_init}.
 As this is also a part of our case study, more details about
 the extracted sensitive data can be found in Section~\ref{subsec:case_study} and
@@ -118,7 +119,7 @@ Note that the video capture mode only needs to
 process the victim's video stream locally, it does not need to transmit the real-time video back to the attacker, which is useful when the network connection between \tool and the attacker is not stable.
 %This mode is useful when there is no stable network connection between \tool and the attacker.
 
-\subsection{Fully Control Mode}
+\subsection{Full Control Mode}
 %\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
 To test the capability of the full control mode, we chose iPad Pro (3rd
