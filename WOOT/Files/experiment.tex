@@ -81,9 +81,9 @@ After the \tool is plugged into the victim's device, there is an initialization 
 \end{table*}
 \end{comment}
 
-\subsection{HID Emulator Mode}
+\subsection{HID Emulation Mode}
 
-In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
+In the experiment of HID emulation mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC with Windows 10 \mbox{(OS Build 18363.1379)} and Ubuntu 20.04.2 LTS with two \ac{USB} Type-C interfaces as the
 target devices. During this experiment, \tool disguised itself as a normal keyboard and an external screen as a feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of them resulted in success.
 Compared with original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback, which allows attackers to conduct more accurate attacks.
@@ -124,7 +124,7 @@ process the victim's video stream locally, it does not need to transmit the real
 
 To test the capability of the full control mode, we chose iPad Pro (3rd
 	generation), a tablet running iOS 14.4 (Build 18D52) with a \ac{USB} Type-C interface, as the target
-device in this experiment.  Besides disguising themself as normal \acp{HID} like a
+device in this experiment.  Besides disguising themselves as normal \acp{HID} like a
 conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
 stream from the target device to the attacker via WiFi.  After establishing the connection, the attacker performed a series of actions to test the capability of
 \tool. In the beginning, the attacker accessed the album application on the iPad and
@@ -229,7 +229,7 @@ following steps.
 
 Next, we summarize the possible threats toward users under different modes.
 %\hongyi{Better way to express this?}
-First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor scripts into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data such as QR payment  code or photos, their sensitive data could be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' devices and could conduct any actions on the victims' devices.
+First, under \ac{HID} emulation mode, the attacker is able to implant malware and backdoor scripts into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data such as QR payment  code or photos, their sensitive data could be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' devices and could conduct any actions on the victims' devices.
 
 \shuqing{Background is longer than real user study.}
 %As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the full control mode hijacks the victim's device completely.
