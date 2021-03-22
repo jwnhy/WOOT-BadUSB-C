@@ -23,7 +23,7 @@ packets. Based on this, Facedancer~\cite{facedancer} and
 Syzkaller~\cite{syzkaller} use fuzzing techniques to uncover the bugs lying in
 the kernel drivers. These bugs can cause kernel crashes and lead to a \ac{DoS} attack.
 Though this poses a great challenge to the availability of a system, this
-attack still requires physical access to the host and is unable to cause more
+attack still requires physical access to the victim's device and is unable to cause more
 damage other than \ac{DoS}.
 
 % USB protocol attacks
@@ -33,19 +33,19 @@ devices can hide their real functionality with re-written
 firmware~\cite{rubber,badusb,rubberducky2020,usbbypassing,iseeyou,usbdriver}.
 These works rewrite the firmware of a normal-looking flash drive, which allows
 it to act like other devices. When these modified drives are connected to the
-host, they could be recognized as a keyboard or mouse. Then the attacker can
+victim's device, they could be recognized as a keyboard or mouse. Then attackers can
 execute malicious payloads as they are using the victim's device. Due to the
 limitation of \ac{USB} 2.0~\cite{usb20} protocol, these BadUSB
-attacks~\cite{badusb} are unable to obtain video feedback from the victim
+attacks~\cite{badusb} are unable to obtain video feedback from the victim's device
 as video stream was not supported until \ac{USB} 3.0~\cite{usb30}. 
 
 \ac{MHL} extends the \ac{USB} standard and allows the video signal to
 be transmitted through the \ac{USB} interface even for \ac{USB} 2.0 protocol. 
 \ac{JFA}~\cite{JFC},
-abuses this standard and monitoring the victim's device utilizing \ac{USB} 2.0 protocol. Although \ac{JFA}~\cite{JFC} could exfiltrates video data from the victim's device without permission,  
+abuses this standard and monitors the victim's device utilizing \ac{USB} 2.0 protocol. Although \ac{JFA}~\cite{JFC} could exfiltrates video data from the victim's device without permission,  
 there are two main limitations compared with \tool: 
-(1) \ac{JFA}~\cite{JFC} can only exfiltrate video data passively from the victim's device, while \tool can control the victim's device at the same time as monitoring the screen. All data can be collected by \ac{JFA} only after the victim's interaction, while \tool can gather sensitive data actively through \ac{HID} injections. For example, if a victim leaves his/her phone charging without locking it, \ac{JFA} cannot conduct attacks in this case, while \tool can actively control his/her device and gather sensitive information.
-(2) The official list of \ac{MHL} Devices~\cite{MHLlist} shows that the latest mobile devices supporting \ac{MHL} were released in 2015, which indicates the lack of support of \ac{MHL} and limits the attack range of \ac{JFA}. \tool attacks over \ac{USB} Type-C interface, the latest \ac{USB} connector designed to replace all previous USB connectors including MicroUSB~\cite{li2018usb}. So \tool has a wider attack range. 
+(1) \ac{JFA}~\cite{JFC} can only exfiltrate video data passively from the victim's device, while \tool can control the victim's device at the same time as monitoring the screen. The data can only be collected by \ac{JFA} after the victim's interaction, while \tool can gather sensitive data actively through \ac{HID} injections. For example, if a victim leaves his/her phone charging without locking it, \ac{JFA} cannot conduct attacks in this case, while \tool can actively control his/her device and gather sensitive information.
+(2) The official list of \ac{MHL} Devices~\cite{MHLlist} shows that the latest mobile devices supporting \ac{MHL} were released in 2015, which indicates the lack of support of \ac{MHL} and limits the attack range of \ac{JFA}. \tool attacks the victim's device over \ac{USB} Type-C interface, the latest \ac{USB} connector designed to replace all previous USB connectors including MicroUSB~\cite{li2018usb}. So \tool has a wider attack range. 
 
 % Using USB devices to inject code
 Besides attacking from the protocol perspective, previous works\shuqing{re?} use a
