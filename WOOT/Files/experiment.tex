@@ -52,7 +52,7 @@ After the \tool is plugged into the victim's device, there is an initialization 
 		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device to mirror the primary screen. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject ``Win+P'' (The ``Win'' key is the ``Super'' key in Windows and Ubuntu by default) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and Windows 10 is similar. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{``Command+F1''} keystrokes to set the victim's device to mirror the primary screen. In EMUI, there is a special mode called ``Desktop Mode'', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is enabled, as victim's ``desktop'' can be obtained, \tool can inject mouse movements to switch to mirror mode.
 		\begin{figure}[H]
 			\includegraphics[width=\linewidth]{./Figs/ubuntu_switch.png}\\
-			\caption{Screen Mode Switch in Ubuntu.}
+			\caption{Switching Screen Mode in Ubuntu.}
 			\label{fig:ubuntu_switch}
 		\end{figure}
 	\item \textbf{Dismiss Notification}:
