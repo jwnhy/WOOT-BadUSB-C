@@ -48,26 +48,26 @@ roles of the \ac{USB} device and reject any usage beyond the description.
 
 In this work, we addressed the limitations mentioned
 above and implemented a multi-mode attack model of \ac{USB}, named \tool.  \tool
-extends BadUSB to support the features of \ac{USB} Type-C.  
+extends BadUSB to support the features of \ac{USB} Type-C.
 Although many smartphones equipped with USB-C connectors do not support \ac{USB} 3.x protocol, such as some non-flagship products of Xiaomi, more and more vendors like HUAWEI and Samsung tend to support \ac{USB} 3.x protocol in their \mbox{high-end} smartphones~\cite{usbclist}.
 Since \mbox{\ac{USB} Type-C} can transfer video stream data, \tool could obtain the information of the
 victim's \ac{GUI} during attacks.  Combining it with the emulation
 of traditional \acp{HID}, e.g., keyboards and mice, attackers are capable of
-performing precise attacks.  
+performing precise attacks.
 %We did experiments to verify that \tool could also
 %bypass some countermeasures for BadUSB since they often rely on interaction
-%with the graphical interface. 
- 
+%with the graphical interface.
+
 Moreover, we implemented multiple attacking
 modes of \ac{USB} attacks based on our approach to verify its effectiveness,
-including \ac{HID} Emulator Mode, Video Capture Mode, and Full Control Mode.  To improve the
+including \ac{HID} Emulator Mode, Video Capture Mode, and full control mode  To improve the
 efficiency and performance of \tool, we designed a filtering algorithm to
-preprocess the video data before network transmission.  
+preprocess the video data before network transmission.
 We conducted
 a series of experiments for each attack mode as well as for different types of
 devices, including smartphones, personal computers, and tablet computers, to
 validate the usability of \tool.  We also conducted a case study for attacks in
-sharing power banks, one of the application scenarios of \tool.  
+sharing power banks, one of the application scenarios of \tool.
 After the validation of our attack model, we
 proposed several defense methods as countermeasures, including external
 hardware authorization, distrust-by-default, etc.  It is worth noting that we
@@ -77,18 +77,18 @@ into sensitive and insensitive layers.  Only the insensitive layer's content wou
 
 We summarize our key contributions as follows:
 
-\begin{itemize} 
-    
+\begin{itemize}
+
     \item To our best knowledge, this is the first work to utilize new features
 	of \ac{USB} Type-C.  The combination of new support with conventional BadUSB
 	makes attacks more precise and effective.
-	
+
     %\item Our approach can bypass some previous countermeasures of BadUSB.
-	
+
     \item We conducted a case study and multiple experiments to validate the
 	usability and effectiveness of \tool.  We also proposed several
 	countermeasures for our attack model, which are reasonable and
-	insightful. 
+	insightful.
 	%\fengwei{Add countermeasures, in particular the isolation design.}
 	%\shuqing{Isolated UI rendering is added in the last paragraph.}
 \end{itemize}
