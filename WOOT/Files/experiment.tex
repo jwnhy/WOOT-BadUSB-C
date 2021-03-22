@@ -12,7 +12,7 @@ experiments on \tool using devices with \ac{USB} Type-C capabilities from differ
 %\fengwei{I would suggest to add references for devices such as
 %Pi, ATMEGA32U4 board, Yamazawa, etc.}
 As mentioned in Section~\ref{sec:badusb},
-our \tool only requires common components that are easily accessible online or
+our \tool only requires common components that are easy to access online or
 in any electronic store. Here we chose the following parts to build a
 prototype. To begin with, we chose the Raspberry Pi 4B~\cite{pi4b} as the embedded Single Board
 Computer inside \tool, which is powerful enough to process video data and has
@@ -48,21 +48,22 @@ The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 \label{subsec:attack_init}
 After the \tool is plugged into the victim's device, there is an initialization process to make sure the \tool is able to carry out subsequent attacks.
 \begin{itemize}
-	\item \textbf{Screen Mirror}:
-		During our experiment, we noticed that some devices did not mirror their screens to our \tool by default. In this case, \tool would inject a sequence of keystrokes to set the victim's device to mirror the primary screen. In both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject ``Win+P'' (The ``Win'' key is the ``Super'' key in Windows and Ubuntu by default) to switch between different modes for external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes works on Ubuntu and it is similar in Windows 10. In MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{``Command+F1''} keystrokes to set the victim's device to mirror the primary screen. In EMUI, there is a special mode called ``Desktop Mode'', which allows users to use their smartphones like a desktop computer with an external screen. If this mode is enabled, as victim's ``desktop'' can be obtained, \tool can inject mouse movements to switch to mirror mode.
+	\item \textbf{Screen Mirroring}:
+		During our experiment, we noticed that some devices did not mirror their main displays to our \tool by default. In this case, \tool would inject a series of keystrokes to mirror the victim's primary display. On both Windows 10 and Ubuntu (Gnome Desktop), \tool can inject ``Win+P'' (the ``Win'' key is the ``Super'' key on Windows and Ubuntu by default) to switch the display modes for the external display. Figure~\ref{fig:ubuntu_switch} illustrates how these keystrokes work on Ubuntu, similar to that on Windows 10. On MacOS, according to the official manual~\cite{appleman}, \tool can inject \mbox{``Command+F1''} keystrokes to mirror the victim's primary display. In EMUI, there is a special mode called ``Desktop Mode'' that allows users to use their smartphones as desktop computers with external displays. If this mode is enabled, since the victim's ``desktop'' can be obtained, \tool can inject mouse movements to switch to mirror mode.
 		\begin{figure}[H]
 			\includegraphics[width=\linewidth]{./Figs/ubuntu_switch.png}\\
-			\caption{Switching Screen Mode in Ubuntu.}
+			\caption{Switching Display Mode on Ubuntu.}
 			\label{fig:ubuntu_switch}
 		\end{figure}
 	\item \textbf{Dismiss Notification}:
-		In our experiment, we found that some devices would notify the user the presence of an external screen. During our experiment, the following notifications were raised:
+		In our experiment, we found that some devices would notify the user of the presence of an external display. During our experiment, the following notifications were raised:
 		\begin{itemize}
-		 \item On Lenovo Xiaoxin Pro 13, it raised a pop-up asking user to select the functionality of the external screen.
-		 \item On HUAWEI P30, it showed a status bar indicator and a persistent notification about the external monitor.
-		 \item On iPad Pro (the third generation), it also showed a blue status bar indicator and a notification about \ac{USB} accessories if iPad is locked.
+		 \item On Lenovo Xiaoxin Pro 13, it raised a pop-up asking user to choose the functionality of the external display.
+		 \item On HUAWEI P30, it showed a status bar indicator and a persistent notification about the external display.
+		 \item On iPad Pro (the third generation), if iPad is locked, it also showed a blue status bar indicator and a notification about \ac{USB} accessories.
 		\end{itemize}
-		To avoid being discovered by the victim, \tool can inject keystrokes and mouse movements to dismiss some of these notifications. For example, in the first case, \tool is able to inject a sequence of mouse movements to set the screen at mirror mode to dismiss the pop-up.
+		To avoid being discovered by the victim, \tool can inject keystrokes and mouse movements to eliminate some of these notifications.
+		For example, in the first case, \tool is able to inject a series of mouse movements to set the display to mirror mode, thereby eliminating the pop-up.
 \end{itemize}
 \begin{comment}
 \begin{table*}[]
@@ -85,7 +86,7 @@ After the \tool is plugged into the victim's device, there is an initialization 
 
 In the experiment of HID emulator mode, we used {Lenovo Xiaoxin Pro 13
 2020}, a PC with Windows 10 \mbox{(OS Build 18363.1379)} and Ubuntu 20.04.2 LTS with two \ac{USB} Type-C interfaces as the
-target devices. During this experiment, \tool disguised itself as a normal keyboard and an external screen as a feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a sequence of mouse movements and clicks to set itself as a mirror to the primary monitor. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of them resulted in success.
+target devices. During this experiment, \tool disguised itself as a normal keyboard and an external display as a feedback channel. When first plugged in, the victim's device raised a pop-up window asking the victim which mode should the new screen be set to. \tool immediately injected a series of mouse movements and clicks to set itself as a mirror to the primary display. Thus we had successfully completed the attack initialization. Then we tested three scripts, ranging from reverse shell backdoor to malware payload execution, all of them resulted in success.
 Compared with original BadUSB attacks like Rubber Ducky, our \tool can provide attackers real-time feedback, which allows attackers to conduct more accurate attacks.
 %This also warned us that we need more thorough defense against such BadUSB
 %attack.
@@ -96,18 +97,11 @@ Compared with original BadUSB attacks like Rubber Ducky, our \tool can provide a
 \subsection{Video Capture Mode}
 
 During the experiment of privacy extraction via our video capture mode, we chose \mbox{\textit{HUAWEI P30 (ELE-AL00)}}, a
-smartphone in \mbox{EMUI 11.0.0.135(C00E128R2P5)} \mbox{(Android 10.0 based)} with a \ac{USB} Type-C interface, as the
-target device. In the privacy extraction experiment, \tool passively captured video
-from the victim's device and used \textit{OpenCV} to identify the sensitive
-information from the video stream.  When the victim viewed text or photos with
-text, \tool used the techniques of \ac{OCR}  to
-extract text from corresponding video frames. In this experiment, the attacker
-successfully extracted text such as name, address, ID number, and other sensitive
-personal information. We also tested the payment code extractor, which enables
-an attacker to identify payment code in the video stream and performs transactions
-without the password. During our experiment, we noticed that this HUAWEI device supports ``Desktop Mode''
-for its external screen, which enable users to use their devices as if they were using a computer with an external monitor.
-If \tool is set into this mode, \tool is able to inject mouse movements to set itself into mirroring the primary screen, as we discussed in Section~\ref{subsec:attack_init}.
+smartphone in \mbox{EMUI 11.0.0.135(C00E128R2P5)} \mbox{(Android 10.0 based)} with a \ac{USB} Type-C interface, as the target device.
+In the privacy extraction experiment, \tool passively captured video from the victim's device and used \textit{OpenCV} to identify the sensitive information from the video stream.  When the victim viewed text or photos with text, \tool used the techniques of \ac{OCR} to extract text from corresponding video frames.
+In this experiment, the attacker successfully extracted text such as name, address, ID number, and other sensitive personal information. We also tested the payment code extractor, which enables an attacker to identify payment code in the video stream and performs transactions
+without the password. During our experiment, we noticed that this HUAWEI device supports ``Desktop Mode'' for its external display, which enable users to use their devices as if they were using a computer with an external display.
+If \tool is set into this mode, \tool is able to inject mouse movements to set itself into mirroring the primary display, as we discussed in Section~\ref{subsec:attack_init}.
 As this is also a part of our case study, more details about
 the extracted sensitive data can be found in Section~\ref{subsec:case_study} and
 Table~\ref{table:information_extracted}.
@@ -122,15 +116,14 @@ process the victim's video stream locally, it does not need to transmit the real
 \subsection{Full Control Mode}
 %\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
-To test the capability of the full control mode, we chose iPad Pro (3rd
-	generation), a tablet running iOS 14.4 (Build 18D52) with a \ac{USB} Type-C interface, as the target
-device in this experiment.  Besides disguising themself as normal \acp{HID} like a
-conventional BadUSB~\cite{badusb}, \tool also transmitted real-time video
-stream from the target device to the attacker via WiFi.  After establishing the connection, the attacker performed a series of actions to test the capability of
-\tool. In the beginning, the attacker accessed the album application on the iPad and
-obtained all the photos inside. After that, the attacker sent messages via the victim's
-account. At last, the attacker performed a transaction using the
-financial application. All of these tests resulted in success.
+To test the capability of the full control mode, we chose iPad Pro (3rd generation),
+a tablet running iOS 14.4 (Build 18D52) with a \ac{USB} Type-C interface,
+as the target device in this experiment.
+In　addition to disguising themselves as normal \acp{HID} like a conventional BadUSB~\cite{badusb}, \tool also transmitted the real-time video stream from the target device to the attacker via WiFi.
+After establishing the connection, the attacker performed a series of actions to test the capability of \tool.
+In the beginning, the attacker accessed the album application on the iPad and obtained all the photos inside.
+After that, the attacker sent messages via the victim's account. At last, the attacker performed a transaction using a financial application.
+All of these tests resulted in success.
 
 Through this experiment, we have found that with video transmission and mouse
 emulation, \tool extensively expanded the attack capability of BadUSB,
@@ -149,17 +142,15 @@ In the following paragraphs, we will demonstrate the attack scenarios of \tool u
 We first introduce the technical background of our case study, sharing power
 banks and QR code payment.
 
-\textbf{Sharing Power Banks}.  Sharing power banks provide users with short-term
-rental of power banks.  The company deploys power bank stations in the city and
+\textbf{Sharing Power Banks}. Sharing power banks provide users with short-term
+rental of power banks. The company deploys power bank stations in the city and
 users can rent a power bank from any of the power bank stations, charge their
 device on the trip, return the rented power bank to the near stations, and pay
 the rental fee.
 
-Power bank sharing is a popular service in Asia, power bank stations are deployed
-in markets, stores, and even newsstands. For example, Figure~\ref{fig:PBS_products} are photos
-of two power bank stations in China, which are taken outside of a supermarket. Brick~\cite{Brick} is also such a power bank sharing service provider from
-Sweden. It provides power bank rental service all over Sweden and is planning on expanding its
-service to entire Europe.
+Power bank sharing is a popular service in Asia, power bank stations are deployed in markets, stores, and even newsstands.
+For example, Figure~\ref{fig:PBS_products} are photos of two power bank stations in China, which are taken outside of a supermarket. Brick~\cite{Brick} is also such a power bank sharing service provider from Sweden.
+It provides power bank rental service all over Sweden and is planning on expanding its service to entire Europe.
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=.45 \linewidth, height=.45 \linewidth]{./Figs/PBS_mt.png}
@@ -170,24 +161,21 @@ service to entire Europe.
 
 %\shuqing{May use statistics (instead of concrete examples) to explain it.}
 
-Sharing power banks not only provides convenience to users, but also brings security issues.  We noticed that most of the power bank stations do not
-check the integrity of power banks during the rental process, and users are
-hardly cautious to check the power banks when connecting their devices.  An
-attacker is able to tamper rented power banks and return them to a power bank
-station causing a potential threat to subsequent users.
+Sharing power banks bring convenience but also security issues.
+We noticed that most of the power bank stations do not check the integrity of the power bank during the rental process, and users rarely check the power banks carefully when connecting the power bank to their devices.
+An attacker can tamper with a rented power bank and return it to a power bank station, thereby posing a potential threat to subsequent users.
 
 
 \textbf{QR Code Payment}.
-QR code payment is a new type of payment method that is popular in Asia. Its most well-known cases are WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay}. QR code payment provides merchant and client a convenient way of offline payment while ensuring equivalent security as the credit card.
-As illustrated in Figure~\ref{fig:qr_payment_procedure},
- QR code payments are typically performed in the following steps:
-\ding{182} The client presents the payment QR code on the mobile device to the merchant.
-The QR code is encoded with a globally unique ID to identify the client's account.
-\ding{183} The merchant scans the payment QR code and charges the corresponding amount of money.
-By presenting this QR code, the client authorizes the proceeding transaction.
-\ding{184} After confirmation, the payment service provider proceeds with this transaction and returns the payment result to both the merchant and the client.
-\shuqing{I think this paragraph can be shorter. No need to explain so many details.}
-\hongyi{Dont know how to be more concise.}
+QR code payment is a new payment method popular in Asia.
+The most famous cases are WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay}.
+QR code payment provides merchants and customers with a convenient offline payment method while ensuring equivalent security as credit cards.
+As illustrated in Figure~\ref{fig:qr_payment_procedure}, QR code payments are typically performed in the following steps:
+(1) The customer shows the QR payment code to the merchant on the mobile device.
+The QR code is encoded with a globally unique ID to identify the customer's account.
+(2) The merchant scans the QR payment code and charges the corresponding amount.
+By showing this QR code, the customer authorizes the proceeding transaction.
+(3) After confirmation, the payment service provider proceeds with this transaction and returns the payment result to both the merchant and the customer.
 
 \begin{figure}[t]
 	\centering
@@ -197,44 +185,31 @@ By presenting this QR code, the client authorizes the proceeding transaction.
 \end{figure}
 
 
-Next, we explain one type of payments called micropayment. A micropayment is pre-determined by the payment
-service provider with thresholds in the user agreement. In real-world scenarios, payment service providers use different rules
-for micropayment purchases. For example, WeChat
-Pay~\cite{Wechat-pay} regards transactions under US\textdollar 154 as
-micropayments.  Different from a typical payment procedure, when micropayments
-are made, confirmations can be applied automatically without clients'
-permission which aims to provide convenience to both merchant and client.  If a
-victim's payment code is leaked to the attackers, they can use that code to
-authorize multiple micropayments without needing permission.  In order to prevent such
-cases, both WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay} have designed a refreshing mechanism for the
-payment code, which is to refresh the QR code every minute. This is sufficient
-to stop an attack like opportunistic theft of a payment code but unable to stop a real-time attack like our
-\tool.  In summary, the payment QR code is highly sensitive on users' devices
-and our following case study is about how to obtain this code using an
-attacker-crafted power bank via \tool.
+Next, we explain a payment method called micropayment.
+A micropayment is pre-determined by the payment service provider according to the threshold in the user agreement.
+In the real world, payment service providers use different rules for micropayment purchases.
+For example, WeChat Pay~\cite{Wechat-pay} treats transactions under US\textdollar 154 as micropayments.
+Different from the typical payment procedure, when marking micropayments, confirmations can be automatically applied without the customer's permission, which aims to provide convenience for both merchant and customer.
+If the victim's payment code is leaked to the attacker, the attacker can use the code to authorize multiple micropayments without permission.
+In order to prevent this situation, both WeChat Pay~\cite{Wechat-pay} and Alipay~\cite{AliPay} have designed a mechanism to refersh the payment code every minute.
+This is sufficient to prevent attacks like opportunistic theft of a payment code, but cannot prevent real-time attacks like our \tool.
+In summary, the QR payment code is highly sensitive on users' devices. Th following case study is about how to use an attacker-crafted power bank via \tool to obtain this code.
 
 \subsubsection{Attack Scenario}
 \label{subsec:attack-scenario}
 
-In this part, we will introduce a real-life attack scenario to show that our
-\tool is a practical offensive tool.  This scenario can be broken down into the
-following steps.
+In this part, we will introduce a real-life attack scenario to show that our \tool is a practical offensive tool.
+This scenario can be broken down into the following steps.
 
 \begin{enumerate}[I. ]
 	\item The attacker rents a power bank from one of the power bank stations and replaces the internal components with \tool.
-	\item After the modification, an attacker-crafted power bank is returned to a rental station in a crowded area like an airport or railway station, which increases the probability of success.
-	\item A user borrows the modified power bank and connects it to his/her own device, becoming the victim of \tool.
-	\item The attacker now has complete control over the victim's device and can perform various attacks using different modes.
+	\item After the modification, an attacker-crafted power bank is returned to the rental station in crowded areas like airports or railway stations, which increases the probability of success.
+	\item A user borrows the modified power bank and connects it to his/her own device, becoming a victim of \tool.
+	\item The attacker can now fully control the victim's device and can use different modes for various attacks.
 \end{enumerate}
 
-Next, we summarize the possible threats toward users under different modes.
-%\hongyi{Better way to express this?}
-First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor scripts into victims' devices. Moreover, using video capture mode, once the victims access their sensitive data such as QR payment  code or photos, their sensitive data could be immediately transmitted via \tool to the attacker. Lastly, with full control mode, the attacker has complete control over the victims' devices and could conduct any actions on the victims' devices.
-
-\shuqing{Background is longer than real user study.}
-%As the functionality and effectiveness, HID emulator mode is similar to the original BadUSB and the full control mode hijacks the victim's device completely.
-\hongyi{I dont know if it's a good enough reason}
-%Here we only validate the usability of privacy extraction mode and conducted a user study.
+Next, we summarize the possible threats toward the victim under different modes.
+First, under \ac{HID} emulator mode, the attacker is able to implant malware and backdoor scripts into the victim's device. Moreover, using video capture mode, once the victim accesses his/her sensitive data such as QR payment code or photos, the sensitive data will be immediately transmitted to the attacker via \tool. Lastly, with full control mode, the attacker can completely control over the victim's device and can perform any operations on the victim's device.
 
 \subsubsection{Experiment}
 
