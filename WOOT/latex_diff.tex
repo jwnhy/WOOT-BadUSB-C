@@ -1,7 +1,7 @@
 \documentclass[conference]{IEEEtran}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /tmp/lpJorvJYJP/latexdiff-vc-34a97a8d8868555507dd875f30368a64cb8b20eb/BadUSBC.tex   Fri Mar 12 15:55:21 2021
-%DIF ADD BadUSBC.tex                                                                         Mon Mar 22 19:40:14 2021
+%DIF DEL /tmp/JSK49Bm5Zl/latexdiff-vc-34a97a8d8868555507dd875f30368a64cb8b20eb/BadUSBC.tex   Fri Mar 12 15:55:21 2021
+%DIF ADD BadUSBC.tex                                                                         Mon Mar 22 21:42:53 2021
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 
@@ -338,29 +338,29 @@ roles of the \ac{USB} device and reject any usage beyond the description.
 
 In this work, we addressed the limitations mentioned
 above and implemented a multi-mode attack model of \ac{USB}, named \tool.  \tool
-extends BadUSB to support the features of \ac{USB} Type-C.  
+extends BadUSB to support the features of \ac{USB} Type-C.
 \DIFdelbegin \DIFdel{Since }\DIFdelend \DIFaddbegin \DIFadd{Although many smartphones equipped with USB-C connectors do not support }\DIFaddend \ac{USB} \DIFdelbegin \DIFdel{Type-C }\DIFdelend \DIFaddbegin \DIFadd{3.x protocol, such as some non-flagship products of Xiaomi, more and more vendors like HUAWEI and Samsung tend to support }\ac{USB} \DIFadd{3.x protocol in their \mbox{high-end} smartphones~\mbox{%DIFAUXCMD
 \cite{usbclist}}\hspace{0pt}%DIFAUXCMD
 .
 Since \mbox{\ac{USB} Type-C} }\DIFaddend can transfer video stream data, \tool could obtain the information of the
 victim's \ac{GUI} during attacks.  Combining it with the emulation
 of traditional \acp{HID}, e.g., keyboards and mice, attackers are capable of
-performing precise attacks.  
+performing precise attacks.
 %We did experiments to verify that \tool could also
 %bypass some countermeasures for BadUSB since they often rely on interaction
-%with the graphical interface. 
- \DIFaddbegin 
+%with the graphical interface.
+\DIFaddbegin 
 
 \DIFaddend Moreover, we implemented multiple attacking
 modes of \ac{USB} attacks based on our approach to verify its effectiveness,
-including \ac{HID} Emulator Mode, Video Capture Mode, and \DIFdelbegin \DIFdel{Full }\DIFdelend \DIFaddbegin \DIFadd{Fully }\DIFaddend Control Mode.  To improve the
+including \ac{HID} Emulator Mode, Video Capture Mode, and \DIFdelbegin \DIFdel{Full Control Mode.  }\DIFdelend \DIFaddbegin \DIFadd{full control mode  }\DIFaddend To improve the
 efficiency and performance of \tool, we designed a filtering algorithm to
-preprocess the video data before network transmission.  
+preprocess the video data before network transmission.
 \DIFdelbegin \DIFdel{Moreover, we }\DIFdelend \DIFaddbegin \DIFadd{We }\DIFaddend conducted
 a series of experiments for each attack mode as well as for different types of
 devices, including smartphones, personal computers, and tablet computers, to
 validate the usability of \tool.  We also conducted a \DIFdelbegin \DIFdel{user }\DIFdelend \DIFaddbegin \DIFadd{case }\DIFaddend study for attacks in
-sharing power banks, one of the application scenarios of \tool.  
+sharing power banks, one of the application scenarios of \tool.
 \DIFdelbegin \DIFdel{During the
 user study, we obtained a large amount of sensitive data through }%DIFDELCMD < \tool%%%
 \DIFdel{, since
@@ -379,7 +379,7 @@ into sensitive and insensitive layers.  Only the insensitive layer's content \DI
 
 We summarize our key contributions as follows:
 
-\begin{itemize} 
+\begin{itemize}
 
     \item To our best knowledge, this is the first work to utilize new features
 	of \ac{USB} Type-C.  The combination of new support with conventional BadUSB
@@ -390,7 +390,7 @@ We summarize our key contributions as follows:
     \item We conducted \DIFdelbegin \DIFdel{multiple experiments and a user study }\DIFdelend \DIFaddbegin \DIFadd{a case study and multiple experiments }\DIFaddend to validate the
 	usability and effectiveness of \tool.  We also proposed several
 	countermeasures for our attack model, which are reasonable and
-	insightful. 
+	insightful.
 	%\fengwei{Add countermeasures, in particular the isolation design.}
 	%\shuqing{Isolated UI rendering is added in the last paragraph.}
 \end{itemize}
@@ -591,7 +591,7 @@ can only exfiltrate video data passively from the victim's device, while }\tool 
 (2) The official list of }\DIFaddend \ac{MHL} \DIFdelbegin \DIFdel{is an outdated standard, which limits its
 capability. }\DIFdelend \DIFaddbegin \DIFadd{Devices~\mbox{%DIFAUXCMD
 \cite{MHLlist} }\hspace{0pt}%DIFAUXCMD
-shows that the latest mobile devices supporting }\ac{MHL} \DIFadd{were released in 2015, which indicates the lack of support of }\ac{MHL} \DIFadd{and limits the attack range of }\ac{JFA}\DIFadd{. }\tool \DIFadd{attacks over }\ac{USB} \DIFadd{Type-C interface, the latest }\ac{USB} \DIFadd{connector designed to replace all previous USB connector including MicroUSB~\mbox{%DIFAUXCMD
+shows that the latest mobile devices supporting }\ac{MHL} \DIFadd{were released in 2015, which indicates the lack of support of }\ac{MHL} \DIFadd{and limits the attack range of }\ac{JFA}\DIFadd{. }\tool \DIFadd{attacks over }\ac{USB} \DIFadd{Type-C interface, the latest }\ac{USB} \DIFadd{connector designed to replace all previous USB connectors including MicroUSB~\mbox{%DIFAUXCMD
 \cite{li2018usb}}\hspace{0pt}%DIFAUXCMD
 . So }\tool \DIFadd{has a wider attack range. 
 }\DIFaddend 
@@ -950,10 +950,11 @@ provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 
 \circled[text=white,fill=myblue]{\scriptsize{A}} is a \DIFdelbegin \DIFdel{Huawei }\DIFdelend \DIFaddbegin \DIFadd{HUAWEI }\DIFaddend mobile phone, the victim's device; \circled[text=white,fill=myblue]{\scriptsize{B}} is a compact look of \tool prototype; \circled[text=white,fill=myblue]{\scriptsize{1}} is the \ac{USB} 3.x Hub; \circled[text=white,fill=myblue]{\scriptsize{2}} is a Raspberry Pi 4B as the Single Board Computer; \circled[text=white,fill=myblue]{\scriptsize{3}} is an auxiliary power bank; \circled[text=white,fill=myblue]{\scriptsize{4}} is the Video Capture Card; \circled[text=white,fill=myblue]{\scriptsize{5}} is an Atmel ATMEGA32U4 board as the \ac{HID} Emulator.
-%\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
+\DIFaddbegin 
+
+\DIFaddend %\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
 %2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
 %\fengwei{I think it is necessary to explain them in the text again.}
-
 
 \begin{figure}[t]
 	\includegraphics[width=\linewidth]{./Figs/armory_all.png}\\
@@ -1048,7 +1049,7 @@ Note that the video capture mode only needs to
 process the victim's video stream locally, it does not need to transmit the real-time video back to the attacker, which is useful when the network connection between \tool and the attacker is not stable.
 %This mode is useful when there is no stable network connection between \tool and the attacker.
 
-\subsection{Fully Control Mode}
+\subsection{\DIFdelbegin \DIFdel{Fully }\DIFdelend \DIFaddbegin \DIFadd{Full }\DIFaddend Control Mode}
 %\fengwei{In BadUSB-C section, remote control model is after privacy extraction mode.}
 
 To test the capability of the full control mode, we chose iPad Pro (3rd
@@ -1070,7 +1071,7 @@ device in this experiment.
 \label{subsec:case_study}
 \tool can be used in various attack scenarios, ranging from mobile devices to PC devices.
 For example, \tool can be attached to the power station, which provides USB 3.x hubs, in the airport to perform attacks.
-Most people charge their laptops or smartphones in the power station in emergency, with negligence of security.
+Most people charge \DIFdelbegin \DIFdel{their }\DIFdelend laptops or smartphones in the power station in emergency, with negligence of security.
 In the following paragraphs, we will demonstrate the attack scenarios of \tool using sharing power bank as an example.
 
 \subsubsection{Background}
@@ -1276,7 +1277,7 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 Before the user study experiment, we disclosed to the volunteers how their data might be used and request permission from the volunteers and the university ethics review boards.
 During the case study, volunteers took turns to use their phones for half an hour with }\DIFdelend \DIFaddbegin \subsubsection{\DIFadd{Experiment}}
 
-\DIFadd{We conducted experiments to further validate the capabilities of }\DIFaddend \tool 
+\DIFadd{We conducted experiments to further validate the capabilities of }\DIFaddend \tool
 \DIFdelbegin \DIFdel{connected. 
 To obtain data close to real-life, they were requested to use phones just as they were normally using sharing power banks.
 At the same time, we used scripts to perform }%DIFDELCMD < \ac{OCR} %%%
@@ -1337,9 +1338,9 @@ It is worth mentioning that }%DIFDELCMD < {%%%
 		\multirow{2}{*}{Social App}
 											%DIF > & QQ          & Account, Contacts, Chat History   	& \\
 											%DIF > \cline{2-4}
-							       			& \DIFaddFL{WhatsApp (2.21.5.18)    }& \DIFaddFL{Account, Contacts, Chat History, Phone Number    }& \\
+							       			& \DIFaddFL{WhatsApp (2.21.5.18)    }& \DIFaddFL{Account, Contacts, Chat History, Phone Number    }& \DIFaddFL{<None> }\\
 											\cline{2-4}
-							       			& \DIFaddFL{Facebook (309.0.0.47.119)   }& \DIFaddFL{Account, Posts, Contacts           }& \\
+							       			& \DIFaddFL{Facebook (309.0.0.47.119)   }& \DIFaddFL{Account, Posts, Contacts           }& \DIFaddFL{<None> }\\
 		\hline
 		\multirow{3}{*}{Finance App}       	& \DIFaddFL{Alipay (10.2.15.9500)      }& \DIFaddFL{Account, Financial Status, Payment Code         				}& \DIFaddFL{Payment Password }\\
 											\cline{2-4}
@@ -1347,19 +1348,19 @@ It is worth mentioning that }%DIFDELCMD < {%%%
 											\cline{2-4}
 											& \DIFaddFL{Paypal (7.38.1)      }& \DIFaddFL{Account, PayPal Balance     								}& \DIFaddFL{Payment Password }\\
 		\hline
-		\multirow{1}{*}{Shopping App}		& \DIFaddFL{Amazon Shopping (22.6.0.100)  }& \DIFaddFL{Account, Orders, Shopping Cart         				}& \\
+		\multirow{1}{*}{Shopping App}		& \DIFaddFL{Amazon Shopping (22.6.0.100)  }& \DIFaddFL{Account, Orders, Shopping Cart         				}& \DIFaddFL{<None> }\\
 											%DIF > \cline{2-4}
-		                					%DIF > & Taobao      & Personal physical metrics      						& \\
+		                					%DIF > & Taobao      & Personal physical metrics      						& <None> \\
 		\hline
-		\multirow{2}{*}{Tool}               & \DIFaddFL{Chrome (89.0.4389.72)      }& \DIFaddFL{Browsing History                                	}& \\
+		\multirow{2}{*}{Tool}               & \DIFaddFL{Chrome (89.0.4389.72)      }& \DIFaddFL{Browsing History                                	}& \DIFaddFL{<None> }\\
 											\cline{2-4}
-		                					& \DIFaddFL{Health (11.0.5.508)      }& \DIFaddFL{Personal Health Metrics      						}& \\
+		                					& \DIFaddFL{Health (11.0.5.508)      }& \DIFaddFL{Personal Health Metrics      						}& \DIFaddFL{<None> }\\
 		\hline
-		\multirow{3}{*}{System}             &  \DIFaddFL{Messages (11.0.1.430)   }& \DIFaddFL{Contacts, Chat History				 }&   \\
+		\multirow{3}{*}{System}             &  \DIFaddFL{Messages (11.0.1.430)   }& \DIFaddFL{Contacts, Chat History				 }&  \DIFaddFL{<None> }\\
 											\cline{2-4}
 											& \DIFaddFL{Settings (11.0.0.300) - WiFi   }& \DIFaddFL{WiFi SSID                                	}&  \DIFaddFL{WiFi Password }\\
 											\cline{2-4}
-		                					& \DIFaddFL{Settings (11.0.0.300) - VPN    }& \DIFaddFL{VPN Address, VPN Account, VPN Password      						}& \\
+		                					& \DIFaddFL{Settings (11.0.0.300) - VPN    }& \DIFaddFL{VPN Address, VPN Account, VPN Password      						}& \DIFaddFL{<None> }\\
 		\hline
 	\end{tabular}
 	\linebreak
@@ -1431,14 +1432,14 @@ For example, in Figure~\ref{fig:isolated_ui}, the ``password'' and ``keyboard'' 
 \label{sec:discussion}
 
 \subsection{Limitation}
-There exist multiple limitations of \tool. To begin with, when \tool is attached, the victim's device may not be set to mirror the screen. 
+There exist multiple limitations of \tool. To begin with, when \tool is attached, the victim's device may not be set to mirror the screen.
 Depending on the victim's settings, the \tool may be used as an extended monitor or \DIFaddbegin \DIFadd{be set to `Desktop Mode' or }\DIFaddend not be enabled at all. \DIFdelbegin \DIFdel{Additionally, some smartphone vendors (e.g. Huawei and Smartisan) provide a Desktop Mode to users, which displays a desktop on external screeninstead of mirroring}\DIFdelend \DIFaddbegin \DIFadd{Though we proposed the attack initialization in Section~\ref{subsec:attack_init} to inject keystrokes to ensure }\tool \DIFadd{is mirroring primary screen. But without knowing the exact operating system of the victim's device, }\tool \DIFadd{may have to try multiple injections before successfully mirroring the screen}\DIFaddend .
 Moreover, as mentioned in Section~\ref{sec:experiment}, \tool cannot directly obtain the information on the lock screen.
  \DIFdelbegin \DIFdel{In these cases, }%DIFDELCMD < \tool %%%
-\DIFdel{is either easily noticeable to the victim or disabled.  }\DIFdelend Apart from that, we also noticed that in most devices, when an external monitor is connected to the device, there will be notifications about the monitor. In iPad, there is a small blue icon on the notification bar. In Windows 10, there is a pop-up for user to select the functionality of the external monitor. In latter case of a pop-up, \tool can dismiss it by injecting keystrokes \DIFdelbegin \DIFdel{and mouse movements}\DIFdelend \DIFaddbegin \DIFadd{as described in Section~\ref{subsec:attack_init}}\DIFaddend . But they are still noticeable by the victim. Also, it cannot be ignored that DisplayPort over \ac{USB} is not available on all devices. When selecting devices to test \tool, we find that many smartphones equipped with USB-C connectors \DIFaddbegin \DIFadd{actually }\DIFaddend do not support \ac{USB} \DIFdelbegin \DIFdel{3.2 protocol. Such lack of support further limits }%DIFDELCMD < \tool%%%
-\DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{3.x protocol. There is a incomplete list of devices that support DisplayPort over }\ac{USB}\DIFadd{~\mbox{%DIFAUXCMD
+\DIFdel{is either easily noticeable to the victim or disabled.  }\DIFdelend Apart from that, we also noticed that in most devices, when an external monitor is connected to the device, there will be notifications about the monitor. In iPad, there is a small blue icon \DIFdelbegin \DIFdel{on }\DIFdelend \DIFaddbegin \DIFadd{in }\DIFaddend the notification bar. In Windows 10, there is a pop-up for user to select the functionality of the external monitor. In latter case of a pop-up, \tool can dismiss it by injecting keystrokes \DIFdelbegin \DIFdel{and mouse movements}\DIFdelend \DIFaddbegin \DIFadd{as described in Section~\ref{subsec:attack_init}}\DIFaddend . But they are still noticeable by the victim. Also, it cannot be ignored that DisplayPort over \ac{USB} is not available on all devices. When selecting devices to test \tool, we find that many smartphones equipped with USB-C connectors \DIFaddbegin \DIFadd{actually }\DIFaddend do not support \ac{USB} \DIFdelbegin \DIFdel{3.2 protocol. Such lack of support further limits }%DIFDELCMD < \tool%%%
+\DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{3.x protocol. There is an incomplete list of devices that support DisplayPort over }\ac{USB}\DIFadd{~\mbox{%DIFAUXCMD
 \cite{usbclist}}\hspace{0pt}%DIFAUXCMD
-. Most vendors like HUAWEI and Samsung tend to support }\ac{USB} \DIFadd{3.x protocol in their \mbox{high-end} smartphones. But there also exists vendor like Xiaomi who does not support }\ac{USB} \DIFadd{3.x protocol at all. 
+. Most vendors like HUAWEI and Samsung tend to support }\ac{USB} \DIFadd{3.x protocol in their \mbox{high-end} smartphones. But there also exists vendors like Xiaomi who does not support }\ac{USB} \DIFadd{3.x protocol at all.
 }\DIFaddend 
 
 \begin{comment}
@@ -1463,10 +1464,10 @@ The \ac{USB} protocol is used widely as introduced in the preceding sections.  A
 technologies develop rapidly, more and more devices will be equipped with USB-C
 capabilities\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
 \cite{li2018usb}}\hspace{0pt}%DIFAUXCMD
-}\DIFaddend , which makes \tool more influential.  
-Since non-professional users \DIFdelbegin \DIFdel{often }\DIFdelend \DIFaddbegin \DIFadd{may }\DIFaddend neglect checking the security of plug-in \ac{USB} devices, 
+}\DIFaddend , which makes \tool more influential.
+Since non-professional users \DIFdelbegin \DIFdel{often }\DIFdelend \DIFaddbegin \DIFadd{may }\DIFaddend neglect checking the security of plug-in \ac{USB} devices,
 they \DIFdelbegin \DIFdel{are often }\DIFdelend \DIFaddbegin \DIFadd{may }\DIFaddend unaware of the attacks from \tool.
-can be hardly detected by them while attacks are performing.  
+can be hardly detected by them while attacks are performing.
 The popularity and universality of public \ac{USB} devices, including sharing power banks, even
 increase such risks.  Moreover, \tool provides a better way for traditional
 BadUSB attacks, since attackers can obtain the screen streaming with ease.
@@ -1483,7 +1484,7 @@ Leveraging the new features of \ac{USB} 3.x~\cite{usb30,usb31,usb32}, we explore
 new attack scheme named \tool and three attack modes. Each of these three modes
 has its own strength and use scenarios. The \ac{HID} Emulation mode largely extends the
 original BadUSB. The video capture mode proved practical and powerful\DIFdelbegin \DIFdel{in the user study}\DIFdelend , as it extracts
-victim's sensitive information in a stealthy way. The fully control mode
+victim's sensitive information in a stealthy way. The \DIFdelbegin \DIFdel{fully }\DIFdelend \DIFaddbegin \DIFadd{full }\DIFaddend control mode
 achieves the complete hijack of the target device, allowing us to perform various
 types of subsequent attacks. By experimenting \tool with mobile phones, tablets,
 and PCs, we further test its ability under different modes. In our \DIFdelbegin \DIFdel{user study}\DIFdelend \DIFaddbegin \DIFadd{experiment}\DIFaddend , we
@@ -1510,12 +1511,479 @@ it more practical.
 
 \section{\DIFadd{Acknowledgement}}
 \DIFadd{We are very grateful to our shepherd, Michael Schwarz, and the anonymous reviewers for their valuable feedback that improved the paper.
-}\DIFaddend %\input{./Files/acknowledgement.tex}
+}
+
+\DIFaddend %\input{./Files/acknowledgement.tex}
 
 
 
 
 
 \balance
+
+\bibliographystyle{IEEEtran}
+\DIFdelbegin %DIFDELCMD < \bibliography{BadUSBC}
+%DIFDELCMD < %%%
+\DIFdelend %DIF >  Generated by IEEEtran.bst, version: 1.14 (2015/08/26)
+\DIFaddbegin \begin{thebibliography}{10}
+\providecommand{\url}[1]{#1}
+\csname \DIFadd{url@samestyle}\endcsname
+\providecommand{\newblock}{\relax}
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\BIBentrySTDinterwordspacing}{\spaceskip=0pt\relax}
+\providecommand{\BIBentryALTinterwordstretchfactor}{4}
+\providecommand{\BIBentryALTinterwordspacing}{\spaceskip=\fontdimen2\font plus
+\BIBentryALTinterwordstretchfactor\fontdimen3\font minus
+  \fontdimen4\font\relax}
+\providecommand{\BIBforeignlanguage}[2]{{%
+\expandafter\ifx\csname l@#1\endcsname\relax
+\typeout{** WARNING: IEEEtran.bst: No hyphenation pattern has been}%
+\typeout{** loaded for the language `#1'. Using the pattern for}%
+\typeout{** the default language instead.}%
+\else
+\language=\csname l@#1\endcsname
+\fi
+#2}}
+\providecommand{\BIBdecl}{\relax}
+\BIBdecl
+
+\bibitem{sok}
+\BIBentryALTinterwordspacing
+\DIFadd{J.~D. Tian, N.~Scaife, D.~Kumar, M.~Bailey, A.~Bates, and K.~R.~B. Butler,
+  ``Sok: "plug }{\DIFadd{\&}} \DIFadd{pray" today - understanding }{\DIFadd{USB}} \DIFadd{insecurity in versions 1
+  through }{\DIFadd{C}}\DIFadd{,'' in }\emph{\DIFadd{2018 }{\DIFadd{IEEE}} \DIFadd{Symposium on Security and Privacy, }{\DIFadd{SP}}
+  \DIFadd{2018, Proceedings, 21-23 May 2018, San Francisco, California, }{\DIFadd{USA}}}\DIFadd{.}\hskip
+  \DIFadd{1em plus 0.5em minus 0.4em}\relax {\DIFadd{IEEE}} \DIFadd{Computer Society, 2018, pp.
+  1032--1047. }[\DIFadd{Online}]\DIFadd{. Available: }\url{https://doi.org/10.1109/SP.2018.00037}
+\BIBentrySTDinterwordspacing
+
+\bibitem{website:CVE-list}
+\BIBentryALTinterwordspacing
+\DIFadd{``Common vulnerabilities and exposures,'' 2020. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://cve.mitre.org/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{badusb}
+\DIFadd{K.~Nohl and J.~Lell, ``Badusb-on accessories that turn evil,'' }\emph{\DIFadd{Black Hat
+  USA}}\DIFadd{, vol.~1, no.~9, pp. 1--22, 2014.
+}
+
+\bibitem{hid}
+\DIFadd{USB-IF, ``Device class definition for human interface devices (}{\DIFadd{HID}}\DIFadd{),'' 2001.
+}
+
+\bibitem{tian2015defending}
+\BIBentryALTinterwordspacing
+\DIFadd{J.~D. Tian, A.~Bates, and K.~R.~B. Butler, ``Defending against malicious }{\DIFadd{USB}}
+  \DIFadd{firmware with goodusb,'' in }\emph{\DIFadd{Proceedings of the 31st Annual Computer
+  Security Applications Conference, Los Angeles, CA, USA, December 7-11,
+  2015}}\DIFadd{.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax {\DIFadd{ACM}}\DIFadd{, 2015, pp. 261--270.
+  }[\DIFadd{Online}]\DIFadd{. Available: }\url{https://doi.org/10.1145/2818000.2818040}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usbclist}
+\BIBentryALTinterwordspacing
+\DIFadd{EverybodyWiki, ``List of devices with video output over usb-c,'' 2021.
+  }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://en.everybodywiki.com/List_of_devices_with_video_output_over_USB-C#Devices_with_DisplayPort_Alternate_Mode_over_USB-C}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usb10}
+\DIFadd{Compaq, D.~E. Corporation, I.~P. Company, Intel, Microsoft, NEC, and
+  N.~Telecom., }\emph{\DIFadd{Universal Serial Bus Specification, Revision 1.0}}\DIFadd{, January
+  1996.
+}
+
+\bibitem{usb11}
+\DIFadd{------, }\emph{\DIFadd{Universal Serial Bus Specification, Revision 1.1}}\DIFadd{, September
+  1998.
+}
+
+\bibitem{usb20}
+\DIFadd{------, }\emph{\DIFadd{Universal Serial Bus Specification, Revision 2.0}}\DIFadd{, April 2000.
+}
+
+\bibitem{rubber}
+\BIBentryALTinterwordspacing
+\DIFadd{Hak5, ``Episode 709: Usb rubber ducky part 1,'' 2013. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{http://hak5.org/episodes/episode-709}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usb30}
+\DIFadd{I.~HP }\emph{\DIFadd{et~al.}}\DIFadd{, ``Universal serial bus 3.0 specification,'' 2008.
+}
+
+\bibitem{usb31}
+\DIFadd{------, ``Universal serial bus 3.1 specification,'' 2013.
+}
+
+\bibitem{usb32}
+\DIFadd{I.~M. R.~S. Apple, Hewlett-Packard and T.~Instruments., ``Universal serial bus
+  3.2 specification,'' 2017.
+}
+
+\bibitem{typec}
+\DIFadd{G.~Chandler }\emph{\DIFadd{et~al.}}\DIFadd{, }\emph{\DIFadd{Universal Serial Bus Type-C Cable and
+  Connector Specification}}\DIFadd{.
+}
+
+\bibitem{usbif}
+\BIBentryALTinterwordspacing
+\DIFadd{``}{\DIFadd{USB}} \DIFadd{implementers forum,'' 1995. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://www.usb.org/about/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usbsec}
+\DIFadd{USB-IF, ``}{\DIFadd{USB-IF}} \DIFadd{statement regarding }{\DIFadd{USB}} \DIFadd{security,'' 2014.
+}
+
+\bibitem{duqu}
+\DIFadd{P.~Szor, ``Duqu--threat research and analysis,'' }\emph{\DIFadd{McAfee Labs}}\DIFadd{, 2011.
+}
+
+\bibitem{JFC}
+\BIBentryALTinterwordspacing
+\DIFadd{W.~Meng, L.~W. Hao, M.~S. Ramanujam, and S.~P.~T. Krishnan, ``Charging me and
+  }{\DIFadd{I}} \DIFadd{know your secrets!: Towards juice filming attacks on smartphones,'' in
+  }\emph{\DIFadd{Proceedings of the 1st }{\DIFadd{ACM}} \DIFadd{Workshop on Cyber-Physical System
+  Security, }{\DIFadd{CPSS}} \DIFadd{2015, Singapore, Republic of Singapore, April 14 - March 14,
+  2015}}\DIFadd{, J.~Zhou and D.~Jones, Eds.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax
+  {\DIFadd{ACM}}\DIFadd{, 2015, pp. 89--98. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://doi.org/10.1145/2732198.2732205}
+\BIBentrySTDinterwordspacing
+
+\bibitem{JFCImpact}
+\BIBentryALTinterwordspacing
+\DIFadd{W.~Meng, L.~W. Hao, Z.~Liu, C.~Su, and Y.~Li, ``Evaluating the impact of juice
+  filming charging attack in practical environments,'' in }\emph{\DIFadd{Information
+  Security and Cryptology - }{\DIFadd{ICISC}} \DIFadd{2017 - 20th International Conference,
+  Seoul, South Korea, November 29 - December 1, 2017, Revised Selected Papers}}\DIFadd{,
+  ser. Lecture Notes in Computer Science, H.~Kim and D.~Kim, Eds., vol.
+  10779.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax \DIFadd{Springer, 2017, pp. 327--338.
+  }[\DIFadd{Online}]\DIFadd{. Available: }\url{https://doi.org/10.1007/978-3-319-78556-1\_18}
+\BIBentrySTDinterwordspacing
+
+\bibitem{facedancer}
+\BIBentryALTinterwordspacing
+\DIFadd{GoodFET, ``Facedancer21,'' 2016. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{http://goodfet.sourceforge.net/hardware/facedancer21}
+\BIBentrySTDinterwordspacing
+
+\bibitem{syzkaller}
+\BIBentryALTinterwordspacing
+\DIFadd{Google, ``Found linux kernel usb bugs,'' 2017. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://github.com/google/syzkaller/blob/master/docs/linux/found\_bugs\_usb.md}
+\BIBentrySTDinterwordspacing
+
+\bibitem{rubberducky2020}
+\DIFadd{A.~D. }{\DIFadd{Ramadhanty}}\DIFadd{, A.~}{\DIFadd{Budiono}}\DIFadd{, and A.~}{\DIFadd{Almaarif}}\DIFadd{, ``Implementation and
+  analysis of keyboard injection attack using usb devices in windows operating
+  system,'' in }\emph{\DIFadd{2020 3rd International Conference on Computer and
+  Informatics Engineering (IC2IE)}}\DIFadd{, 2020, pp. 449--454.
+}
+
+\bibitem{usbbypassing}
+\DIFadd{J.~Bang, B.~Yoo, and S.~Lee, ``Secure usb bypassing tool,'' }\emph{\DIFadd{digital
+  investigation}}\DIFadd{, vol.~7, pp. S114--S120, 2010.
+}
+
+\bibitem{iseeyou}
+\BIBentryALTinterwordspacing
+\DIFadd{M.~Brocker and S.~Checkoway, ``iseeyou: Disabling the macbook webcam indicator
+  }{\DIFadd{LED}}\DIFadd{,'' in }\emph{\DIFadd{Proceedings of the 23rd }{\DIFadd{USENIX}} \DIFadd{Security Symposium, San
+  Diego, CA, USA, August 20-22, 2014}}\DIFadd{, K.~Fu and J.~Jung, Eds.}\hskip \DIFadd{1em plus
+  0.5em minus 0.4em}\relax {\DIFadd{USENIX}} \DIFadd{Association, 2014, pp. 337--352. }[\DIFadd{Online}]\DIFadd{.
+  Available:
+  }\url{https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/brocker}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usbdriver}
+\BIBentryALTinterwordspacing
+\DIFadd{S.~Kamkar, ``Usbdriveby.'' 2014. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{http://samy.pl/usbdriveby/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{MHLlist}
+\BIBentryALTinterwordspacing
+\DIFadd{MHL, ``Mhl devices,'' 2021. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{http://www.mhltech.org/devices.aspx?tid=1}
+\BIBentrySTDinterwordspacing
+
+\bibitem{li2018usb}
+\DIFadd{A.~Li, ``Usb type-c for machine vision,'' }\emph{\DIFadd{Quality}}\DIFadd{, pp. 16VS--17VS, 2018.
+}
+
+\bibitem{flame}
+\DIFadd{K.~Zetter, ``Meet ‘flame,’the massive spy malware infiltrating iranian
+  computers,'' }\emph{\DIFadd{Wired Magazine}}\DIFadd{, 2012.
+}
+
+\bibitem{brain}
+\DIFadd{H.~J. Highland, ``The brain virus: fact and fantasy,'' }\emph{\DIFadd{Computers \&
+  Security}}\DIFadd{, vol.~7, no.~4, pp. 367--370, 1988.
+}
+
+\bibitem{stuxnet}
+\BIBentryALTinterwordspacing
+\DIFadd{``Common vulnerabilities and exposures,'' 2010. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-2568,}
+\BIBentrySTDinterwordspacing
+
+\bibitem{conficker}
+\BIBentryALTinterwordspacing
+\DIFadd{S.~Shin and G.~Gu, ``Conficker and beyond: a large-scale empirical study,'' in
+  }\emph{\DIFadd{Twenty-Sixth Annual Computer Security Applications Conference, }{\DIFadd{ACSAC}}
+  \DIFadd{2010, Austin, Texas, USA, 6-10 December 2010}}\DIFadd{, C.~Gates, M.~Franz, and J.~P.
+  McDermott, Eds.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax {\DIFadd{ACM}}\DIFadd{, 2010, pp.
+  151--160. }[\DIFadd{Online}]\DIFadd{. Available: }\url{https://doi.org/10.1145/1920261.1920285}
+\BIBentrySTDinterwordspacing
+
+\bibitem{zero-day}
+\BIBentryALTinterwordspacing
+\DIFadd{Z.~Wang and A.~Stavrou, ``Exploiting smart-phone }{\DIFadd{USB}} \DIFadd{connectivity for fun and
+  profit,'' in }\emph{\DIFadd{Twenty-Sixth Annual Computer Security Applications
+  Conference, }{\DIFadd{ACSAC}} \DIFadd{2010, Austin, Texas, USA, 6-10 December 2010}}\DIFadd{, C.~Gates,
+  M.~Franz, and J.~P. McDermott, Eds.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax
+  {\DIFadd{ACM}}\DIFadd{, 2010, pp. 357--366. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://doi.org/10.1145/1920261.1920314}
+\BIBentrySTDinterwordspacing
+
+\bibitem{smartphone}
+\BIBentryALTinterwordspacing
+\DIFadd{------, ``Exploiting smart-phone }{\DIFadd{USB}} \DIFadd{connectivity for fun and profit,'' in
+  }\emph{\DIFadd{Twenty-Sixth Annual Computer Security Applications Conference, }{\DIFadd{ACSAC}}
+  \DIFadd{2010, Austin, Texas, USA, 6-10 December 2010}}\DIFadd{, C.~Gates, M.~Franz, and J.~P.
+  McDermott, Eds.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax {\DIFadd{ACM}}\DIFadd{, 2010, pp.
+  357--366. }[\DIFadd{Online}]\DIFadd{. Available: }\url{https://doi.org/10.1145/1920261.1920314}
+\BIBentrySTDinterwordspacing
+
+\bibitem{poweremi}
+\DIFadd{K.~Sridhar, S.~Prasad, L.~Punitha, and S.~Karunakaran, ``Emi issues of
+  universal serial bus and solutions,'' in }\emph{\DIFadd{8th International Conference
+  on Electromagnetic Interference and Compatibility}}\DIFadd{.}\hskip \DIFadd{1em plus 0.5em
+  minus 0.4em}\relax \DIFadd{IEEE, 2003, pp. 97--100.
+}
+
+\bibitem{revealing}
+\DIFadd{A.~Davis, ``Revealing embedded fingerprints: Deriving intelligence from usb
+  stack interactions,'' }\emph{\DIFadd{Blackhat USA}}\DIFadd{, 2013.
+}
+
+\bibitem{su2017usb}
+\BIBentryALTinterwordspacing
+\DIFadd{Y.~Su, D.~Genkin, D.~C. Ranasinghe, and Y.~Yarom, ``}{\DIFadd{USB}} \DIFadd{snooping made easy:
+  Crosstalk leakage attacks on }{\DIFadd{USB}} \DIFadd{hubs,'' in }\emph{\DIFadd{26th }{\DIFadd{USENIX}} \DIFadd{Security
+  Symposium, }{\DIFadd{USENIX}} \DIFadd{Security 2017, Vancouver, BC, Canada, August 16-18,
+  2017}}\DIFadd{, E.~Kirda and T.~Ristenpart, Eds.}\hskip \DIFadd{1em plus 0.5em minus
+  0.4em}\relax {\DIFadd{USENIX}} \DIFadd{Association, 2017, pp. 1145--1161. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/su}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usbgpslocator}
+\BIBentryALTinterwordspacing
+\DIFadd{mich., ``Inside a low budget consumer hardware espionage implant.'' 2017.
+  }[\DIFadd{Online}]\DIFadd{. Available: }\url{https://ha.cking.ch/s8 data line locator}
+\BIBentrySTDinterwordspacing
+
+\bibitem{bates2014leveraging}
+\BIBentryALTinterwordspacing
+\DIFadd{A.~Bates, R.~Leonard, H.~Pruse, D.~Lowd, and K.~R.~B. Butler, ``Leveraging
+  }{\DIFadd{USB}} \DIFadd{to establish host identity using commodity devices,'' in }\emph{\DIFadd{21st
+  Annual Network and Distributed System Security Symposium, }{\DIFadd{NDSS}} \DIFadd{2014, San
+  Diego, California, USA, February 23-26, 2014}}\DIFadd{.}\hskip \DIFadd{1em plus 0.5em minus
+  0.4em}\relax \DIFadd{The Internet Society, 2014. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://www.ndss-symposium.org/ndss2014/leveraging-usb-establish-host-identity-using-commodity-devices}
+\BIBentrySTDinterwordspacing
+
+\bibitem{badusbhub}
+\BIBentryALTinterwordspacing
+\DIFadd{K.~Nohl, ``Badusb exposure: Hubs,'' 2014. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://opensource.srlabs.de/projects/badusb/wiki/Hubs}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usbfinger}
+\BIBentryALTinterwordspacing
+\DIFadd{L.~Letaw, J.~Pletcher, and K.~R.~B. Butler, ``Host identification via }{\DIFadd{USB}}
+  \DIFadd{fingerprinting,'' in }\emph{\DIFadd{2011 }{\DIFadd{IEEE}} \DIFadd{Sixth International Workshop on
+  Systematic Approaches to Digital Forensic Engineering, }{\DIFadd{SADFE}} \DIFadd{2011, Oakland,
+  CA, USA, May 26, 2011}}\DIFadd{, R.~F. Erbacher, R.~H. Campbell, and Y.~Guan,
+  Eds.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax {\DIFadd{IEEE}} \DIFadd{Computer Society, 2011,
+  pp. 1--9. }[\DIFadd{Online}]\DIFadd{. Available: }\url{https://doi.org/10.1109/SADFE.2011.9}
+\BIBentrySTDinterwordspacing
+
+\bibitem{side}
+\BIBentryALTinterwordspacing
+\DIFadd{D.~F. Oswald, B.~Richter, and C.~Paar, ``Side-channel attacks on the yubikey 2
+  one-time password generator,'' in }\emph{\DIFadd{Research in Attacks, Intrusions, and
+  Defenses - 16th International Symposium, }{\DIFadd{RAID}} \DIFadd{2013, Rodney Bay, St. Lucia,
+  October 23-25, 2013. Proceedings}}\DIFadd{, ser. Lecture Notes in Computer Science,
+  S.~J. Stolfo, A.~Stavrou, and C.~V. Wright, Eds., vol. 8145.}\hskip \DIFadd{1em plus
+  0.5em minus 0.4em}\relax \DIFadd{Springer, 2013, pp. 204--222. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://doi.org/10.1007/978-3-642-41284-4\_11}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usbee}
+\BIBentryALTinterwordspacing
+\DIFadd{M.~Guri, M.~Monitz, and Y.~Elovici, ``Usbee: Air-gap covert-channel via
+  electromagnetic emission from }{\DIFadd{USB}}\DIFadd{,'' in }\emph{\DIFadd{14th Annual Conference on
+  Privacy, Security and Trust, }{\DIFadd{PST}} \DIFadd{2016, Auckland, New Zealand, December
+  12-14, 2016}}\DIFadd{.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax {\DIFadd{IEEE}}\DIFadd{, 2016, pp.
+  264--268. }[\DIFadd{Online}]\DIFadd{. Available: }\url{https://doi.org/10.1109/PST.2016.7906972}
+\BIBentrySTDinterwordspacing
+
+\bibitem{turnip}
+\BIBentryALTinterwordspacing
+\DIFadd{TURNIPSCHOOL, ``Nsa playset.'' }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{http://www.nsaplayset.org/turnipschool}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usbkiller}
+\BIBentryALTinterwordspacing
+\DIFadd{``Usbkiller,'' 2016. }[\DIFadd{Online}]\DIFadd{. Available: }\url{https://www.usbkill.com/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Condom}
+\BIBentryALTinterwordspacing
+\DIFadd{INT3.CC, ``The original usb condom,'' 2018. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://int3.cc/collections/usb/products/usbcondoms}
+\BIBentrySTDinterwordspacing
+
+\bibitem{windenfenderwhite}
+\BIBentryALTinterwordspacing
+\DIFadd{Microsoft, ``How to control usb devices and other removable media using
+  microsoft defender for endpoint,'' 2018. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://docs.microsoft.com/en-us/windows/security/threat-protection/device-control/control-usb-devices-using-intune\#prevent-installation-of-specifically-prohibited-peripherals}
+\BIBentrySTDinterwordspacing
+
+\bibitem{mohammadmoradi2018making}
+\BIBentryALTinterwordspacing
+\DIFadd{H.~Mohammadmoradi and O.~Gnawali, ``Making whitelisting-based defense work
+  against badusb,'' in }\emph{\DIFadd{Proceedings of the 2nd International Conference on
+  Smart Digital Environment, }{\DIFadd{ICSDE}} \DIFadd{2018, Rabat, Morocco, October 18-20,
+  2018}}\DIFadd{, F.~E. Bouanani and A.~Habbani, Eds.}\hskip \DIFadd{1em plus 0.5em minus
+  0.4em}\relax {\DIFadd{ACM}}\DIFadd{, 2018, pp. 127--134. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://doi.org/10.1145/3289100.3289121}
+\BIBentrySTDinterwordspacing
+
+\bibitem{yang2015tmsui}
+\BIBentryALTinterwordspacing
+\DIFadd{B.~Yang, Y.~Qin, Y.~Zhang, W.~Wang, and D.~Feng, ``}{\DIFadd{TMSUI:}} {\DIFadd{A}} \DIFadd{trust
+  management scheme of }{\DIFadd{USB}} \DIFadd{storage devices for industrial control systems,''
+  in }\emph{\DIFadd{Information and Communications Security - 17th International
+  Conference, }{\DIFadd{ICICS}} \DIFadd{2015, Beijing, China, December 9-11, 2015, Revised
+  Selected Papers}}\DIFadd{, ser. Lecture Notes in Computer Science, S.~Qing,
+  E.~Okamoto, K.~Kim, and D.~Liu, Eds., vol. 9543.}\hskip \DIFadd{1em plus 0.5em minus
+  0.4em}\relax \DIFadd{Springer, 2015, pp. 152--168. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://doi.org/10.1007/978-3-319-29814-6\_13}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usbesafe}
+\BIBentryALTinterwordspacing
+\DIFadd{A.~Kharraz, B.~L. Daley, G.~Z. Baker, W.~Robertson, and E.~Kirda, ``}{\DIFadd{USBESAFE:}}
+  \DIFadd{an end-point solution to protect against usb-based attacks,'' in }\emph{\DIFadd{22nd
+  International Symposium on Research in Attacks, Intrusions and Defenses,
+  }{\DIFadd{RAID}} \DIFadd{2019, Chaoyang District, Beijing, China, September 23-25, 2019}}\DIFadd{.}\hskip
+  \DIFadd{1em plus 0.5em minus 0.4em}\relax {\DIFadd{USENIX}} \DIFadd{Association, 2019, pp. 89--103.
+  }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://www.usenix.org/conference/raid2019/presentation/kharraz}
+\BIBentrySTDinterwordspacing
+
+\bibitem{MuellerZN19}
+\BIBentryALTinterwordspacing
+\DIFadd{T.~Mueller, E.~Zimmer, and L.~de~Nittis, ``Using context and provenance to
+  defend against usb-borne attacks,'' in }\emph{\DIFadd{Proceedings of the 14th
+  International Conference on Availability, Reliability and Security, }{\DIFadd{ARES}}
+  \DIFadd{2019, Canterbury, UK, August 26-29, 2019}}\DIFadd{.}\hskip \DIFadd{1em plus 0.5em minus
+  0.4em}\relax {\DIFadd{ACM}}\DIFadd{, 2019, pp. 1:1--1:9. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://doi.org/10.1145/3339252.3339268}
+\BIBentrySTDinterwordspacing
+
+\bibitem{neuner2018usblock}
+\BIBentryALTinterwordspacing
+\DIFadd{S.~Neuner, A.~G. Voyiatzis, S.~Fotopoulos, C.~Mulliner, and E.~R. Weippl,
+  ``Usblock: Blocking usb-based keypress injection attacks,'' in }\emph{\DIFadd{Data and
+  Applications Security and Privacy }{\DIFadd{XXXII}} \DIFadd{- 32nd Annual }{\DIFadd{IFIP}} {\DIFadd{WG}} \DIFadd{11.3
+  Conference, DBSec 2018, Bergamo, Italy, July 16-18, 2018, Proceedings}}\DIFadd{, ser.
+  Lecture Notes in Computer Science, F.~Kerschbaum and S.~Paraboschi, Eds.,
+  vol. 10980.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax \DIFadd{Springer, 2018, pp.
+  278--295. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://doi.org/10.1007/978-3-319-95729-6\_18}
+\BIBentrySTDinterwordspacing
+
+\bibitem{pham2010optimizing}
+\DIFadd{D.~V. Pham, M.~N. Halgamuge, A.~Syed, and P.~Mendis, ``Optimizing windows
+  security features to block malware and hack tools on usb storage devices,''
+  in }\emph{\DIFadd{Progress in electromagnetics research symposium}}\DIFadd{, 2010.
+}
+
+\bibitem{meng2018252}
+\DIFadd{W.~Meng, L.~Jiang, Y.~Wang, J.~Li, J.~Zhang, and Y.~Xiang, ``Jfcguard:
+  Detecting juice filming charging attack via processor usage analysis on
+  smartphones,'' }\emph{\DIFadd{Computers \& Security}}\DIFadd{, vol.~76, pp. 252 -- 264, 2018.
+}
+
+\bibitem{cable}
+\BIBentryALTinterwordspacing
+\DIFadd{B.~Leung, ``Surjtech’s 3m usb a-to-c cable completely violates the usb spec.
+  seriously damaged my laptop,'' 2016. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://www.amazon.com/review/R2XDBFUD9CTN2R}
+\BIBentrySTDinterwordspacing
+
+\bibitem{pi4b}
+\BIBentryALTinterwordspacing
+\DIFadd{R.~P. Foundation, ``Raspberry pi }{\DIFadd{4B}}\DIFadd{,'' 2019. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://www.raspberrypi.org/products/raspberry-pi-4-model-b}
+\BIBentrySTDinterwordspacing
+
+\bibitem{atmel}
+\BIBentryALTinterwordspacing
+\DIFadd{M.~T. Incorporated, ``}{\DIFadd{ATmega32u4}} \DIFadd{chip,'' 2016. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://www.microchip.com/wwwproducts/en/ATmega32u4}
+\BIBentrySTDinterwordspacing
+
+\bibitem{ugreen}
+\BIBentryALTinterwordspacing
+\DIFadd{U.~G. Limited, ``}{\DIFadd{UGREEN}} \DIFadd{company introduction,'' 2012. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://www.ugreen.com/pages/about-ugreen}
+\BIBentrySTDinterwordspacing
+
+\bibitem{appleman}
+\BIBentryALTinterwordspacing
+\DIFadd{Apple, ``Mac notebooks: Key placement and functions,'' 2017. }[\DIFadd{Online}]\DIFadd{.
+  Available: }\url{https://support.apple.com/en-us/HT201181}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Brick}
+\BIBentryALTinterwordspacing
+\DIFadd{Brick, ``Brick,'' 2019. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://brickapp.se/about-us/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Wechat-pay}
+\BIBentryALTinterwordspacing
+\DIFadd{``}{\DIFadd{WeChat Pay}}\DIFadd{,'' 2020. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://pay.weixin.qq.com/index.php/public/wechatpay_en}
+\BIBentrySTDinterwordspacing
+
+\bibitem{AliPay}
+\BIBentryALTinterwordspacing
+\DIFadd{Alipay, ``Alipay,'' 2020. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://global.alipay.com/platform/site/ihome}
+\BIBentrySTDinterwordspacing
+
+\bibitem{usbcheckin}
+\BIBentryALTinterwordspacing
+\DIFadd{F.~Griscioli, M.~Pizzonia, and M.~Sacchetti, ``Usbcheckin: Preventing badusb
+  attacks by forcing human-device interaction,'' in }\emph{\DIFadd{14th Annual
+  Conference on Privacy, Security and Trust, }{\DIFadd{PST}} \DIFadd{2016, Auckland, New Zealand,
+  December 12-14, 2016}}\DIFadd{.}\hskip \DIFadd{1em plus 0.5em minus 0.4em}\relax {\DIFadd{IEEE}}\DIFadd{, 2016,
+  pp. 493--496. }[\DIFadd{Online}]\DIFadd{. Available:
+  }\url{https://doi.org/10.1109/PST.2016.7907004}
+\BIBentrySTDinterwordspacing
+
+\end{thebibliography}
+\DIFaddend 
+
+
 
 \end{document}
