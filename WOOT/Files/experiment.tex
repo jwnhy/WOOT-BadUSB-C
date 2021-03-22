@@ -25,10 +25,10 @@ provide power for the Raspberry Pi and the mobile devices used by the victim.
 The image of our \tool prototype can be found in Figure~\ref{fig:armory}.
 
 \circled[text=white,fill=myblue]{\scriptsize{A}} is a HUAWEI mobile phone, the victim's device; \circled[text=white,fill=myblue]{\scriptsize{B}} is a compact look of \tool prototype; \circled[text=white,fill=myblue]{\scriptsize{1}} is the \ac{USB} 3.x Hub; \circled[text=white,fill=myblue]{\scriptsize{2}} is a Raspberry Pi 4B as the Single Board Computer; \circled[text=white,fill=myblue]{\scriptsize{3}} is an auxiliary power bank; \circled[text=white,fill=myblue]{\scriptsize{4}} is the Video Capture Card; \circled[text=white,fill=myblue]{\scriptsize{5}} is an Atmel ATMEGA32U4 board as the \ac{HID} Emulator.
+
 %\fengwei{We need to explain the Figure. What is "A"? What is "B", Where are 1,
 %2, 3, 4, and 5?}\hongyi{Is the caption sufficient? If explain here, I feel quite redundant}
 %\fengwei{I think it is necessary to explain them in the text again.}
-
 
 \begin{figure}[t]
 	\includegraphics[width=\linewidth]{./Figs/armory_all.png}\\
@@ -237,7 +237,7 @@ First, under \ac{HID} emulator mode, the attacker is able to implant malware and
 
 \subsubsection{Experiment}
 
-We conducted experiments to further validate the capabilities of \tool 
+We conducted experiments to further validate the capabilities of \tool
 in the attack scenario introduced in Section~\ref{subsec:attack-scenario}.
 11 applications were selected and tested on \mbox{\textit{HUAWEI P30 (ELE-AL00)}} step by step:
 (1) Login in with a test account.
@@ -263,9 +263,9 @@ In summary, \tool is able to actively obtain most sensitive information from the
 		\multirow{2}{*}{Social App}
 											%& QQ          & Account, Contacts, Chat History   	& \\
 											%\cline{2-4}
-							       			& WhatsApp (2.21.5.18)    & Account, Contacts, Chat History, Phone Number    & \\
+							       			& WhatsApp (2.21.5.18)    & Account, Contacts, Chat History, Phone Number    & <None> \\
 											\cline{2-4}
-							       			& Facebook (309.0.0.47.119)   & Account, Posts, Contacts           & \\
+							       			& Facebook (309.0.0.47.119)   & Account, Posts, Contacts           & <None> \\
 		\hline
 		\multirow{3}{*}{Finance App}       	& Alipay (10.2.15.9500)      & Account, Financial Status, Payment Code         				& Payment Password \\
 											\cline{2-4}
@@ -273,19 +273,19 @@ In summary, \tool is able to actively obtain most sensitive information from the
 											\cline{2-4}
 											& Paypal (7.38.1)      & Account, PayPal Balance     								& Payment Password \\
 		\hline
-		\multirow{1}{*}{Shopping App}		& Amazon Shopping (22.6.0.100)  & Account, Orders, Shopping Cart         				& \\
+		\multirow{1}{*}{Shopping App}		& Amazon Shopping (22.6.0.100)  & Account, Orders, Shopping Cart         				& <None> \\
 											%\cline{2-4}
-		                					%& Taobao      & Personal physical metrics      						& \\
+		                					%& Taobao      & Personal physical metrics      						& <None> \\
 		\hline
-		\multirow{2}{*}{Tool}               & Chrome (89.0.4389.72)      & Browsing History                                	& \\
+		\multirow{2}{*}{Tool}               & Chrome (89.0.4389.72)      & Browsing History                                	& <None> \\
 											\cline{2-4}
-		                					& Health (11.0.5.508)      & Personal Health Metrics      						& \\
+		                					& Health (11.0.5.508)      & Personal Health Metrics      						& <None> \\
 		\hline
-		\multirow{3}{*}{System}             &  Messages (11.0.1.430)   & Contacts, Chat History				 &   \\
+		\multirow{3}{*}{System}             &  Messages (11.0.1.430)   & Contacts, Chat History				 &  <None> \\
 											\cline{2-4}
 											& Settings (11.0.0.300) - WiFi   & WiFi SSID                                	&  WiFi Password \\
 											\cline{2-4}
-		                					& Settings (11.0.0.300) - VPN    & VPN Address, VPN Account, VPN Password      						& \\
+		                					& Settings (11.0.0.300) - VPN    & VPN Address, VPN Account, VPN Password      						& <None> \\
 		\hline
 	\end{tabular}
 	\linebreak
