@@ -9,25 +9,42 @@ Format: 30 Minute Breifing
 Format Delivery: UNDECIDED
 
 Abstract:
----
+BadUSB, a well-known firmware attack, performs malicious operations on the victims' devices through disguising ordinary USB devices as human interface devices like keyboards and mice.
+
+However, BadUSB lacks a visual feedback channel to perform precise attacks. This talk introduces BadUSB-C, a new attack tool utilizing USB Type-C. BadUSB-C can obtain real-time UI from the victims' devices leveraging the latest DisplayPort over USB-C protocol.
+
+We build a stealthy prototype which looks like a normal power bank and will demostrate how to hijack a mobile device using it.
 
 Presentation Outline
----
+1. Introduction to USB background
+- This will introduce a breif history of USB protocol including the latest USB Type-C features and previous attacks like BadUSB.
+
+2. Ideas and realization of BadUSB-C
+- This will present the ideas behind BadUSB-C and how to build a BadUSB-C prototype.
+
+3. Real attack scenario
+- This will demostrate a real attack scenario where BadUSB-C is disguised as a sharing power bank and steals victim's money.
 
 Have You Previously Presented This Research or Any Portion of This Talk at Another Conference? 
-No
+Yes
 
 If yes, provide the conference name, date, location and URL
----
+Name: 15th Workshop On Offensive Technologies (WOOT '21)
+Date: May 27, 2021
+Location: Virtual
+URL: https://www.ieee-security.org/TC/SP2021/SPW2021/WOOT21/
 
 What new research, concept, technique, or approach is included in your submission?
----
+To our best knowledge, this is the first work to utilize new features of USB Type-C. The combination of new support with conventional BadUSB makes attacks more precise and effective.
+
 
 Takeaways
----
+- USB Type C provides a powerful peripherial without sufficient protection
+- BadUSB-C extends BadUSB by providing a real-time visual feedback, which largely enhances its capibility.
+- Do not use USB devices especially USB Type-C devices from unknown sources.
 
 If applicable, what problem does your research solve?
----
+N/A
 
 Will you be releasing a new tool? 
 Yes
@@ -39,10 +56,10 @@ Does your presentation include a demo?
 Yes
 
 If you are a past Black Hat Briefings speaker, please provide the event year/location of your most recent event.
----
+N/A
 
 So the Review Board is able to get a sense of your presentation style, do you have a video sample of any previous conference presentations?
----
+No
 
 Message for Review Board Only
----
+None
