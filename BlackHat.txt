@@ -1,0 +1,48 @@
+Title: BADUSB-C: Revisiting BadUSB with Type-C
+
+Track: Mobile
+
+Secondary: Hardware / Embedded
+
+Format: 30 Minute Breifing
+
+Format Delivery: UNDECIDED
+
+Abstract:
+---
+
+Presentation Outline
+---
+
+Have You Previously Presented This Research or Any Portion of This Talk at Another Conference? 
+No
+
+If yes, provide the conference name, date, location and URL
+---
+
+What new research, concept, technique, or approach is included in your submission?
+---
+
+Takeaways
+---
+
+If applicable, what problem does your research solve?
+---
+
+Will you be releasing a new tool? 
+Yes
+
+Is this a new vulnerability?
+Yes
+
+Does your presentation include a demo? 
+Yes
+
+If you are a past Black Hat Briefings speaker, please provide the event year/location of your most recent event.
+---
+
+So the Review Board is able to get a sense of your presentation style, do you have a video sample of any previous conference presentations?
+---
+
+Message for Review Board Only
+---
