@@ -8,12 +8,7 @@ Format: 30 Minute Breifing
 
 Format Delivery: UNDECIDED
 
-Abstract:
-BadUSB, a well-known firmware attack, performs malicious operations on the victims' devices through disguising ordinary USB devices as human interface devices like keyboards and mice.
-
-However, BadUSB lacks a visual feedback channel to perform precise attacks. This talk introduces BadUSB-C, a new attack tool utilizing USB Type-C. BadUSB-C can obtain real-time UI from the victims' devices leveraging the latest DisplayPort over USB-C protocol.
-
-We build a stealthy prototype which looks like a normal power bank and will demostrate how to hijack a mobile device using it.
+Abstract:However, BadUSB lacks a visual feedback channel to perform precise attacks, especially on mobile devices. Because most mobile devices rely on GUI to perform operations, but BadUSB majorly targets CLI. But this is about to be changed by USB Type-C protocol, which provides a DisplayPort over USB-C functionality. With this protocol and some gadgets like a USB Type-C Hub and a video capture card, one can build a powerful offensive tool that can obtain the victim's UI status and inject keystroke simultaneously. We call it BadUSB-C as it is an extension to BadUSB with Type-C protocol.
 
 Presentation Outline
 1. Introduction to USB background
@@ -24,6 +19,9 @@ Presentation Outline
 
 3. Real attack scenario
 - This will demostrate a real attack scenario where BadUSB-C is disguised as a sharing power bank and steals victim's money.
+
+4. Countermeasures
+- This will focus on the countermeasures against BadUSB-C attacks
 
 Have You Previously Presented This Research or Any Portion of This Talk at Another Conference? 
 Yes
@@ -63,3 +61,7 @@ No
 
 Message for Review Board Only
 None
+
+Bio:
+Shuqing:
+Shuqing Li is a senior undergraduate student at the CSE Department of Southern University of Science and Technology. Her research interests include but are not limited to software analysis, software testing and applying AI approaches to facilitate software engineering research.
