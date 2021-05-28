@@ -1,4 +1,4 @@
-TARGETS = woot
+TARGETS = main
 
 LATEX	= xelatex
 BIBTEX	= bibtex
