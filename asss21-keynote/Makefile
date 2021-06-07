@@ -9,8 +9,6 @@ $(TARGETS):
 		$(LATEX) $@
 		-$(BIBTEX) $@ > $(BIBTEX)_out.log
 		$(LATEX) $@
-		$(LATEX) $@
-		$(LATEX) $@
 
 debug:
 		-grep Warning *.log
